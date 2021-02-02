@@ -14,7 +14,7 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
+import VetLandingPage from '../VetLandingPage/VetLandingPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../VetLandingPage/VetLandingPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -52,7 +52,7 @@ class App extends Component {
               // logged in shows UserPage else shows LoginPage
               exact
               path="/user"
-              component={UserPage}
+              component={VetLandingPage}
             />
 
             <ProtectedRoute
