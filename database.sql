@@ -41,3 +41,18 @@ CREATE TABLE "veteran" (
     "danger_areas" BOOLEAN NOT NULL,
     "purple_heart" BOOLEAN NOT NULL
 );
+
+CREATE TABLE "organization" (
+    "id" SERIAL PRIMARY KEY,
+    "name" VARCHAR(255) NOT NULL,
+    "number" bigint(10) NOT NULL,
+    "email" VARCHAR(255) NOT NULL,
+    "city" VARCHAR(255) NOT NULL,
+    "state_id" INT REFERENCES "state",
+    "pdf" bytea NOT NULL,
+    "website" VARCHAR(255) NOT NULL,
+    "pictures" bytea NOT NULL,
+    "description" VARCHAR(1000) NOT NULL,
+    "categories_id" INT REFERENCES "categories",
+    "approved" BOOLEAN NOT NULL
+);
