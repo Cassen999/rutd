@@ -14,6 +14,61 @@ CREATE TABLE "type" (
     "description" VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE "rank" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE "gender" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE "married" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE "branch" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE "status" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE "country" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE "state" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE "discharge" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE "injury" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE "percentage" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE "categories" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
 CREATE TABLE "veteran" (
     "id" SERIAL PRIMARY KEY,
     "first_name" VARCHAR (255) NOT NULL,
