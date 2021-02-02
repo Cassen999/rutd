@@ -5,7 +5,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import './LandingPage.css';
 
 // CUSTOM COMPONENTS
-import RegisterForm from '../RegisterForm/RegisterForm';
+import RegisterForm from '../AccountRegisterForm/AccountRegisterPage';
 
 class LandingPage extends Component {
   state = {
