@@ -56,3 +56,12 @@ CREATE TABLE "organization" (
     "categories_id" INT REFERENCES "categories",
     "approved" BOOLEAN NOT NULL
 );
+
+CREATE TABLE "match" (
+    "id" SERIAL PRIMARY KEY,
+    "vet_id" INT REFERENCES "veteran",
+    "org_id" INT REFERENCES "organization",
+    "received" BOOLEAN,
+    "accepted" BOOLEAN,
+    "contacted" BOOLEAN
+);
