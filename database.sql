@@ -5,7 +5,13 @@
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
+    "password" VARCHAR (1000) NOT NULL,
+    "type_id" INT REFERENCES "type"
+);
+
+CREATE TABLE "type" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE "veteran" (
