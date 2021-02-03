@@ -6,6 +6,7 @@ class LoginForm extends Component {
   state = {
     username: '',
     password: '',
+    type: ''
   };
 
   login = (event) => {
@@ -17,6 +18,7 @@ class LoginForm extends Component {
         payload: {
           username: this.state.username,
           password: this.state.password,
+          type: this.state.type
         },
       });
     } else {
