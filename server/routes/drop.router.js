@@ -25,5 +25,16 @@ router.get("/married", (req, res) => {
       res.sendStatus(500);
     });
 });
+// GET branch
+router.get("/branch", (req, res) => {
+  const queryText = "SELECT * FROM branch";
+  pool
+    .query(queryText)
+    .then((data) => res.json(data.rows))
+    .catch((err) => {
+      console.log("GET branch failed: ", err);
+      res.sendStatus(500);
+    });
+});
 
 module.exports = router;
