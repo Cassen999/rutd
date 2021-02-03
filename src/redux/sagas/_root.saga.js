@@ -2,6 +2,8 @@ import { all } from 'redux-saga/effects';
 import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
+import categorySaga from './category.saga';
+import matchSaga from './match.saga'
 import acctType from './acctType.saga';
 
 // rootSaga is the primary saga.
@@ -16,6 +18,8 @@ export default function* rootSaga() {
     loginSaga(), // login saga is now registered
     registrationSaga(),
     userSaga(),
+    categorySaga(),
+    matchSaga(),
     acctType()
   ]);
 }

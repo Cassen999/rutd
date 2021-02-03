@@ -9,6 +9,8 @@ const passport = require("./strategies/user.strategy");
 
 // Route includes
 const userRouter = require('./routes/user.router');
+const categoryRouter = require('./routes/category.router');
+const matchRouter = require('./routes/match.router');
 const acctType = require('./routes/acctType.router');
 const userRouter = require("./routes/user.router");
 const dropRouter = require("./routes/drop.router");
@@ -26,6 +28,9 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
+app.use('/api/category', categoryRouter);
+app.use('/api/match', matchRouter);
+
 app.use('/api/acctType', acctType);
 app.use("/api/user", userRouter);
 app.use("/api/drop", dropRouter);
