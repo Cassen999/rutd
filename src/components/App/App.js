@@ -46,7 +46,7 @@ function App(props) {
 
           {/* Logic for different login types */}
           
-
+          
 
 
 
@@ -108,7 +108,7 @@ function App(props) {
             authRedirect="/user"
           />
 
-<ProtectedRoute
+          <ProtectedRoute
             // with authRedirect:
             // - if logged in, redirects to "/user"
             // - else shows LandingPage at "/home"
