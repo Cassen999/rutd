@@ -1,4 +1,4 @@
-const acctTypeReducer = (state = [], action) => {
+const acctTypeReducer = (state = {}, action) => {
     switch (action.type) {
         case 'SET_ACCT_TYPE':
             return action.payload;
