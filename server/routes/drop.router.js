@@ -71,4 +71,16 @@ router.get("/discharge", (req, res) => {
     });
 });
 
+// GET injury
+router.get("/injury", (req, res) => {
+  const queryText = "SELECT * FROM injury";
+  pool
+    .query(queryText)
+    .then((data) => res.json(data.rows))
+    .catch((err) => {
+      console.log("GET injury failed: ", err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
