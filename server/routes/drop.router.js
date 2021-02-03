@@ -118,4 +118,16 @@ router.get("/state", (req, res) => {
     });
 });
 
+// GET country
+router.get("/country", (req, res) => {
+  const queryText = "SELECT * FROM country";
+  pool
+    .query(queryText)
+    .then((data) => res.json(data.rows))
+    .catch((err) => {
+      console.log("GET country failed: ", err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
