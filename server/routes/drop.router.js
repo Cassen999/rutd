@@ -106,5 +106,16 @@ router.get("/categories", (req, res) => {
       res.sendStatus(500);
     });
 });
+// GET state
+router.get("/state", (req, res) => {
+  const queryText = "SELECT * FROM state";
+  pool
+    .query(queryText)
+    .then((data) => res.json(data.rows))
+    .catch((err) => {
+      console.log("GET state failed: ", err);
+      res.sendStatus(500);
+    });
+});
 
 module.exports = router;
