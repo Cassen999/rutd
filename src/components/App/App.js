@@ -20,6 +20,9 @@ import LandingPage from '../VetLandingPage/VetLandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import VetMatches from '../VetMatches/VetMatches';
+import AdminLandingPage from '../AdminLandingPage/AdminLandingPage';
+import AdminResourceList from '../AdminResourceList/AdminResourceList';
+import AdminVetList from '../AdminVetList/AdminVetList';
 import './App.css';
 import {useDispatch} from "react-redux";
 
@@ -108,24 +111,42 @@ function App(props) {
             authRedirect="/user"
           />
 
-          <ProtectedRoute
-            // with authRedirect:
-            // - if logged in, redirects to "/user"
-            // - else shows LandingPage at "/home"
-            exact
-            path="/vetmatches"
-            component={VetMatches}
-            // authRedirect="/user"
-          />
+            <ProtectedRoute
+              // with authRedirect:
+              // - if logged in, redirects to "/user"
+              // - else shows LandingPage at "/home"
+              exact
+              path="/vetmatches"
+              component={VetMatches}
+              // authRedirect="/user"
+            />
+
+            <ProtectedRoute
+              exact
+              path="/adminlanding"
+              component={AdminLandingPage}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/resourcelist"
+              component={AdminResourceList}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/vetlist"
+              component={AdminVetList}
+            />  
 
 
-          {/* If none of the other routes matched, we will show a 404. */}
-          <Route render={() => <h1>404</h1>} />
-        </Switch>
-        <Footer />
-      </div>
-    </Router>
-  );
-}
+            {/* If none of the other routes matched, we will show a 404. */}
+            <Route render={() => <h1>404</h1>} />
+          </Switch>
+          <Footer />
+        </div>
+      </Router>
+    );
+  }
 
 export default connect()(App);
