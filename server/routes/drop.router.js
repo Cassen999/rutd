@@ -95,4 +95,16 @@ router.get("/percentage", (req, res) => {
     });
 });
 
+// GET categories
+router.get("/categories", (req, res) => {
+  const queryText = "SELECT * FROM categories";
+  pool
+    .query(queryText)
+    .then((data) => res.json(data.rows))
+    .catch((err) => {
+      console.log("GET categories failed: ", err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
