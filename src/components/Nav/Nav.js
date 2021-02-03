@@ -20,7 +20,7 @@ const Nav = (props) => {
     loginLinkData.path = '/adminlanding';
     loginLinkData.text = 'Home';
   }
-  // need to change this one for organizations still 
+  // changes 'Home' to OrganizationLandingPage for an organization  
   else if (props.store.user.type_id === 3) {
     loginLinkData.path = '/organizationlanding';
     loginLinkData.text = 'Home';
