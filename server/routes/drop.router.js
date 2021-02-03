@@ -59,4 +59,16 @@ router.get("/status", (req, res) => {
     });
 });
 
+// GET discharge
+router.get("/discharge", (req, res) => {
+  const queryText = "SELECT * FROM discharge";
+  pool
+    .query(queryText)
+    .then((data) => res.json(data.rows))
+    .catch((err) => {
+      console.log("GET discharge failed: ", err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
