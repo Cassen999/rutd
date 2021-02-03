@@ -23,6 +23,7 @@ import VetMatches from '../VetMatches/VetMatches';
 import AdminLandingPage from '../AdminLandingPage/AdminLandingPage';
 import AdminResourceList from '../AdminResourceList/AdminResourceList';
 import AdminVetList from '../AdminVetList/AdminVetList';
+import GenericLanding from '../GenericLanding/GenericLanding';
 import './App.css';
 import {useDispatch} from "react-redux";
 
@@ -70,7 +71,7 @@ function App(props) {
             // logged in shows UserPage else shows LoginPage
             exact
             path="/user"
-            component={VetLandingPage}
+            component={GenericLanding}
           />
 
           <ProtectedRoute
