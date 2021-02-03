@@ -22,7 +22,7 @@ const Nav = (props) => {
   }
   // need to change this one for organizations still 
   else if (props.store.user.type_id === 3) {
-    loginLinkData.path = '/user';
+    loginLinkData.path = '/organizationlanding';
     loginLinkData.text = 'Home';
   }
 
@@ -59,15 +59,7 @@ const Nav = (props) => {
             <LogOutButton className="nav-link" />
           </>
         )}
-        {/* Show Nav Links for Organizations */}
-        {props.store.user.type_id === 3 && (
-          <>
-            <Link className="nav-link" to="/info">
-              Info Page
-            </Link>
-            <LogOutButton className="nav-link" />
-          </>
-        )}
+
         {/* Always show this link since the about page is not protected */}
         <Link className="nav-link" to="/about">
           About
