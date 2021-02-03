@@ -23,6 +23,7 @@ import VetMatches from '../VetMatches/VetMatches';
 import AdminLandingPage from '../AdminLandingPage/AdminLandingPage';
 import AdminResourceList from '../AdminResourceList/AdminResourceList';
 import AdminVetList from '../AdminVetList/AdminVetList';
+import OrganizationLandingPage from '../OrganizationLandingPage/OrganizationLandingPage';
 import './App.css';
 import {useDispatch} from "react-redux";
 
@@ -137,7 +138,13 @@ function App(props) {
               exact
               path="/vetlist"
               component={AdminVetList}
-            />  
+            />
+
+            <ProtectedRoute
+              exact
+              path="/organizationlanding"
+              component={OrganizationLandingPage}
+            />   
 
 
             {/* If none of the other routes matched, we will show a 404. */}

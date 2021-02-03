@@ -20,9 +20,9 @@ const Nav = (props) => {
     loginLinkData.path = '/adminlanding';
     loginLinkData.text = 'Home';
   }
-  // need to change this one for organizations still 
+  // changes 'Home' to OrganizationLandingPage for an organization  
   else if (props.store.user.type_id === 3) {
-    loginLinkData.path = '/user';
+    loginLinkData.path = '/organizationlanding';
     loginLinkData.text = 'Home';
   }
 
@@ -44,6 +44,9 @@ const Nav = (props) => {
             <Link className="nav-link" to="/vetmatches">
               Resources
             </Link>
+            <Link className="nav-link" to="/vetmatches">
+              Chat
+            </Link>
             <LogOutButton className="nav-link" />
           </>
         )}
@@ -56,18 +59,13 @@ const Nav = (props) => {
             <Link className="nav-link" to="/vetlist">
               Veterans
             </Link>
-            <LogOutButton className="nav-link" />
-          </>
-        )}
-        {/* Show Nav Links for Organizations */}
-        {props.store.user.type_id === 3 && (
-          <>
-            <Link className="nav-link" to="/info">
-              Info Page
+            <Link className="nav-link" to="/vetmatches">
+              Chat
             </Link>
             <LogOutButton className="nav-link" />
           </>
         )}
+
         {/* Always show this link since the about page is not protected */}
         <Link className="nav-link" to="/about">
           About
