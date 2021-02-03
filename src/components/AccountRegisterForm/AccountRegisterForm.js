@@ -51,7 +51,7 @@ class AccountRegisterForm extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <form>
+      <form onSubmit={event => this.registerUser(event)}>
         <div className="container">
             <h2>Register User</h2>
             {this.props.store.errors.registrationMessage && (

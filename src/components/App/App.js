@@ -20,6 +20,9 @@ import LandingPage from '../VetLandingPage/VetLandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import VetMatches from '../VetMatches/VetMatches';
+import AdminLandingPage from '../AdminLandingPage/AdminLandingPage';
+import AdminResourceList from '../AdminResourceList/AdminResourceList';
+import AdminVetList from '../AdminVetList/AdminVetList';
 import './App.css';
 
 class App extends Component {
@@ -102,6 +105,24 @@ class App extends Component {
               component={VetMatches}
               // authRedirect="/user"
             />
+
+            <ProtectedRoute
+              exact
+              path="/adminlanding"
+              component={AdminLandingPage}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/resourcelist"
+              component={AdminResourceList}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/vetlist"
+              component={AdminVetList}
+            />  
 
 
             {/* If none of the other routes matched, we will show a 404. */}
