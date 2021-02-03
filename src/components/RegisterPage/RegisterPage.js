@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 // CUSTOM COMPONENTS
-import RegisterForm from '../AccountRegisterForm/AccountRegisterPage';
+import AccountRegisterForm from '../AccountRegisterForm/AccountRegisterForm';
 
 class RegisterPage extends Component {
   state = {
@@ -14,7 +14,7 @@ class RegisterPage extends Component {
   render() {
     return (
       <div>
-        <RegisterForm />
+        <AccountRegisterForm />
 
         <center>
           <button
