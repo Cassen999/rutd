@@ -10,8 +10,18 @@ const Nav = (props) => {
     path: '/login',
     text: 'Login / Register',
   };
-
-  if (props.store.user.id != null) {
+// if user is a vet 'Home' will direct them to their profile page
+  if (props.store.user.type_id === 1) {
+    loginLinkData.path = '/user';
+    loginLinkData.text = 'Home';
+  }
+  // changes 'Home' to AdminLandingPage for the admin 
+  else if (props.store.user.type_id === 2) {
+    loginLinkData.path = '/adminlanding';
+    loginLinkData.text = 'Home';
+  }
+  // need to change this one for organizations still 
+  else if (props.store.user.type_id === 3) {
     loginLinkData.path = '/user';
     loginLinkData.text = 'Home';
   }
@@ -19,7 +29,7 @@ const Nav = (props) => {
   return (
     <div className="nav">
       <Link to="/home">
-        <h2 className="nav-title">Prime Solo Project</h2>
+        <h2 className="nav-title">RUTD</h2>
       </Link>
       <div className="nav-right">
         <Link className="nav-link" to={loginLinkData.path}>
@@ -28,8 +38,29 @@ const Nav = (props) => {
           and call this link 'Login / Register' if they are not */}
           {loginLinkData.text}
         </Link>
-        {/* Show the link to the info page and the logout button if the user is logged in */}
-        {props.store.user.id && (
+        {/* Show Nav Links for veterans */}
+        {props.store.user.type_id === 1 && (
+          <>
+            <Link className="nav-link" to="/vetmatches">
+              Resources
+            </Link>
+            <LogOutButton className="nav-link" />
+          </>
+        )}
+        {/* Show Nav Links for admin */}
+        {props.store.user.type_id === 2 && (
+          <>
+            <Link className="nav-link" to="/resourcelist">
+              Resources
+            </Link>
+            <Link className="nav-link" to="/vetlist">
+              Veterans
+            </Link>
+            <LogOutButton className="nav-link" />
+          </>
+        )}
+        {/* Show Nav Links for Organizations */}
+        {props.store.user.type_id === 3 && (
           <>
             <Link className="nav-link" to="/info">
               Info Page
