@@ -16,7 +16,7 @@ function* demographicSaga() {
 
 }
 
-function* addDemographicSaga() {
+function* addDemographicSaga(action) {
   console.log('In addDemographicSaga...')
   console.log('payload:', action.payload)
   try {

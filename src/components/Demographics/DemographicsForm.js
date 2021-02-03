@@ -4,7 +4,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux';
 import {AppBar, Button, Toolbar, Grid, Badge, CardMedia, IconButton, makeStyles, Paper, InputBase, Card, withStyles, CardActionArea} from '@material-ui/core'
 import TextField from '@material-ui/core/TextField';
-import '../../../App/App.css';
+// import '../../../App/App.css';
 
 const styles = {
     inputs: {
