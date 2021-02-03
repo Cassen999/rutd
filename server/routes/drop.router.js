@@ -47,5 +47,16 @@ router.get("/rank", (req, res) => {
       res.sendStatus(500);
     });
 });
+// GET status
+router.get("/status", (req, res) => {
+  const queryText = "SELECT * FROM status";
+  pool
+    .query(queryText)
+    .then((data) => res.json(data.rows))
+    .catch((err) => {
+      console.log("GET status failed: ", err);
+      res.sendStatus(500);
+    });
+});
 
 module.exports = router;
