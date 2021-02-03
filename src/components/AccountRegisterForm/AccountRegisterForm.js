@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-class RegisterForm extends Component {
+class AccountRegisterForm extends Component {
   state = {
     username: '',
     password: '',
   };
+
+  componentDidMount() {
+    this.props.dispatch({type: 'FETCH_ACCT_TYPE'})
+  }
 
   registerUser = (event) => {
     event.preventDefault();
@@ -67,4 +71,4 @@ class RegisterForm extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(RegisterForm);
+export default connect(mapStoreToProps)(AccountRegisterForm);
