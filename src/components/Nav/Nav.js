@@ -44,6 +44,9 @@ const Nav = (props) => {
             <Link className="nav-link" to="/vetmatches">
               Resources
             </Link>
+            <Link className="nav-link" to="/vetmatches">
+              Chat
+            </Link>
             <LogOutButton className="nav-link" />
           </>
         )}
@@ -55,6 +58,9 @@ const Nav = (props) => {
             </Link>
             <Link className="nav-link" to="/vetlist">
               Veterans
+            </Link>
+            <Link className="nav-link" to="/vetmatches">
+              Chat
             </Link>
             <LogOutButton className="nav-link" />
           </>
