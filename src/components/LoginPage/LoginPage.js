@@ -2,27 +2,51 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import LoginForm from '../LoginForm/LoginForm';
+// import VetMatches from '../VetMatches/VetMatches'
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+});
 
 class LoginPage extends Component {
   render() {
+    const { classes } = this.props;
     return (
       <div>
         <LoginForm />
-
         <center>
-          <button
-            type="button"
-            className="btn btn_asLink"
+          <Button
+            // className="btn btn_asLink"
+            className={classes.button}
+            variant="contained"
             onClick={() => {
               this.props.history.push('/registration');
             }}
           >
             Register
-          </button>
+          </Button>
+          <br></br>
+          <Button
+            className={classes.button}
+            variant="contained"
+            onClick={() => {
+              console.log('PLACEHOLDER FOR ORG REGISTRATION')
+              // this.props.history.push('/orgRegistration');
+            }}
+          >
+            Register for Organizations
+          </Button>
         </center>
       </div>
     );
   }
 }
 
-export default connect(mapStoreToProps)(LoginPage);
+export default connect(mapStoreToProps)(withStyles(styles)(LoginPage));

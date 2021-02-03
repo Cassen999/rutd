@@ -88,7 +88,8 @@ CREATE TABLE "categories" (
 
 CREATE TABLE "veteran" (
     "id" SERIAL PRIMARY KEY,
-    "vet_id" INT REFERENCES "user" "first_name" VARCHAR (255) NOT NULL,
+    "vet_id" INT REFERENCES "user",
+    "first_name" VARCHAR (255) NOT NULL,
     "last_name" VARCHAR (255) NOT NULL,
     "email" VARCHAR (255) NOT NULL,
     "date_of_birth" VARCHAR (8) NOT NULL,
