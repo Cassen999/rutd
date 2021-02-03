@@ -1,6 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import Image from '../../Images/logo.jpg';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+});
+
+
 
 class LoginForm extends Component {
   state = {
@@ -33,44 +47,56 @@ class LoginForm extends Component {
   };
 
   render() {
+    const { classes } = this.props;
     return (
       <form className="formPanel" onSubmit={this.login}>
-        <h2>Login</h2>
-        {this.props.store.errors.loginMessage && (
-          <h3 className="alert" role="alert">
-            {this.props.store.errors.loginMessage}
-          </h3>
-        )}
-        <div>
-          <label htmlFor="username">
-            Username:
-            <input
-              type="text"
-              name="username"
-              required
-              value={this.state.username}
-              onChange={this.handleInputChangeFor('username')}
-            />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="password">
-            Password:
-            <input
-              type="password"
-              name="password"
-              required
-              value={this.state.password}
-              onChange={this.handleInputChangeFor('password')}
-            />
-          </label>
-        </div>
-        <div>
-          <input className="btn" type="submit" name="submit" value="Log In" />
-        </div>
+        {/* LOGO GOES HERE */}
+
+        {/* <img src="../../Images/logo.jpg" alt="logo"></img> */}
+        <img src={Image} alt="Logo"/>
+        <center>
+          <p>Log in if you have been here before</p>
+          
+          {this.props.store.errors.loginMessage && (
+            <h3 className="alert" role="alert">
+              {this.props.store.errors.loginMessage}
+            </h3>
+          )}
+          <div>
+            <label htmlFor="username">
+              Username:
+              <input
+                type="text"
+                name="username"
+                required
+                value={this.state.username}
+                onChange={this.handleInputChangeFor('username')}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="password">
+              Password:
+              <input
+                type="password"
+                name="password"
+                required
+                value={this.state.password}
+                onChange={this.handleInputChangeFor('password')}
+              />
+            </label>
+          </div>
+          <div>
+            <Button className={classes.button} 
+              variant="contained" 
+              type="submit" 
+              name="submit" 
+              color="primary">Log In</Button>
+          </div>
+        </center>
       </form>
     );
   }
 }
 
-export default connect(mapStoreToProps)(LoginForm);
+export default connect(mapStoreToProps)(withStyles(styles)(LoginForm));
