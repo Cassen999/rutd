@@ -4,8 +4,8 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import green from '@material-ui/core/colors/green';
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
+// import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+// import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 
 
 const styles = {
@@ -50,8 +50,10 @@ class AccountRegisterForm extends Component {
 
   render() {
     const { classes } = this.props;
+    const vetType = 1
     return (
-      <form onSubmit={event => this.registerUser(event)}>
+      <form className="formPanel" onSubmit={this.registerUser}>
+        {JSON.stringify(this.state)}
         <div className="container">
             <h2>Register User</h2>
             {this.props.store.errors.registrationMessage && (
@@ -86,9 +88,9 @@ class AccountRegisterForm extends Component {
             <h4>Are you a Veteran?</h4>
             <label>Yes</label>
               <Radio
-              checked={this.state.type === '1'}
+              checked={this.state.type === vetType}
               onChange={this.handleInputChangeFor('type')}
-              value={1}
+              value={vetType}
               name="Yes"
               aria-label="Yes"
               classes={{

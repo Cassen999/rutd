@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import {
   HashRouter as Router,
   Route,
@@ -24,79 +24,94 @@ import AdminLandingPage from '../AdminLandingPage/AdminLandingPage';
 import AdminResourceList from '../AdminResourceList/AdminResourceList';
 import AdminVetList from '../AdminVetList/AdminVetList';
 import './App.css';
+import {useDispatch} from "react-redux";
 
-class App extends Component {
-  componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_USER' });
-  }
+// componentDidMount() {
+//   this.props.dispatch({ type: 'FETCH_USER' });
+// }
+function App(props) {
 
-  render() {
-    return (
-      <Router>
-        <div>
-          <Nav />
-          <Switch>
-            {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-            <Redirect exact from="/" to="/home" />
+  const dispatch = useDispatch();
 
-            {/* Visiting localhost:3000/about will show the about page. */}
-            <Route
-              // shows AboutPage at all times (logged in or not)
-              exact
-              path="/about"
-              component={AboutPage}
-            />
+  useEffect(() => {
+    dispatch({ type: 'FETCH_USER' });
+  })
 
-            {/* For protected routes, the view could show one of several things on the same route.
-            Visiting localhost:3000/user will show the UserPage if the user is logged in.
-            If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
-            Even though it seems like they are different pages, the user is always on localhost:3000/user */}
+  
+
+  return (
+    <Router>
+      <div>
+        <Nav />
+        <Switch>
+          {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
+          <Redirect exact from="/" to="/home" />
+
+          {/* Logic for different login types */}
+          
+
+
+
+
+
+          {/* Visiting localhost:3000/about will show the about page. */}
+          <Route
+            // shows AboutPage at all times (logged in or not)
+            exact
+            path="/about"
+            component={AboutPage}
+          />
+
+          {/* For protected routes, the view could show one of several things on the same route.
+          Visiting localhost:3000/user will show the UserPage if the user is logged in.
+          If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
+          Even though it seems like they are different pages, the user is always on localhost:3000/user */}
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/user"
+            component={VetLandingPage}
+          />
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/info"
+            component={InfoPage}
+          />
+
+          {/* When a value is supplied for the authRedirect prop the user will
+          be redirected to the path supplied when logged in, otherwise they will
+          be taken to the component and path supplied. */}
+          <ProtectedRoute
+            // with authRedirect:
+            // - if logged in, redirects to "/user"
+            // - else shows LoginPage at /login
+            exact
+            path="/login"
+            component={LoginPage}
+            authRedirect="/user"
+          />
+          <ProtectedRoute
+            // with authRedirect:
+            // - if logged in, redirects to "/user"
+            // - else shows RegisterPage at "/registration"
+            exact
+            path="/registration"
+            component={RegisterPage}
+            authRedirect="/user"
+          />
+          <ProtectedRoute
+            // with authRedirect:
+            // - if logged in, redirects to "/user"
+            // - else shows LandingPage at "/home"
+            exact
+            path="/home"
+            component={LandingPage}
+            authRedirect="/user"
+          />
+
             <ProtectedRoute
-              // logged in shows UserPage else shows LoginPage
-              exact
-              path="/user"
-              component={VetLandingPage}
-            />
-
-            <ProtectedRoute
-              // logged in shows InfoPage else shows LoginPage
-              exact
-              path="/info"
-              component={InfoPage}
-            />
-
-            {/* When a value is supplied for the authRedirect prop the user will
-            be redirected to the path supplied when logged in, otherwise they will
-            be taken to the component and path supplied. */}
-            <ProtectedRoute
-              // with authRedirect:
-              // - if logged in, redirects to "/user"
-              // - else shows LoginPage at /login
-              exact
-              path="/login"
-              component={LoginPage}
-              authRedirect="/user"
-            />
-            <ProtectedRoute
-              // with authRedirect:
-              // - if logged in, redirects to "/user"
-              // - else shows RegisterPage at "/registration"
-              exact
-              path="/registration"
-              component={RegisterPage}
-              authRedirect="/user"
-            />
-            <ProtectedRoute
-              // with authRedirect:
-              // - if logged in, redirects to "/user"
-              // - else shows LandingPage at "/home"
-              exact
-              path="/home"
-              component={LandingPage}
-              authRedirect="/user"
-            />
-
-<ProtectedRoute
               // with authRedirect:
               // - if logged in, redirects to "/user"
               // - else shows LandingPage at "/home"
@@ -133,6 +148,5 @@ class App extends Component {
       </Router>
     );
   }
-}
 
 export default connect()(App);
