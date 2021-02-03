@@ -22,7 +22,7 @@ class AccountRegisterForm extends Component {
   state = {
     username: '',
     password: '',
-    type: ''
+    type: '0'
   };
 
   componentDidMount() {
@@ -32,14 +32,19 @@ class AccountRegisterForm extends Component {
   registerUser = (event) => {
     event.preventDefault();
 
-    this.props.dispatch({
-      type: 'REGISTER',
-      payload: {
-        username: this.state.username,
-        password: this.state.password,
-        type: this.state.type
-      },
-    });
+    if (this.state.type === '1') {
+      this.props.dispatch({
+        type: 'REGISTER',
+        payload: {
+          username: this.state.username,
+          password: this.state.password,
+          type: this.state.type
+        },
+      });
+    }
+    else {
+      alert('This app is intended for Veteran use')
+    }
   }; // end registerUser
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -50,7 +55,6 @@ class AccountRegisterForm extends Component {
 
   render() {
     const { classes } = this.props;
-    const vetType = 1
     return (
       <form className="formPanel" onSubmit={this.registerUser}>
         {JSON.stringify(this.state)}
@@ -88,26 +92,26 @@ class AccountRegisterForm extends Component {
             <h4>Are you a Veteran?</h4>
             <label>Yes</label>
               <Radio
-              checked={this.state.type === vetType}
-              onChange={this.handleInputChangeFor('type')}
-              value={vetType}
-              name="Yes"
-              aria-label="Yes"
-              classes={{
-                root: classes.root,
-                checked: classes.checked,
+                checked={this.state.type === '1'}
+                onChange={this.handleInputChangeFor('type')}
+                value='1'
+                name="Yes"
+                aria-label="Yes"
+                classes={{
+                  root: classes.root,
+                  checked: classes.checked,
               }}
               />
               <label>No</label>
               <Radio
-              checked={this.state.type === ''}
-              onChange={this.handleInputChangeFor('type')}
-              value=''
-              name="No"
-              aria-label="No"
-              classes={{
-                root: classes.root,
-                checked: classes.checked,
+                checked={this.state.type === '0'}
+                onChange={this.handleInputChangeFor('type')}
+                value='0'
+                name="No"
+                aria-label="No"
+                classes={{
+                  root: classes.root,
+                  checked: classes.checked,
               }}
               />
             <div>
