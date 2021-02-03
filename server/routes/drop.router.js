@@ -14,4 +14,16 @@ router.get("/gender", (req, res) => {
     });
 });
 
+// GET married
+router.get("/married", (req, res) => {
+  const queryText = "SELECT * FROM married";
+  pool
+    .query(queryText)
+    .then((data) => res.json(data.rows))
+    .catch((err) => {
+      console.log("GET married failed: ", err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
