@@ -8,7 +8,6 @@ const sessionMiddleware = require("./modules/session-middleware");
 const passport = require("./strategies/user.strategy");
 
 // Route includes
-const userRouter = require('./routes/user.router');
 const categoryRouter = require('./routes/category.router');
 const matchRouter = require('./routes/match.router');
 const acctType = require('./routes/acctType.router');
