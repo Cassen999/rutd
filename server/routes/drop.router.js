@@ -36,5 +36,16 @@ router.get("/branch", (req, res) => {
       res.sendStatus(500);
     });
 });
+// GET rank
+router.get("/rank", (req, res) => {
+  const queryText = "SELECT * FROM rank";
+  pool
+    .query(queryText)
+    .then((data) => res.json(data.rows))
+    .catch((err) => {
+      console.log("GET rank failed: ", err);
+      res.sendStatus(500);
+    });
+});
 
 module.exports = router;
