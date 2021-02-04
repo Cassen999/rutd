@@ -6,6 +6,7 @@ import categorySaga from './category.saga';
 import matchSaga from './match.saga'
 import acctType from './acctType.saga';
 import demographicSaga from './demographic.saga'
+import serviceHistorySaga from './serviceHistory.saga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.

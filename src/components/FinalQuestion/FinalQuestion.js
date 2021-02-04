@@ -20,4 +20,4 @@ class FinalQuestions extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(FinalQuestions);
+export default connect(mapStoreToProps)(FinalQuestion);
