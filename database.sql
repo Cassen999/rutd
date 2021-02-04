@@ -104,6 +104,10 @@ CREATE TABLE "veteran" (
     "zipcode" VARCHAR (5) NOT NULL,
     "country_id" INT REFERENCES "country",
     "mailing_address" VARCHAR(255) NOT NULL,
+    "city2" VARCHAR(255) NOT NULL,
+    "state_id2" INT REFERENCES "state",
+    "zipcode2" VARCHAR (5) NOT NULL,
+    "country_id2" INT REFERENCES "country",
     "branch_id" INT REFERENCES "branch",
     "rank_id" INT REFERENCES "rank",
     "start_date" VARCHAR(8) NOT NULL,
@@ -283,5 +287,18 @@ VALUES
 INSERT INTO
     country (description)
 VALUES
-    ('United States of America'),
-    ('Minnesota');
+    ('United States of America');
+
+SELECT
+    *
+FROM
+    veteran;
+
+SELECT
+    match.*,
+    veteran.first_name,
+    organization.*
+FROM
+    match
+    INNER JOIN veteran ON veteran.id = match.vet_id
+    INNER JOIN organization ON organization.id = match.org_id;
