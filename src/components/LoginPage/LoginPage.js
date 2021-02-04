@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Demographics from '../Demographic/Demographic'
 import ServiceHistory from '../ServiceHistory/ServiceHistory';
 import Health from '../Health/Health'
+import Compensation from '../Compensation/Compensation'
 
 const styles = theme => ({
   button: {
@@ -28,6 +29,7 @@ class LoginPage extends Component {
         <Demographics/>
         <ServiceHistory/>
         <Health/>
+        <Compensation/>
         <center>
           <Button
             // className="btn btn_asLink"

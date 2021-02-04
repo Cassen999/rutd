@@ -22,7 +22,7 @@ const styles = {
    //     fontFamily : 'Arial'
 }
 
-class FinalQuestionForm extends Component {
+class CompensationForm extends Component {
 
    state = {
       newVet: {
@@ -52,7 +52,7 @@ class FinalQuestionForm extends Component {
       })
    }
 
-   saveDemographics = () => {
+   saveCompensation = () => {
       if (this.state.newVet.first_name === '') {
          alert('A name is required for registration.')
       } else {
@@ -61,7 +61,7 @@ class FinalQuestionForm extends Component {
          //Clear message... should say Hello!
          //console.log(`Sending ${this.state.newArt} to DB.`);
 
-         this.props.dispatch({ type: 'ADD_DEMOGRAPHIC', payload: this.state.newVet })
+         this.props.dispatch({ type: 'UPDATE_COMPENSATION', payload: this.state.newVet })
          this.setState({
             newVet: {
 
@@ -81,7 +81,7 @@ class FinalQuestionForm extends Component {
 
       return (
          <>
-            <h1>DemographicsForm</h1>
+            <h1>CompensationForm</h1>
             <Grid container
                className={classes.paper}
                //alignItems="center"
@@ -191,7 +191,7 @@ class FinalQuestionForm extends Component {
                      <Grid item xs={12.0} sm={12}>
 
                         <Button
-                           onClick={this.saveDemographics}
+                           onClick={this.saveCompensation}
                            // addArtProp={this.addArt}
                            elevation={20}
                            //  className={classes.typography}
@@ -227,4 +227,4 @@ class FinalQuestionForm extends Component {
 
 }//END DemographicsForm
 
-export default connect(mapStoreToProps)(withStyles(styles)(FinalQuestionForm));
+export default connect(mapStoreToProps)(withStyles(styles)(CompensationForm));

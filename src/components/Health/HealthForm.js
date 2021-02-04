@@ -138,7 +138,7 @@ render(){
                  <Grid item xs={12.0} sm={12}> 
 
                  <Button 
-                 onClick={this.saveDemographics}
+                 onClick={this.saveHealth}
           // addArtProp={this.addArt}
            elevation={20}  
           //  className={classes.typography}
