@@ -22,7 +22,7 @@ const styles = {
 //     fontFamily : 'Arial'
   }
 
-  class DemographicsForm extends Component {
+  class DemographicForm extends Component {
 
     state = {
         newVet: {
@@ -41,17 +41,8 @@ const styles = {
           zipcode: '',
           country_id: '',
           mailing_adress: '',
-          branch_id: '',
-          rank_id : '',
-          start_date: '',
-          end_date: '',
-          status_id: '',
-          discharge_id: '',
-          injury_id: '',
-           compensation: '',
-           percentage: '',
-           danger_areas: '',
-           purple_heart: '',
+          
+          
         },
     }
 
@@ -97,17 +88,7 @@ const styles = {
           zipcode: '',
           country_id: '',
           mailing_adress: '',
-          branch_id: '',
-          rank_id : '',
-          start_date: '',
-          end_date: '',
-          status_id: '',
-          discharge_id: '',
-          injury_id: '',
-           compensation: '',
-           percentage: '',
-           danger_areas: '',
-           purple_heart: '',
+          
                           },
                          })
                     }
@@ -120,16 +101,16 @@ render(){
 
     return(
         <>
-        <h1>DemographicsForm</h1>
+        <h1>DemographicForm</h1>
         <Grid container
-           className={classes.paper}
+         //   className={classes.paper}
            //alignItems="center"
         spacing={2}
         direction="column">
                                                            
                               <Paper
-                              className={classes.paddingTop}
-                              style={styles.paperContainer}
+                              // className={classes.paddingTop}
+                              // style={styles.paperContainer}
                               elevation={10}
                               // className={classes.paper} 
                                 // backgroundImage={canvas}                                                      
@@ -138,6 +119,7 @@ render(){
                               <form
                             //   style={{ verticalAlign: 'middle' }}
                             >
+                        <br />
 
                <Grid item xs={12.0} sm={12}>
                    <TextField
@@ -360,7 +342,6 @@ render(){
 
 <br/> 
 
-
 {/* <Grid item xs={12.0} sm={12}>  */}
                     <TextField
                     id="standard-textarea"
@@ -401,232 +382,20 @@ render(){
 
 <br/> 
 
-{/* <Grid item xs={12.0} sm={12}>  */}
-                    <TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="Branch ID"
-                  //  rows={4}
-                  //   rowsMax={20}
-                   name="branch_id"
-                  //  multiline
-                  //  className={classes.inputs}
-                  //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.branch_id}
-                onChange ={ (event) => this.handleInputChange( event, 'branch_id' ) } 
-                   />
-
-{/* </Grid>  */}
-
-<br/> 
-
-{/* <Grid item xs={12.0} sm={12}>  */}
-                    <TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="Rank ID"
-                  //  rows={4}
-                  //   rowsMax={20}
-                   name="rank_id"
-                  //  multiline
-                  //  className={classes.inputs}
-                  //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.rank_id}
-                onChange ={ (event) => this.handleInputChange( event, 'rank_id' ) } 
-                   />
-
-{/* </Grid>  */}
-
-<br/> 
-
-{/* <Grid item xs={12.0} sm={12}>  */}
-<TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="Start Date"
-                  //  rows={4}
-                  //   rowsMax={20}
-                   name="start_date"
-                  //  multiline
-                  //  className={classes.inputs}
-                  //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.start_date}
-                onChange ={ (event) => this.handleInputChange( event, 'start_date' ) } 
-                   />
-
-{/* </Grid>  */}
-
-<br/> 
-
-{/* <Grid item xs={12.0} sm={12}>  */}
-<TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="End Date"
-                  //  rows={4}
-                  //   rowsMax={20}
-                   name="end_date"
-                  //  multiline
-                  //  className={classes.inputs}
-                  //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.end_date}
-                onChange ={ (event) => this.handleInputChange( event, 'end_date' ) } 
-                   />
-
-{/* </Grid>  */}
-
-<br/> 
-
-{/* <Grid item xs={12.0} sm={12}>  */}
-<TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="Status ID"
-                  //  rows={4}
-                  //   rowsMax={20}
-                   name="status_id"
-                  //  multiline
-                  //  className={classes.inputs}
-                  //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.rank_id}
-                onChange ={ (event) => this.handleInputChange( event, 'status_id' ) } 
-                   />
-
-{/* </Grid>  */}
-
-<br/> 
-
-
-{/* <Grid item xs={12.0} sm={12}>  */}
-<TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="Discharge ID"
-                  //  rows={4}
-                  //   rowsMax={20}
-                   name="discharge_id"
-                  //  multiline
-                  //  className={classes.inputs}
-                  //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.discharge_id}
-                onChange ={ (event) => this.handleInputChange( event, 'discharge_id' ) } 
-                   />
-
-{/* </Grid>  */}
-
-<br/> 
-
-
-{/* <Grid item xs={12.0} sm={12}>  */}
-<TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="Injury ID"
-                  //  rows={4}
-                  //   rowsMax={20}
-                   name="injury_id"
-                  //  multiline
-                  //  className={classes.inputs}
-                  //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.injury_id}
-                onChange ={ (event) => this.handleInputChange( event, 'injury_id' ) } 
-                   />
-
-{/* </Grid>  */}
-
-<br/> 
-
-
-{/* <Grid item xs={12.0} sm={12}>  */}
-<TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="Compensation"
-                  //  rows={4}
-                  //   rowsMax={20}
-                   name="compensation"
-                  //  multiline
-                  //  className={classes.inputs}
-                  //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.compensation}
-                onChange ={ (event) => this.handleInputChange( event, 'compensation' ) } 
-                   />
-
-{/* </Grid>  */}
-
-<br/> 
-
-{/* <Grid item xs={12.0} sm={12}>  */}
-<TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="Percentage"
-                  //  rows={4}
-                  //   rowsMax={20}
-                   name="percentage"
-                  //  multiline
-                  //  className={classes.inputs}
-                  //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.percentage}
-                onChange ={ (event) => this.handleInputChange( event, 'percentage' ) } 
-                   />
-
-{/* </Grid>  */}
-
-<br/> 
-
-{/* <Grid item xs={12.0} sm={12}>  */}
-<TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="Danger Areas"
-                  //  rows={4}
-                  //   rowsMax={20}
-                   name="danger_areas"
-                  //  multiline
-                  //  className={classes.inputs}
-                  //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.danger_areas}
-                onChange ={ (event) => this.handleInputChange( event, 'danger_areas' ) } 
-                   />
-
-{/* </Grid>  */}
-
-<br/> 
-
-{/* <Grid item xs={12.0} sm={12}>  */}
-<TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="Purple Heart"
-                  //  rows={4}
-                  //   rowsMax={20}
-                   name="purple_heart"
-                  //  multiline
-                  //  className={classes.inputs}
-                  //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.purple_heart}
-                onChange ={ (event) => this.handleInputChange( event, 'purple_heart' ) } 
-                   />
-
 </Grid> 
 
 <br/> 
-
-
-
-
 
                  <Grid item xs={12.0} sm={12}> 
 
                  <Button 
                  onClick={this.saveDemographics}
           // addArtProp={this.addArt}
-           elevation={20}  
+         //   elevation={20}  
           //  className={classes.typography}
           //  textAlign='center'
           //  justify='center'
-           style={{justifyContent: 'center'}}
+         //   style={{justifyContent: 'center'}}
           //  <Button elevation={10}
           //  Box display="flex" flexDirection="column"
           //  textAlign='center'
@@ -639,7 +408,6 @@ render(){
                 //  className={classes.alignAndJustify}
                  >SAVE</Button>
  
- 
  </Grid>
                  <br/> 
 
@@ -648,12 +416,10 @@ render(){
                {/* </Grid> */}
                </Paper>
                
-           </Grid>
-          
+           </Grid>   
         </>
     )//END return
 }//END render
-
 }//END DemographicsForm
 
-export default connect(mapStoreToProps)(withStyles(styles)(DemographicsForm));
+export default connect(mapStoreToProps)(withStyles(styles)(DemographicForm));
