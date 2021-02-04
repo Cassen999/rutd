@@ -103,14 +103,14 @@ render(){
         <>
         <h1>DemographicForm</h1>
         <Grid container
-           className={classes.paper}
+         //   className={classes.paper}
            //alignItems="center"
         spacing={2}
         direction="column">
                                                            
                               <Paper
-                              className={classes.paddingTop}
-                              style={styles.paperContainer}
+                              // className={classes.paddingTop}
+                              // style={styles.paperContainer}
                               elevation={10}
                               // className={classes.paper} 
                                 // backgroundImage={canvas}                                                      
@@ -342,7 +342,6 @@ render(){
 
 <br/> 
 
-
 {/* <Grid item xs={12.0} sm={12}>  */}
                     <TextField
                     id="standard-textarea"
@@ -383,25 +382,20 @@ render(){
 
 <br/> 
 
-
 </Grid> 
 
 <br/> 
-
-
-
-
 
                  <Grid item xs={12.0} sm={12}> 
 
                  <Button 
                  onClick={this.saveDemographics}
           // addArtProp={this.addArt}
-           elevation={20}  
+         //   elevation={20}  
           //  className={classes.typography}
           //  textAlign='center'
           //  justify='center'
-           style={{justifyContent: 'center'}}
+         //   style={{justifyContent: 'center'}}
           //  <Button elevation={10}
           //  Box display="flex" flexDirection="column"
           //  textAlign='center'
@@ -414,7 +408,6 @@ render(){
                 //  className={classes.alignAndJustify}
                  >SAVE</Button>
  
- 
  </Grid>
                  <br/> 
 
@@ -423,12 +416,10 @@ render(){
                {/* </Grid> */}
                </Paper>
                
-           </Grid>
-          
+           </Grid>   
         </>
     )//END return
 }//END render
-
 }//END DemographicsForm
 
 export default connect(mapStoreToProps)(withStyles(styles)(DemographicForm));

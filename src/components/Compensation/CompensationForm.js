@@ -83,14 +83,14 @@ class CompensationForm extends Component {
          <>
             <h1>CompensationForm</h1>
             <Grid container
-               className={classes.paper}
+               className=''
                //alignItems="center"
                spacing={2}
                direction="column">
 
                <Paper
-                  className={classes.paddingTop}
-                  style={styles.paperContainer}
+                  className=''
+                  // style={styles.paperContainer}
                   elevation={10}
                // className={classes.paper} 
                // backgroundImage={canvas}                                                      
@@ -184,20 +184,16 @@ class CompensationForm extends Component {
 
                      <br />
 
-
-
-
-
-                     <Grid item xs={12.0} sm={12}>
+                    <Grid item xs={12.0} sm={12}>
 
                         <Button
                            onClick={this.saveCompensation}
                            // addArtProp={this.addArt}
-                           elevation={20}
+                           // elevation={20}
                            //  className={classes.typography}
                            //  textAlign='center'
                            //  justify='center'
-                           style={{ justifyContent: 'center' }}
+                           // style={{ justifyContent: 'center' }}
                         //  <Button elevation={10}
                         //  Box display="flex" flexDirection="column"
                         //  textAlign='center'
