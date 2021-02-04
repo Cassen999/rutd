@@ -5,10 +5,7 @@ import userSaga from './user.saga';
 import categorySaga from './category.saga';
 import matchSaga from './match.saga'
 import acctType from './acctType.saga';
-import demographicSaga from './demographic.saga'
-import serviceHistorySaga from './serviceHistory.saga'
-import compensationSaga from './compensation.saga'
-//import demographicSaga from './demographic.saga';
+import demographicSaga from './demographic.saga';
 import vetSaga from './vet.saga';
 
 // rootSaga is the primary saga.
@@ -27,8 +24,6 @@ export default function* rootSaga() {
     matchSaga(),
     acctType(),
     demographicSaga(),
-    serviceHistorySaga(),
-    compensationSaga(),
     vetSaga()
   ]);
 }

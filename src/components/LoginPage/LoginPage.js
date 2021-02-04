@@ -6,11 +6,7 @@ import LoginForm from '../LoginForm/LoginForm';
 // import VetMatches from '../VetMatches/VetMatches'
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-import Demographics from '../Demographic/Demographic'
-import ServiceHistory from '../ServiceHistory/ServiceHistory';
-import Health from '../Health/Health'
-import Compensation from '../Compensation/Compensation'
-
+import Demographics from '../Demographics/Demographics'
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
@@ -25,7 +21,8 @@ class LoginPage extends Component {
     const { classes } = this.props;
     return (
       <div>
-       
+        <LoginForm />
+        <Demographics/>
         <center>
           <Button
             // className="btn btn_asLink"
@@ -48,11 +45,6 @@ class LoginPage extends Component {
           >
             Register for Organizations
           </Button>
-          <LoginForm />
-        <Demographics/>
-        <ServiceHistory/>
-        <Health/>
-        <Compensation/>
         </center>
       </div>
     );
