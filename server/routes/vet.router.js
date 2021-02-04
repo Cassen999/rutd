@@ -24,7 +24,7 @@ router.get("/", (req, res) => {
 /**
  * GET all veterans
  */
-router.get("/", (req, res) => {
+router.get("/all", (req, res) => {
   const queryText = "SELECT * FROM veteran;";
   pool
     .query(queryText)
