@@ -9,6 +9,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import vet from '../../redux/sagas/vet.saga';
 
 
 /*
@@ -59,6 +60,8 @@ class AdminLandingPage extends Component {
 
   render() {
     const { classes } = this.props;
+        const {veteran} = this.props.store;
+
     return (
       <div>
         <center>
@@ -66,7 +69,9 @@ class AdminLandingPage extends Component {
         <h3>Connections in Progress (Track Time)</h3>
           </center>
             <div className="container">
-              <Card className={classes.card}>
+              {veteran.map((veteran, i) =>{
+                return(
+                <Card className={classes.card} key="i">
                 <CardContent>
                   <Typography className={classes.title} color="textSecondary" gutterBottom>
                       TIMESTAMP
@@ -74,70 +79,27 @@ class AdminLandingPage extends Component {
                   <CardActions>
                     <Button size="small" onClick={this.handleVeteran}>
                       <Typography variant="h5" component="h2">
-                          John Doe
+                          {veteran.first_name} {veteran.last_name}
                       </Typography>
                     </Button>
                   </CardActions> 
                   <CardActions>
                     <Button size="small" onClick={this.handleResource}>
                       <Typography component="p">
-                          Hives for Heroes
+                          {veteran.name}
                         <br />
                       </Typography>
                     </Button>
                   </CardActions> 
                 </CardContent>
               </Card>
+              
+              )})}
               <br></br>
-              <Card className={classes.card}>
-                <CardContent>
-                  <Typography className={classes.title} color="textSecondary" gutterBottom>
-                      TIMESTAMP
-                  </Typography>
-                  <CardActions>
-                    <Button size="small" onClick={this.handleVeteran}>
-                      <Typography variant="h5" component="h2">
-                          Maria Huerta
-                      </Typography>
-                    </Button>
-                  </CardActions> 
-                  <CardActions>
-                    <Button size="small" onClick={this.handleResource}>
-                      <Typography component="p">
-                          Wounded Warrior Project
-                        <br />
-                      </Typography>
-                    </Button>
-                  </CardActions> 
-                </CardContent>
-              </Card>
-              <br></br>
-              <Card className={classes.card}>
-                <CardContent>
-                  <Typography className={classes.title} color="textSecondary" gutterBottom>
-                      TIMESTAMP
-                  </Typography>
-                  <CardActions>
-                    <Button size="small" onClick={this.handleVeteran}>
-                      <Typography variant="h5" component="h2">
-                          Lee Vang
-                      </Typography>
-                    </Button>
-                  </CardActions> 
-                  <CardActions>
-                    <Button size="small" onClick={this.handleResource}>
-                      <Typography component="p">
-                          Mighty Oak
-                        <br />
-                      </Typography>
-                    </Button>
-                  </CardActions> 
-                </CardContent>
-              </Card>
           </div>
         <AdminVetList />
-      </div>
-    );
+        </div>
+        );
   }
 }
 

@@ -12,7 +12,7 @@ class AdminVetList extends Component {
   };
   
   componentDidMount() {
-    this.props.dispatch({type: 'FETCH_VET'})
+    this.props.dispatch({type: 'SET_VET'})
   }
 
   render() {
