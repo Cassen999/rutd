@@ -39,11 +39,11 @@ class AdminVetList extends Component {
     return (
       <div>
         {JSON.stringify(this.props.store.vetReducer)}
-        <h2></h2>
-        {this.props.store.vetReducer.map((vet, i) => {
+        <h2>List of Veterans still waiting on their matched resource to respond</h2>
+        <div className="container">
+          {this.props.store.vetReducer.map((vet, i) => {
           return(
-            <div className="container">
-              <Card className={classes.card}>
+              <Card className={classes.card} key={i}>
                 <CardContent>
                   <Typography className={classes.title} color="textSecondary" gutterBottom>
                     {vet.received}
@@ -65,9 +65,9 @@ class AdminVetList extends Component {
                   </CardActions> 
                 </CardContent>
               </Card>
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
       </div>
     );
   }

@@ -3,8 +3,6 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 // GETs all vets by name limited to 10
-// This sqlText will have to change once there is info in vet table
-// Include a limit and order by
 
 router.get('/', (req, res) => {
     const sqlText = `SELECT "first_name", "last_name", "match".received, "organization"."name" FROM "user"
