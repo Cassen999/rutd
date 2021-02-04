@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component } from 'react';
 import {
   HashRouter as Router,
   Route,
@@ -25,6 +25,9 @@ import AdminResourceList from '../AdminResourceList/AdminResourceList';
 import AdminVetList from '../AdminVetList/AdminVetList';
 import GenericLanding from '../GenericLanding/GenericLanding';
 import OrganizationLandingPage from '../OrganizationLandingPage/OrganizationLandingPage';
+import AdminVetView from '../AdminVetView/AdminVetView';
+import AdminResourceEdit from '../AdminResourceEdit/AdminResourceEdit';
+
 import './App.css';
 
 class App extends Component {
@@ -133,6 +136,20 @@ class App extends Component {
                 path="/vetlist"
                 component={AdminVetList}
               />
+
+              <ProtectedRoute
+                exact
+                path="/adminVetView"
+                component={AdminVetView}
+              />
+
+
+              <ProtectedRoute
+                exact
+                path="/adminResourceEdit"
+                component={AdminResourceEdit}
+              />
+
 
               <ProtectedRoute
                 exact

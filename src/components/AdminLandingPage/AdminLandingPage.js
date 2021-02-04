@@ -35,24 +35,26 @@ const styles = {
 
 
 
-// componentDidMount(){
-//   console.log('Fetching veteran list from DB');
-//   this.props.dispatch({type: 'FETCH_VET'});
-// }
-
-
 
 class AdminLandingPage extends Component {
   state = {
     heading: 'Admin Landing Page',
   };
   
+  
+  componentDidMount(){
+    console.log('Fetching veteran list from DB');
+    this.props.dispatch({type: 'FETCH_VET'});
+  }
+  
   handleVeteran = () =>{
     console.log('CLICKING ON VETERAN');
+    this.props.history.push('/adminVetView');
   }
 
   handleResource = () =>{
     console.log('CLICKING ON RESOURCE');
+    this.props.history.push('/adminResourceEdit');
   }
 
   render() {
