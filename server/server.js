@@ -18,6 +18,7 @@ const serviceHistoryRouter = require("./routes/serviceHistory.router")
 const healthRouter = require("./routes/health.router")
 const compensationRouter = require("./routes/compensation.router")
 
+const vetRouter = require('./routes/vet.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -34,7 +35,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/category', categoryRouter);
 app.use('/api/match', matchRouter);
-
+app.use('/api/vet', vetRouter);
 app.use('/api/acctType', acctType);
 app.use("/api/user", userRouter);
 app.use("/api/drop", dropRouter);

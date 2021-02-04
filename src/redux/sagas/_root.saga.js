@@ -8,6 +8,8 @@ import acctType from './acctType.saga';
 import demographicSaga from './demographic.saga'
 import serviceHistorySaga from './serviceHistory.saga'
 import compensationSaga from './compensation.saga'
+//import demographicSaga from './demographic.saga';
+import vetSaga from './vet.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -26,6 +28,7 @@ export default function* rootSaga() {
     acctType(),
     demographicSaga(),
     serviceHistorySaga(),
-    compensationSaga()
+    compensationSaga(),
+    vetSaga()
   ]);
 }
