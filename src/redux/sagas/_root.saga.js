@@ -8,6 +8,7 @@ import acctType from './acctType.saga';
 import demographicSaga from './demographic.saga'
 import serviceHistorySaga from './serviceHistory.saga'
 import compensationSaga from './compensation.saga'
+import healthSaga from './health.saga'
 //import demographicSaga from './demographic.saga';
 import vetSaga from './vet.saga';
 
@@ -29,6 +30,7 @@ export default function* rootSaga() {
     demographicSaga(),
     serviceHistorySaga(),
     compensationSaga(),
+    healthSaga(),
     vetSaga()
   ]);
 }

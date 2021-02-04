@@ -26,6 +26,8 @@ import AdminVetList from '../AdminVetList/AdminVetList';
 import GenericLanding from '../GenericLanding/GenericLanding';
 import OrganizationLandingPage from '../OrganizationLandingPage/OrganizationLandingPage';
 import ServiceHistory from '../ServiceHistory/ServiceHistory'
+import Demographic from '../Demographic/Demographic'
+
 import './App.css';
 
 class App extends Component {
@@ -125,6 +127,14 @@ class App extends Component {
                 // authRedirect="/user"
               />
 
+<ProtectedRoute
+               
+               exact
+               path="/demographic"
+               component={Demographic}
+               // authRedirect="/user"
+             />
+
               <ProtectedRoute
                 exact
                 path="/adminlanding"
@@ -148,6 +158,12 @@ class App extends Component {
                 path="/organizationlanding"
                 component={OrganizationLandingPage}
               />   
+
+{/* <ProtectedRoute
+                exact
+                path="/vetlanding"
+                component={VetLandingPage}
+              />    */}
 
 
               {/* If none of the other routes matched, we will show a 404. */}

@@ -40,7 +40,7 @@ const styles = {
           state_id: '',
           zipcode: '',
           country_id: '',
-          mailing_adress: '',
+          mailing_address: '',
           
           
         },
@@ -87,11 +87,12 @@ const styles = {
           state_id: '',
           zipcode: '',
           country_id: '',
-          mailing_adress: '',
+          mailing_address: '',
           
                           },
                          }, function () {
-                           {this.props.history.push('/servicehistory')};
+                           // {this.props.history.push('/servicehistory')}
+                        console.log('state has been reset');
                        })
                     }
                     
@@ -376,7 +377,7 @@ render(){
                   //  multiline
                   //  className={classes.inputs}
                   //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.mailing_adress}
+                   value={this.state.newVet.mailing_address}
                 onChange ={ (event) => this.handleInputChange( event, 'mailing_address' ) } 
                    />
 

@@ -17,7 +17,7 @@ function* healthSaga() {
 }
 
 function* updateHealthSaga(action) {
-  console.log('In updateArtSaga...')
+  console.log('In updateHealthSaga...')
   console.log('payload:', action.payload)
   try {
     const config = {

@@ -58,7 +58,7 @@ const styles = {
                         alert('A name is required for registration.')
                     } else {
                     
-                        console.log(`Saving ${this.state.newVet.first_name}'s demographics to Database...`);
+                        console.log(`Saving Health to Database...`);
                     //Clear message... should say Hello!
                     //console.log(`Sending ${this.state.newArt} to DB.`);
         

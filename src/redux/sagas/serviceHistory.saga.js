@@ -17,7 +17,7 @@ function* serviceHistorySaga() {
 }
 
 function* updateServiceHistorySaga(action) {
-  console.log('In updateArtSaga...')
+  console.log('In updateServiceHistorySaga...')
   console.log('payload:', action.payload)
   try {
     const config = {
