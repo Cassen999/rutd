@@ -5,6 +5,8 @@ import userSaga from './user.saga';
 import categorySaga from './category.saga';
 import matchSaga from './match.saga'
 import acctType from './acctType.saga';
+import demographicSaga from './demographic.saga';
+import vetSaga from './vet.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -20,6 +22,8 @@ export default function* rootSaga() {
     userSaga(),
     categorySaga(),
     matchSaga(),
-    acctType()
+    acctType(),
+    demographicSaga(),
+    vetSaga()
   ]);
 }
