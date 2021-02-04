@@ -103,10 +103,17 @@ CREATE TABLE "veteran" (
     "state_id" INT REFERENCES "state",
     "zipcode" VARCHAR (5),
     "country_id" INT REFERENCES "country",
+<<<<<<< HEAD
     "mailing_address" VARCHAR(255),
     "city2" VARCHAR(255),
     "state_id2" INT REFERENCES "state",
     "zipcode2" VARCHAR (5),
+=======
+    "mailing_address" VARCHAR(255) NOT NULL,
+    "city2" VARCHAR(255) NOT NULL,
+    "state_id2" INT REFERENCES "state",
+    "zipcode2" VARCHAR (5) NOT NULL,
+>>>>>>> master
     "country_id2" INT REFERENCES "country",
     "branch_id" INT REFERENCES "branch",
     "rank_id" INT REFERENCES "rank",
