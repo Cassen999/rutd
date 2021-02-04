@@ -1,67 +1,59 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import AdminVetList from '../AdminVetList/AdminVetList';
 import '../AdminLandingPage/AdminLandingPage.css';
 import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 
 /*
-Map through the MATCHES & make a list with 3 columns
-  - Veterans
-  - Resource
-  - Time the Veteran initiated contact
-
-onClick feature for Resource names: opens admin resource view/edit
-
-onClick for Veteran names: opens admin veteran view
+TO DO LIST ON THIS PAGE:
+  Map through the MATCHES & render onto the cards appropriately
+  onClick feature for Resource names: opens admin resource view/edit
+  onClick for Veteran names: opens admin veteran view
 */
 
 
-const styles = theme => ({
-  root: {
-    width: '100%',
-    marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto',
+const styles = {
+  card: {
+    minWidth: 275,
   },
-  table: {
-    minWidth: 500,
+  title: {
+    fontSize: 14,
   },
-});
-
-let id = 0;
-
-function createData(veteran, resource, time) {
-  id += 1;
-  return {
-    id,
-    veteran,
-    resource,
-    time
-  };
-}
+  pos: {
+    marginBottom: 12,
+  },
+};
 
 
-// Just an example array to fill table for now, WILL BE mapping through our veteran and 
-// resources reducers when they come back from DB
-const rows = [
-  createData('John Doe', 'Hives for Heroes', '02-01-2021'),
-  createData('Jane Doe', 'Wounded Warrior', '01-24-2021'),
-  createData('Lee Vang', 'Mighty Oaks', '03-20-2020'),
-  createData('Maria Huerta', 'The Birdwell Foundation', '11-05-2020')
-];
 
-import AdminVetList from '../AdminVetList/AdminVetList';
+
+
+// componentDidMount(){
+//   console.log('Fetching veteran list from DB');
+//   this.props.dispatch({type: 'FETCH_VET'});
+// }
+
+
 
 class AdminLandingPage extends Component {
   state = {
     heading: 'Admin Landing Page',
   };
+  
+  handleVeteran = () =>{
+    console.log('CLICKING ON VETERAN');
+  }
+
+  handleResource = () =>{
+    console.log('CLICKING ON RESOURCE');
+  }
 
   render() {
     const { classes } = this.props;
@@ -69,35 +61,77 @@ class AdminLandingPage extends Component {
       <div>
         <center>
         <h2>{this.state.heading}</h2>
-        </center>
-        <div className="container">
-        <Paper className={classes.root}>
-              <Table className={classes.table}>
-                <TableHead>
-                  <TableRow>
-
-                    {/* ------------------------------------------------------------------------------ */}
-              {/* THIS IS WHERE WE NEED TO MAP THE VETERAN REDUCER WHICH WILL GET ALL VETERANS TO RENDER */}
-                    {/* ------------------------------------------------------------------------------ */}
-
-                    <TableCell>Veteran</TableCell>
-                    <TableCell align="right">Resource</TableCell>
-                    <TableCell align="right">Time</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map(row => (
-                    <TableRow key={row.id}>
-                      <TableCell component="th" scope="row">
-                        {row.veteran}
-                      </TableCell>
-                      <TableCell align="right">{row.resource}</TableCell>
-                      <TableCell align="right">{row.time}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </Paper>
+        <h3>Connections in Progress (Track Time)</h3>
+          </center>
+            <div className="container">
+              <Card className={classes.card}>
+                <CardContent>
+                  <Typography className={classes.title} color="textSecondary" gutterBottom>
+                      TIMESTAMP
+                  </Typography>
+                  <CardActions>
+                    <Button size="small" onClick={this.handleVeteran}>
+                      <Typography variant="h5" component="h2">
+                          John Doe
+                      </Typography>
+                    </Button>
+                  </CardActions> 
+                  <CardActions>
+                    <Button size="small" onClick={this.handleResource}>
+                      <Typography component="p">
+                          Hives for Heroes
+                        <br />
+                      </Typography>
+                    </Button>
+                  </CardActions> 
+                </CardContent>
+              </Card>
+              <br></br>
+              <Card className={classes.card}>
+                <CardContent>
+                  <Typography className={classes.title} color="textSecondary" gutterBottom>
+                      TIMESTAMP
+                  </Typography>
+                  <CardActions>
+                    <Button size="small" onClick={this.handleVeteran}>
+                      <Typography variant="h5" component="h2">
+                          Maria Huerta
+                      </Typography>
+                    </Button>
+                  </CardActions> 
+                  <CardActions>
+                    <Button size="small" onClick={this.handleResource}>
+                      <Typography component="p">
+                          Wounded Warrior Project
+                        <br />
+                      </Typography>
+                    </Button>
+                  </CardActions> 
+                </CardContent>
+              </Card>
+              <br></br>
+              <Card className={classes.card}>
+                <CardContent>
+                  <Typography className={classes.title} color="textSecondary" gutterBottom>
+                      TIMESTAMP
+                  </Typography>
+                  <CardActions>
+                    <Button size="small" onClick={this.handleVeteran}>
+                      <Typography variant="h5" component="h2">
+                          Lee Vang
+                      </Typography>
+                    </Button>
+                  </CardActions> 
+                  <CardActions>
+                    <Button size="small" onClick={this.handleResource}>
+                      <Typography component="p">
+                          Mighty Oak
+                        <br />
+                      </Typography>
+                    </Button>
+                  </CardActions> 
+                </CardContent>
+              </Card>
           </div>
         <AdminVetList />
       </div>
