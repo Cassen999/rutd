@@ -25,11 +25,7 @@ class LoginPage extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <LoginForm />
-        <Demographics/>
-        <ServiceHistory/>
-        <Health/>
-        <Compensation/>
+       
         <center>
           <Button
             // className="btn btn_asLink"
@@ -52,6 +48,11 @@ class LoginPage extends Component {
           >
             Register for Organizations
           </Button>
+          <LoginForm />
+        <Demographics/>
+        <ServiceHistory/>
+        <Health/>
+        <Compensation/>
         </center>
       </div>
     );

@@ -99,6 +99,7 @@ class CompensationForm extends Component {
                   <form
                   //   style={{ verticalAlign: 'middle' }}
                   >
+                        <br />
 
                      <Grid item xs={12.0} sm={12}>
 
@@ -106,7 +107,6 @@ class CompensationForm extends Component {
 
                         {/* <Grid item xs={12.0} sm={12}>  */}
 
-                        <br />
 
                         {/* <Grid item xs={12.0} sm={12}>  */}
                         <TextField

@@ -82,12 +82,13 @@ render(){
     return(
         <>
         <h1>HealthForm</h1>
+        
         <Grid container
            className={classes.paper}
            //alignItems="center"
         spacing={2}
         direction="column">
-                                                           
+                                 
                               <Paper
                               className={classes.paddingTop}
                               style={styles.paperContainer}
@@ -99,10 +100,10 @@ render(){
                               <form
                             //   style={{ verticalAlign: 'middle' }}
                             >
+                          <br/> 
 
                <Grid item xs={12.0} sm={12}>
                   
-<br/> 
 
 
 {/* <Grid item xs={12.0} sm={12}>  */}
