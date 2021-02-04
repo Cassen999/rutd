@@ -7,8 +7,12 @@ const router = express.Router();
 // Include a limit and order by
 
 router.get('/', (req, res) => {
-    const sqlText = `SELECT "user".username FROM "user" 
-                    WHERE "user".type_id = 1;`;
+    const sqlText = `SELECT "first_name", "last_name", "match".received, "organization"."name" FROM "user"
+                        JOIN "veteran" ON "vet_id" = "user".id
+                        JOIN "match" ON "match".vet_id = "veteran".id
+                        JOIN "organization" ON "organization".id = "match".org_id
+                        ORDER BY "last_name" ASC
+                        LIMIT 10;`;
     pool.query(sqlText)
     .then((result) => {
         console.log('Getting vets by name result', result.rows)

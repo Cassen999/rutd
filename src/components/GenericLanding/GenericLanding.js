@@ -11,6 +11,7 @@ import LoginPage from '../LoginPage/LoginPage';
 // the component name TemplateClass with the name for the new
 // component.
 class GenericLanding extends Component {
+  
   state = {
     heading: 'Generic Landing',
   };
@@ -27,18 +28,6 @@ class GenericLanding extends Component {
       return(<LoginPage/>) ;
     }
 
-
-    return (
-      <div>
-        <h2>{this.state.heading}</h2>
-
-
-
-
-
-
-      </div>
-    );
   }
 }
 
