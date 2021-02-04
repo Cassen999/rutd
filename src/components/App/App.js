@@ -150,4 +150,4 @@ class App extends Component {
     );
   }
 }
-export default (connect(mapStoreToProps)(App));
+export default (connect()(App));
