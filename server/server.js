@@ -13,6 +13,7 @@ const matchRouter = require('./routes/match.router');
 const acctType = require('./routes/acctType.router');
 const userRouter = require("./routes/user.router");
 const dropRouter = require("./routes/drop.router");
+const vetRouter = require('./routes/vet.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -29,7 +30,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/category', categoryRouter);
 app.use('/api/match', matchRouter);
-
+app.use('/api/vet', vetRouter);
 app.use('/api/acctType', acctType);
 app.use("/api/user", userRouter);
 app.use("/api/drop", dropRouter);

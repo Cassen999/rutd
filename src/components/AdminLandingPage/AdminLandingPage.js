@@ -56,6 +56,7 @@ const rows = [
   createData('Maria Huerta', 'The Birdwell Foundation', '11-05-2020')
 ];
 
+import AdminVetList from '../AdminVetList/AdminVetList';
 
 class AdminLandingPage extends Component {
   state = {
@@ -98,6 +99,7 @@ class AdminLandingPage extends Component {
               </Table>
             </Paper>
           </div>
+        <AdminVetList />
       </div>
     );
   }
