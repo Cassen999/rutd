@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import ProgressBar from '../ProgressBar/ProgressBar';
 
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace
@@ -31,6 +32,7 @@ componentDidMount() {
         <button onClick={(event)=>this.props.history.push('/home')}>BACK TO HOME</button>
         <button onClick={(event) => this.contactOrg(event)}>CONTACT ORG</button>
 
+        <ProgressBar value={30}/>
       </div>
     );
   }

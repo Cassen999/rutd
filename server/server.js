@@ -13,6 +13,11 @@ const matchRouter = require('./routes/match.router');
 const acctType = require('./routes/acctType.router');
 const userRouter = require("./routes/user.router");
 const dropRouter = require("./routes/drop.router");
+const demographicRouter = require("./routes/demographic.router")
+const serviceHistoryRouter = require("./routes/serviceHistory.router")
+const healthRouter = require("./routes/health.router")
+const compensationRouter = require("./routes/compensation.router")
+
 const vetRouter = require('./routes/vet.router');
 
 // Body parser middleware
@@ -34,6 +39,11 @@ app.use('/api/vet', vetRouter);
 app.use('/api/acctType', acctType);
 app.use("/api/user", userRouter);
 app.use("/api/drop", dropRouter);
+app.use("/api/demographic", demographicRouter);
+app.use("/api/servicehistory", serviceHistoryRouter);
+app.use("/api/health", healthRouter);
+app.use("/api/compensation", compensationRouter);
+
 
 // Serve static files
 app.use(express.static("build"));
