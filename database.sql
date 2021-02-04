@@ -132,7 +132,8 @@ CREATE TABLE "organization" (
     "pdf" bytea,
     "website" VARCHAR(255),
     "pictures" bytea,
-    "description" VARCHAR(1000) "categories_id" INT REFERENCES "categories",
+    "description" VARCHAR(1000),
+    "categories_id" INT REFERENCES "categories",
     "approved" BOOLEAN
 );
 
@@ -349,11 +350,11 @@ INSERT INTO
     )
 VALUES
     (
-        5,
+        1,
         'C',
         'McC',
         'fakeemail@email.email',
-        1990 -01 -01,
+        '1990-01-01',
         5555555555,
         1,
         1,
@@ -367,8 +368,8 @@ VALUES
         '1235 Second Street',
         1,
         1,
-        2015 -03 -15,
-        2019 -03 -15,
+        '1990-01-01',
+        '1990-01-01',
         1,
         1,
         1,
@@ -387,7 +388,7 @@ INSERT INTO
         "contacted"
     )
 VALUES
-    (4, 3, true, false, false);
+    (3, 1, true, false, false);
 
 INSERT INTO
     "organization" (
@@ -406,7 +407,7 @@ INSERT INTO
     )
 VALUES
     (
-        8,
+        1,
         'org3',
         5555555555,
         'fakeemail@email.com',
