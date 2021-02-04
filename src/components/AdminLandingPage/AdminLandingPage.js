@@ -9,7 +9,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import vet from '../../redux/sagas/vet.saga';
 
 
 /*
@@ -60,7 +59,6 @@ class AdminLandingPage extends Component {
 
   render() {
     const { classes } = this.props;
-        const {veteran} = this.props.store;
 
     return (
       <div>
@@ -68,10 +66,9 @@ class AdminLandingPage extends Component {
         <h2>{this.state.heading}</h2>
         <h3>Connections in Progress (Track Time)</h3>
           </center>
+          {/* INPUT JSON STRINGIFY HERE TO TEST OUT ONCE ROUTES WORK */}
             <div className="container">
-              {veteran.map((veteran, i) =>{
-                return(
-                <Card className={classes.card} key="i">
+                <Card className={classes.card}>
                 <CardContent>
                   <Typography className={classes.title} color="textSecondary" gutterBottom>
                       TIMESTAMP
@@ -79,22 +76,20 @@ class AdminLandingPage extends Component {
                   <CardActions>
                     <Button size="small" onClick={this.handleVeteran}>
                       <Typography variant="h5" component="h2">
-                          {veteran.first_name} {veteran.last_name}
+                          Homer Watson
                       </Typography>
                     </Button>
                   </CardActions> 
                   <CardActions>
                     <Button size="small" onClick={this.handleResource}>
                       <Typography component="p">
-                          {veteran.name}
+                          RESOURCE NAME
                         <br />
                       </Typography>
                     </Button>
                   </CardActions> 
                 </CardContent>
               </Card>
-              
-              )})}
               <br></br>
           </div>
         <AdminVetList />
