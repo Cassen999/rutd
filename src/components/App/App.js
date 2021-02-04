@@ -25,6 +25,7 @@ import AdminResourceList from '../AdminResourceList/AdminResourceList';
 import AdminVetList from '../AdminVetList/AdminVetList';
 import GenericLanding from '../GenericLanding/GenericLanding';
 import OrganizationLandingPage from '../OrganizationLandingPage/OrganizationLandingPage';
+import ServiceHistory from '../ServiceHistory/ServiceHistory'
 import './App.css';
 
 class App extends Component {
@@ -113,6 +114,14 @@ class App extends Component {
                 exact
                 path="/vetmatches"
                 component={VetMatches}
+                // authRedirect="/user"
+              />
+
+<ProtectedRoute
+               
+                exact
+                path="/servicehistory"
+                component={ServiceHistory}
                 // authRedirect="/user"
               />
 

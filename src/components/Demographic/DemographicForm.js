@@ -61,7 +61,7 @@ const styles = {
                     })
                   }
 
-                  saveDemographics = () => {
+                  saveDemographic = () => {
                     if(this.state.newVet.first_name === '') {
                         alert('A name is required for registration.')
                     } else {
@@ -90,7 +90,9 @@ const styles = {
           mailing_adress: '',
           
                           },
-                         })
+                         }, function () {
+                           {this.props.history.push('/servicehistory')};
+                       })
                     }
                     
                   }
@@ -127,8 +129,8 @@ render(){
                    label="First Name"
                    name="first_name"
                   // className={classes.inputs}
-                                    value={this.state.newVet.title}
-                    onChange ={ (event) => this.handleInputChange( event, 'first-name' ) } 
+                                    value={this.state.newVet.first_name}
+                    onChange ={ (event) => this.handleInputChange( event, 'first_name' ) } 
                    />
                  {/* </Grid>  */}
 <br/>
@@ -387,9 +389,10 @@ render(){
 <br/> 
 
                  <Grid item xs={12.0} sm={12}> 
+                 {/* <button onClick={(event)=>this.props.history.push('/home')}>BACK TO HOME</button> */}
 
                  <Button 
-                 onClick={this.saveDemographics}
+                 onClick={(event)=>this.saveDemographic(event)}
           // addArtProp={this.addArt}
          //   elevation={20}  
           //  className={classes.typography}
