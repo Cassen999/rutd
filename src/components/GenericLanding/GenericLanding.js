@@ -18,19 +18,16 @@ class GenericLanding extends Component {
   render() {
 
     if(this.props.store.user.type_id === 1){
-        return(<VetLandingPage/>)
-      } else if (this.props.store.user.type_id === 2){
-        alert('Welcome Admin')
-        return (<AdminLandingPage/>)
-      } else if (this.props.store.user.type_id === null) {
-        alert('Not a valid user type')
-        return(<LoginPage />)
-      } else {
-        alert('Not a valid user type')
-        return(<LoginPage />)
-      }
-    
-    
+      return(<VetLandingPage/>)
+    } else if (this.props.store.user.type_id === 2){
+      alert('Welcome Admin')
+      return (<AdminLandingPage/>)
+    } else {
+      alert('NOT A USER TYPE')
+      return(<LoginPage/>) ;
+    }
+
+
     return (
       <div>
         <h2>{this.state.heading}</h2>

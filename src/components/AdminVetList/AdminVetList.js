@@ -10,11 +10,16 @@ class AdminVetList extends Component {
   state = {
     heading: 'Admin Vet List',
   };
+  
+  componentDidMount() {
+    this.props.dispatch({type: 'FETCH_VET'})
+  }
 
   render() {
     return (
       <div>
         <h2>{this.state.heading}</h2>
+        {JSON.stringify(this.props.store.vetReducer)}
       </div>
     );
   }
