@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 //import { useDispatch } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux';
-import {AppBar, Button, Toolbar, Grid, Badge, CardMedia, IconButton, makeStyles, Paper, InputBase, Card, withStyles, CardActionArea} from '@material-ui/core'
+import {AppBar, Button, InputLabel, FormHelperText, Select, Toolbar, MenuItem, Grid, Badge, CardMedia, FormControl, IconButton, makeStyles, Paper, InputBase, Card, withStyles, CardActionArea} from '@material-ui/core'
 import TextField from '@material-ui/core/TextField';
 // import '../../../App/App.css';
 
@@ -23,7 +23,10 @@ const styles = {
   }
 
   class HealthForm extends Component {
-
+componentDidMount(){
+  console.log('Mounted')
+  this.props.dispatch({type: 'FETCH_HEALTH'})
+}
     state = {
         newVet: {
          
@@ -58,7 +61,7 @@ const styles = {
                         alert('A name is required for registration.')
                     } else {
                     
-                        console.log(`Saving ${this.state.newVet.first_name}'s demographics to Database...`);
+                        console.log(`Saving Health to Database...`);
                     //Clear message... should say Hello!
                     //console.log(`Sending ${this.state.newArt} to DB.`);
         
@@ -82,6 +85,12 @@ render(){
     return(
         <>
         <h1>HealthForm</h1>
+
+
+
+
+
+        
         
         <Grid container
          //   className={classes.paper}
@@ -97,6 +106,25 @@ render(){
                                 // backgroundImage={canvas}                                                      
                             > 
                            
+                           <FormControl className={classes.formControl}>
+        <InputLabel id="demo-simple-select-helper-label">SELECT</InputLabel>
+        <Select
+          labelId="demo-simple-select-helper-label"
+          id="demo-simple-select-helper"
+          // value={age}
+          onChange={this.handleChange}
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+        <FormHelperText>Some important helper text</FormHelperText>
+      </FormControl>
+
+
                               <form
                             //   style={{ verticalAlign: 'middle' }}
                             >

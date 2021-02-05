@@ -16,7 +16,7 @@ const {
 router.put('/',  (req, res) => {
   console.log('in PUT');
   
-  let serviceHistory = req.body; // Book with updated content
+  let service = req.body; // Book with updated content
   
   let id = req.params.id; // id of the book to update
 console.log('Updating', art.title);

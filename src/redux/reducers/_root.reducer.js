@@ -5,6 +5,7 @@ import category from './category.reducer';
 import match from './match.reducer';
 import acctTypeReducer from './acctType.reducer';
 import vetReducer from './vet.reducer';
+import healthReducer from './health.reducer';
 import vetMatchReducer from './vetMatch.reducer';
 import vetSearchReducer from './vetSearch.reducer';
 
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   acctTypeReducer,
   vetReducer,
   vetMatchReducer,
-  vetSearchReducer
+  vetSearchReducer,
+  healthReducer,
 });
 
 export default rootReducer;

@@ -6,8 +6,9 @@ import categorySaga from './category.saga';
 import matchSaga from './match.saga'
 import acctType from './acctType.saga';
 import demographicSaga from './demographic.saga'
-import serviceHistorySaga from './serviceHistory.saga'
+import serviceSaga from './service.saga'
 import compensationSaga from './compensation.saga'
+import healthSaga from './health.saga'
 //import demographicSaga from './demographic.saga';
 import vetSaga from './vet.saga';
 import vetMatchSaga from './vetMatch.saga';
@@ -29,8 +30,9 @@ export default function* rootSaga() {
     matchSaga(),
     acctType(),
     demographicSaga(),
-    serviceHistorySaga(),
+    serviceSaga(),
     compensationSaga(),
+    healthSaga(),
     vetSaga(),
     vetMatchSaga(),
     vetSearchSaga()

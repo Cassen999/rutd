@@ -63,7 +63,7 @@ const styles = {
                         alert('A name is required for registration.')
                     } else {
                     
-                        console.log(`Saving ${this.state.newVet.first_name}'s demographics to Database...`);
+                        console.log(`Saving to Database...`);
                     //Clear message... should say Hello!
                     //console.log(`Sending ${this.state.newArt} to DB.`);
         
@@ -92,7 +92,7 @@ render(){
 
     return(
         <>
-        <h1>ServiceHistoryForm</h1>
+        <h1>ServiceForm</h1>
         <Grid container
           //  className={classes.paper}
            //alignItems="center"
@@ -202,7 +202,7 @@ render(){
                   //  multiline
                   //  className={classes.inputs}
                   //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.rank_id}
+                   value={this.state.newVet.status_id}
                 onChange ={ (event) => this.handleInputChange( event, 'status_id' ) } 
                    />
 
