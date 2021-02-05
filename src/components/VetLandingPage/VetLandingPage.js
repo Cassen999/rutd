@@ -2,6 +2,29 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
+const useStyles = () => makeStyles({
+  root: {
+    minWidth: 275,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+});
 
 class UserPage extends Component {
   
@@ -13,6 +36,7 @@ class UserPage extends Component {
   }
 
   render() {
+    const classes = useStyles();
     return (
       <div>
         <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
@@ -20,11 +44,25 @@ class UserPage extends Component {
         {this.props.store.vetMatchReducer.map(match => {
           return(
             <div>
-            <p>{match.name}</p>
-            <p>{match.description}</p>
-            <p>{match.website}</p>
-            <p>{match.email}</p>
-            <p>{match.number}</p>
+              <Card className={classes.root} variant="outlined">
+                <CardContent>
+                  <Typography className={classes.title} color="textSecondary" gutterBottom>
+                    {match.name}
+                  </Typography>
+                  <Typography variant="h5" component="h2">
+                    {match.description}
+                  </Typography>
+                  <Typography className={classes.pos} color="textSecondary">
+                    {match.website}
+                  </Typography>
+                  <Typography variant="body2" component="p">
+                    {match.email}
+                  </Typography>
+                  <Typography variant="body2" component="p">
+                    {match.number}
+                  </Typography>
+                </CardContent>
+              </Card>           
             </div>
 
           )
