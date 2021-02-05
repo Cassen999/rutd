@@ -96,11 +96,11 @@ function* fetchHealthSaga(action) {
       withCredentials: true,
     };
 
-    const response = yield axios.get(`health`, config);
+    const response = yield axios.get(`/api/health`, config);
 
     yield put({ type: 'SET_HEALTH', payload: response.data });
   } catch (error) {
-    console.log('Art get request failed', error);
+    console.log('GET health request failed', error);
   }
 }
 

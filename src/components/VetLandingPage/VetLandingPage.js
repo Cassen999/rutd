@@ -18,10 +18,10 @@ class UserPage extends Component {
         REDUX STATE: {JSON.stringify(this.props.store)} 
 
         <LogOutButton className="log-in" />
-        <Demographic/>
-        <Service/>
-        <Health/>
-        <Compensation/>
+        {/* <Demographic/> */}
+        {/* <Service/> */}
+        {/* <Health/> */}
+        {/* <Compensation/> */}
       </div>
     );
   }
