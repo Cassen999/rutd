@@ -3,9 +3,6 @@ import axios from 'axios';
 
 // gets all account types for users
 function* fetchSearchVet(action) {
-    // const preSearchText = action.payload
-    // const searchText = Object.values(preSearchText)
-    // console.log('presearchText', preSearchText)
     console.log('Fetch vetSearch from DB action.payload', action.payload);
     try{
         const response = yield axios.get(`/api/vetSearch?searchText=${action.payload}`)
