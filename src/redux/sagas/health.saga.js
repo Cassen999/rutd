@@ -7,6 +7,8 @@ import { put, takeLatest } from 'redux-saga/effects';
 // worker Saga: will be fired on "FETCH_SECRETS" actions
 
 function* healthSaga() {
+  yield takeLatest('FETCH_HEALTH', fetchHealthSaga);
+
   yield takeLatest('UPDATE_HEALTH', updateHealthSaga);
 //   yield takeLatest('ADD_ART', addArtSaga);
 //   yield takeLatest('UPDATE_ART', updateArtSaga);
@@ -84,23 +86,23 @@ function* updateHealthSaga(action) {
 //   }
 // }
 
-// function* fetchDetailsSaga(action) {
-//   console.log('In fetchDetailsSaga...')
-//   console.log('payload:', action.payload)
+function* fetchHealthSaga(action) {
+  console.log('In fetchHealthSaga...')
+  console.log('payload:', action.payload)
 
-//   try {
-//     const config = {
-//       headers: { 'Content-Type': 'application/json' },
-//       withCredentials: true,
-//     };
+  try {
+    const config = {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    };
 
-//     const response = yield axios.get(`api/art/${action.payload}`, config);
+    const response = yield axios.get(`api/health`, config);
 
-//     yield put({ type: 'SET_ART', payload: response.data });
-//   } catch (error) {
-//     console.log('Art get request failed', error);
-//   }
-// }
+    yield put({ type: 'SET_HEALTH', payload: response.data });
+  } catch (error) {
+    console.log('Art get request failed', error);
+  }
+}
 
 
 export default healthSaga;

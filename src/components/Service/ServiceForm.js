@@ -92,7 +92,7 @@ render(){
 
     return(
         <>
-        <h1>ServiceHistoryForm</h1>
+        <h1>ServiceForm</h1>
         <Grid container
           //  className={classes.paper}
            //alignItems="center"

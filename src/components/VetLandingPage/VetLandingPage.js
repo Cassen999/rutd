@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import Demographic from '../Demographic/Demographic'
-import ServiceHistory from '../ServiceHistory/ServiceHistory'
+import Service from '../Service/Service'
 import Health from '../Health/Health'
 import Compensation from '../Compensation/Compensation';
 
@@ -19,7 +19,7 @@ class UserPage extends Component {
 
         <LogOutButton className="log-in" />
         <Demographic/>
-        <ServiceHistory/>
+        <Service/>
         <Health/>
         <Compensation/>
       </div>

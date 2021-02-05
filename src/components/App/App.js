@@ -25,7 +25,7 @@ import AdminResourceList from '../AdminResourceList/AdminResourceList';
 import AdminVetList from '../AdminVetList/AdminVetList';
 import GenericLanding from '../GenericLanding/GenericLanding';
 import OrganizationLandingPage from '../OrganizationLandingPage/OrganizationLandingPage';
-import ServiceHistory from '../ServiceHistory/ServiceHistory'
+import Service from '../Service/Service'
 import Demographic from '../Demographic/Demographic'
 import Health from '../Health/Health'
 import Compensation from '../Compensation/Compensation'
@@ -123,8 +123,8 @@ class App extends Component {
 <ProtectedRoute
                
                 exact
-                path="/servicehistory"
-                component={ServiceHistory}
+                path="/service"
+                component={Service}
                 // authRedirect="/user"
               />
 
