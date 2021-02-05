@@ -23,7 +23,10 @@ const styles = {
   }
 
   class HealthForm extends Component {
-
+componentDidMount(){
+  console.log('Mounted')
+  this.props.dispatch({type: FETCH_INJURY})
+}
     state = {
         newVet: {
          

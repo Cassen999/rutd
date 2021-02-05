@@ -27,7 +27,8 @@ import GenericLanding from '../GenericLanding/GenericLanding';
 import OrganizationLandingPage from '../OrganizationLandingPage/OrganizationLandingPage';
 import ServiceHistory from '../ServiceHistory/ServiceHistory'
 import Demographic from '../Demographic/Demographic'
-
+import Health from '../Health/Health'
+import Compensation from '../Compensation/Compensation'
 import './App.css';
 
 class App extends Component {
@@ -132,6 +133,22 @@ class App extends Component {
                exact
                path="/demographic"
                component={Demographic}
+               // authRedirect="/user"
+             /> 
+
+<ProtectedRoute
+               
+               exact
+               path="/health"
+               component={Health}
+               // authRedirect="/user"
+             />
+
+<ProtectedRoute
+               
+               exact
+               path="/compensation"
+               component={Compensation}
                // authRedirect="/user"
              />
 
