@@ -1,10 +1,13 @@
 const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require("../modules/authentication-middleware");
 
 // GETs all vets by name limited to 10
 
-router.get("/", (req, res) => {
+router.get("/", rejectUnauthenticated, (req, res) => {
   const sqlText = `SELECT "first_name", "last_name", "match".received, "organization"."name" FROM "user"
                         JOIN "veteran" ON "vet_id" = "user".id
                         JOIN "match" ON "match".vet_id = "veteran".id
@@ -27,7 +30,7 @@ router.get("/", (req, res) => {
  * GET all veterans
  */
 
-router.get("/all", (req, res) => {
+router.get("/all", rejectUnauthenticated, (req, res) => {
   const queryText = "SELECT * FROM veteran;";
   pool
     .query(queryText)
