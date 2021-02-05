@@ -4,7 +4,11 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class UserPage extends Component {
-  // this component doesn't do much to start, just renders some user info to the DOM
+  
+  componentDidMount() {
+    this.props.dispatch({ type: 'FETCH_MATCH' });
+  }
+
   render() {
     return (
       <div>
@@ -18,3 +22,15 @@ class UserPage extends Component {
 
 // this allows us to use <App /> in index.js
 export default connect(mapStoreToProps)(UserPage);
+
+
+// TODO //
+
+// Nav Bar
+// GET route to get their matches in progress
+// GET route to get their completed matches
+// Set up card view for in progress and completed matches
+// View and Edit button routes
+// Emergency numbers button
+// View all Matches button - route and dispatch
+

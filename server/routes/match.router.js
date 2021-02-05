@@ -33,5 +33,28 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 });
 
+router.get('/complete/:id', (req, res) => {
+  // GET route for complete matches 
+  console.log('in /match/complete GET route');
+  console.log('Is User logged in?');
+  console.log('req.user:', req.user);
+  let vetId = req.params.id;
+  let queryText = `SELECT match.*, veteran.first_name, organization.* FROM match
+                  INNER JOIN veteran ON veteran.id = match.vet_id
+                  INNER JOIN organization ON organization.id = match.org_id
+                  WHERE veteran.id = $1;`;
+                    
+  pool.query(queryText, [vetId]).then((result) => {
+      res.send(result.rows);
+  }).catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+  });
+
+
+});
+
+
+
 
     module.exports = router;
