@@ -12,7 +12,6 @@ const categoryRouter = require("./routes/category.router");
 const matchRouter = require("./routes/match.router");
 const acctType = require("./routes/acctType.router");
 const userRouter = require("./routes/user.router");
-const dropRouter = require("./routes/drop.router");
 const demographicRouter = require("./routes/demographic.router");
 const serviceRouter = require("./routes/service.router");
 const healthRouter = require("./routes/health.router");
