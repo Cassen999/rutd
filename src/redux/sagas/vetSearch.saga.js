@@ -7,7 +7,7 @@ function* fetchSearchVet() {
     console.log('Fetch vets from DB');
     try{
         const response = yield axios.get(`/api/vetSearch?searchText=${searchText}`)
-        yield put({type: 'SET_VET', payload: response.data});
+        yield put({type: 'SET_VET_SEARCH', payload: response.data});
         console.log('response.data from db get vetSearch:', response.data);
     } catch(error){
         console.log('error with vetSearch fetch request', error);

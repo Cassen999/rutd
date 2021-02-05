@@ -43,6 +43,10 @@ const styles = {
 
 
 class AdminVetList extends Component {
+
+  state = {
+    searchText: ''
+  }
   
   componentDidMount() {
     this.props.dispatch({type: 'FETCH_VET'})
@@ -56,19 +60,32 @@ class AdminVetList extends Component {
     console.log('CLICKING ON RESOURCE');
   }
 
+  searchDispatch = () => {
+    this.props.dispatch({type: `SET_VET`, payload: this.state})
+  }
+
+  handleInputChangeForSearch = (event) => {
+    event.preventDefault()
+    this.props.dispatch({type: `UNSET_VET`})
+    this.setState({
+      searchText: event.target.value
+    },
+    this.searchDispatch())
+  }
+
   render() {
     const { classes } = this.props;
     return (
       <div>
-        {JSON.stringify(this.props.store.vetReducer)}
         <h2>List of Veterans still waiting on their matched resource to respond</h2>
         <div className="container">
           <div className={classes.searchContainer}>
+            {JSON.stringify(this.state)}
             <center>
               <TextField
                 id="outlined-search"
-                // label="Search for Vet"
-                placeholder="Search for Vet"
+                onChange={this.handleInputChangeForSearch}
+                placeholder="Search for Vet by name"
                 type="search"
                 className={classes.textField}
                 margin="normal"
@@ -77,7 +94,6 @@ class AdminVetList extends Component {
               />
             </center>
           </div>
-          <></>
           {this.props.store.vetReducer.map((vet, i) => {
           return(
               <Card className={classes.card} key={i}>
