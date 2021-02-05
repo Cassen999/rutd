@@ -85,8 +85,28 @@ render(){
     return(
         <>
         <h1>HealthForm</h1>
+
+
+
+
+
         
-        <FormControl className={classes.formControl}>
+        
+        <Grid container
+         //   className={classes.paper}
+           //alignItems="center"
+        spacing={2}
+        direction="column">
+                                 
+                              <Paper
+                              // className={classes.paddingTop}
+                              // style={styles.paperContainer}
+                              elevation={10}
+                              // className={classes.paper} 
+                                // backgroundImage={canvas}                                                      
+                            > 
+                           
+                           <FormControl className={classes.formControl}>
         <InputLabel id="demo-simple-select-helper-label">SELECT</InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"
@@ -103,20 +123,8 @@ render(){
         </Select>
         <FormHelperText>Some important helper text</FormHelperText>
       </FormControl>
-        <Grid container
-         //   className={classes.paper}
-           //alignItems="center"
-        spacing={2}
-        direction="column">
-                                 
-                              <Paper
-                              // className={classes.paddingTop}
-                              // style={styles.paperContainer}
-                              elevation={10}
-                              // className={classes.paper} 
-                                // backgroundImage={canvas}                                                      
-                            > 
-                           
+
+
                               <form
                             //   style={{ verticalAlign: 'middle' }}
                             >

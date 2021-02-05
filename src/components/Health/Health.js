@@ -16,8 +16,9 @@ class Health extends Component {
       <div>
         <h2>{this.state.heading}</h2>
         HEALTH REDUCER: {JSON.stringify(this.props.store.healthReducer)} 
-
+<center>
         <HealthForm/>
+        </center>
       </div>
     );
   }

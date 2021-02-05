@@ -84,7 +84,7 @@ class UserPage extends Component {
         <p>Your ID is: {this.props.store.user.id}</p>
         REDUX STATE: {JSON.stringify(this.props.store)} 
 
-        <LogOutButton className="log-in" />
+        {/* <LogOutButton className="log-in" /> */}
         {/* <Demographic/> */}
         {/* <Service/> */}
         {/* <Health/> */}
