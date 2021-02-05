@@ -6,8 +6,8 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 // worker Saga: will be fired on "FETCH_SECRETS" actions
 
-function* serviceHistorySaga() {
-  yield takeLatest('UPDATE_SERVICE_HISTORY', updateServiceHistorySaga);
+function* serviceSaga() {
+  yield takeLatest('UPDATE_SERVICE_HISTORY', updateServiceSaga);
 //   yield takeLatest('ADD_ART', addArtSaga);
 //   yield takeLatest('UPDATE_ART', updateArtSaga);
 //   yield takeLatest('DELETE_ART', deleteArtSaga);
@@ -16,8 +16,8 @@ function* serviceHistorySaga() {
 
 }
 
-function* updateServiceHistorySaga(action) {
-  console.log('In updateArtSaga...')
+function* updateServiceSaga(action) {
+  console.log('In updateServiceHistorySaga...')
   console.log('payload:', action.payload)
   try {
     const config = {
@@ -103,4 +103,4 @@ function* updateServiceHistorySaga(action) {
 // }
 
 
-export default serviceHistorySaga;
+export default serviceSaga;

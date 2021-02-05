@@ -40,7 +40,7 @@ const styles = {
           state_id: '',
           zipcode: '',
           country_id: '',
-          mailing_adress: '',
+          mailing_address: '',
           
           
         },
@@ -61,7 +61,7 @@ const styles = {
                     })
                   }
 
-                  saveDemographics = () => {
+                  saveDemographic = () => {
                     if(this.state.newVet.first_name === '') {
                         alert('A name is required for registration.')
                     } else {
@@ -87,10 +87,13 @@ const styles = {
           state_id: '',
           zipcode: '',
           country_id: '',
-          mailing_adress: '',
+          mailing_address: '',
           
                           },
-                         })
+                         }, function () {
+                           // {this.props.history.push('/servicehistory')}
+                        console.log('state has been reset');
+                       })
                     }
                     
                   }
@@ -127,8 +130,8 @@ render(){
                    label="First Name"
                    name="first_name"
                   // className={classes.inputs}
-                                    value={this.state.newVet.title}
-                    onChange ={ (event) => this.handleInputChange( event, 'first-name' ) } 
+                                    value={this.state.newVet.first_name}
+                    onChange ={ (event) => this.handleInputChange( event, 'first_name' ) } 
                    />
                  {/* </Grid>  */}
 <br/>
@@ -374,7 +377,7 @@ render(){
                   //  multiline
                   //  className={classes.inputs}
                   //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.mailing_adress}
+                   value={this.state.newVet.mailing_address}
                 onChange ={ (event) => this.handleInputChange( event, 'mailing_address' ) } 
                    />
 
@@ -387,9 +390,10 @@ render(){
 <br/> 
 
                  <Grid item xs={12.0} sm={12}> 
+                 {/* <button onClick={(event)=>this.props.history.push('/home')}>BACK TO HOME</button> */}
 
                  <Button 
-                 onClick={this.saveDemographics}
+                 onClick={(event)=>this.saveDemographic(event)}
           // addArtProp={this.addArt}
          //   elevation={20}  
           //  className={classes.typography}

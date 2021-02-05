@@ -71,6 +71,7 @@ class CompensationForm extends Component {
                purple_heart: '',
             },
          })
+         // this.props.history.push('/home')
       }
 
    }
@@ -204,7 +205,7 @@ class CompensationForm extends Component {
                         //  variant="raised"
                         //  color="purple"
                         //  className={classes.alignAndJustify}
-                        >SAVE</Button>
+                        >FINISH</Button>
 
 
                      </Grid>
