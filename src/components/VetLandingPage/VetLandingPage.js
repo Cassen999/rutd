@@ -8,6 +8,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { withRouter } from 'react-router-dom';
 
 const useStyles = () => makeStyles({
   root: {
@@ -35,6 +36,17 @@ class UserPage extends Component {
     });
   }
 
+  handleClick = (btnValue) => {
+    switch (btnValue) {
+      case 'edit':
+        return console.log('clicked edit/view button');
+      case 'emergency': 
+        return console.log('clicked emergency button');
+      case 'allMatches':
+        return console.log('clicked allMatches button');
+    }
+  }
+
   render() {
     const classes = useStyles();
     return (
@@ -43,6 +55,7 @@ class UserPage extends Component {
         <p>Your ID is: {this.props.store.user.id}</p>
         {this.props.store.vetMatchReducer.map(match => {
           return(
+            <div>
             <div>
               <Card className={classes.root} variant="outlined">
                 <CardContent>
@@ -63,6 +76,12 @@ class UserPage extends Component {
                   </Typography>
                 </CardContent>
               </Card>           
+            </div>
+            <div>
+              <Button variant="contained" onClick={() => this.handleClick('edit')}>View/Edit Profile</Button>
+              <Button variant="contained" color="secondary" onClick={() => this.handleClick('emergency')}>Emergency Numbers</Button>
+              <Button variant="contained" onClick={() => this.handleClick('allMatches')}>View All Matches</Button>
+            </div>
             </div>
 
           )
