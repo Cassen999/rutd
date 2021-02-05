@@ -10,9 +10,14 @@ import Typography from '@material-ui/core/Typography';
 import { withRouter } from 'react-router-dom';
 import './VetLandingPage.css';
 import { withStyles } from '@material-ui/core/styles';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import Grid from '@material-ui/core/Grid';
 
 const styles = (theme) => ({
   root: {
+    flexGrow: 1,
+    padding: theme.spacing(2),
     display: 'flex',
     flexWrap: 'wrap',
     '& > *': {
@@ -20,6 +25,14 @@ const styles = (theme) => ({
       width: theme.spacing(16),
       height: theme.spacing(16),
     },
+  },
+  gridList: {
+    width: 450,
+    height: 310,
+    padding: 40,
+  },
+  gridListTile: {
+    border: '2px solid',
   },
   bullet: {
     display: 'inline-block',
@@ -32,6 +45,9 @@ const styles = (theme) => ({
   pos: {
     marginBottom: 12,
   },
+  card: {
+    padding: 2,
+  }
 });
 
 class UserPage extends Component {
@@ -57,16 +73,23 @@ class UserPage extends Component {
   render() {
     const { classes } = this.props; 
     return (
-      <div>
+      <div id="pageBody">
         <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
-        <h1 id="completeTitle">Complete Matches</h1>
-        <Paper id="completedPaper" className={classes.root} elevation={3}>
+        <div id="cardContainer">
+          <div id="completedMatches" className="matchDisplay"> 
+            <h1 id="completeTitle">Complete Matches</h1>
+        <Paper id="completedPaper"  elevation={3}>
+        <Grid container
+                spacing={2}
+                direction="row"
+                justify="flex-start"
+                alignItems="flex-start">
         {this.props.store.vetMatchReducer.map(match => {
           return(
               
-              <div id="completedMatches"> 
-              <Card key={match.id} id="matchCard" variant="outlined">
-                <CardContent>
+            <Grid item xs={12} sm={6} md={9} key={match.id}>
+              <Card key={match.id} id="matchCard" variant="outlined" >
+                <CardContent className={classes.card}>
                   <Typography className={classes.title} color="textSecondary" gutterBottom>
                     {match.name}
                   </Typography>
@@ -84,11 +107,38 @@ class UserPage extends Component {
                   </Typography>
                 </CardContent>
               </Card>           
-              </div>
+            </Grid>
               
           )
         })}
+        </Grid>
         </Paper>
+        </div>
+        <div id="incompleteContainer" className="matchDisplay">
+        <h1 id="incompleteTitle">Matches in Progress</h1>
+        <Paper id="incompletePaper" className={classes.root} elevation={3}>
+        <Card id="matchCard" variant="outlined">
+                <CardContent>
+                  <Typography className={classes.title} color="textSecondary" gutterBottom>
+                    Blopadnfa
+                  </Typography>
+                  <Typography variant="h5" component="h2">
+                    asldkfn
+                  </Typography>
+                  <Typography className={classes.pos} color="textSecondary">
+                    asdfasdf
+                  </Typography>
+                  <Typography variant="body2" component="p">
+                    asdfasdfasdf
+                  </Typography>
+                  <Typography variant="body2" component="p">
+                    asdfasdfa
+                  </Typography>
+                </CardContent>
+              </Card>
+        </Paper>
+        </div>
+        </div>
                     <div id="btnContainer">
               <Button id="editBtn" variant="contained" onClick={() => this.handleClick('edit')}>View/Edit Profile</Button>
               <Button id="emergencyBtn" variant="contained" color="secondary" onClick={() => this.handleClick('emergency')}>Emergency Numbers</Button>
