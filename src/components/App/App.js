@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component } from 'react';
 import {
   HashRouter as Router,
   Route,
@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
+//comment
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
@@ -29,6 +29,9 @@ import Service from '../Service/Service'
 import Demographic from '../Demographic/Demographic'
 import Health from '../Health/Health'
 import Compensation from '../Compensation/Compensation'
+import AdminVetView from '../AdminVetView/AdminVetView';
+import AdminResourceEdit from '../AdminResourceEdit/AdminResourceEdit';
+
 import './App.css';
 
 class App extends Component {
@@ -169,6 +172,20 @@ class App extends Component {
                 path="/vetlist"
                 component={AdminVetList}
               />
+
+              <ProtectedRoute
+                exact
+                path="/adminVetView"
+                component={AdminVetView}
+              />
+
+
+              <ProtectedRoute
+                exact
+                path="/adminResourceEdit"
+                component={AdminResourceEdit}
+              />
+
 
               <ProtectedRoute
                 exact

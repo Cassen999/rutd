@@ -1,10 +1,10 @@
-const vetReducer = (state = [], action) => {
+const vetMatchReducer = (state = [], action) => {
     switch (action.type) {
-        case 'SET_VET':
+        case 'SET_VET_MATCHES':
             return action.payload;
         default:
             return state;
     }
 };
 
-export default vetReducer;
+export default vetMatchReducer;
