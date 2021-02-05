@@ -27,9 +27,10 @@ const styles = (theme) => ({
     },
   },
   gridList: {
-    width: 450,
-    height: 310,
-    padding: 40,
+    width: 200,
+    height: 400,
+    padding: 1,
+    margin: 10,
   },
   gridListTile: {
     border: '2px solid',
@@ -78,39 +79,35 @@ class UserPage extends Component {
         <div id="cardContainer">
           <div id="completedMatches" className="matchDisplay"> 
             <h1 id="completeTitle">Complete Matches</h1>
-        <Paper id="completedPaper"  elevation={3}>
-        <Grid container
-                spacing={2}
-                direction="row"
-                justify="flex-start"
-                alignItems="flex-start">
-        {this.props.store.vetMatchReducer.map(match => {
-          return(
-              
-            <Grid item xs={12} sm={6} md={9} key={match.id}>
-              <Card key={match.id} id="matchCard" variant="outlined" >
-                <CardContent className={classes.card}>
-                  <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    {match.name}
-                  </Typography>
-                  <Typography variant="h5" component="h2">
-                    {match.description}
-                  </Typography>
-                  <Typography className={classes.pos} color="textSecondary">
-                    {match.website}
-                  </Typography>
-                  <Typography variant="body2" component="p">
-                    {match.email}
-                  </Typography>
-                  <Typography variant="body2" component="p">
-                    {match.number}
-                  </Typography>
-                </CardContent>
-              </Card>           
-            </Grid>
-              
+            <Paper id="completedPaper" elevation={3}>
+            <Grid container spacing={1} direction="row">
+                <Grid container item xs={12} spacing={3} justify="space-evenly" alignItems="stretch" className={classes.gridList} >
+                  {this.props.store.vetMatchReducer.map(match => {
+                    return(
+                      <Grid item xs={5} className={classes.gridListTile} key={match.id}>
+                      {/* <Card key={match.id} id="matchCard" variant="outlined" >
+                      <CardContent className={classes.card}> */}
+                      <Typography className={classes.title} color="textSecondary" gutterBottom>
+                        {match.name}
+                      </Typography>
+                      <Typography variant="h5" component="h2">
+                        {match.description}
+                      </Typography>
+                      <Typography className={classes.pos} color="textSecondary">
+                        {match.website}
+                      </Typography>
+                      <Typography variant="body2" component="p">
+                        {match.email}
+                      </Typography>
+                      <Typography variant="body2" component="p">
+                        {match.number}
+                      </Typography>
+                      {/* </CardContent>
+                      </Card>  */}
+                      </Grid>           
           )
         })}
+        </Grid>
         </Grid>
         </Paper>
         </div>
