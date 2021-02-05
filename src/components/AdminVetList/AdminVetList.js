@@ -7,6 +7,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+// import classNames from 'classnames';
+import TextField from '@material-ui/core/TextField';
 
 const styles = {
   card: {
@@ -18,7 +20,27 @@ const styles = {
   pos: {
     marginBottom: 12,
   },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  dense: {
+    marginTop: 16,
+  },
+  menu: {
+    width: 200,
+  },
+  searchContainer: {
+    // backgroundColor: "white",
+  },
+  textField: {
+    width: "100%",
+    height: "100%",
+    background: "white",
+    borderRadius: "4px"
+  }
 };
+
 
 class AdminVetList extends Component {
   
@@ -41,9 +63,21 @@ class AdminVetList extends Component {
         {JSON.stringify(this.props.store.vetReducer)}
         <h2>List of Veterans still waiting on their matched resource to respond</h2>
         <div className="container">
-          <center>
-            
-          </center>
+          <div className={classes.searchContainer}>
+            <center>
+              <TextField
+                id="outlined-search"
+                // label="Search for Vet"
+                placeholder="Search for Vet"
+                type="search"
+                className={classes.textField}
+                margin="normal"
+                variant="outlined"
+                background-color="black"
+              />
+            </center>
+          </div>
+          <></>
           {this.props.store.vetReducer.map((vet, i) => {
           return(
               <Card className={classes.card} key={i}>
