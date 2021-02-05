@@ -39,7 +39,6 @@ app.use("/api/match", matchRouter);
 app.use("/api/vet", vetRouter);
 app.use("/api/acctType", acctType);
 app.use("/api/user", userRouter);
-app.use("/api/drop", dropRouter);
 app.use("/api/demographic", demographicRouter);
 app.use("/api/service", serviceRouter);
 app.use("/api/health", healthRouter);
