@@ -20,6 +20,7 @@ const compensationRouter = require("./routes/compensation.router");
 
 const vetRouter = require("./routes/vet.router");
 const joinRouter = require("./routes/join-org.router.js");
+const orgRouter = require("./routes/org.router.js");
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -44,6 +45,7 @@ app.use("/api/servicehistory", serviceHistoryRouter);
 app.use("/api/health", healthRouter);
 app.use("/api/compensation", compensationRouter);
 app.use("/api/join", joinRouter);
+app.use("/api/org", orgRouter);
 
 // Serve static files
 app.use(express.static("build"));
