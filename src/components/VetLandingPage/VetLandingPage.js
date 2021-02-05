@@ -6,7 +6,10 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 class UserPage extends Component {
   
   componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_MATCH' });
+    this.props.dispatch({
+      type: 'FETCH_COMPLETE_MATCH',
+      payload: this.props.store.user.id
+    });
   }
 
   render() {
