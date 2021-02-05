@@ -60,17 +60,14 @@ class AdminVetList extends Component {
     console.log('CLICKING ON RESOURCE');
   }
 
-  searchDispatch = () => {
-    this.props.dispatch({type: `SET_VET`, payload: this.state})
-  }
-
   handleInputChangeForSearch = (event) => {
     event.preventDefault()
-    this.props.dispatch({type: `UNSET_VET`})
     this.setState({
       searchText: event.target.value
     },
-    this.searchDispatch())
+    function() {
+      this.props.dispatch({type: `FETCH_SEARCH_VET`, payload: this.state.searchText})
+    })
   }
 
   render() {

@@ -11,6 +11,7 @@ import compensationSaga from './compensation.saga'
 //import demographicSaga from './demographic.saga';
 import vetSaga from './vet.saga';
 import vetMatchSaga from './vetMatch.saga';
+import vetSearchSaga from './vetSearch.saga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -32,5 +33,6 @@ export default function* rootSaga() {
     compensationSaga(),
     vetSaga(),
     vetMatchSaga(),
+    vetSearchSaga()
   ]);
 }
