@@ -88,7 +88,7 @@ function* updateHealthSaga(action) {
 
 function* fetchHealthSaga(action) {
   console.log('In fetchHealthSaga...')
-  console.log('payload:', action.payload)
+  // console.log('payload:', action.payload)
 
   try {
     const config = {
@@ -96,7 +96,7 @@ function* fetchHealthSaga(action) {
       withCredentials: true,
     };
 
-    const response = yield axios.get(`api/health`, config);
+    const response = yield axios.get(`health`, config);
 
     yield put({ type: 'SET_HEALTH', payload: response.data });
   } catch (error) {
