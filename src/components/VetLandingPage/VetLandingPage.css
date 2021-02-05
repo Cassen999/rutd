@@ -1,0 +1,33 @@
+#matchCard {
+    float: left;
+    margin-left: 80px;
+    width: 350px;
+    margin-bottom: 50px;
+}
+
+#btnContainer {
+    margin-left: 50px;
+    padding: 30px;
+}
+
+#completedMatches {
+    overflow: auto;
+    text-align: center;
+    width: 450px;
+}
+
+#completeTitle {
+    margin-left: 50px;
+}
+
+#editBtn {
+    margin: 15px;
+}
+
+#emergencyBtn {
+    margin: 15px;
+}
+
+#allMatchBtn {
+    margin: 15px;
+}
