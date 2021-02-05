@@ -17,7 +17,7 @@ const demographicRouter = require("./routes/demographic.router");
 const serviceHistoryRouter = require("./routes/serviceHistory.router");
 const healthRouter = require("./routes/health.router");
 const compensationRouter = require("./routes/compensation.router");
-
+const vetSearchRouter = require('./routes/vetSearch.router');
 const vetRouter = require("./routes/vet.router");
 const joinRouter = require("./routes/join-org.router.js");
 const orgRouter = require("./routes/org.router.js");
@@ -46,6 +46,7 @@ app.use("/api/health", healthRouter);
 app.use("/api/compensation", compensationRouter);
 app.use("/api/join", joinRouter);
 app.use("/api/org", orgRouter);
+app.use("/api/vetsearch", vetSearchRouter);
 
 // Serve static files
 app.use(express.static("build"));
