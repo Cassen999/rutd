@@ -17,9 +17,16 @@ class UserPage extends Component {
       <div>
         <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
         <p>Your ID is: {this.props.store.user.id}</p>
-        {this.props.store.vetMatchReducer.map(vet => {
+        {this.props.store.vetMatchReducer.map(match => {
           return(
-            <p>{vet.first_name}</p>
+            <div>
+            <p>{match.name}</p>
+            <p>{match.description}</p>
+            <p>{match.website}</p>
+            <p>{match.email}</p>
+            <p>{match.number}</p>
+            </div>
+
           )
         })}
           
