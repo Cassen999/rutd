@@ -35,36 +35,40 @@ const styles = {
 
 
 
-// componentDidMount(){
-//   console.log('Fetching veteran list from DB');
-//   this.props.dispatch({type: 'FETCH_VET'});
-// }
-
-
 
 class AdminLandingPage extends Component {
   state = {
     heading: 'Admin Landing Page',
   };
   
+  
+  componentDidMount(){
+    console.log('Fetching veteran list from DB');
+    this.props.dispatch({type: 'FETCH_VET'});
+  }
+  
   handleVeteran = () =>{
     console.log('CLICKING ON VETERAN');
+    this.props.history.push('/adminVetView');
   }
 
   handleResource = () =>{
     console.log('CLICKING ON RESOURCE');
+    this.props.history.push('/adminResourceEdit');
   }
 
   render() {
     const { classes } = this.props;
+
     return (
       <div>
         <center>
         <h2>{this.state.heading}</h2>
         <h3>Connections in Progress (Track Time)</h3>
           </center>
+          {/* INPUT JSON STRINGIFY HERE TO TEST OUT ONCE ROUTES WORK */}
             <div className="container">
-              <Card className={classes.card}>
+                <Card className={classes.card}>
                 <CardContent>
                   <Typography className={classes.title} color="textSecondary" gutterBottom>
                       TIMESTAMP
@@ -72,14 +76,14 @@ class AdminLandingPage extends Component {
                   <CardActions>
                     <Button size="small" onClick={this.handleVeteran}>
                       <Typography variant="h5" component="h2">
-                          John Doe
+                          Homer Watson
                       </Typography>
                     </Button>
                   </CardActions> 
                   <CardActions>
                     <Button size="small" onClick={this.handleResource}>
                       <Typography component="p">
-                          Hives for Heroes
+                          RESOURCE NAME
                         <br />
                       </Typography>
                     </Button>
@@ -87,55 +91,10 @@ class AdminLandingPage extends Component {
                 </CardContent>
               </Card>
               <br></br>
-              <Card className={classes.card}>
-                <CardContent>
-                  <Typography className={classes.title} color="textSecondary" gutterBottom>
-                      TIMESTAMP
-                  </Typography>
-                  <CardActions>
-                    <Button size="small" onClick={this.handleVeteran}>
-                      <Typography variant="h5" component="h2">
-                          Maria Huerta
-                      </Typography>
-                    </Button>
-                  </CardActions> 
-                  <CardActions>
-                    <Button size="small" onClick={this.handleResource}>
-                      <Typography component="p">
-                          Wounded Warrior Project
-                        <br />
-                      </Typography>
-                    </Button>
-                  </CardActions> 
-                </CardContent>
-              </Card>
-              <br></br>
-              <Card className={classes.card}>
-                <CardContent>
-                  <Typography className={classes.title} color="textSecondary" gutterBottom>
-                      TIMESTAMP
-                  </Typography>
-                  <CardActions>
-                    <Button size="small" onClick={this.handleVeteran}>
-                      <Typography variant="h5" component="h2">
-                          Lee Vang
-                      </Typography>
-                    </Button>
-                  </CardActions> 
-                  <CardActions>
-                    <Button size="small" onClick={this.handleResource}>
-                      <Typography component="p">
-                          Mighty Oak
-                        <br />
-                      </Typography>
-                    </Button>
-                  </CardActions> 
-                </CardContent>
-              </Card>
           </div>
         <AdminVetList />
-      </div>
-    );
+        </div>
+        );
   }
 }
 
