@@ -81,6 +81,7 @@ componentDidMount(){
   
 render(){
     const { classes } = this.props;
+    const health = this.props.store.healthReducer
 
     return(
         <>
@@ -117,9 +118,15 @@ render(){
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
+        {health.map((malady) => (
+                    <MenuItem value={malady.id}>{malady.description}</MenuItem>
+
+
+        ))}
+
+          {/* <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem> */}
         </Select>
         <FormHelperText>Some important helper text</FormHelperText>
       </FormControl>
