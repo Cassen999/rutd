@@ -22,9 +22,9 @@ const styles = {
 
 class AdminVetList extends Component {
   
-  componentDidMount() {
-    this.props.dispatch({type: 'SET_VET'})
-  }
+  // componentDidMount() {
+  //   this.props.dispatch({type: 'SET_VET'})
+  // }
 
   handleVeteran = () =>{
     console.log('CLICKING ON VETERAN');
