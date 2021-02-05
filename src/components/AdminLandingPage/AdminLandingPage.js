@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
+import { withRouter } from 'react-router-dom';
+import { withStyles } from "@material-ui/core/styles";
 import AdminVetList from "../AdminVetList/AdminVetList";
 import "../AdminLandingPage/AdminLandingPage.css";
-import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -98,4 +99,4 @@ class AdminLandingPage extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(withStyles(styles)(AdminLandingPage));
+export default withRouter(withStyles(styles)(connect(mapStoreToProps)(AdminLandingPage)));
