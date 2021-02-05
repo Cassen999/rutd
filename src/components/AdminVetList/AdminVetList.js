@@ -41,6 +41,9 @@ class AdminVetList extends Component {
         {JSON.stringify(this.props.store.vetReducer)}
         <h2>List of Veterans still waiting on their matched resource to respond</h2>
         <div className="container">
+          <center>
+            
+          </center>
           {this.props.store.vetReducer.map((vet, i) => {
           return(
               <Card className={classes.card} key={i}>
