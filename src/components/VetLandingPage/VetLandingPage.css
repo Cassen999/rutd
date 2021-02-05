@@ -8,16 +8,18 @@
 #btnContainer {
     margin-left: 50px;
     padding: 30px;
+    text-align: center;
 }
 
 #completedMatches {
     overflow: auto;
+    float: left;
     text-align: center;
     width: 450px;
 }
 
 #completeTitle {
-    margin-left: 50px;
+    margin-left: 180px;
 }
 
 #editBtn {
@@ -30,4 +32,15 @@
 
 #allMatchBtn {
     margin: 15px;
+}
+
+#completedPaper {
+    margin-left: 50px;
+    width: 550px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+#welcome {
+    text-align: center;
 }

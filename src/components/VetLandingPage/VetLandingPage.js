@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { withRouter } from 'react-router-dom';
 import './VetLandingPage.css';
+import { withStyles } from '@material-ui/core/styles';
 
-const useStyles = () => makeStyles({
+const styles = (theme) => ({
   root: {
-    minWidth: 275,
+    display: 'flex',
+    flexWrap: 'wrap',
+    '& > *': {
+      margin: theme.spacing(1),
+      width: theme.spacing(16),
+      height: theme.spacing(16),
+    },
   },
   bullet: {
     display: 'inline-block',
@@ -49,17 +55,17 @@ class UserPage extends Component {
   }
 
   render() {
-    const classes = useStyles();
+    const { classes } = this.props; 
     return (
       <div>
         <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
+        <h1 id="completeTitle">Complete Matches</h1>
+        <Paper id="completedPaper" className={classes.root} elevation={3}>
         {this.props.store.vetMatchReducer.map(match => {
           return(
-            <div>
               
-              <div id="completedMatches">
-                <h1 id="completeTitle">Complete Matches</h1>
-              <Card key={match.id} id="matchCard" className={classes.root} variant="outlined">
+              <div id="completedMatches"> 
+              <Card key={match.id} id="matchCard" variant="outlined">
                 <CardContent>
                   <Typography className={classes.title} color="textSecondary" gutterBottom>
                     {match.name}
@@ -79,24 +85,22 @@ class UserPage extends Component {
                 </CardContent>
               </Card>           
               </div>
-           
-            <div id="btnContainer">
+              
+          )
+        })}
+        </Paper>
+                    <div id="btnContainer">
               <Button id="editBtn" variant="contained" onClick={() => this.handleClick('edit')}>View/Edit Profile</Button>
               <Button id="emergencyBtn" variant="contained" color="secondary" onClick={() => this.handleClick('emergency')}>Emergency Numbers</Button>
               <Button id="allMatchBtn" variant="contained" onClick={() => this.handleClick('allMatches')}>View All Matches</Button>
-            </div>
-            </div>
-
-          )
-        })}
-          
+            </div>  
       </div>
     );
   }
 }
 
 // this allows us to use <App /> in index.js
-export default withRouter(connect(mapStoreToProps)(UserPage));
+export default withRouter(withStyles(styles, {withTheme: true})(connect(mapStoreToProps)(UserPage)));
 
 
 // TODO //
