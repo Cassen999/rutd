@@ -17,7 +17,7 @@ function* compensationSaga() {
 }
 
 function* updateCompensationSaga(action) {
-  console.log('In updateArtSaga...')
+  console.log('In updateCompensationSaga...')
   console.log('payload:', action.payload)
   try {
     const config = {

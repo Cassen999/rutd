@@ -13,6 +13,27 @@ const {
 
 /**
  */
+router.get('/', rejectUnauthenticated, (req, res) => {
+  // GET route code here
+  console.log('in /health GET route');
+  console.log('Is User logged in?', req.isAuthenticated());
+  console.log('req.user:', req.user);
+
+  let queryText = `SELECT * FROM "injury"`;
+                    
+  
+  pool.query(queryText).then((result) => {
+      res.send(result.rows);
+  }).catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+  });
+
+
+});
+
+
+
 router.put('/',  (req, res) => {
   console.log('in PUT');
   

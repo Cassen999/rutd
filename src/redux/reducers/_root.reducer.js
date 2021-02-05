@@ -5,6 +5,7 @@ import category from './category.reducer';
 import match from './match.reducer';
 import acctTypeReducer from './acctType.reducer';
 import vetReducer from './vet.reducer';
+import healthReducer from './health.reducer';
 import vetMatchReducer from './vetMatch.reducer';
 
 // rootReducer is the primary reducer for our entire project
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   match,
   acctTypeReducer,
   vetReducer,
+  healthReducer,
   vetMatchReducer
 });
 

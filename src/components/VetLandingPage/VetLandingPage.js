@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import Demographic from '../Demographic/Demographic'
+import Service from '../Service/Service'
+import Health from '../Health/Health'
+import Compensation from '../Compensation/Compensation';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -76,6 +81,14 @@ class UserPage extends Component {
     return (
       <div id="pageBody">
         <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
+        <p>Your ID is: {this.props.store.user.id}</p>
+        REDUX STATE: {JSON.stringify(this.props.store)} 
+
+        {/* <LogOutButton className="log-in" /> */}
+        {/* <Demographic/> */}
+        {/* <Service/> */}
+        {/* <Health/> */}
+        {/* <Compensation/> */}
         <div id="cardContainer">
           <div id="completedMatches" className="matchDisplay"> 
             <h1 id="completeTitle">Complete Matches</h1>
