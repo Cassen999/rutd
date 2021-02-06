@@ -3,12 +3,13 @@ import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { withRouter } from 'react-router-dom';
 import { withStyles } from "@material-ui/core/styles";
-import AdminVetList from "../AdminVetList/AdminVetList";
 import "../AdminLandingPage/AdminLandingPage.css";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 import Typography from "@material-ui/core/Typography";
 
 /*
@@ -18,17 +19,16 @@ TO DO LIST ON THIS PAGE:
   onClick for Veteran names: opens admin veteran view
 */
 
-const styles = {
-  card: {
-    minWidth: 275,
+const styles = theme => ({
+  root: {
+    width: '100%',
+    marginTop: theme.spacing.unit * 3,
+    overflowX: 'auto',
   },
-  title: {
-    fontSize: 14,
+  table: {
+    minWidth: 700,
   },
-  pos: {
-    marginBottom: 12,
-  },
-};
+});
 
 class AdminLandingPage extends Component {
   state = {
@@ -53,50 +53,41 @@ class AdminLandingPage extends Component {
     this.props.history.push("/adminResourceEdit");
   };
 
-  render() {
-    const { classes } = this.props;
-    return (
-      <div>
+
+  render(){
+    const {classes} = this.props;
+    const {vetReducer} = this.props.store;
+      return (
+        <div className="container">
+        <center>
         {JSON.stringify(this.props.store.vetReducer)}
         <h2>Admin Landing Page</h2>
-        <div className="container">
-          {this.props.store.vetReducer.map((vet, i) => {
-            return (
-              <Card className={classes.card} key={i}>
-                <CardContent>
-                  <Typography
-                    className={classes.title}
-                    color="textSecondary"
-                    gutterBottom
-                  >
-                    {vet.received}
-                  </Typography>
-                  <CardActions>
-                    <Button
-                      size="small"
-                      onClick={() => this.handleVeteran(vet.id)}
-                    >
-                      <Typography variant="h5" component="h2">
+        </center>
+            <Paper className={classes.root}>
+              <Table className={classes.table}>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell align="right">Resource</TableCell>
+                    <TableCell align="right">Time Stamp</TableCell>
+                    <TableCell align="right">Protein (g)</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {vetReducer.map((vet, i) => (
+                    <TableRow key={i}>
+                      <TableCell component="th" scope="vet" onClick={()=> this.handleVeteran(vet.id)}>
                         {vet.first_name} {vet.last_name}
-                      </Typography>
-                    </Button>
-                  </CardActions>
-                  <CardActions>
-                    <Button
-                      size="small"
-                      onClick={() => this.handleResource(vet.name)}
-                    >
-                      <Typography component="p">{vet.name}</Typography>
-                    </Button>
-                  </CardActions>
-                </CardContent>
-              </Card>
-            );
-          })}
+                      </TableCell>
+                      <TableCell align="right" onClick={()=> this.handleResource(vet.name)}>{vet.name}</TableCell>
+                      <TableCell align="right">{vet.received}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </Paper>
         </div>
-      </div>
-    );
+      )
   }
 }
-
 export default withRouter(withStyles(styles)(connect(mapStoreToProps)(AdminLandingPage)));
