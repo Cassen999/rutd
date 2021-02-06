@@ -7,6 +7,7 @@ import acctTypeReducer from './acctType.reducer';
 import vetReducer from './vet.reducer';
 import healthReducer from './health.reducer';
 import vetMatchReducer from './vetMatch.reducer';
+import vetSearchReducer from './vetSearch.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -21,8 +22,9 @@ const rootReducer = combineReducers({
   match,
   acctTypeReducer,
   vetReducer,
+  vetMatchReducer,
+  vetSearchReducer,
   healthReducer,
-  vetMatchReducer
 });
 
 export default rootReducer;
