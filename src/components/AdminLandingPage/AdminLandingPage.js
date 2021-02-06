@@ -3,32 +3,35 @@ import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { withRouter } from 'react-router-dom';
 import { withStyles } from "@material-ui/core/styles";
-import AdminVetList from "../AdminVetList/AdminVetList";
 import "../AdminLandingPage/AdminLandingPage.css";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 import Typography from "@material-ui/core/Typography";
 
 /*
-TO DO LIST ON THIS PAGE:
-  Map through the MATCHES & render onto the cards appropriately
-  onClick feature for Resource names: opens admin resource view/edit
-  onClick for Veteran names: opens admin veteran view
+----------------------------- TO DO LIST ON THIS PAGE: -----------------------------
+- Dispatch to saga to get detail of one specific vet by ID in URL
+- Receive details into a reducer
+- dispatch to call reducer to adminVetView and adminResourceEdit to 
+  see specific veteran and or resource profile information
+
+-------------------------------------------------------------------------------------
 */
 
-const styles = {
-  card: {
-    minWidth: 275,
+const styles = theme => ({
+  root: {
+    width: '100%',
+    marginTop: theme.spacing.unit * 3,
+    overflowX: 'auto',
   },
-  title: {
-    fontSize: 14,
+  table: {
+    minWidth: 700,
   },
-  pos: {
-    marginBottom: 12,
-  },
-};
+});
 
 class AdminLandingPage extends Component {
   state = {
@@ -40,63 +43,54 @@ class AdminLandingPage extends Component {
     this.props.dispatch({ type: "FETCH_VET" });
   }
 
-  handleVeteran = (id) => {
-    console.log("VETERAN YOU SELECTED:", id);
-    // this.props.dispatch({type: ''})
+  handleVeteran = (veteranID) => {
+    console.log("VETERAN YOU SELECTED:", veteranID);
+      this.props.dispatch({type:'GET_ONE_VET', payload: veteranID});
     this.props.history.push("/adminVetView");
   };
 
   //TODO Dispatch RESOURCE YOU SELECTED
-  handleResource = (id) => {
-    console.log("RESOURCE YOU SELECTED:", id);
-    // this.props.dispatch({type: ''})
+  handleResource = (resourceID) => {
+    console.log("RESOURCE YOU SELECTED:", resourceID);
+    // this.props.dispatch({type: 'GET_RESOURCE', payload: resourceID})
     this.props.history.push("/adminResourceEdit");
   };
 
-  render() {
-    const { classes } = this.props;
-    return (
-      <div>
-        {JSON.stringify(this.props.store.vetReducer)}
-        <h2>Admin Landing Page</h2>
+
+  render(){
+    const {classes} = this.props;
+    const {vetReducer} = this.props.store;
+      return (
         <div className="container">
-          {this.props.store.vetReducer.map((vet, i) => {
-            return (
-              <Card className={classes.card} key={i}>
-                <CardContent>
-                  <Typography
-                    className={classes.title}
-                    color="textSecondary"
-                    gutterBottom
-                  >
-                    {vet.received}
-                  </Typography>
-                  <CardActions>
-                    <Button
-                      size="small"
-                      onClick={() => this.handleVeteran(vet.id)}
-                    >
-                      <Typography variant="h5" component="h2">
+        <center>
+        {/* {JSON.stringify(this.props.store.vetReducer)} */}
+        <h2>Admin Landing Page</h2>
+        </center>
+            <Paper className={classes.root}>
+              <Table className={classes.table}>
+                <TableHead className="table-head-color">
+                  <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell align="right">Resource</TableCell>
+                    <TableCell align="right">Time Stamp</TableCell>
+                    <TableCell align="right">Protein (g)</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {vetReducer.map((vet, i) => (
+                    <TableRow key={i}>
+                      <TableCell component="th" scope="vet" onClick={()=> this.handleVeteran(vet.id)}>
                         {vet.first_name} {vet.last_name}
-                      </Typography>
-                    </Button>
-                  </CardActions>
-                  <CardActions>
-                    <Button
-                      size="small"
-                      onClick={() => this.handleResource(vet.name)}
-                    >
-                      <Typography component="p">{vet.name}</Typography>
-                    </Button>
-                  </CardActions>
-                </CardContent>
-              </Card>
-            );
-          })}
+                      </TableCell>
+                      <TableCell align="right" onClick={()=> this.handleResource(vet.name)}>{vet.name}</TableCell>
+                      <TableCell align="right">{vet.received}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </Paper>
         </div>
-      </div>
-    );
+      )
   }
 }
-
 export default withRouter(withStyles(styles)(connect(mapStoreToProps)(AdminLandingPage)));
