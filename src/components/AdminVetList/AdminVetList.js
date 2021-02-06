@@ -91,32 +91,66 @@ class AdminVetList extends Component {
               />
             </center>
           </div>
-          {this.props.store.vetReducer.map((vet, i) => {
-          return(
-              <Card className={classes.card} key={i}>
-                <CardContent>
-                  <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    {vet.received}
-                  </Typography>
-                  <CardActions>
-                    <Button size="small" onClick={this.handleVeteran}>
-                      <Typography variant="h5" component="h2">
-                          {vet.first_name} {vet.last_name}
-                      </Typography>
-                    </Button>
-                  </CardActions> 
-                  <CardActions>
-                    <Button size="small" onClick={this.handleResource}>
-                      <Typography component="p">
-                          {vet.name}
-                        <br />
-                      </Typography>
-                    </Button>
-                  </CardActions> 
-                </CardContent>
-              </Card>
-            )
-          })}
+            {this.state.searchText === '' ? 
+              <div>
+                {this.props.store.vetReducer.map((vet, i) => {
+                  return(
+                    <Card className={classes.card} key={i}>
+                      <CardContent>
+                        <Typography className={classes.title} color="textSecondary" gutterBottom>
+                          {vet.received}
+                        </Typography>
+                        <CardActions>
+                          <Button size="small" onClick={this.handleVeteran}>
+                            <Typography variant="h5" component="h2">
+                                {vet.first_name} {vet.last_name}
+                            </Typography>
+                          </Button>
+                        </CardActions> 
+                        <CardActions>
+                          <Button size="small" onClick={this.handleResource}>
+                            <Typography component="p">
+                                {vet.name}
+                              <br />
+                            </Typography>
+                          </Button>
+                        </CardActions> 
+                      </CardContent>
+                    </Card>
+                  )
+                })}
+              </div>
+              :
+              <div>
+                <h2>Search Results</h2>
+                {this.props.store.vetSearchReducer.map((result, i) => {
+                  return(
+                    <Card className={classes.card} key={i}>
+                      <CardContent>
+                        <Typography className={classes.title} color="textSecondary" gutterBottom>
+                          {result.received}
+                        </Typography>
+                      <CardActions>
+                        <Button size="small" onClick={this.handleVeteran}>
+                          <Typography variant="h5" component="h2">
+                            {result.first_name} {result.last_name}
+                          </Typography>
+                        </Button>
+                      </CardActions> 
+                      <CardActions>
+                        <Button size="small" onClick={this.handleResource}>
+                          <Typography component="p">
+                            {result.name}
+                            <br />
+                          </Typography>
+                        </Button>
+                      </CardActions> 
+                      </CardContent>
+                    </Card>
+                  )
+                })}
+            </div>
+            }
         </div>
       </div>
     );
