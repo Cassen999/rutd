@@ -5,8 +5,6 @@ const {
   rejectUnauthenticated,
 } = require("../modules/authentication-middleware");
 
-// GETs all vets by name limited to 10
-
 router.get("/", rejectUnauthenticated, (req, res) => {
     const searchText = `%${req.query.searchText}%`
     console.log('vetSearch req.query ', req.query)
