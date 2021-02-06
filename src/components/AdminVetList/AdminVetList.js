@@ -53,6 +53,7 @@ class AdminVetList extends Component {
 
   handleVeteran = () =>{
     console.log('CLICKING ON VETERAN');
+    this.props.dispatch({type: 'POST_EMAIL', payload: this.props.store.user.id})
   }
 
   handleResource = () =>{
