@@ -9,6 +9,7 @@ import maladyReducer from './malady.reducer';
 import vetMatchReducer from './vetMatch.reducer';
 import percentageReducer from './percentage.reducer'
 import vetSearchReducer from './vetSearch.reducer';
+import emailReducer from './email.reducer';
 import details from './details.reducer';
 import resourceDetails from './resourceReducer.reducer';
 
@@ -30,7 +31,9 @@ const rootReducer = combineReducers({
   vetMatchReducer,
   vetSearchReducer,
   details,
-  resourceDetails
+  resourceDetails,
+  emailReducer,
+  details
 });
 
 export default rootReducer;

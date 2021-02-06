@@ -9,7 +9,7 @@ import demographicSaga from './demographic.saga'
 import serviceSaga from './service.saga'
 import compensationSaga from './compensation.saga'
 import maladySaga from './malady.saga'
-//import demographicSaga from './demographic.saga';
+import emailSaga from './email.saga';
 import vetSaga from './vet.saga';
 import vetMatchSaga from './vetMatch.saga';
 import vetSearchSaga from './vetSearch.saga'
@@ -39,6 +39,8 @@ export default function* rootSaga() {
     vetMatchSaga(),
     vetSearchSaga(),
     details(),
-    resourceDetails()
+    resourceDetails(),
+    emailSaga(),
+    details()
   ]);
 }

@@ -7,7 +7,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-// import classNames from 'classnames';
 import TextField from '@material-ui/core/TextField';
 
 const styles = {
@@ -54,6 +53,7 @@ class AdminVetList extends Component {
 
   handleVeteran = () =>{
     console.log('CLICKING ON VETERAN');
+    this.props.dispatch({type: 'POST_EMAIL', payload: this.props.store.user.id})
   }
 
   handleResource = () =>{
