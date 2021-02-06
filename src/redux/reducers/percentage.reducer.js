@@ -1,9 +1,11 @@
-const healthReducer = (state = [], action) => {
+const percentageReducer = (state = [], action) => {
     switch (action.type) {
-      case 'SET_HEALTH':
+      case 'SET_PERCENTAGE':
         return action.payload;
     //   case 'UNSET_SECRETS':
     //     return [];
+    
+
       default:
          return state;
     }
@@ -11,5 +13,5 @@ const healthReducer = (state = [], action) => {
   
   // user will be on the redux state at:
   // state.user
-  export default healthReducer;
+  export default percentageReducer;
   

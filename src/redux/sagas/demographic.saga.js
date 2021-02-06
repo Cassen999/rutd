@@ -8,10 +8,6 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* demographicSaga() {
   yield takeLatest('ADD_DEMOGRAPHIC', addDemographicSaga);
-//   yield takeLatest('ADD_ART', addArtSaga);
-//   yield takeLatest('UPDATE_ART', updateArtSaga);
-//   yield takeLatest('DELETE_ART', deleteArtSaga);
-//   yield takeLatest('FETCH_DETAILS', fetchDetailsSaga);
 
 
 }
@@ -33,74 +29,6 @@ function* addDemographicSaga(action) {
   }
 }
 
-// function* addArtSaga(action) {
-//   console.log('In addArtSaga...')
-//   console.log('payload:', action.payload)
-//   try {
-//     const config = {
-//       headers: { 'Content-Type': 'application/json' },
-//       withCredentials: true,
-//     };
-
-//     const response = yield axios.post('api/art', action.payload, config);
-
-//     yield put({ type: 'FETCH_ART'});
-//   } catch (error) {
-//     console.log('Art get request failed', error);
-//   }
-// }
-
-// function* updateArtSaga(action) {
-//   console.log('In updateArtSaga...')
-//   console.log('payload:', action.payload)
-//   try {
-//     const config = {
-//       headers: { 'Content-Type': 'application/json' },
-//       withCredentials: true,
-//     };
-
-//     const response = yield axios.put('api/art', action.payload, config);
-
-//     yield put({ type: 'FETCH_ART'});
-//   } catch (error) {
-//     console.log('Art get request failed', error);
-//   }
-// }
-
-// function* deleteArtSaga(action) {
-//   console.log('In deleteArtSaga...')
-//   console.log('payload:', action.payload)
-//   try {
-//     const config = {
-//       headers: { 'Content-Type': 'application/json' },
-//       withCredentials: true,
-//     };
-
-//     const response = yield axios.delete(`api/art/${action.payload}`, config);
-
-//     yield put({ type: 'FETCH_ART'});
-//   } catch (error) {
-//     console.log('Art get request failed', error);
-//   }
-// }
-
-// function* fetchDetailsSaga(action) {
-//   console.log('In fetchDetailsSaga...')
-//   console.log('payload:', action.payload)
-
-//   try {
-//     const config = {
-//       headers: { 'Content-Type': 'application/json' },
-//       withCredentials: true,
-//     };
-
-//     const response = yield axios.get(`api/art/${action.payload}`, config);
-
-//     yield put({ type: 'SET_ART', payload: response.data });
-//   } catch (error) {
-//     console.log('Art get request failed', error);
-//   }
-// }
 
 
 export default demographicSaga;

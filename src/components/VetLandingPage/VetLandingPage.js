@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import Demographic from '../Demographic/Demographic'
 import Service from '../Service/Service'
-import Health from '../Health/Health'
+// import Health from '../Health/Health'
 import Compensation from '../Compensation/Compensation';
 
 import { makeStyles } from '@material-ui/core/styles';

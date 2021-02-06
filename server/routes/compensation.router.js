@@ -13,6 +13,26 @@ const {
 
 /**
  */
+
+router.get("/percentage", (req, res) => {
+  console.log('in /percentage GET route');
+  console.log('Is User logged in?', req.isAuthenticated());
+  console.log('req.user:', req.user);
+
+  
+  
+  
+  const queryText = "SELECT * FROM percentage";
+  pool
+    .query(queryText).then((result) => {
+      res.send(result.rows);
+    }).catch((err) => {
+      console.log("GET percentage failed: ", err);
+      res.sendStatus(500);
+    });
+});
+
+
 router.put('/',  (req, res) => {
   console.log('in PUT');
   

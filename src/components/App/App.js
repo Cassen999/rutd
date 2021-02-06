@@ -27,7 +27,7 @@ import GenericLanding from '../GenericLanding/GenericLanding';
 import OrganizationLandingPage from '../OrganizationLandingPage/OrganizationLandingPage';
 import Service from '../Service/Service'
 import Demographic from '../Demographic/Demographic'
-import Health from '../Health/Health'
+import Malady from '../Malady/Malady'
 import Compensation from '../Compensation/Compensation'
 import AdminVetView from '../AdminVetView/AdminVetView';
 import AdminResourceEdit from '../AdminResourceEdit/AdminResourceEdit';
@@ -142,8 +142,8 @@ class App extends Component {
 <ProtectedRoute
                
                exact
-               path="/health"
-               component={Health}
+               path="/malady"
+               component={Malady}
                // authRedirect="/user"
              />
 

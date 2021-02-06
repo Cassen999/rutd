@@ -5,9 +5,9 @@ import category from './category.reducer';
 import match from './match.reducer';
 import acctTypeReducer from './acctType.reducer';
 import vetReducer from './vet.reducer';
-import healthReducer from './health.reducer';
+import maladyReducer from './malady.reducer';
 import vetMatchReducer from './vetMatch.reducer';
-
+import percentageReducer from './percentage.reducer'
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -21,8 +21,10 @@ const rootReducer = combineReducers({
   match,
   acctTypeReducer,
   vetReducer,
-  healthReducer,
-  vetMatchReducer
+  maladyReducer,
+  percentageReducer,
+  vetMatchReducer,
+
 });
 
 export default rootReducer;
