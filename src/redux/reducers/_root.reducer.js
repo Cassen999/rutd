@@ -8,6 +8,8 @@ import vetReducer from './vet.reducer';
 import maladyReducer from './malady.reducer';
 import vetMatchReducer from './vetMatch.reducer';
 import percentageReducer from './percentage.reducer'
+import vetSearchReducer from './vetSearch.reducer';
+
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -24,6 +26,7 @@ const rootReducer = combineReducers({
   maladyReducer,
   percentageReducer,
   vetMatchReducer,
+  vetSearchReducer
 
 });
 
