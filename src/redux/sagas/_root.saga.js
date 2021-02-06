@@ -13,6 +13,7 @@ import emailSaga from './email.saga';
 import vetSaga from './vet.saga';
 import vetMatchSaga from './vetMatch.saga';
 import vetSearchSaga from './vetSearch.saga'
+import details from './details.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -36,6 +37,7 @@ export default function* rootSaga() {
     vetSaga(),
     vetMatchSaga(),
     vetSearchSaga(),
-    emailSaga()
+    emailSaga(),
+    details()
   ]);
 }

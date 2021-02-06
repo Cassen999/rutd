@@ -28,9 +28,6 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
   },
-  table: {
-    minWidth: 700,
-  },
 });
 
 class AdminLandingPage extends Component {
@@ -73,7 +70,7 @@ class AdminLandingPage extends Component {
                     <TableCell>Name</TableCell>
                     <TableCell align="right">Resource</TableCell>
                     <TableCell align="right">Time Stamp</TableCell>
-                    <TableCell align="right">Protein (g)</TableCell>
+                    {/* <TableCell align="right">Protein (g)</TableCell> */}
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -93,4 +90,5 @@ class AdminLandingPage extends Component {
       )
   }
 }
+
 export default withRouter(withStyles(styles)(connect(mapStoreToProps)(AdminLandingPage)));
