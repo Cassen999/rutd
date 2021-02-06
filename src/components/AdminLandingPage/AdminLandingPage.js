@@ -93,4 +93,5 @@ class AdminLandingPage extends Component {
       )
   }
 }
+
 export default withRouter(withStyles(styles)(connect(mapStoreToProps)(AdminLandingPage)));

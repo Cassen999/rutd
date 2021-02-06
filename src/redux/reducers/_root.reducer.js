@@ -9,6 +9,7 @@ import maladyReducer from './malady.reducer';
 import vetMatchReducer from './vetMatch.reducer';
 import percentageReducer from './percentage.reducer'
 import vetSearchReducer from './vetSearch.reducer';
+import details from './details.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
   maladyReducer,
   percentageReducer,
   vetMatchReducer,
-  vetSearchReducer
+  vetSearchReducer,
+  details
 
 });
 
