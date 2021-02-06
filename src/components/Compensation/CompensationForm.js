@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 //import { useDispatch } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux';
-import { AppBar, Button, Toolbar, Grid, Badge, CardMedia, IconButton, makeStyles, Paper, InputBase, Card, withStyles, CardActionArea } from '@material-ui/core'
+import { AppBar, FormControl, InputLabel, Select, MenuItem, FormHelperText, Button, Toolbar, Grid, Badge, CardMedia, IconButton, makeStyles, Paper, InputBase, Card, withStyles, CardActionArea } from '@material-ui/core'
 import TextField from '@material-ui/core/TextField';
 // import '../../../App/App.css';
 
@@ -24,6 +24,12 @@ const styles = {
 
 class CompensationForm extends Component {
 
+
+componentDidMount(){
+  console.log('Mounted')
+  this.props.dispatch({type: 'FETCH_PERCENTAGE'})
+
+}
    state = {
       newVet: {
 
@@ -79,6 +85,7 @@ class CompensationForm extends Component {
 
    render() {
       const { classes } = this.props;
+      const percentage = this.props.store.percentageReducer
 
       return (
          <>
@@ -96,7 +103,34 @@ class CompensationForm extends Component {
                // className={classes.paper} 
                // backgroundImage={canvas}                                                      
                >
+ <FormControl className={classes.formControl}>
+        <InputLabel id="demo-simple-select-helper-label">SELECT</InputLabel>
+        <Select
+          labelId="demo-simple-select-helper-label"
+          id="demo-simple-select-helper"
+          // value={age}
+          onChange={this.handleChange}
+          // renderValue={(selected) => selected.join(', ')}
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+        {percentage.map((p) => (
+                    <MenuItem value={p.id}>{p.description}
+                              {/* <Checkbox checked={''} /> */}
 
+                    </MenuItem>
+
+
+        ))}
+
+          {/* <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem> */}
+        </Select>
+        <FormHelperText>Some important helper text</FormHelperText>
+      </FormControl>
+     
                   <form
                   //   style={{ verticalAlign: 'middle' }}
                   >

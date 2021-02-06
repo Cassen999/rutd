@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 //import { useDispatch } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux';
-import {AppBar, Button, InputLabel, FormHelperText, Select, Toolbar, MenuItem, Grid, Badge, CardMedia, FormControl, IconButton, makeStyles, Paper, InputBase, Card, withStyles, CardActionArea} from '@material-ui/core'
+import {AppBar, Button, Checkbox, InputLabel, ListItemText, FormHelperText, Select, Toolbar, MenuItem, Grid, Badge, CardMedia, FormControl, IconButton, makeStyles, Paper, InputBase, Card, withStyles, CardActionArea} from '@material-ui/core'
 import TextField from '@material-ui/core/TextField';
 // import '../../../App/App.css';
 
@@ -22,10 +22,12 @@ const styles = {
 //     fontFamily : 'Arial'
   }
 
-  class HealthForm extends Component {
+  class MaladyForm extends Component {
 componentDidMount(){
   console.log('Mounted')
-  this.props.dispatch({type: 'FETCH_HEALTH'})
+  this.props.dispatch({type: 'FETCH_MALADY'})
+  this.props.dispatch({type: 'FETCH_PERCENTAGE'})
+
 }
     state = {
         newVet: {
@@ -81,10 +83,10 @@ componentDidMount(){
   
 render(){
     const { classes } = this.props;
-
+    const malady = this.props.store.maladyReducer
     return(
         <>
-        <h1>HealthForm</h1>
+        <h1>MaladyForm</h1>
 
 
 
@@ -117,13 +119,23 @@ render(){
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
+        {malady.map((each) => (
+                    <MenuItem value={each.id}>{each.description}
+
+                    
+                    </MenuItem>
+
+
+        ))}
+
+          {/* <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem> */}
         </Select>
         <FormHelperText>Some important helper text</FormHelperText>
       </FormControl>
 
+      
 
                               <form
                             //   style={{ verticalAlign: 'middle' }}
@@ -203,4 +215,4 @@ render(){
 
 }//END DemographicsForm
 
-export default connect(mapStoreToProps)(withStyles(styles)(HealthForm));
+export default connect(mapStoreToProps)(withStyles(styles)(MaladyForm));
