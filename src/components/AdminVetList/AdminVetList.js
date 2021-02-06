@@ -40,8 +40,6 @@ const styles = {
   }
 };
 
-const transporter = nodemailer.createTransport(transport, [defaults])
-
 
 class AdminVetList extends Component {
 
