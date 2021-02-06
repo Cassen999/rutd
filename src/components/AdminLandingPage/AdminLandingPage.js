@@ -49,7 +49,7 @@ class AdminLandingPage extends Component {
   //TODO Dispatch RESOURCE YOU SELECTED
   handleResource = (resourceID) => {
     console.log("RESOURCE YOU SELECTED:", resourceID);
-    // this.props.dispatch({type: 'GET_RESOURCE', payload: resourceID})
+    this.props.dispatch({type: 'GET_ONE_RESOURCE', payload: resourceID})
     this.props.history.push("/adminResourceEdit");
   };
 

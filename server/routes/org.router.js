@@ -58,4 +58,25 @@ router.post("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
+
+// GETS one specific resource
+router.get('/:id', rejectUnauthenticated, (req, res) => {
+  let id = req.params.id;
+  console.log('--- This is the ID of the RESOURCE you clicked on: ', id);
+  const queryText =
+    `SELECT * FROM organization WHERE organization.id = $1`;
+  pool.query(queryText, [id])
+    .then((result) => {
+      console.log('GET This is the RESOURCE you\'ve selected: ', result.rows); // WORKING
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log('Error inside GET RESOURCE ID route:', error);
+      res.sendStatus(500);
+    });
+});
+
+
+
+
 module.exports = router;
