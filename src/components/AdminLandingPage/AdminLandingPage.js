@@ -62,6 +62,7 @@ class AdminLandingPage extends Component {
         <center>
         {JSON.stringify(this.props.store.vetReducer)}
         <h2>Admin Landing Page</h2>
+        <h4><i>Connections In Progress (Track Time)</i></h4>
         </center>
             <Paper className={classes.root}>
               <Table className={classes.table}>

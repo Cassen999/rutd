@@ -1,15 +1,47 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import '../AdminVetView/AdminVetView.css';
 
-// Basic class component structure for React with default state
-// value setup. When making a new component be sure to replace
-// the component name TemplateClass with the name for the new
-// component.
+
+
+
+// TO DO LIST ON THIS PAGE: 
+// - Make this page editable for admin with text fields
+// - 
+// - 
+// - 
+// - 
+
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 200,
+  },
+  dense: {
+    marginTop: 19,
+  },
+  menu: {
+    width: 200,
+  },
+})
+
+
 class AdminResourceEdit extends Component {
   state = {
     heading: 'Admin Resource Edit',
+    name: ''
   };
+
+  handleChange = () => {
+    console.log('WOOT')
+  }
 
   render() {
     // line below is equivalent to this.props.store.details
@@ -17,24 +49,37 @@ class AdminResourceEdit extends Component {
     return (
       <div className="container">
         <center>
-        <h2>{this.state.heading}</h2>
           {JSON.stringify(this.props.store.resourceDetails)}
+        <h2>{this.state.heading}</h2>
         </center>
           {resourceDetails.map((resource, i) => {
             return(
-              <div key={i}>
-                <h3>Name: {resource.name}</h3>
-                <p>Number: {resource.number}</p>
-                <p>Email: {resource.email}</p>
-                <p>City:{resource.city}</p>
-                <p>State: {resource.state_id}</p>
-                <p>Website:{resource.website}</p>
-                <p>Description: {resource.description}</p>
-                <p>Categories: {resource.categories_id}</p>
-                {/* <p>PDF:{resource.pdf}</p> */}
-                {/* <p>Pictures: {resource.pictures}</p> */}
+              <div className="flex-grid" key={i}>
+                <div className="col">
+                  <h3>Name: {resource.name}</h3>
+                  <p>Number: {resource.number}</p>
+                  <p>Email: {resource.email}</p>
+                  <p>City:{resource.city}</p>
+                  <p>State: {resource.state_id}</p>
+                  <p>Website:{resource.website}</p>
+                  <p>Description: {resource.description}</p>
+                  <p>Categories: {resource.categories_id}</p>
+                  {/* <p>PDF:{resource.pdf}</p> */}
+                  {/* <p>Pictures: {resource.pictures}</p> */}
+                </div>
+                <div className="col">
+                  <h3>PLACEHOLDER: PLACEHOLDER VALUE </h3>
+                  <p>PLACEHOLDER: PLACEHOLDER VALUE </p>
+                  <p>PLACEHOLDER: PLACEHOLDER VALUE </p>
+                  <p>PLACEHOLDER: PLACEHOLDER VALUE</p>
+                  <p>PLACEHOLDER: PLACEHOLDER VALUE </p>
+                  <p>PLACEHOLDER: PLACEHOLDER VALUE </p>
+                  <p>PLACEHOLDER: PLACEHOLDER VALUE </p>
+                  <p>PLACEHOLDER: PLACEHOLDER VALUE </p>
+                </div>
             </div>
           )})}
+          <hr></hr>
       </div>
     );
   }
