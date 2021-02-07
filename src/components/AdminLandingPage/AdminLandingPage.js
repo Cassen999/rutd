@@ -10,7 +10,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Typography from "@material-ui/core/Typography";
+// import Typography from "@material-ui/core/Typography";
 
 /*
 ----------------------------- TO DO LIST ON THIS PAGE: -----------------------------
@@ -49,7 +49,7 @@ class AdminLandingPage extends Component {
   //TODO Dispatch RESOURCE YOU SELECTED
   handleResource = (resourceID) => {
     console.log("RESOURCE YOU SELECTED:", resourceID);
-    // this.props.dispatch({type: 'GET_RESOURCE', payload: resourceID})
+    this.props.dispatch({type: 'GET_ONE_RESOURCE', payload: resourceID})
     this.props.history.push("/adminResourceEdit");
   };
 
@@ -60,8 +60,9 @@ class AdminLandingPage extends Component {
       return (
         <div className="container">
         <center>
-        {/* {JSON.stringify(this.props.store.vetReducer)} */}
+        {JSON.stringify(this.props.store.vetReducer)}
         <h2>Admin Landing Page</h2>
+        <h4><i>Connections In Progress (Track Time)</i></h4>
         </center>
             <Paper className={classes.root}>
               <Table className={classes.table}>
@@ -79,7 +80,7 @@ class AdminLandingPage extends Component {
                       <TableCell component="th" scope="vet" onClick={()=> this.handleVeteran(vet.id)}>
                         {vet.first_name} {vet.last_name}
                       </TableCell>
-                      <TableCell align="right" onClick={()=> this.handleResource(vet.name)}>{vet.name}</TableCell>
+                      <TableCell align="right" onClick={()=> this.handleResource(vet.org_id)}>{vet.name}</TableCell>
                       <TableCell align="right">{vet.received}</TableCell>
                     </TableRow>
                   ))}
