@@ -23,7 +23,7 @@ function* updateMaladySaga(action) {
       withCredentials: true,
     };
 
-    const response = yield axios.put('api/health', action.payload, config);
+    const response = yield axios.put('api/malady', action.payload, config);
 
     yield put({ type: 'FETCH_ART'});
   } catch (error) {

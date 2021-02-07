@@ -15,7 +15,7 @@ const {
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
-  console.log('in /health GET route');
+  console.log('in /malady GET route');
   console.log('Is User logged in?', req.isAuthenticated());
   console.log('req.user:', req.user);
 

@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 //import { useDispatch } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { connect } from 'react-redux';
-import { AppBar, FormControl, InputLabel, Select, MenuItem, FormHelperText, Button, Toolbar, Grid, Badge, CardMedia, IconButton, makeStyles, Paper, InputBase, Card, withStyles, CardActionArea } from '@material-ui/core'
+import { AppBar, FormControl, InputLabel, Select, Input, MenuItem, FormHelperText, Button, Toolbar, Grid, Badge, CardMedia, IconButton, makeStyles, Paper, InputBase, Card, CardActionArea } from '@material-ui/core'
 import TextField from '@material-ui/core/TextField';
+import { withStyles } from '@material-ui/core/styles';
 // import '../../../App/App.css';
 
-const styles = {
+const styles = theme=>({
    inputs: {
       width: '',
       paddingTop: '0px',
@@ -14,13 +15,32 @@ const styles = {
       verticalAlign: 'middle',
       fontFamily: 'Arial'
       // height: '100%'
-   }
+   },
+   menu: {
+      width: 200,
+    },
+   container: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+   textField: {
+      marginLeft: theme.spacing.unit,
+      marginRight: theme.spacing.unit,
+      width: 200,
+    },
+    dense: {
+      marginTop: 19,
+    },
+    menu: {
+      width: 200,
+    },
+  
    //     paperContainer: {
    //       backgroundImage: `url(${canvas})`
    //   },
    //   typography : {
    //     fontFamily : 'Arial'
-}
+})
 
 class CompensationForm extends Component {
 
@@ -36,11 +56,12 @@ componentDidMount(){
 
 
 
-         compensation: '',
+         compensation: false,
          percentage: '',
          danger_areas: '',
          purple_heart: '',
       },
+      good: 'f'
    }
 
    handleInputChange = (event, inputProperty) => {
@@ -90,61 +111,36 @@ componentDidMount(){
       return (
          <>
             <h1>CompensationForm</h1>
-            <Grid container
-               className=''
-               //alignItems="center"
-               spacing={2}
-               direction="column">
-
-               <Paper
+            <Paper
                   className=''
                   // style={styles.paperContainer}
                   elevation={10}
                // className={classes.paper} 
                // backgroundImage={canvas}                                                      
                >
- <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-helper-label">SELECT</InputLabel>
-        <Select
-          labelId="demo-simple-select-helper-label"
-          id="demo-simple-select-helper"
-          // value={age}
-          onChange={this.handleChange}
-          // renderValue={(selected) => selected.join(', ')}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-        {percentage.map((p) => (
-                    <MenuItem value={p.id}>{p.description}
-                              {/* <Checkbox checked={''} /> */}
-
-                    </MenuItem>
-
-
-        ))}
-
-          {/* <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem> */}
-        </Select>
-        <FormHelperText>Some important helper text</FormHelperText>
-      </FormControl>
-     
-                  <form
-                  //   style={{ verticalAlign: 'middle' }}
-                  >
-                        <br />
-
-                     <Grid item xs={12.0} sm={12}>
-
-                        {/* </Grid>  */}
-
-                        {/* <Grid item xs={12.0} sm={12}>  */}
-
-
-                        {/* <Grid item xs={12.0} sm={12}>  */}
-                        <TextField
+<form>
+<FormControl className={classes.formControl}>
+<InputLabel htmlFor="age-auto-width">Age</InputLabel>
+           <Select
+            value={this.state.newVet.compensation}
+            // onChange={this.handleChange}
+            input={<Input name="age" id="age-label-placeholder" />}
+            displayEmpty
+            name="age"
+            className={classes.selectEmpty}
+          >
+             <MenuItem value="" disabled>
+              Placeholder
+            </MenuItem>
+           <MenuItem>
+         <em>No</em>
+           </MenuItem>
+           <MenuItem>
+          Yes
+           </MenuItem>
+</Select>
+<br/>
+<TextField
                            id="standard-textarea"
                            variant="outlined"
                            label="Compensation"
@@ -157,13 +153,8 @@ componentDidMount(){
                            value={this.state.newVet.compensation}
                            onChange={(event) => this.handleInputChange(event, 'compensation')}
                         />
-
-                        {/* </Grid>  */}
-
-                        <br />
-
-                        {/* <Grid item xs={12.0} sm={12}>  */}
-                        <TextField
+                        <br/>
+ <TextField
                            id="standard-textarea"
                            variant="outlined"
                            label="Percentage"
@@ -176,12 +167,8 @@ componentDidMount(){
                            value={this.state.newVet.percentage}
                            onChange={(event) => this.handleInputChange(event, 'percentage')}
                         />
+                        <br/>
 
-                        {/* </Grid>  */}
-
-                        <br />
-
-                        {/* <Grid item xs={12.0} sm={12}>  */}
                         <TextField
                            id="standard-textarea"
                            variant="outlined"
@@ -195,12 +182,8 @@ componentDidMount(){
                            value={this.state.newVet.danger_areas}
                            onChange={(event) => this.handleInputChange(event, 'danger_areas')}
                         />
+                        <br/>
 
-                        {/* </Grid>  */}
-
-                        <br />
-
-                        {/* <Grid item xs={12.0} sm={12}>  */}
                         <TextField
                            id="standard-textarea"
                            variant="outlined"
@@ -214,13 +197,7 @@ componentDidMount(){
                            value={this.state.newVet.purple_heart}
                            onChange={(event) => this.handleInputChange(event, 'purple_heart')}
                         />
-
-                     </Grid>
-
-                     <br />
-
-                    <Grid item xs={12.0} sm={12}>
-
+                        <br/>
                         <Button
                            onClick={this.saveCompensation}
                            // addArtProp={this.addArt}
@@ -241,16 +218,21 @@ componentDidMount(){
                         //  className={classes.alignAndJustify}
                         >FINISH</Button>
 
+</FormControl>
+   </form>
 
-                     </Grid>
-                     <br />
 
-                  </form>
-                  {/* </Card> */}
-                  {/* </Grid> */}
+
+
+
+            {/* <Grid container
+               className=''
+               //alignItems="center"
+               spacing={2}
+               direction="column"> */}
                </Paper>
 
-            </Grid>
+            {/* </Grid> */}
 
          </>
       )//END return

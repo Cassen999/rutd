@@ -26,7 +26,7 @@ const styles = {
 componentDidMount(){
   console.log('Mounted')
   this.props.dispatch({type: 'FETCH_MALADY'})
-  this.props.dispatch({type: 'FETCH_PERCENTAGE'})
+  //this.props.dispatch({type: 'FETCH_PERCENTAGE'})
 
 }
     state = {
