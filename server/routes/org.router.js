@@ -64,8 +64,10 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   let id = req.params.id;
   console.log('--- This is the ID of the RESOURCE you clicked on: ', id);
   const queryText =
-  `SELECT * FROM "match" WHERE "match".org_id = 1;`;
-  pool.query(queryText, "id")
+  `SELECT *, organization.name, match.id, match.org_id FROM "organization"
+  JOIN "match" ON "match".org_id = "organization".id
+  WHERE "match".org_id = $1;`;
+  pool.query(queryText, [id])
     .then((result) => {
       console.log('GET This is the RESOURCE you\'ve selected: ', result.rows); // WORKING
       res.send(result.rows);
