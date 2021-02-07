@@ -15,33 +15,26 @@ class AdminResourceEdit extends Component {
     // line below is equivalent to this.props.store.details
     const {resourceDetails} = this.props.store;
     return (
-      <div>
-        <h2>{this.state.heading}</h2>
+      <div className="container">
         <center>
+        <h2>{this.state.heading}</h2>
           {JSON.stringify(this.props.store.resourceDetails)}
         </center>
           {resourceDetails.map((resource, i) => {
             return(
               <div key={i}>
-                <p>Name: {resource.name}</p>
+                <h3>Name: {resource.name}</h3>
                 <p>Number: {resource.number}</p>
                 <p>Email: {resource.email}</p>
                 <p>City:{resource.city}</p>
                 <p>State: {resource.state_id}</p>
-                <p>Website: {resource.website}</p>
+                <p>Website:{resource.website}</p>
                 <p>Description: {resource.description}</p>
                 <p>Categories: {resource.categories_id}</p>
-                <br></br>
-                <hr></hr>
-                {/* 
-                <p>Status: {resource.approved}</p>
-                <p>PDF: {resource.pdf}</p>
-                <p>Pictures: {resource.pictures}</p>
-                */}
+                {/* <p>PDF:{resource.pdf}</p> */}
+                {/* <p>Pictures: {resource.pictures}</p> */}
             </div>
           )})}
-
-          
       </div>
     );
   }

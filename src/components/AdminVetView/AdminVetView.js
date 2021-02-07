@@ -23,7 +23,7 @@ class AdminVetView extends Component {
         </center>
           {details.map((vet, i) => {
             return(
-              <div key={i}>
+              <div className="container" key={i}>
                 <p>First Name: {vet.first_name}</p>
                 <p>Last Name: {vet.last_name}</p>
                 <p>Email: {vet.email}</p>
