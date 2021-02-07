@@ -30,7 +30,6 @@ const rootReducer = combineReducers({
   percentageReducer,
   vetMatchReducer,
   vetSearchReducer,
-  details,
   resourceDetails,
   emailReducer,
   details

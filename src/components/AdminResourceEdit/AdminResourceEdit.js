@@ -28,14 +28,20 @@ class AdminResourceEdit extends Component {
                 <p>Email: {resource.email}</p>
                 <p>City:{resource.city}</p>
                 <p>State: {resource.state_id}</p>
-                <p>PDF: {resource.pdf}</p>
                 <p>Website: {resource.website}</p>
-                <p>Pictures: {resource.pictures}</p>
                 <p>Description: {resource.description}</p>
                 <p>Categories: {resource.categories_id}</p>
+                <br></br>
+                <hr></hr>
+                {/* 
                 <p>Status: {resource.approved}</p>
+                <p>PDF: {resource.pdf}</p>
+                <p>Pictures: {resource.pictures}</p>
+                */}
             </div>
           )})}
+
+          
       </div>
     );
   }
