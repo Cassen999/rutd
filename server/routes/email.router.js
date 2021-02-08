@@ -31,8 +31,8 @@ router.post('/', (req, res) => {
     const mailOptions = {
         // from: `cassenthebarber@gmail.com`,
         to: 'cassen.gerber@gmail.com',
-        subject: `test`,
-        html: '<p>cassenpt@gmail.com</p>'
+        subject: ``,
+        html: '<p></p>'
     };
     smtpTransport.sendMail(mailOptions,
         (error, response) => {
