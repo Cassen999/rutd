@@ -13,6 +13,8 @@ import vetSearchReducer from './vetSearch.reducer';
 import emailReducer from './email.reducer';
 import details from './details.reducer';
 import resourceDetails from './resourceReducer.reducer';
+import resourceReducer from './resource.reducer';
+import resourceSearch from './resourceSearch.reducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -35,7 +37,9 @@ const rootReducer = combineReducers({
   vetSearchReducer,
   resourceDetails,
   emailReducer,
-  details
+  details,
+  resourceReducer,
+  resourceSearch,
 });
 
 export default rootReducer;

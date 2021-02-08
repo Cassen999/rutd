@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withStyles } from '@material-ui/core/styles';
-import "./AdminVetList.css"
 import TextField from '@material-ui/core/TextField';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -59,7 +58,6 @@ class AdminVetList extends Component {
       <div>
         <div className="container">
           <div className={classes.searchContainer}>
-            {JSON.stringify(this.state)}
             <center>
               <TextField
                 id="outlined-search"
