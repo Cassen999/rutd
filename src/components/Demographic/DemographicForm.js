@@ -1,429 +1,445 @@
-import React, {Component} from 'react'
+import React, { Component } from "react";
 //import { useDispatch } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
-import { connect } from 'react-redux';
-import {AppBar, Button, Toolbar, Grid, Badge, CardMedia, IconButton, makeStyles, Paper, InputBase, Card, withStyles, CardActionArea} from '@material-ui/core'
-import TextField from '@material-ui/core/TextField';
+import mapStoreToProps from "../../redux/mapStoreToProps";
+import { connect } from "react-redux";
+import { Button, Grid, Paper, withStyles } from "@material-ui/core";
+// AppBar, AppBar, Badge, CardMedia, IconButton, makeStyles, InputBase, Card, CardActionArea
+import TextField from "@material-ui/core/TextField";
 // import '../../../App/App.css';
 
 const styles = {
-    inputs: {
-        width: '',
-        paddingTop: '0px',
-        // marginTop: '20px',
-        verticalAlign: 'middle',
-        fontFamily: 'Arial'
-        // height: '100%'
-    }
-//     paperContainer: {
-//       backgroundImage: `url(${canvas})`
-//   },
-//   typography : {
-//     fontFamily : 'Arial'
-  }
+  inputs: {
+    width: "",
+    paddingTop: "0px",
+    // marginTop: '20px',
+    verticalAlign: "middle",
+    fontFamily: "Arial",
+    // height: '100%'
+  },
+  //     paperContainer: {
+  //       backgroundImage: `url(${canvas})`
+  //   },
+  //   typography : {
+  //     fontFamily : 'Arial'
+};
 
-  class DemographicForm extends Component {
+class DemographicForm extends Component {
+  state = {
+    newVet: {
+      first_name: "",
+      last_name: "",
+      email: "",
+      date_of_birth: "",
+      number: "",
+      gender_id: "",
+      married_id: "",
+      children: "",
+      homeless: "",
+      current_address: "",
+      city: "",
+      state_id: "",
+      zipcode: "",
+      country_id: "",
+      mailing_address: "",
+    },
+  };
 
-    state = {
+  handleInputChange = (event, inputProperty) => {
+    console.log("Handling input-change...");
+    console.log("Setting state...");
+
+    this.setState(
+      {
         newVet: {
-          first_name: '',
-          last_name: '',
-          email: '',
-          date_of_birth: '',
-          number: '',
-          gender_id: '',
-          married_id: '',
-          children: '',
-          homeless: '',
-          current_address: '',
-          city: '',
-          state_id: '',
-          zipcode: '',
-          country_id: '',
-          mailing_address: '',
-          
-          
+          ...this.state.newVet,
+          [inputProperty]: event.target.value,
+          user_id: this.props.store.user.id,
         },
+      },
+      function () {
+        console.log("state has been set:", this.state);
+      }
+    );
+  };
+
+  saveDemographic = () => {
+    if (this.state.newVet.first_name === "") {
+      alert("A name is required for registration.");
+    } else {
+      console.log(
+        `Saving ${this.state.newVet.first_name}'s demographics to Database...`
+      );
+      //Clear message... should say Hello!
+      //console.log(`Sending ${this.state.newArt} to DB.`);
+
+      this.props.dispatch({
+        type: "ADD_DEMOGRAPHIC",
+        payload: this.state.newVet,
+      });
+      this.setState(
+        {
+          newVet: {
+            first_name: "",
+            last_name: "",
+            email: "",
+            date_of_birth: "",
+            number: "",
+            gender_id: "",
+            married_id: "",
+            children: "",
+            homeless: "",
+            current_address: "",
+            city: "",
+            state_id: "",
+            zipcode: "",
+            country_id: "",
+            mailing_address: "",
+          },
+        },
+        function () {
+          // {this.props.history.push('/servicehistory')}
+          console.log("state has been reset");
+        }
+      );
     }
+  };
 
-    handleInputChange = (event, inputProperty) => {
-        console.log('Handling input-change...');
-        console.log('Setting state...');
-        
-                    this.setState({
-                      newVet : {
-                        ...this.state.newVet,
-                        [inputProperty]: event.target.value,
-                        user_id: this.props.store.user.id
-                      }
-                    }, function () {
-                        console.log('state has been set:', this.state);
-                    })
-                  }
+  render() {
+    //  const { classes } = this.props;
 
-                  saveDemographic = () => {
-                    if(this.state.newVet.first_name === '') {
-                        alert('A name is required for registration.')
-                    } else {
-                    
-                        console.log(`Saving ${this.state.newVet.first_name}'s demographics to Database...`);
-                    //Clear message... should say Hello!
-                    //console.log(`Sending ${this.state.newArt} to DB.`);
-        
-                         this.props.dispatch({ type: 'ADD_DEMOGRAPHIC', payload: this.state.newVet })
-                         this.setState({
-                          newVet: {
-                            first_name: '',
-          last_name: '',
-          email: '',
-          date_of_birth: '',
-          number: '',
-          gender_id: '',
-          married_id: '',
-          children: '',
-          homeless: '',
-          current_address: '',
-          city: '',
-          state_id: '',
-          zipcode: '',
-          country_id: '',
-          mailing_address: '',
-          
-                          },
-                         }, function () {
-                           // {this.props.history.push('/servicehistory')}
-                        console.log('state has been reset');
-                       })
-                    }
-                    
-                  }
-        
-  
-render(){
-    const { classes } = this.props;
-
-    return(
-        <>
+    return (
+      <>
         <h1>DemographicForm</h1>
-        <Grid container
-         //   className={classes.paper}
-           //alignItems="center"
-        spacing={2}
-        direction="column">
-                                                           
-                              <Paper
-                              // className={classes.paddingTop}
-                              // style={styles.paperContainer}
-                              elevation={10}
-                              // className={classes.paper} 
-                                // backgroundImage={canvas}                                                      
-                            > 
-                           
-                              <form
-                            //   style={{ verticalAlign: 'middle' }}
-                            >
-                        <br />
+        <Grid
+          container
+          //   className={classes.paper}
+          //alignItems="center"
+          spacing={2}
+          direction="column"
+        >
+          <Paper
+            // className={classes.paddingTop}
+            // style={styles.paperContainer}
+            elevation={10}
+            // className={classes.paper}
+            // backgroundImage={canvas}
+          >
+            <form
+            //   style={{ verticalAlign: 'middle' }}
+            >
+              <br />
 
-               <Grid item xs={12.0} sm={12}>
-                   <TextField
-                   variant="outlined"
-                   label="First Name"
-                   name="first_name"
+              <Grid item xs={12.0} sm={12}>
+                <TextField
+                  variant="outlined"
+                  label="First Name"
+                  name="first_name"
                   // className={classes.inputs}
-                                    value={this.state.newVet.first_name}
-                    onChange ={ (event) => this.handleInputChange( event, 'first_name' ) } 
-                   />
-                 {/* </Grid>  */}
-<br/>
+                  value={this.state.newVet.first_name}
+                  onChange={(event) =>
+                    this.handleInputChange(event, "first_name")
+                  }
+                />
+                {/* </Grid>  */}
+                <br />
                 {/* <Grid item xs={12.0} sm={12}> */}
                 {/* // align="center">  */}
-                   <TextField
-                   variant="outlined"
-                   label="Last Name"
-                   name="last_name"
+                <TextField
+                  variant="outlined"
+                  label="Last Name"
+                  name="last_name"
                   //  className={classes.inputs}
-                   value={this.state.newVet.last_name}
-                onChange ={ (event) => this.handleInputChange( event, 'last_name' ) } 
-                   />
-                 {/* </Grid> */}
-                 <br/> 
+                  value={this.state.newVet.last_name}
+                  onChange={(event) =>
+                    this.handleInputChange(event, "last_name")
+                  }
+                />
+                {/* </Grid> */}
+                <br />
 
-                 {/* <Grid item xs={12.0} sm={12}>  */}
-                   <TextField
-                   variant="outlined"
-                   label="Email"
-                   name="email"
+                {/* <Grid item xs={12.0} sm={12}>  */}
+                <TextField
+                  variant="outlined"
+                  label="Email"
+                  name="email"
                   //  className={classes.inputs}
 
-                   value={this.state.newVet.email}
-                onChange ={ (event) => this.handleInputChange( event, 'email' ) } 
+                  value={this.state.newVet.email}
+                  onChange={(event) => this.handleInputChange(event, "email")}
+                />
 
-                   />
+                {/* </Grid>   */}
+                <br />
 
-                 {/* </Grid>   */}
-                 <br/> 
+                {/* <Grid item xs={12.0} sm={12}>  */}
+                <TextField
+                  variant="outlined"
+                  label="Date of Birth"
+                  name="date_of_birth"
+                  value={this.state.newVet.date_of_birth}
+                  onChange={(event) =>
+                    this.handleInputChange(event, "date_of_birth")
+                  }
+                />
 
-                 {/* <Grid item xs={12.0} sm={12}>  */}
-                    <TextField
-                   variant="outlined"
-                   label="Date of Birth"
-                   name="date_of_birth"
-                   value={this.state.newVet.date_of_birth}
-                onChange ={ (event) => this.handleInputChange( event, 'date_of_birth' ) } 
+                {/* </Grid>  */}
+                <br />
 
-                   />
-
-                 {/* </Grid>  */}
-                 <br/> 
-
-                 {/* <Grid item xs={12.0} sm={12}>  */}
-                    <TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="Number"
+                {/* <Grid item xs={12.0} sm={12}>  */}
+                <TextField
+                  id="standard-textarea"
+                  variant="outlined"
+                  label="Number"
                   //  rows={4}
                   //   rowsMax={20}
-                   name="number"
+                  name="number"
                   //  multiline
                   //  className={classes.inputs}
                   //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.number}
-                onChange ={ (event) => this.handleInputChange( event, 'number' ) } 
-                   />
+                  value={this.state.newVet.number}
+                  onChange={(event) => this.handleInputChange(event, "number")}
+                />
 
+                {/* </Grid>  */}
+                <br />
 
-
-
-                 {/* </Grid>  */}
-                 <br/> 
-
-                 {/* <Grid item xs={12.0} sm={12}>  */}
-                    <TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="Gender ID"
+                {/* <Grid item xs={12.0} sm={12}>  */}
+                <TextField
+                  id="standard-textarea"
+                  variant="outlined"
+                  label="Gender ID"
                   //  rows={4}
                   //   rowsMax={20}
-                   name="gender_id"
+                  name="gender_id"
                   //  multiline
                   //  className={classes.inputs}
                   //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.gender_id}
-                onChange ={ (event) => this.handleInputChange( event, 'gender_id' ) } 
-                   />
-{/* </Grid>  */}
-<br/> 
+                  value={this.state.newVet.gender_id}
+                  onChange={(event) =>
+                    this.handleInputChange(event, "gender_id")
+                  }
+                />
+                {/* </Grid>  */}
+                <br />
 
-{/* <Grid item xs={12.0} sm={12}>  */}
-                    <TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="Married ID"
+                {/* <Grid item xs={12.0} sm={12}>  */}
+                <TextField
+                  id="standard-textarea"
+                  variant="outlined"
+                  label="Married ID"
                   //  rows={4}
                   //   rowsMax={20}
-                   name="married_id"
+                  name="married_id"
                   //  multiline
                   //  className={classes.inputs}
                   //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.married_id}
-                onChange ={ (event) => this.handleInputChange( event, 'married_id' ) } 
-                   />
-{/* </Grid>  */}
-<br/> 
-{/* <Grid item xs={12.0} sm={12}>  */}
-                    <TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="Children"
+                  value={this.state.newVet.married_id}
+                  onChange={(event) =>
+                    this.handleInputChange(event, "married_id")
+                  }
+                />
+                {/* </Grid>  */}
+                <br />
+                {/* <Grid item xs={12.0} sm={12}>  */}
+                <TextField
+                  id="standard-textarea"
+                  variant="outlined"
+                  label="Children"
                   //  rows={4}
                   //   rowsMax={20}
-                   name="children"
+                  name="children"
                   //  multiline
                   //  className={classes.inputs}
                   //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.children}
-                onChange ={ (event) => this.handleInputChange( event, 'children' ) } 
-                   />
+                  value={this.state.newVet.children}
+                  onChange={(event) =>
+                    this.handleInputChange(event, "children")
+                  }
+                />
 
-{/* </Grid>  */}
+                {/* </Grid>  */}
 
-                 <br/> 
+                <br />
 
-
-                 {/* <Grid item xs={12.0} sm={12}>  */}
-                    <TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="Homeless"
+                {/* <Grid item xs={12.0} sm={12}>  */}
+                <TextField
+                  id="standard-textarea"
+                  variant="outlined"
+                  label="Homeless"
                   //  rows={4}
                   //   rowsMax={20}
-                   name="homeless"
+                  name="homeless"
                   //  multiline
                   //  className={classes.inputs}
                   //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.homeless}
-                onChange ={ (event) => this.handleInputChange( event, 'homeless' ) } 
-                   />
-{/* </Grid>  */}
+                  value={this.state.newVet.homeless}
+                  onChange={(event) =>
+                    this.handleInputChange(event, "homeless")
+                  }
+                />
+                {/* </Grid>  */}
 
-<br/> 
+                <br />
 
-{/* <Grid item xs={12.0} sm={12}>  */}
-                    <TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="Current Address"
+                {/* <Grid item xs={12.0} sm={12}>  */}
+                <TextField
+                  id="standard-textarea"
+                  variant="outlined"
+                  label="Current Address"
                   //  rows={4}
                   //   rowsMax={20}
-                   name="current_address"
+                  name="current_address"
                   //  multiline
                   //  className={classes.inputs}
                   //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.current_address}
-                onChange ={ (event) => this.handleInputChange( event, 'current_address' ) } 
-                   />
+                  value={this.state.newVet.current_address}
+                  onChange={(event) =>
+                    this.handleInputChange(event, "current_address")
+                  }
+                />
 
-{/* </Grid>  */}
+                {/* </Grid>  */}
 
-<br/> 
+                <br />
 
-
-{/* <Grid item xs={12.0} sm={12}>  */}
-                    <TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="City"
+                {/* <Grid item xs={12.0} sm={12}>  */}
+                <TextField
+                  id="standard-textarea"
+                  variant="outlined"
+                  label="City"
                   //  rows={4}
                   //   rowsMax={20}
-                   name="city"
+                  name="city"
                   //  multiline
                   //  className={classes.inputs}
                   //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.city}
-                onChange ={ (event) => this.handleInputChange( event, 'city' ) } 
-                   />
+                  value={this.state.newVet.city}
+                  onChange={(event) => this.handleInputChange(event, "city")}
+                />
 
-{/* </Grid>  */}
+                {/* </Grid>  */}
 
-<br/> 
+                <br />
 
-{/* <Grid item xs={12.0} sm={12}>  */}
-                    <TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="State ID"
+                {/* <Grid item xs={12.0} sm={12}>  */}
+                <TextField
+                  id="standard-textarea"
+                  variant="outlined"
+                  label="State ID"
                   //  rows={4}
                   //   rowsMax={20}
-                   name="state_id"
+                  name="state_id"
                   //  multiline
                   //  className={classes.inputs}
                   //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.state_id}
-                onChange ={ (event) => this.handleInputChange( event, 'state_id' ) } 
-                   />
+                  value={this.state.newVet.state_id}
+                  onChange={(event) =>
+                    this.handleInputChange(event, "state_id")
+                  }
+                />
 
-{/* </Grid>  */}
+                {/* </Grid>  */}
 
-<br/> 
+                <br />
 
-{/* <Grid item xs={12.0} sm={12}>  */}
-                    <TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="Zipcode"
+                {/* <Grid item xs={12.0} sm={12}>  */}
+                <TextField
+                  id="standard-textarea"
+                  variant="outlined"
+                  label="Zipcode"
                   //  rows={4}
                   //   rowsMax={20}
-                   name="zipcode"
+                  name="zipcode"
                   //  multiline
                   //  className={classes.inputs}
                   //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.zipcode}
-                onChange ={ (event) => this.handleInputChange( event, 'zipcode' ) } 
-                   />
+                  value={this.state.newVet.zipcode}
+                  onChange={(event) => this.handleInputChange(event, "zipcode")}
+                />
 
-{/* </Grid>  */}
+                {/* </Grid>  */}
 
-<br/> 
+                <br />
 
-{/* <Grid item xs={12.0} sm={12}>  */}
-                    <TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="Country ID"
+                {/* <Grid item xs={12.0} sm={12}>  */}
+                <TextField
+                  id="standard-textarea"
+                  variant="outlined"
+                  label="Country ID"
                   //  rows={4}
                   //   rowsMax={20}
-                   name="country_id"
+                  name="country_id"
                   //  multiline
                   //  className={classes.inputs}
                   //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.country_id}
-                onChange ={ (event) => this.handleInputChange( event, 'country_id' ) } 
-                   />
+                  value={this.state.newVet.country_id}
+                  onChange={(event) =>
+                    this.handleInputChange(event, "country_id")
+                  }
+                />
 
-{/* </Grid>  */}
+                {/* </Grid>  */}
 
-<br/> 
+                <br />
 
-
-
-{/* <Grid item xs={12.0} sm={12}>  */}
-                    <TextField
-                    id="standard-textarea"
-                   variant="outlined"
-                   label="Mailing Address"
+                {/* <Grid item xs={12.0} sm={12}>  */}
+                <TextField
+                  id="standard-textarea"
+                  variant="outlined"
+                  label="Mailing Address"
                   //  rows={4}
                   //   rowsMax={20}
-                   name="mailing_address"
+                  name="mailing_address"
                   //  multiline
                   //  className={classes.inputs}
                   //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                   value={this.state.newVet.mailing_address}
-                onChange ={ (event) => this.handleInputChange( event, 'mailing_address' ) } 
-                   />
+                  value={this.state.newVet.mailing_address}
+                  onChange={(event) =>
+                    this.handleInputChange(event, "mailing_address")
+                  }
+                />
 
-{/* </Grid>  */}
+                {/* </Grid>  */}
 
-<br/> 
+                <br />
+              </Grid>
 
-</Grid> 
+              <br />
 
-<br/> 
+              <Grid item xs={12.0} sm={12}>
+                {/* <button onClick={(event)=>this.props.history.push('/home')}>BACK TO HOME</button> */}
 
-                 <Grid item xs={12.0} sm={12}> 
-                 {/* <button onClick={(event)=>this.props.history.push('/home')}>BACK TO HOME</button> */}
-
-                 <Button 
-                 onClick={(event)=>this.saveDemographic(event)}
-          // addArtProp={this.addArt}
-         //   elevation={20}  
-          //  className={classes.typography}
-          //  textAlign='center'
-          //  justify='center'
-         //   style={{justifyContent: 'center'}}
-          //  <Button elevation={10}
-          //  Box display="flex" flexDirection="column"
-          //  textAlign='center'
-          //  display='flex'
-          //  justifyContent='center'
-          //  justify="center"
-          //  onClick={this.addArt}
-                //  variant="raised"
-                //  color="purple"
-                //  className={classes.alignAndJustify}
-                 >SAVE</Button>
- 
- </Grid>
-                 <br/> 
-
-               </form>
-               {/* </Card> */}
-               {/* </Grid> */}
-               </Paper>
-               
-           </Grid>   
-        </>
-    )//END return
-}//END render
-}//END DemographicsForm
+                <Button
+                  onClick={(event) => this.saveDemographic(event)}
+                  // addArtProp={this.addArt}
+                  //   elevation={20}
+                  //  className={classes.typography}
+                  //  textAlign='center'
+                  //  justify='center'
+                  //   style={{justifyContent: 'center'}}
+                  //  <Button elevation={10}
+                  //  Box display="flex" flexDirection="column"
+                  //  textAlign='center'
+                  //  display='flex'
+                  //  justifyContent='center'
+                  //  justify="center"
+                  //  onClick={this.addArt}
+                  //  variant="raised"
+                  //  color="purple"
+                  //  className={classes.alignAndJustify}
+                >
+                  SAVE
+                </Button>
+              </Grid>
+              <br />
+            </form>
+            {/* </Card> */}
+            {/* </Grid> */}
+          </Paper>
+        </Grid>
+      </>
+    ); //END return
+  } //END render
+} //END DemographicsForm
 
 export default connect(mapStoreToProps)(withStyles(styles)(DemographicForm));
