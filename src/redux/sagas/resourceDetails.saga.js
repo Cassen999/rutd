@@ -10,7 +10,7 @@ function* getOneResource(action) {
     try {
         // sending id of dream selected
         console.log('You\'ve chosen a resource with ID #:', action.payload); // chrome console log
-        const response = yield axios.get(`/api/org/${action.payload}`) // 
+        const response = yield axios.get(`/api/resource/${action.payload}`) // 
         yield put({
             type: 'SET_ONE_RESOURCE',
             payload: response.data
