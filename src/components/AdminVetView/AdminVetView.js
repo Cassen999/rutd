@@ -26,34 +26,35 @@ class AdminVetView extends Component {
             return(
               <div className="flex-grid" key={i}>
                   <div className="col">
-                    <p>First Name: {vet.first_name}</p>
-                    <p>Last Name: {vet.last_name}</p>
+                    <p>Name: {vet.first_name} {vet.last_name}</p>
                     <p>Email: {vet.email}</p>
                     <p>Date of Birth:{vet.date_of_birth}</p>
                     <p>Number: {vet.number}</p>
-                    <p>Gender: {vet.gender_id}</p>
-                    <p>Marital Status: {vet.married_id}</p>
+                    <p>Gender: {vet.gender}</p>
+                    <p>Marital Status: {vet.married}</p>
                     <p>Children: {vet.children}</p>
-                    <p>Home Living Situation: {vet.homeless}</p>
+                    <p>Home Living Situation: BOOLEAN{vet.homeless}</p>
                     <p>Current Address: {vet.current_address}</p>
                     <p>City: {vet.city}</p>
-                    <p>State: {vet.state_id}</p>
+                    <p>State: {vet.state}</p>
                     <p>Zipcode: {vet.zipcode}</p>
+                    <p>Country: {vet.country}</p>
                   </div>
                 <div className="col">
-                  <p>Country: {vet.country_id}</p>
+                  <p>City2: {vet.city2}</p>
+                  <p>Zipcode2: {vet.zipcode2}</p>
+                  <p>County2: {vet.country2}</p>
                   <p>Mailing Address: {vet.mailing_address}</p>
-                  <p>Branch: {vet.branch_id}</p>
-                  <p>Rank: {vet.rank_id}</p>
+                  <p>Branch: {vet.branch}</p>
+                  <p>Rank: {vet.rank}</p>
                   <p>Start Date: {vet.start_date}</p>
                   <p>End Date: {vet.end_date}</p>
-                  <p>Status: {vet.status_id}</p>
-                  <p>Discharge: {vet.discharge_id}</p>
-                  <p>Malady: {vet.injury_id}</p>
-                  <p>Compensation: {vet.compensation}</p>
-                  <p>Percentage: {vet.description}</p>
-                  <p>Danger Areas: {vet.danger_areas}</p>
-                  <p>Purple Heart: {vet.purple_heart}</p>
+                  <p>Discharge: {vet.discharge}</p>
+                  <p>Malady: {vet.injury}</p>
+                  <p>Compensation: BOOLEAN{vet.compensation}</p>
+                  <p>Percentage: {vet.percentage}</p>
+                  <p>Danger Areas: BOOLEAN{vet.danger_areas}</p>
+                  <p>Purple Heart: BOOLEAN{vet.purple_heart}</p>
                 </div>
             </div>
           )})}
