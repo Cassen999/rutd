@@ -154,26 +154,33 @@ handleChange = event => {
                 
                 
                 <FormControl component="fieldset" className={classes.formControl}>
-          <FormLabel component="legend">Gender</FormLabel>
+          <FormLabel component="legend">Compensation Rate</FormLabel>
           <RadioGroup
-            aria-label="Gender"
+            aria-label="Compensation Rate"
             name="gender1"
             className={classes.group}
             value={this.state.value}
             onChange={this.handleChange}
           >
-            <FormControlLabel value="female" control={<Radio />} label="Female" />
-            <FormControlLabel value="male" control={<Radio />} label="Male" />
-            <FormControlLabel value="other" control={<Radio />} label="Other" />
-            <FormControlLabel
-              value="disabled"
-              disabled
-              control={<Radio />}
-              label="(Disabled option)"
-            />
+               {percentages.map((percent, i) => (
+
+            <FormControlLabel value={percent.description} control={<Radio />} label={percent.description} />
+            // <FormControlLabel value="male" control={<Radio />} label="Male" />
+            // <FormControlLabel value="other" control={<Radio />} label="Other" />
+            // <FormControlLabel
+            //   value="disabled"
+            //   disabled
+            //   control={<Radio />}
+            //   label="(Disabled option)"
+            // />
+            ))}
+
           </RadioGroup>
         </FormControl>
                 
+
+
+
                 }  
          
        
