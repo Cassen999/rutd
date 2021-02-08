@@ -38,7 +38,6 @@
 #incompletePaper {
     margin-left: 50px;
     width: 550px;
-    height: 380px;
     padding-top: 25px;
     padding-bottom: 25px;
    
@@ -53,7 +52,6 @@
 }
 
 #incompleteContainer {
-    /* float: left; */
     
 }
 

@@ -14,39 +14,24 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import IconButton from '@material-ui/core/IconButton';
 
 const styles = (theme) => ({
-  root: {
-    flexGrow: 1,
-    padding: theme.spacing(2),
-    display: 'flex',
-    flexWrap: 'wrap',
-    '& > *': {
-      margin: theme.spacing(1),
-      width: theme.spacing(16),
-      height: theme.spacing(16),
-    },
-  },
   gridList: {
     width: 200,
     height: 400,
     padding: 1,
     margin: 10,
+    minWidth: 0,
+    minHeight: 0,
   },
   gridListTile: {
-    border: '2px solid',
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
+    border: '2px solid #ADFA3B',
+    overflow: 'hidden',
+    minWidth: 0,
   },
   title: {
     fontSize: 14,
   },
   pos: {
     marginBottom: 12,
-  },
-  card: {
-    padding: 2,
   },
   paper: {
     position: 'absolute',
@@ -60,6 +45,9 @@ const styles = (theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+  matchContainer: {
+    border: '5px solid #ADFA3B',
+  }
 });
 
 class UserPage extends Component {
@@ -103,6 +91,7 @@ class UserPage extends Component {
   }
 
   render() {
+
     const { classes } = this.props;
     
     const emergencyModal = (
@@ -130,7 +119,7 @@ class UserPage extends Component {
         <div id="cardContainer">
           <div id="completedMatches" className="matchDisplay"> 
             <h1 id="completeTitle">Complete Matches</h1>
-            <Paper id="completedPaper" elevation={3}>
+            <Paper id="completedPaper" className={classes.matchContainer} elevation={3}>
             <Grid container spacing={1} direction="row">
                 <Grid container item xs={12} spacing={3} justify="space-evenly" alignItems="stretch" className={classes.gridList} >
                   {matches.map( (match, index) => {
@@ -164,7 +153,7 @@ class UserPage extends Component {
           </div>
           <div id="incompleteContainer" className="matchDisplay">
             <h1 id="incompleteTitle">Matches in Progress</h1>
-            <Paper id="incompletePaper" className={classes.root} elevation={3}>
+            <Paper id="incompletePaper" className={classes.matchContainer} elevation={3}>
             <Grid container spacing={1} direction="row">
                 <Grid container item xs={12} spacing={3} justify="space-evenly" alignItems="stretch" className={classes.gridList} >
                   {incompleteMatches.map((match, index) => {
@@ -202,13 +191,7 @@ class UserPage extends Component {
               <Button id="emergencyBtn" variant="contained" color="secondary" onClick={() => this.handleClick('emergency')}>Emergency Numbers</Button>
               <Button id="allMatchBtn" variant="contained" onClick={() => this.handleClick('allMatches')}>View All Matches</Button>
           </div>
-          <Modal
-            open={modalOpen}           
-            aria-labelledby="modal-title"
-            aria-describedby="emergency-contacts"
-          >
-            {emergencyModal}
-          </Modal>  
+          <Modal open={modalOpen} aria-labelledby="modal-title" aria-describedby="emergency-contacts">{emergencyModal}</Modal>            
       </div>
     );
   }
