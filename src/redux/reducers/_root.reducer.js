@@ -33,7 +33,6 @@ const rootReducer = combineReducers({
   incompleteMatchReducer,
   maladyReducer,
   percentageReducer,
-  vetMatchReducer,
   vetSearchReducer,
   resourceDetails,
   emailReducer,
