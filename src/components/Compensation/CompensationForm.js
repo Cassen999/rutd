@@ -105,7 +105,7 @@ state = {
 
    render() {
       const { classes } = this.props;
-      const percentage = this.props.store.percentageReducer
+      const percentages = this.props.store.percentageReducer
 
       return (
          <>
@@ -164,7 +164,27 @@ state = {
                 
                 } 
          
-         
+         <div>
+  {percentages.map((percent) => (
+    this.state.type === '1'
+
+      ? (              
+
+      <Radio
+         checked={this.state.type === '0'}
+         onChange={this.handleInputChangeFor('type')}
+         value={percent}
+         name="No"
+         aria-label="No"
+         classes={{
+           root: classes.root,
+           checked: classes.checked,
+       }}
+      />)
+      : null
+  ))}
+</div>
+
          
          
          
