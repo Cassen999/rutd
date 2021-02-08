@@ -10,3 +10,7 @@ hr{
     margin-top: 2rem;
     width: 70%;
 }
+
+.admin-landing-button{
+    float: right;
+}

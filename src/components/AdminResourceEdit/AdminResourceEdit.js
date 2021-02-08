@@ -43,6 +43,11 @@ class AdminResourceEdit extends Component {
     console.log('WOOT')
   }
 
+  goBackHome = () => {
+    console.log('Going back to Admin Landing Page');
+    this.props.history.push('/adminlanding');
+  }
+
   render() {
     // line below is equivalent to this.props.store.details
     const {resourceDetails} = this.props.store;
@@ -80,6 +85,9 @@ class AdminResourceEdit extends Component {
             </div>
           )})}
           <hr></hr>
+            <center>
+              <button className="admin-landing-button" onClick={this.goBackHome}>Back</button>
+            </center>
       </div>
     );
   }
