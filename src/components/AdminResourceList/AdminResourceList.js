@@ -32,6 +32,12 @@ class AdminResourceList extends Component {
     this.props.dispatch({type: 'FETCH_RESOURCE'})
   }
 
+  handleMailTo = (resourceEmail) => {
+    return(
+      window.open(`mailto:${resourceEmail}`)
+    )
+  }
+
   handleResource = (resourceID) =>{
     console.log("RESOURCE YOU SELECTED:", resourceID);
     this.props.dispatch({type: 'GET_ONE_RESOURCE', payload: resourceID})
@@ -89,7 +95,8 @@ class AdminResourceList extends Component {
                     <TableCell >
                       <Button
                         variant="contained"
-                        color="primary">
+                        color="primary"
+                        onClick={() => this.handleMailTo(resource.email)}>
                         Contact
                       </Button>
                     </TableCell>
