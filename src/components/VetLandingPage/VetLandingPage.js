@@ -11,7 +11,6 @@ import Grid from '@material-ui/core/Grid';
 import Modal from '@material-ui/core/Modal';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 
 const styles = (theme) => ({
@@ -219,9 +218,9 @@ class UserPage extends Component {
           </div>
         </div>
           <div id="btnContainer">
-              <Button id="editBtn" variant="contained" onClick={() => this.handleClick('edit')}>View/Edit Profile</Button>
-              <Button id="emergencyBtn" variant="contained" color="secondary" onClick={() => this.handleClick('emergency')}>Emergency Numbers</Button>
-              <Button id="allMatchBtn" variant="contained" onClick={() => this.handleClick('allMatches')}>View All Matches</Button>
+              <Button id="editBtn" size="large" variant="contained" onClick={() => this.handleClick('edit')}>View/Edit Profile</Button>
+              <Button id="emergencyBtn" size="large" variant="contained" color="secondary" onClick={() => this.handleClick('emergency')}>Emergency Numbers</Button>
+              <Button id="allMatchBtn" size="large" variant="contained" onClick={() => this.handleClick('allMatches')}>View All Matches</Button>
           </div>
           <Modal open={modalOpen} aria-labelledby="modal-title" aria-describedby="emergency-contacts">{emergencyModal}</Modal>            
       </div>

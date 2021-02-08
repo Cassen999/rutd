@@ -7,7 +7,7 @@
 
 #btnContainer {
     margin-left: 50px;
-    padding: 30px;
+    padding-top: 50px;
     text-align: center;
 }
 
@@ -17,6 +17,7 @@
 
 #editBtn {
     margin: 15px;
+    right: 8%;
 }
 
 #emergencyBtn {
@@ -25,6 +26,7 @@
 
 #allMatchBtn {
     margin: 15px;
+    left: 8%;
 }
 
 #completedPaper {
@@ -38,8 +40,7 @@
     margin-left: 50px;
     width: 550px;
     padding-top: 25px;
-    padding-bottom: 25px;
-   
+    padding-bottom: 25px;  
 }
 
 #welcome {
