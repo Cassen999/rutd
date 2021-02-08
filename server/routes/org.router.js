@@ -64,9 +64,21 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   let id = req.params.id;
   console.log('--- This is the ID of the RESOURCE you clicked on: ', id);
   const queryText =
-  `SELECT *, organization.name, match.id, match.org_id FROM "organization"
-  JOIN "match" ON "match".org_id = "organization".id
-  WHERE "match".org_id = $1;`;
+    `SELECT organization.org_id,
+    organization.name,
+    organization.number,
+    organization.email,
+    organization.city,
+    organization.pdf,
+    organization.website,
+    organization.pictures,
+    organization.description,
+    state.description AS state,
+    categories.description AS categories
+    FROM "organization"
+    LEFT JOIN state ON state.id = "organization".state_id
+    LEFT JOIN categories ON categories.id = "organization".categories_id
+    WHERE organization.id = $1;`;
   pool.query(queryText, [id])
     .then((result) => {
       console.log('GET This is the RESOURCE you\'ve selected: ', result.rows); // WORKING
