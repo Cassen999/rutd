@@ -46,7 +46,6 @@ class AdminLandingPage extends Component {
     this.props.history.push("/adminVetView");
   };
 
-  //TODO Dispatch RESOURCE YOU SELECTED
   handleResource = (resourceID) => {
     console.log("RESOURCE YOU SELECTED:", resourceID);
     this.props.dispatch({type: 'GET_ONE_RESOURCE', payload: resourceID})

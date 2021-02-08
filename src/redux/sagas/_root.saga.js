@@ -15,17 +15,12 @@ import vetMatchSaga from './vetMatch.saga';
 import vetSearchSaga from './vetSearch.saga'
 import details from './details.saga';
 import resourceDetails from './resourceDetails.saga';
+import resourceSaga from './resource.saga';
+import resourceSearchSaga from './resourceSearch.saga';
 
-// rootSaga is the primary saga.
-// It bundles up all of the other sagas so our project can use them.
-// This is imported in index.js as rootSaga
-
-// some sagas trigger other sagas, as an example
-// the registration triggers a login
-// and login triggers setting the user
 export default function* rootSaga() {
   yield all([
-    loginSaga(), // login saga is now registered
+    loginSaga(),
     registrationSaga(),
     userSaga(),
     categorySaga(),
@@ -41,6 +36,8 @@ export default function* rootSaga() {
     details(),
     resourceDetails(),
     emailSaga(),
-    details()
+    details(),
+    resourceSaga(),
+    resourceSearchSaga(),
   ]);
 }

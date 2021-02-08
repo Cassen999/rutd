@@ -19,8 +19,9 @@ const compensationRouter = require("./routes/compensation.router");
 const vetSearchRouter = require('./routes/vetSearch.router');
 const vetRouter = require("./routes/vet.router");
 const joinRouter = require("./routes/join-org.router.js");
-const orgRouter = require("./routes/org.router.js");
+const resourceRouter = require("./routes/resource.router");
 const emailRouter = require("./routes/email.router");
+const resourceSearchRouter = require("./routes/resourceSearch.router");
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -44,9 +45,10 @@ app.use("/api/service", serviceRouter);
 app.use("/api/malady", maladyRouter);
 app.use("/api/compensation", compensationRouter);
 app.use("/api/join", joinRouter);
-app.use("/api/org", orgRouter);
+app.use("/api/resource", resourceRouter);
 app.use("/api/vetsearch", vetSearchRouter);
 app.use("/api/email", emailRouter);
+app.use("/api/resourceSearch", resourceSearchRouter)
 
 // Serve static files
 app.use(express.static("build"));
