@@ -75,6 +75,24 @@ handleChange = event => {
          console.log('state has been set:', this.state);
       })
    }
+
+   handleClick = (event, percentId) => {
+      console.log(percentId);
+      // console.log('Setting state...');
+
+      // this.setState({
+      //    newVet: {
+      //       ...this.state.newVet,
+      //       [inputProperty]: event.target.value,
+      //       user_id: this.props.store.user.id
+      //    }
+      // }, function () {
+      //    console.log('state has been set:', this.state);
+      // })
+   }
+
+
+
    handleInputChangeFor = (propertyName) => (event) => {
       this.setState({
         [propertyName]: event.target.value,
@@ -164,7 +182,11 @@ handleChange = event => {
           >
                {percentages.map((percent, i) => (
 
-            <FormControlLabel value={percent.description} control={<Radio />} label={percent.description} />
+            <FormControlLabel value={percent.description} 
+            control={<Radio onClick={(event)=>this.handleClick(event, percent.id)}
+               
+               />} 
+            label={percent.description} />
             // <FormControlLabel value="male" control={<Radio />} label="Male" />
             // <FormControlLabel value="other" control={<Radio />} label="Other" />
             // <FormControlLabel
