@@ -1,16 +1,20 @@
 const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require("../modules/authentication-middleware");
 
 // GETs all vets by name limited to 10
 
-router.get("/", (req, res) => {
-  const sqlText = `SELECT "first_name", "last_name", "match".received, "organization"."name" FROM "user"
-                        JOIN "veteran" ON "vet_id" = "user".id
-                        JOIN "match" ON "match".vet_id = "veteran".id
-                        JOIN "organization" ON "organization".id = "match".org_id
-                        ORDER BY "last_name" ASC
-                        LIMIT 10;`;
+router.get("/", rejectUnauthenticated, (req, res) => {
+  const sqlText = `SELECT "first_name", "last_name", "match".received, "match".org_id, "organization"."name", "veteran".id, "organization".id 
+                  FROM "user"
+                  JOIN "veteran" ON "vet_id" = "user".id
+                  JOIN "match" ON "match".vet_id = "veteran".id
+                  JOIN "organization" ON "organization".id = "match".org_id
+                  ORDER BY "last_name" ASC
+                  LIMIT 10;`;
   pool
     .query(sqlText)
     .then((result) => {
@@ -27,7 +31,7 @@ router.get("/", (req, res) => {
  * GET all veterans
  */
 
-router.get("/all", (req, res) => {
+router.get("/all", rejectUnauthenticated, (req, res) => {
   const queryText = "SELECT * FROM veteran;";
   pool
     .query(queryText)
@@ -114,5 +118,41 @@ router.post("/", (req, res) => {
       res.sendStatus(500);
     });
 });
+
+
+// GET one specific veteran by ID 
+// TO DO - MAKE SURE joins are rendering correctly
+router.get('/:id', rejectUnauthenticated, (req, res) => {
+    let id = req.params.id;
+  console.log('--- This is the ID of the veteran you clicked on: ',id);
+  const queryText =
+    // `SELECT veteran.first_name, veteran.last_name, veteran.email, veteran.date_of_birth, veteran.number,
+    // veteran.children, veteran.homeless, veteran.current_address, veteran.city, veteran.city2, veteran.zipcode,
+    // veteran.mailing_address, veteran.zipcode2, veteran.start_date, veteran.end_date, veteran.compensation, veteran.danger_areas, veteran.purple_heart,
+    // gender.id, gender.description, married.id, married.description, state.id, 
+    // state.description, country.id, country.description, branch.id, branch.description,
+    // rank.id, rank.description, percentage.id, percentage.description
+    // FROM veteran
+    // JOIN gender ON gender.id = veteran.gender_id
+    // JOIN married ON married.id = veteran.married_id
+    // JOIN state ON state.id = veteran.state_id
+    // JOIN country ON country.id = veteran.country_id
+    // JOIN branch ON branch.id = veteran.branch_id
+    // JOIN rank ON rank.id = veteran.rank_id
+    // JOIN percentage ON percentage.id = veteran.percentage
+    // WHERE veteran.id = $1;`
+    `SELECT * FROM "veteran" where veteran.id = $1;`;
+  pool.query(queryText, [id])
+    .then((result) => {
+    console.log('GET This is the VETERAN you\'ve selected: ', result.rows); // WORKING
+    res.send(result.rows);
+  })
+    .catch((error) => {
+    console.log('Error inside GET ID route:', error);
+    res.sendStatus(500);
+  });
+});
+
+
 
 module.exports = router;

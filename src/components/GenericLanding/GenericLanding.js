@@ -21,7 +21,6 @@ class GenericLanding extends Component {
     if(this.props.store.user.type_id === 1){
       return(<VetLandingPage/>)
     } else if (this.props.store.user.type_id === 2){
-      alert('Welcome Admin')
       return (<AdminLandingPage/>)
     } else {
       alert('NOT A USER TYPE')

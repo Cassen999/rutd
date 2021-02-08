@@ -6,14 +6,14 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 // worker Saga: will be fired on "FETCH_SECRETS" actions
 
-function* demographicSaga() {
-  yield takeLatest('ADD_DEMOGRAPHIC', addDemographicSaga);
+function* serviceSaga() {
+  yield takeLatest('UPDATE_SERVICE_HISTORY', updateServiceSaga);
 
 
 }
 
-function* addDemographicSaga(action) {
-  console.log('In addDemographicSaga...')
+function* updateServiceSaga(action) {
+  console.log('In updateServiceHistorySaga...')
   console.log('payload:', action.payload)
   try {
     const config = {
@@ -21,9 +21,9 @@ function* addDemographicSaga(action) {
       withCredentials: true,
     };
 
-    const response = yield axios.post('api/demographic', action.payload, config);
+    const response = yield axios.put('api/health', action.payload, config);
 
-    // yield put({ type: 'FETCH_ART'});
+    yield put({ type: 'FETCH_ART'});
   } catch (error) {
     console.log('Art get request failed', error);
   }
@@ -31,4 +31,4 @@ function* addDemographicSaga(action) {
 
 
 
-export default demographicSaga;
+export default serviceSaga;

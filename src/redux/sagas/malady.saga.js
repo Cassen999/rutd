@@ -6,13 +6,16 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 // worker Saga: will be fired on "FETCH_SECRETS" actions
 
-function* compensationSaga() {
-  yield takeLatest('UPDATE_COMPENSATION', updateCompensationSaga);
-  yield takeLatest('FETCH_PERCENTAGE', fetchPercentageSaga);
+function* maladySaga() {
+  yield takeLatest('FETCH_MALADY', fetchMaladySaga);
+
+  yield takeLatest('UPDATE_MALADY', updateMaladySaga);
+
+
 }
 
-function* updateCompensationSaga(action) {
-  console.log('In updateCompensationSaga...')
+function* updateMaladySaga(action) {
+  console.log('In updateHealthSaga...')
   console.log('payload:', action.payload)
   try {
     const config = {
@@ -28,8 +31,9 @@ function* updateCompensationSaga(action) {
   }
 }
 
-function* fetchPercentageSaga(action) {
-  console.log('In fetchPercentageSaga...')
+
+function* fetchMaladySaga(action) {
+  console.log('In fetchHealthSaga...')
   // console.log('payload:', action.payload)
 
   try {
@@ -38,12 +42,14 @@ function* fetchPercentageSaga(action) {
       withCredentials: true,
     };
 
-    const response = yield axios.get(`/api/compensation/percentage`, config);
+    const response = yield axios.get(`/api/malady`, config);
 
-    yield put({ type: 'SET_COMPENSATION', payload: response.data });
+    yield put({ type: 'SET_MALADY', payload: response.data });
   } catch (error) {
-    console.log('GET Compensation request failed', error);
+    console.log('GET health request failed', error);
   }
 }
 
-export default compensationSaga;
+
+
+export default maladySaga;
