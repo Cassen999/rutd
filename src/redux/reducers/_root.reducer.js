@@ -1,18 +1,18 @@
-import { combineReducers } from 'redux';
-import errors from './errors.reducer';
-import user from './user.reducer';
-import category from './category.reducer';
-import match from './match.reducer';
-import acctTypeReducer from './acctType.reducer';
-import vetReducer from './vet.reducer';
-import maladyReducer from './malady.reducer';
-import vetMatchReducer from './vetMatch.reducer';
-import incompleteMatchReducer from './incompleteMatch.reducer';
-import percentageReducer from './percentage.reducer'
-import vetSearchReducer from './vetSearch.reducer';
-import emailReducer from './email.reducer';
-import details from './details.reducer';
-import resourceDetails from './resourceReducer.reducer';
+import { combineReducers } from "redux";
+import errors from "./errors.reducer";
+import user from "./user.reducer";
+import category from "./category.reducer";
+import match from "./match.reducer";
+import acctTypeReducer from "./acctType.reducer";
+import vetReducer from "./vet.reducer";
+import maladyReducer from "./malady.reducer";
+import vetMatchReducer from "./vetMatch.reducer";
+import incompleteMatchReducer from "./incompleteMatch.reducer";
+import percentageReducer from "./percentage.reducer";
+import vetSearchReducer from "./vetSearch.reducer";
+import emailReducer from "./email.reducer";
+import details from "./details.reducer";
+import resourceDetails from "./resourceReducer.reducer";
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -31,11 +31,10 @@ const rootReducer = combineReducers({
   incompleteMatchReducer,
   maladyReducer,
   percentageReducer,
-  vetMatchReducer,
   vetSearchReducer,
   resourceDetails,
   emailReducer,
-  details
+  details,
 });
 
 export default rootReducer;
