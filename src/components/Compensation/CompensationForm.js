@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { AppBar, FormControl, InputLabel, Select, Input, MenuItem, FormHelperText, Button, Toolbar, Grid, Badge, CardMedia, IconButton, makeStyles, Paper, InputBase, Card, CardActionArea } from '@material-ui/core'
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
+import Radio from '@material-ui/core/Radio';
+
 // import '../../../App/App.css';
 
 const styles = theme=>({
@@ -50,19 +52,10 @@ componentDidMount(){
   this.props.dispatch({type: 'FETCH_PERCENTAGE'})
 
 }
-   state = {
-      newVet: {
+state = {
+   type: '0'
+ };
 
-
-
-
-         compensation: false,
-         percentage: '',
-         danger_areas: '',
-         purple_heart: '',
-      },
-      good: 'f'
-   }
 
    handleInputChange = (event, inputProperty) => {
       console.log('Handling input-change...');
@@ -78,6 +71,12 @@ componentDidMount(){
          console.log('state has been set:', this.state);
       })
    }
+   handleInputChangeFor = (propertyName) => (event) => {
+      this.setState({
+        [propertyName]: event.target.value,
+      });
+    };
+  
 
    saveCompensation = () => {
       if (this.state.newVet.first_name === '') {
@@ -118,8 +117,38 @@ componentDidMount(){
                // className={classes.paper} 
                // backgroundImage={canvas}                                                      
                >
+                  Are you currently being compensated by the VA?
+                  <br/>
+                  <label>Yes</label>
+              <Radio
+                checked={this.state.type === '1'}
+                onChange={this.handleInputChangeFor('type')}
+                value='1'
+                name="Yes"
+                aria-label="Yes"
+                classes={{
+                  root: classes.root,
+                  checked: classes.checked,
+              }}
+              />
+              <label>No</label>
+              <Radio
+                checked={this.state.type === '0'}
+                onChange={this.handleInputChangeFor('type')}
+                value='0'
+                name="No"
+                aria-label="No"
+                classes={{
+                  root: classes.root,
+                  checked: classes.checked,
+              }}
+             />
+             <p> &nbsp;
+              { this.state.type === '1' && // if this part is false, the next part won't show
+                `Name: conditional render` } 
+            </p>
 <form>
-<FormControl className={classes.formControl}>
+{/* <FormControl className={classes.formControl}>
 <InputLabel htmlFor="age-auto-width">Age</InputLabel>
            <Select
             value={this.state.newVet.compensation}
@@ -218,7 +247,7 @@ componentDidMount(){
                         //  className={classes.alignAndJustify}
                         >FINISH</Button>
 
-</FormControl>
+</FormControl> */}
    </form>
 
 
