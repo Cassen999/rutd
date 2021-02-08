@@ -39,7 +39,7 @@ router.get('/complete/:id', (req, res) => {
   console.log('Is User logged in?');
   console.log('req.user:', req.user);
   let vetId = req.params.id;
-  let queryText = `SELECT match.*, veteran.first_name, organization.name, organization.number, organization.email, organization.website, organization.description FROM match
+  let queryText = `SELECT match.*, veteran.first_name, organization.name, organization.number, organization.email, organization.website, organization.pictures, organization.description FROM match
                   INNER JOIN veteran ON veteran.id = match.vet_id
                   INNER JOIN organization ON organization.id = match.org_id
                   WHERE veteran.id = $1;`;

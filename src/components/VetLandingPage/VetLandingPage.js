@@ -9,8 +9,9 @@ import './VetLandingPage.css';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Modal from '@material-ui/core/Modal';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 
 const styles = (theme) => ({
@@ -23,27 +24,38 @@ const styles = (theme) => ({
     minHeight: 0,
   },
   gridListTile: {
-    border: '2px solid #ADFA3B',
+    border: '3px ridge #ADFA3B',
     overflow: 'hidden',
     minWidth: 0,
   },
   title: {
-    fontSize: 14,
+    fontSize: 26,
   },
   pos: {
     marginBottom: 12,
+  },
+  description: {
+    marginTop: 30,
+    marginBottom: 30,
   },
   paper: {
     position: 'absolute',
     top: '50%',
     left: '50%',
     width: 500,
-    height: 300,
-    margin: '-150px 0 0 -250px',
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
+    height: 350,
+    margin: '-175px 0 0 -250px',
+    backgroundColor: '#de9595',
+    border: '2px solid #ADFA3B',
+    paddingBottom: '20px',
+  },
+  contacts: {
+    padding: theme.spacing(4, 5, 1),
+  },
+  closeModal: {
+    marginTop: '35px',
+    marginRight: '10px',
+    left: '85%',
   },
   matchContainer: {
     border: '5px solid #ADFA3B',
@@ -96,16 +108,22 @@ class UserPage extends Component {
     
     const emergencyModal = (
       <div className={classes.paper}>
-        <h2 id="modal-title">Emergency Contact Numbers</h2>
-        <ul id="emergency-contacts">
-          <li>Veteran’s Crisis Line:  1-800-273-8255 </li>
-          <br />
-          <li>National Suicide Prevention Lifeline:  800-273-8255</li>
-          <br />
-          <li>The STARRY Counseling Program Crisis Hotline:  800-440-9789</li>
-        </ul>
-        <br />
-        <Button variant="contained" onClick={() => this.handleClick('closeModal')}>Close</Button>
+        <header id="modal-header">
+          <h2 id="modal-title">Emergency Contact Numbers</h2>
+        </header>
+        <div className={classes.contacts}>
+          <ul id="emergency-contacts">
+            <li>Veteran’s Crisis Line</li>
+            <li>1-800-273-8255</li>
+            <br />
+            <li>National Suicide Prevention Lifeline</li>
+            <li>800-273-8255</li>
+            <br />
+            <li>The STARRY Counseling Program Crisis Hotline</li>
+            <li>800-440-9789</li>
+          </ul>      
+        <Button variant="contained" className={classes.closeModal} onClick={() => this.handleClick('closeModal')}>Close</Button>
+        </div>        
       </div>
     );
 
@@ -126,19 +144,26 @@ class UserPage extends Component {
                     if (match.approved !== null && (index === completeMatchIndex || index === completeMatchIndex + 1)) {
                       return(
                         <Grid item xs={5} className={classes.gridListTile} key={match.id}>
+                          <img className="resource-icon" src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png" />
                           <Typography className={classes.title} color="textSecondary" gutterBottom>
                             {match.name}
                           </Typography>
-                          <Typography variant="h5" component="h2">
-                            {match.description}
+                          <Typography className={classes.pos} variant="h7" component="h4">
+                            Website
                           </Typography>
                           <Typography className={classes.pos} color="textSecondary">
                             {match.website}
                           </Typography>
-                          <Typography variant="body2" component="p">
+                          <Typography className={classes.pos} variant="h7" component="h4">
+                            Email
+                          </Typography>                         
+                          <Typography className={classes.pos} color="textSecondary">
                             {match.email}
                           </Typography>
-                          <Typography variant="body2" component="p">
+                          <Typography className={classes.pos} variant="h7" component="h4">
+                            Phone Number
+                          </Typography>
+                          <Typography className={classes.pos} color="textSecondary">
                             {match.number}
                           </Typography>
                         </Grid>           
@@ -147,8 +172,8 @@ class UserPage extends Component {
                   })}
                 </Grid>
               </Grid>
-              <IconButton id="decrement-match-index" variant="contained" onClick={() => this.handleClick('decrementComplete')}><ChevronLeftIcon /></IconButton>
-              <IconButton id="increment-match-index" variant="contained" onClick={() => this.handleClick('incrementComplete')}><ChevronRightIcon /></IconButton>
+              <IconButton id="decrement-match-index" variant="contained" onClick={() => this.handleClick('decrementComplete')}><ArrowBackIcon fontSize="large"/></IconButton>
+              <IconButton id="increment-match-index" variant="contained" onClick={() => this.handleClick('incrementComplete')}><ArrowForwardIcon fontSize="large"/></IconButton>
             </Paper>
           </div>
           <div id="incompleteContainer" className="matchDisplay">
@@ -160,19 +185,26 @@ class UserPage extends Component {
                     if (index === incompleteMatchIndex || index === incompleteMatchIndex + 1) {
                       return(
                         <Grid item xs={5} className={classes.gridListTile} key={match.id}>
+                          <img className="resource-icon" src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png" />
                           <Typography className={classes.title} color="textSecondary" gutterBottom>
                             {match.name}
                           </Typography>
-                          <Typography variant="h5" component="h2">
-                            {match.description}
+                          <Typography className={classes.pos} variant="h7" component="h4">
+                            Website
                           </Typography>
                           <Typography className={classes.pos} color="textSecondary">
                             {match.website}
                           </Typography>
-                          <Typography variant="body2" component="p">
+                          <Typography className={classes.pos} variant="h7" component="h4">
+                            Email
+                          </Typography>
+                          <Typography className={classes.pos} color="textSecondary">
                             {match.email}
                           </Typography>
-                          <Typography variant="body2" component="p">
+                          <Typography className={classes.pos} variant="h7" component="h4">
+                            Phone Number
+                          </Typography>
+                          <Typography className={classes.pos} color="textSecondary">
                             {match.number}
                           </Typography>
                         </Grid>           
@@ -181,8 +213,8 @@ class UserPage extends Component {
                   })}
                 </Grid>
               </Grid>
-              <IconButton id="decrement-incomplete-index" variant="contained" onClick={() => this.handleClick('decrementIncomplete')}><ChevronLeftIcon /></IconButton>
-              <IconButton id="increment-incomplete-index" variant="contained" onClick={() => this.handleClick('incrementIncomplete')}><ChevronRightIcon /></IconButton>
+              <IconButton id="decrement-incomplete-index" variant="contained" onClick={() => this.handleClick('decrementIncomplete')}><ArrowBackIcon fontSize="large"/></IconButton>
+              <IconButton id="increment-incomplete-index" variant="contained" onClick={() => this.handleClick('incrementIncomplete')}><ArrowForwardIcon fontSize="large"/></IconButton>
             </Paper>
           </div>
         </div>
@@ -197,17 +229,5 @@ class UserPage extends Component {
   }
 }
 
-// this allows us to use <App /> in index.js
 export default withRouter(withStyles(styles, {withTheme: true})(connect(mapStoreToProps)(UserPage)));
-
-
-// TODO //
-
-// Nav Bar
-// GET route to get their matches in progress
-// GET route to get their completed matches
-// Set up card view for in progress and completed matches
-// View and Edit button routes - same page for Vet and Admin or different
-// Emergency numbers button
-// View all Matches button - route and dispatch
 

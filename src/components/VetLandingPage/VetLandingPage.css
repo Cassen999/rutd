@@ -11,7 +11,6 @@
     text-align: center;
 }
 
-
 #completeTitle {
   text-align: center;
 }
@@ -51,10 +50,6 @@
     text-align: center;
 }
 
-#incompleteContainer {
-    
-}
-
 #cardContainer {
     width: 100%;
     overflow: auto;
@@ -67,6 +62,16 @@
     float: left;
 }
 
-#pageBody {
-    
+#modal-header {
+    margin: 0px;
+    padding: 1px;
+    background-color: rgb(199, 43, 43);
+    text-align: center;
+}
+
+#emergency-contacts {
+    list-style-type: none;
+    font-size: 18px;
+    padding: 0px;
+    margin: 0px;
 }
