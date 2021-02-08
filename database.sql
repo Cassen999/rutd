@@ -681,3 +681,38 @@ DROP TABLE "user",
 "organization" CASCADE;
 
 -- End drop all tables
+-- matching the Vet to the Org
+CREATE TABLE "veteran_categories" (
+    "id" SERIAL PRIMARY KEY,
+    "vet_id" INT REFERENCES "veteran",
+    "categories_id" INT REFERENCES "categories"
+);
+
+CREATE TABLE "organization_categories" (
+    "id" SERIAL PRIMARY KEY,
+    "org_id" INT REFERENCES "organization",
+    "categories_id" INT REFERENCES "categories"
+);
+
+INSERT INTO
+    veteran_categories(vet_id, categories_id)
+VALUES
+    (1, 1),
+    (1, 2),
+    (1, 3),
+    (1, 4);
+
+INSERT INTO
+    organization_categories(org_id, categories_id)
+VALUES
+    (1, 1),
+    (1, 2),
+    (1, 5),
+    (2, 3),
+    (3, 4),
+    (3, 3);
+
+INSERT INTO
+    organization_categories(org_id, categories_id)
+VALUES
+    (4, 5);
