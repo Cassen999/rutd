@@ -56,26 +56,16 @@ class AdminResourceEdit extends Component {
           return (
             <div className="flex-grid" key={i}>
               <div className="col">
-                <h3>Name: {resource.name}</h3>
+                <h3>Resource Name: {resource.name}</h3>
                 <p>Number: {resource.number}</p>
                 <p>Email: {resource.email}</p>
-                <p>City:{resource.city}</p>
-                <p>State: {resource.state_id}</p>
-                <p>Website:{resource.website}</p>
+                <p>City: {resource.city}</p>
+                <p>State: {resource.state}</p>
+                <p>Website:{ resource.website}</p>
                 <p>Description: {resource.description}</p>
-                <p>Categories: {resource.categories_id}</p>
+                <p>Categories: {resource.categories}</p>
                 {/* <p>PDF:{resource.pdf}</p> */}
                 {/* <p>Pictures: {resource.pictures}</p> */}
-              </div>
-              <div className="col">
-                <h3>PLACEHOLDER: PLACEHOLDER VALUE </h3>
-                <p>PLACEHOLDER: PLACEHOLDER VALUE </p>
-                <p>PLACEHOLDER: PLACEHOLDER VALUE </p>
-                <p>PLACEHOLDER: PLACEHOLDER VALUE</p>
-                <p>PLACEHOLDER: PLACEHOLDER VALUE </p>
-                <p>PLACEHOLDER: PLACEHOLDER VALUE </p>
-                <p>PLACEHOLDER: PLACEHOLDER VALUE </p>
-                <p>PLACEHOLDER: PLACEHOLDER VALUE </p>
               </div>
             </div>
           );
