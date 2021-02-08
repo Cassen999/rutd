@@ -7,6 +7,7 @@ import acctTypeReducer from './acctType.reducer';
 import vetReducer from './vet.reducer';
 import maladyReducer from './malady.reducer';
 import vetMatchReducer from './vetMatch.reducer';
+import incompleteMatchReducer from './incompleteMatch.reducer';
 import percentageReducer from './percentage.reducer'
 import vetSearchReducer from './vetSearch.reducer';
 import emailReducer from './email.reducer';
@@ -26,6 +27,8 @@ const rootReducer = combineReducers({
   match,
   acctTypeReducer,
   vetReducer,
+  vetMatchReducer,
+  incompleteMatchReducer,
   maladyReducer,
   percentageReducer,
   vetMatchReducer,
