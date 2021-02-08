@@ -20,7 +20,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   console.log('Is User logged in?', req.isAuthenticated());
   console.log('req.user:', req.user);
 
-  let queryText = `SELECT * FROM "categories"`;
+  let queryText = `SELECT * FROM "match"`;
                     
   
   pool.query(queryText).then((result) => {

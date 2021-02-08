@@ -18,8 +18,10 @@ class VetMatches extends Component {
 }
 
 componentDidMount() {
-  this.props.dispatch({ type: 'FETCH_CATEGORY' });
+  // this.props.dispatch({ type: 'FETCH_CATEGORY' });
+  // this.props.dispatch({ type: 'FETCH_COMPLETE_MATCH' });
   this.props.dispatch({ type: 'FETCH_MATCH' });
+
 
 }
 
@@ -27,7 +29,8 @@ componentDidMount() {
     return (
       <div>
         <h2>{this.state.heading}</h2>
-                  REDUX STATE: {JSON.stringify(this.props.store)}
+                  MATCH REDUCER: {JSON.stringify(this.props.store.match)}
+                  {/* RS: {JSON.stringify(this.props.store)} */}
 
         <button onClick={(event)=>this.props.history.push('/home')}>BACK TO HOME</button>
         <button onClick={(event) => this.contactOrg(event)}>CONTACT ORG</button>

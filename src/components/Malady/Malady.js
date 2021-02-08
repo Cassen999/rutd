@@ -18,7 +18,7 @@ class Malady extends Component {
         MALADY REDUCER: {JSON.stringify(this.props.store.maladyReducer)} 
        <br/>
 
-        PERCENTAGE REDUCER: {JSON.stringify(this.props.store.percentageReducer)} 
+        {/* PERCENTAGE REDUCER: {JSON.stringify(this.props.store.percentageReducer)}  */}
 <center>
         <MaladyForm/>
         </center>
