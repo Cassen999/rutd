@@ -143,10 +143,32 @@ state = {
                   checked: classes.checked,
               }}
              />
-             <p> &nbsp;
+             <div> &nbsp;
+
+
               { this.state.type === '1' && // if this part is false, the next part won't show
-                `Name: conditional render` } 
-            </p>
+                
+                
+                <Radio
+                checked={this.state.type === '0'}
+                onChange={this.handleInputChangeFor('type')}
+                value='0'
+                name="No"
+                aria-label="No"
+                classes={{
+                  root: classes.root,
+                  checked: classes.checked,
+              }}
+             />
+                
+                
+                } 
+         
+         
+         
+         
+         
+            </div>
 <form>
 {/* <FormControl className={classes.formControl}>
 <InputLabel htmlFor="age-auto-width">Age</InputLabel>
