@@ -1,142 +1,95 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
-import AdminVetList from '../AdminVetList/AdminVetList';
-import '../AdminLandingPage/AdminLandingPage.css';
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import mapStoreToProps from "../../redux/mapStoreToProps";
+import { withRouter } from 'react-router-dom';
+import { withStyles } from "@material-ui/core/styles";
+import "../AdminLandingPage/AdminLandingPage.css";
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+// import Typography from "@material-ui/core/Typography";
 
 /*
-TO DO LIST ON THIS PAGE:
-  Map through the MATCHES & render onto the cards appropriately
-  onClick feature for Resource names: opens admin resource view/edit
-  onClick for Veteran names: opens admin veteran view
+----------------------------- TO DO LIST ON THIS PAGE: -----------------------------
+- Dispatch to saga to get detail of one specific vet by ID in URL
+- Receive details into a reducer
+- dispatch to call reducer to adminVetView and adminResourceEdit to 
+  see specific veteran and or resource profile information
+
+-------------------------------------------------------------------------------------
 */
 
-
-const styles = {
-  card: {
-    minWidth: 275,
+const styles = theme => ({
+  root: {
+    width: '100%',
+    marginTop: theme.spacing.unit * 3,
+    overflowX: 'auto',
   },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-};
-
-
-
-
-
-// componentDidMount(){
-//   console.log('Fetching veteran list from DB');
-//   this.props.dispatch({type: 'FETCH_VET'});
-// }
-
-
+});
 
 class AdminLandingPage extends Component {
   state = {
-    heading: 'Admin Landing Page',
+    heading: "Admin Landing Page",
   };
-  
-  handleVeteran = () =>{
-    console.log('CLICKING ON VETERAN');
+
+  componentDidMount() {
+    console.log("Fetching veteran list from DB");
+    this.props.dispatch({ type: "FETCH_VET" });
   }
 
-  handleResource = () =>{
-    console.log('CLICKING ON RESOURCE');
-  }
+  handleVeteran = (veteranID) => {
+    console.log("VETERAN YOU SELECTED:", veteranID);
+      this.props.dispatch({type:'GET_ONE_VET', payload: veteranID});
+    this.props.history.push("/adminVetView");
+  };
 
-  render() {
-    const { classes } = this.props;
-    return (
-      <div>
+  //TODO Dispatch RESOURCE YOU SELECTED
+  handleResource = (resourceID) => {
+    console.log("RESOURCE YOU SELECTED:", resourceID);
+    this.props.dispatch({type: 'GET_ONE_RESOURCE', payload: resourceID})
+    this.props.history.push("/adminResourceEdit");
+  };
+
+
+  render(){
+    const {classes} = this.props;
+    const {vetReducer} = this.props.store;
+      return (
+        <div className="container">
         <center>
-        <h2>{this.state.heading}</h2>
-        <h3>Connections in Progress (Track Time)</h3>
-          </center>
-            <div className="container">
-              <Card className={classes.card}>
-                <CardContent>
-                  <Typography className={classes.title} color="textSecondary" gutterBottom>
-                      TIMESTAMP
-                  </Typography>
-                  <CardActions>
-                    <Button size="small" onClick={this.handleVeteran}>
-                      <Typography variant="h5" component="h2">
-                          John Doe
-                      </Typography>
-                    </Button>
-                  </CardActions> 
-                  <CardActions>
-                    <Button size="small" onClick={this.handleResource}>
-                      <Typography component="p">
-                          Hives for Heroes
-                        <br />
-                      </Typography>
-                    </Button>
-                  </CardActions> 
-                </CardContent>
-              </Card>
-              <br></br>
-              <Card className={classes.card}>
-                <CardContent>
-                  <Typography className={classes.title} color="textSecondary" gutterBottom>
-                      TIMESTAMP
-                  </Typography>
-                  <CardActions>
-                    <Button size="small" onClick={this.handleVeteran}>
-                      <Typography variant="h5" component="h2">
-                          Maria Huerta
-                      </Typography>
-                    </Button>
-                  </CardActions> 
-                  <CardActions>
-                    <Button size="small" onClick={this.handleResource}>
-                      <Typography component="p">
-                          Wounded Warrior Project
-                        <br />
-                      </Typography>
-                    </Button>
-                  </CardActions> 
-                </CardContent>
-              </Card>
-              <br></br>
-              <Card className={classes.card}>
-                <CardContent>
-                  <Typography className={classes.title} color="textSecondary" gutterBottom>
-                      TIMESTAMP
-                  </Typography>
-                  <CardActions>
-                    <Button size="small" onClick={this.handleVeteran}>
-                      <Typography variant="h5" component="h2">
-                          Lee Vang
-                      </Typography>
-                    </Button>
-                  </CardActions> 
-                  <CardActions>
-                    <Button size="small" onClick={this.handleResource}>
-                      <Typography component="p">
-                          Mighty Oak
-                        <br />
-                      </Typography>
-                    </Button>
-                  </CardActions> 
-                </CardContent>
-              </Card>
-          </div>
-        <AdminVetList />
-      </div>
-    );
+        {JSON.stringify(this.props.store.vetReducer)}
+        <h2>Admin Landing Page</h2>
+        <h4><i>Connections In Progress (Track Time)</i></h4>
+        </center>
+            <Paper className={classes.root}>
+              <Table className={classes.table}>
+                <TableHead className="table-head-color">
+                  <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell align="right">Resource</TableCell>
+                    <TableCell align="right">Time Stamp</TableCell>
+                    {/* <TableCell align="right">Protein (g)</TableCell> */}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {vetReducer.map((vet, i) => (
+                    <TableRow key={i}>
+                      <TableCell component="th" scope="vet" onClick={()=> this.handleVeteran(vet.id)}>
+                        {vet.first_name} {vet.last_name}
+                      </TableCell>
+                      <TableCell align="right" onClick={()=> this.handleResource(vet.org_id)}>{vet.name}</TableCell>
+                      <TableCell align="right">{vet.received}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </Paper>
+        </div>
+      )
   }
 }
 
-export default connect(mapStoreToProps)(withStyles(styles)(AdminLandingPage));
+export default withRouter(withStyles(styles)(connect(mapStoreToProps)(AdminLandingPage)));

@@ -15,8 +15,8 @@ router.get("/", (req, res) => {
 router.post("/:vet_id/:org_id", (req, res) => {
   const { vet_id, org_id } = req.params;
 
-  const queryText = `INSERT INTO match
-  (vet_id, org_id)
+  const queryText = `INSERT INTO match	
+  (vet_id, org_id)	
   VALUES ($1, $2) RETURNING *`;
   pool
     .query(queryText, [vet_id, org_id])

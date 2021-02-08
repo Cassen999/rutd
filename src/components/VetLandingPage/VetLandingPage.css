@@ -1,0 +1,74 @@
+#matchCard {
+    margin-left: 70px;
+    width: 200px;
+    margin-bottom: 50px;
+    height: 250px;
+}
+
+#btnContainer {
+    margin-left: 50px;
+    padding: 30px;
+    text-align: center;
+}
+
+
+#completeTitle {
+  text-align: center;
+}
+
+#editBtn {
+    margin: 15px;
+}
+
+#emergencyBtn {
+    margin: 15px;
+}
+
+#allMatchBtn {
+    margin: 15px;
+}
+
+#completedPaper {
+    margin-left: 50px;
+    width: 550px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+#incompletePaper {
+    margin-left: 50px;
+    width: 550px;
+    height: 380px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+   
+}
+
+#welcome {
+    text-align: center;
+}
+
+#incompleteTitle {
+    text-align: center;
+}
+
+#incompleteContainer {
+    /* float: left; */
+    
+}
+
+#cardContainer {
+    width: 100%;
+    overflow: auto;
+   text-align: center;
+   padding: 25px;
+}
+
+.matchDisplay {
+    width: 50%;
+    float: left;
+}
+
+#pageBody {
+    
+}

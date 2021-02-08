@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import DemographicsForm from './DemographicsForm';
-
+import CompensationForm from './CompensationForm'
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace
 // the component name TemplateClass with the name for the new
 // component.
-class Demographics extends Component {
+class Compensation extends Component {
   state = {
-    heading: 'Demographics',
+    heading: 'Compensation',
   };
 
   render() {
     return (
       <div>
         <h2>{this.state.heading}</h2>
-        <DemographicsForm/>
+        PERCENTAGE REDUCER: {JSON.stringify(this.props.store.percentageReducer)} 
+
+        <CompensationForm/>
       </div>
     );
   }
 }
 
-export default connect(mapStoreToProps)(Demographics);
+export default connect(mapStoreToProps)(Compensation);

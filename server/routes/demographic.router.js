@@ -22,11 +22,14 @@ router.post('/', (req, res) => {
 
   let queryText = `INSERT INTO "veteran" ("first_name", "last_name", "email", "date_of_birth", 
   "number", "gender_id", "married_id", "children", "homeless", "current_address", "city", 
-  "state_id", "zipcode", "country_id", "mailing_address", "branch_id", "rank_id", "start_date", 
-  "end_date", "status_id", "discharge_id", "injury_id", "compensation", "percentage", "danger_areas", "purple_heart")
-  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26);
+  "state_id", "zipcode", "country_id", "mailing_address")
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);
   `;
-  pool.query(queryText, [demograhpic.first_name, demographic.last_name, demograhpic.email, demograhpic.date_of_birth, demograhpic.number, demograhpic.gender_id])
+  pool.query(queryText, [demograhpic.first_name, demographic.last_name, demograhpic.email, 
+    demograhpic.date_of_birth, demograhpic.number, demograhpic.gender_id, demographic.married_id,
+  demographic.chilren, demographic.homeless, demographic.current_address,
+demographic.city, demographic.state_id, demographic.zipcode, demographic.country_id,
+demographic.mailing_address])
     .then(result => {
       res.sendStatus(201);
     })

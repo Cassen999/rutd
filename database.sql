@@ -1,28 +1,88 @@
--- USER is a reserved keyword with Postgres
--- You must use double quotes in every query that user is in:
--- ex. SELECT * FROM "user";
--- Otherwise you will have errors!
-DROP TABLE "user",
-"type",
-"rank",
-"gender",
-"married",
-"branch",
-"status",
-"country",
-"state",
-"discharge",
-"injury",
-"percentage",
-"categories",
-"veteran",
-"match",
-"organization" CASCADE;
-
+-- Enter in all commands in order they are written from top to bottom
+-- Tables
 CREATE TABLE "type" (
     "id" SERIAL PRIMARY KEY,
     "description" VARCHAR(255) NOT NULL
 );
+
+ALTER SEQUENCE type_id_seq RESTART WITH 1;
+
+CREATE TABLE "gender" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+ALTER SEQUENCE gender_id_seq RESTART WITH 1;
+
+CREATE TABLE "married" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+ALTER SEQUENCE married_id_seq RESTART WITH 1;
+
+CREATE TABLE "branch" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+ALTER SEQUENCE branch_id_seq RESTART WITH 1;
+
+CREATE TABLE "rank" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+ALTER SEQUENCE rank_id_seq RESTART WITH 1;
+
+CREATE TABLE "status" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+ALTER SEQUENCE status_id_seq RESTART WITH 1;
+
+CREATE TABLE "country" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+ALTER SEQUENCE country_id_seq RESTART WITH 1;
+
+CREATE TABLE "state" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+ALTER SEQUENCE state_id_seq RESTART WITH 1;
+
+CREATE TABLE "discharge" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+ALTER SEQUENCE discharge_id_seq RESTART WITH 1;
+
+CREATE TABLE "injury" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+ALTER SEQUENCE injury_id_seq RESTART WITH 1;
+
+CREATE TABLE "percentage" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+ALTER SEQUENCE percentage_id_seq RESTART WITH 1;
+
+CREATE TABLE "categories" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+ALTER SEQUENCE categories_id_seq RESTART WITH 1;
 
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
@@ -31,122 +91,10 @@ CREATE TABLE "user" (
     "type_id" INT REFERENCES "type"
 );
 
-CREATE TABLE "gender" (
-    "id" SERIAL PRIMARY KEY,
-    "description" VARCHAR(255) NOT NULL
-);
+ALTER SEQUENCE user_id_seq RESTART WITH 1;
 
-CREATE TABLE "married" (
-    "id" SERIAL PRIMARY KEY,
-    "description" VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE "branch" (
-    "id" SERIAL PRIMARY KEY,
-    "description" VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE "rank" (
-    "id" SERIAL PRIMARY KEY,
-    "description" VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE "status" (
-    "id" SERIAL PRIMARY KEY,
-    "description" VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE "country" (
-    "id" SERIAL PRIMARY KEY,
-    "description" VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE "state" (
-    "id" SERIAL PRIMARY KEY,
-    "description" VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE "discharge" (
-    "id" SERIAL PRIMARY KEY,
-    "description" VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE "injury" (
-    "id" SERIAL PRIMARY KEY,
-    "description" VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE "percentage" (
-    "id" SERIAL PRIMARY KEY,
-    "description" VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE "categories" (
-    "id" SERIAL PRIMARY KEY,
-    "description" VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE "veteran" (
-    "id" SERIAL PRIMARY KEY,
-    "vet_id" INT REFERENCES "user",
-    "first_name" VARCHAR (255),
-    "last_name" VARCHAR (255),
-    "email" VARCHAR (255),
-    "date_of_birth" VARCHAR (8),
-    "number" VARCHAR (10),
-    "gender_id" INT REFERENCES "gender",
-    "married_id" INT REFERENCES "married",
-    "children" INT,
-    "homeless" BOOLEAN,
-    "current_address" varchar(255),
-    "city" VARCHAR(255),
-    "state_id" INT REFERENCES "state",
-    "zipcode" VARCHAR (5),
-    "country_id" INT REFERENCES "country",
-    "mailing_address" VARCHAR(255),
-    "city2" VARCHAR(255),
-    "state_id2" INT REFERENCES "state",
-    "zipcode2" VARCHAR (5),
-    "country_id2" INT REFERENCES "country",
-    "branch_id" INT REFERENCES "branch",
-    "rank_id" INT REFERENCES "rank",
-    "start_date" VARCHAR(8),
-    "end_date" VARCHAR(8),
-    "status_id" INT REFERENCES "status",
-    "discharge_id" INT REFERENCES "discharge",
-    "injury_id" INT REFERENCES "injury",
-    "compensation" BOOLEAN,
-    "percentage" INT REFERENCES "percentage",
-    "danger_areas" BOOLEAN,
-    "purple_heart" BOOLEAN
-);
-
-CREATE TABLE "organization" (
-    "id" SERIAL PRIMARY KEY,
-    "org_id" INT REFERENCES "user",
-    "name" VARCHAR(255),
-    "number" bigint,
-    "email" VARCHAR(255),
-    "city" VARCHAR(255),
-    "state_id" INT REFERENCES "state",
-    "pdf" bytea,
-    "website" VARCHAR(255),
-    "pictures" bytea,
-    "description" VARCHAR(1000),
-    "categories_id" INT REFERENCES "categories",
-    "approved" BOOLEAN
-);
-
-CREATE TABLE "match" (
-    "id" SERIAL PRIMARY KEY,
-    "vet_id" INT REFERENCES "veteran",
-    "org_id" INT REFERENCES "organization",
-    "received" BOOLEAN,
-    "accepted" BOOLEAN,
-    "contacted" BOOLEAN
-);
-
--- Data --
+-- STOP HERE, DO THE INSERTS FOR ALL OF THE DROPDOWN TABLES
+-- Start inserts for dropdowns
 INSERT INTO
     type (description)
 VALUES
@@ -160,7 +108,7 @@ VALUES
     ('Male'),
     ('Female'),
     ('Other'),
-    ('Perfer not to answer');
+    ('Prefer not to answer');
 
 INSERT INTO
     married (description)
@@ -168,7 +116,7 @@ VALUES
     ('Single'),
     ('Married'),
     ('Divorce'),
-    ('Perfer not to answer');
+    ('Prefer not to answer');
 
 INSERT INTO
     branch (description)
@@ -289,11 +237,421 @@ INSERT INTO
 VALUES
     ('United States of America');
 
+-- End inserts for dropdowns
+-- USING THE BROWSER ENTER 6 DIFFERENT USERS THAT ARE VETS
+-- IN POSTGRESS, CHANGE 3 OF THOSE USER TYPES FROM TYPE 1 TO TYPE 2
+-- NOW THERE SHOULD BE 3 VETS AND 3 ADMIN IN THE USER TABLE
+-- THEN, ADD 3 MORE IN THE BROWSER
+-- BACK IN POSTGRESS, CHANGE THOSE LAST 3 ADDED USERS TO USER TYPE 3 MAKING THEM ORGS
+-- AFTER DOING THIS, YOU SHOULD HAVE 3 USERS OF EACH OF THE 3 TYPES
+-- NOW ADD THE VETERAN AND ORGANIZATION TABLES
+CREATE TABLE "veteran" (
+    "id" SERIAL PRIMARY KEY,
+    "vet_id" INT REFERENCES "user",
+    "first_name" VARCHAR (255),
+    "last_name" VARCHAR (255),
+    "email" VARCHAR (255),
+    "date_of_birth" DATE,
+    "number" VARCHAR (10),
+    "gender_id" INT REFERENCES "gender",
+    "married_id" INT REFERENCES "married",
+    "children" INT,
+    "homeless" BOOLEAN,
+    "current_address" varchar(255),
+    "city" VARCHAR(255),
+    "state_id" INT REFERENCES "state",
+    "zipcode" VARCHAR (5),
+    "country_id" INT REFERENCES "country",
+    "mailing_address" VARCHAR(255),
+    "city2" VARCHAR(255),
+    "state_id2" INT REFERENCES "state",
+    "zipcode2" VARCHAR (5),
+    "country_id2" INT REFERENCES "country",
+    "branch_id" INT REFERENCES "branch",
+    "rank_id" INT REFERENCES "rank",
+    "start_date" DATE,
+    "end_date" DATE,
+    "status_id" INT REFERENCES "status",
+    "discharge_id" INT REFERENCES "discharge",
+    "injury_id" INT REFERENCES "injury",
+    "compensation" BOOLEAN,
+    "percentage" INT REFERENCES "percentage",
+    "danger_areas" BOOLEAN,
+    "purple_heart" BOOLEAN
+);
+
+ALTER SEQUENCE veteran_id_seq RESTART WITH 1;
+
+CREATE TABLE "organization" (
+    "id" SERIAL PRIMARY KEY,
+    "org_id" INT REFERENCES "user",
+    "name" VARCHAR(255),
+    "number" bigint,
+    "email" VARCHAR(255),
+    "city" VARCHAR(255),
+    "state_id" INT REFERENCES "state",
+    "pdf" bytea,
+    "website" VARCHAR(255),
+    "pictures" bytea,
+    "description" VARCHAR(1000),
+    "categories_id" INT REFERENCES "categories",
+    "approved" BOOLEAN
+);
+
+ALTER SEQUENCE organization_id_seq RESTART WITH 1;
+
+CREATE TABLE "match" (
+    "id" SERIAL PRIMARY KEY,
+    "vet_id" INT REFERENCES "veteran",
+    "org_id" INT REFERENCES "organization",
+    "received" TIME,
+    "contacted" TIME,
+    "approved" TIME
+);
+
+ALTER SEQUENCE match_id_seq RESTART WITH 1;
+
+-- End Tables
+-- Inserts into veteran
+INSERT INTO
+    "veteran" (
+        "vet_id",
+        "first_name",
+        "last_name",
+        "email",
+        "date_of_birth",
+        "number",
+        "gender_id",
+        "married_id",
+        "children",
+        "homeless",
+        "current_address",
+        "city",
+        "state_id",
+        "zipcode",
+        "country_id",
+        "mailing_address",
+        "branch_id",
+        "rank_id",
+        "start_date",
+        "end_date",
+        "status_id",
+        "discharge_id",
+        "injury_id",
+        "compensation",
+        "percentage",
+        "danger_areas",
+        "purple_heart"
+    )
+VALUES
+    (
+        1,
+        'Cassen',
+        'Gerber',
+        'fakeemail@email.email',
+        '1990-01-01',
+        5555555555,
+        1,
+        1,
+        1,
+        false,
+        '1235 Second Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        '1235 Second Street',
+        1,
+        1,
+        '2015-03-15',
+        '2019-03-15',
+        1,
+        1,
+        1,
+        false,
+        1,
+        false,
+        false
+    );
+
+INSERT INTO
+    "veteran" (
+        "vet_id",
+        "first_name",
+        "last_name",
+        "email",
+        "date_of_birth",
+        "number",
+        "gender_id",
+        "married_id",
+        "children",
+        "homeless",
+        "current_address",
+        "city",
+        "state_id",
+        "zipcode",
+        "country_id",
+        "mailing_address",
+        "branch_id",
+        "rank_id",
+        "start_date",
+        "end_date",
+        "status_id",
+        "discharge_id",
+        "injury_id",
+        "compensation",
+        "percentage",
+        "danger_areas",
+        "purple_heart"
+    )
+VALUES
+    (
+        2,
+        'Yer',
+        'Thao',
+        'fakeemail@email.email',
+        '1990-01-01',
+        5555555555,
+        2,
+        2,
+        2,
+        false,
+        '1235 Second Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        '1235 Second Street',
+        1,
+        1,
+        '2015-03-15',
+        '2019-03-15',
+        1,
+        1,
+        1,
+        false,
+        1,
+        false,
+        false
+    );
+
+INSERT INTO
+    "veteran" (
+        "vet_id",
+        "first_name",
+        "last_name",
+        "email",
+        "date_of_birth",
+        "number",
+        "gender_id",
+        "married_id",
+        "children",
+        "homeless",
+        "current_address",
+        "city",
+        "state_id",
+        "zipcode",
+        "country_id",
+        "mailing_address",
+        "branch_id",
+        "rank_id",
+        "start_date",
+        "end_date",
+        "status_id",
+        "discharge_id",
+        "injury_id",
+        "compensation",
+        "percentage",
+        "danger_areas",
+        "purple_heart"
+    )
+VALUES
+    (
+        3,
+        'Joel',
+        'Kado',
+        'fakeemail@email.email',
+        '1990-01-01',
+        5555555555,
+        3,
+        3,
+        3,
+        false,
+        '1235 Second Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        '1235 Second Street',
+        1,
+        1,
+        '2015-03-15',
+        '2019-03-15',
+        1,
+        1,
+        1,
+        false,
+        1,
+        false,
+        false
+    );
+
+-- End inserts into veteran
+-- Inserts into organization
+INSERT INTO
+    "organization" (
+        "org_id",
+        "name",
+        "number",
+        "email",
+        "city",
+        "state_id",
+        "pdf",
+        "website",
+        "pictures",
+        "description",
+        "categories_id",
+        "approved"
+    )
+VALUES
+    (
+        7,
+        'Wounded Warrior Project',
+        5555555555,
+        'fakeemail@email.com',
+        'Minneapolis',
+        1,
+        'none',
+        'www.Woundedwarriorproject.org',
+        'none',
+        'Wounded Warrior Project stuff',
+        1,
+        true
+    );
+
+INSERT INTO
+    "organization" (
+        "org_id",
+        "name",
+        "number",
+        "email",
+        "city",
+        "state_id",
+        "pdf",
+        "website",
+        "pictures",
+        "description",
+        "categories_id",
+        "approved"
+    )
+VALUES
+    (
+        8,
+        'Hives for Heroes',
+        8323651183,
+        'support@hivesforheroes.com',
+        'Houston',
+        1,
+        'none',
+        'www.hivesforheroes.com',
+        'none',
+        'We do beekeeping stuff',
+        1,
+        true
+    );
+
+INSERT INTO
+    "organization" (
+        "org_id",
+        "name",
+        "number",
+        "email",
+        "city",
+        "state_id",
+        "pdf",
+        "website",
+        "pictures",
+        "description",
+        "categories_id",
+        "approved"
+    )
+VALUES
+    (
+        9,
+        'American Red Cross',
+        5555555555,
+        'fakeemail@email.com',
+        'Minneapolis',
+        1,
+        'none',
+        'www.redcross.org',
+        'none',
+        'American Red Cross stuff',
+        1,
+        true
+    );
+
+-- End inserts into organization
+-- Inserts into match
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (1, 1, '05:00:00', '06:00:00', '07:00:00');
+
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (2, 2, '04:00:00', '05:00:00', '06:00:00');
+
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (3, 3, '03:00:00', '04:00:00', '05:00:00');
+
+-- End inserts into match
+-- Query for AdminVetList
+SELECT
+    "first_name",
+    "last_name",
+    "match".received,
+    "organization"."name"
+FROM
+    "user"
+    JOIN "veteran" ON "vet_id" = "user".id
+    JOIN "match" ON "match".vet_id = "veteran".id
+    JOIN "organization" ON "organization".id = "match".org_id
+ORDER BY
+    "last_name" ASC
+LIMIT
+    10;
+
+-- End query for AdminVetList
+-- Query to get all vets
 SELECT
     *
 FROM
     veteran;
 
+-- End query to get all vets
+-- Query to get vet and org name for matches
 SELECT
     match.*,
     veteran.first_name,
@@ -302,3 +660,24 @@ FROM
     match
     INNER JOIN veteran ON veteran.id = match.vet_id
     INNER JOIN organization ON organization.id = match.org_id;
+
+-- End query to get vet and org name for matches
+-- Drop all tables
+DROP TABLE "user",
+"type",
+"rank",
+"gender",
+"married",
+"branch",
+"status",
+"country",
+"state",
+"discharge",
+"injury",
+"percentage",
+"categories",
+"veteran",
+"match",
+"organization" CASCADE;
+
+-- End drop all tables

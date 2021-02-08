@@ -5,6 +5,13 @@ import category from './category.reducer';
 import match from './match.reducer';
 import acctTypeReducer from './acctType.reducer';
 import vetReducer from './vet.reducer';
+import maladyReducer from './malady.reducer';
+import vetMatchReducer from './vetMatch.reducer';
+import percentageReducer from './percentage.reducer'
+import vetSearchReducer from './vetSearch.reducer';
+import emailReducer from './email.reducer';
+import details from './details.reducer';
+import resourceDetails from './resourceReducer.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -18,7 +25,14 @@ const rootReducer = combineReducers({
   category,
   match,
   acctTypeReducer,
-  vetReducer
+  vetReducer,
+  maladyReducer,
+  percentageReducer,
+  vetMatchReducer,
+  vetSearchReducer,
+  resourceDetails,
+  emailReducer,
+  details
 });
 
 export default rootReducer;

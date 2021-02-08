@@ -11,6 +11,7 @@ import LoginPage from '../LoginPage/LoginPage';
 // the component name TemplateClass with the name for the new
 // component.
 class GenericLanding extends Component {
+  
   state = {
     heading: 'Generic Landing',
   };
@@ -20,25 +21,12 @@ class GenericLanding extends Component {
     if(this.props.store.user.type_id === 1){
       return(<VetLandingPage/>)
     } else if (this.props.store.user.type_id === 2){
-      alert('Welcome Admin')
       return (<AdminLandingPage/>)
     } else {
       alert('NOT A USER TYPE')
       return(<LoginPage/>) ;
     }
 
-
-    return (
-      <div>
-        <h2>{this.state.heading}</h2>
-
-
-
-
-
-
-      </div>
-    );
   }
 }
 

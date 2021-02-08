@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component } from 'react';
 import {
   HashRouter as Router,
   Route,
@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
+//comment
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
@@ -25,6 +25,13 @@ import AdminResourceList from '../AdminResourceList/AdminResourceList';
 import AdminVetList from '../AdminVetList/AdminVetList';
 import GenericLanding from '../GenericLanding/GenericLanding';
 import OrganizationLandingPage from '../OrganizationLandingPage/OrganizationLandingPage';
+import Service from '../Service/Service'
+import Demographic from '../Demographic/Demographic'
+import Malady from '../Malady/Malady'
+import Compensation from '../Compensation/Compensation'
+import AdminVetView from '../AdminVetView/AdminVetView';
+import AdminResourceEdit from '../AdminResourceEdit/AdminResourceEdit';
+
 import './App.css';
 
 class App extends Component {
@@ -116,6 +123,38 @@ class App extends Component {
                 // authRedirect="/user"
               />
 
+<ProtectedRoute
+               
+                exact
+                path="/service"
+                component={Service}
+                // authRedirect="/user"
+              />
+
+<ProtectedRoute
+               
+               exact
+               path="/demographic"
+               component={Demographic}
+               // authRedirect="/user"
+             /> 
+
+<ProtectedRoute
+               
+               exact
+               path="/malady"
+               component={Malady}
+               // authRedirect="/user"
+             />
+
+<ProtectedRoute
+               
+               exact
+               path="/compensation"
+               component={Compensation}
+               // authRedirect="/user"
+             />
+
               <ProtectedRoute
                 exact
                 path="/adminlanding"
@@ -136,9 +175,29 @@ class App extends Component {
 
               <ProtectedRoute
                 exact
+                path="/adminVetView"
+                component={AdminVetView}
+              />
+
+
+              <ProtectedRoute
+                exact
+                path="/adminResourceEdit"
+                component={AdminResourceEdit}
+              />
+
+
+              <ProtectedRoute
+                exact
                 path="/organizationlanding"
                 component={OrganizationLandingPage}
               />   
+
+{/* <ProtectedRoute
+                exact
+                path="/vetlanding"
+                component={VetLandingPage}
+              />    */}
 
 
               {/* If none of the other routes matched, we will show a 404. */}

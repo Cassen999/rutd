@@ -1,5 +1,9 @@
 .container{
-  width: 100%;
-  max-width: 20rem;
+  width: 50%;
   margin: 20px auto;
+  
+}
+
+.table-head-color{
+  background: #ADFA3B;
 }
