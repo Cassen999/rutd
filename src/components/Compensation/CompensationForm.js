@@ -54,7 +54,9 @@ componentDidMount(){
 }
 state = {
    percentageId: '0',
+
    type: '0',
+   typeTwo: '2',
    value: '0' 
 };
 
@@ -207,6 +209,32 @@ handleChange = event => {
 
 
                 }  
+
+<label>Yes</label>
+              <Radio
+                checked={this.state.typeTwo === '3'}
+                onChange={this.handleInputChangeFor('typeTwo')}
+                value='3'
+                name="Yes"
+                aria-label="Yes"
+                classes={{
+                  root: classes.root,
+                  checked: classes.checked,
+              }}
+              />
+              <label>No</label>
+              <Radio
+                checked={this.state.typeTwo === '2'}
+                onChange={this.handleInputChangeFor('typeTwo')}
+                value='2'
+                name="No"
+                aria-label="No"
+                classes={{
+                  root: classes.root,
+                  checked: classes.checkedTwo,
+              }}
+             />
+
          
        
        
