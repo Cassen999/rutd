@@ -1,6 +1,10 @@
 {
     "cSpell.ignoreWords": [
+        "adminlanding",
         "servicehistory",
         "zipcode"
+    ],
+    "cSpell.words": [
+        "orgs"
     ]
 }
