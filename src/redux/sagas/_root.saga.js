@@ -2,7 +2,6 @@ import { all } from 'redux-saga/effects';
 import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
-import categorySaga from './category.saga';
 import demographicSaga from './demographic.saga'
 import serviceSaga from './service.saga'
 import compensationSaga from './compensation.saga'
@@ -22,7 +21,6 @@ export default function* rootSaga() {
     loginSaga(),
     registrationSaga(),
     userSaga(),
-    categorySaga(),
     demographicSaga(),
     serviceSaga(),
     compensationSaga(),
