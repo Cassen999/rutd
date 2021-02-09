@@ -23,11 +23,18 @@ function* getCompleteMatch(action) {
     console.log('Fetch veteran matches is working');
     try{
         const response = yield axios.get(`/api/match/complete/${action.payload}`);
-        yield put({type: 'SET_VET_MATCHES', payload: response.data});
-        console.log('response.data from db get complete vet matches:', response.data);
+        const allMatches = response.data;
+        const incompleteMatches = allMatches.filter(findIncompleteMatch);
+        yield put({type: 'SET_VET_MATCHES', payload: allMatches});
+        yield put({type: 'SET_INCOMPLETE_MATCHES', payload: incompleteMatches});
+        console.log('response.data from db get complete vet matches:', allMatches);
     } catch(error){
         console.log('error with completed vet matches fetch request', error);
     }        
+}
+
+function findIncompleteMatch(match) {
+    return match.approved === null;
 }
 
 function* vetMatchSaga() {

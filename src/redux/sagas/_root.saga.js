@@ -9,21 +9,19 @@ import demographicSaga from './demographic.saga'
 import serviceSaga from './service.saga'
 import compensationSaga from './compensation.saga'
 import maladySaga from './malady.saga'
-//import demographicSaga from './demographic.saga';
+import emailSaga from './email.saga';
 import vetSaga from './vet.saga';
 import vetMatchSaga from './vetMatch.saga';
 import vetSearchSaga from './vetSearch.saga'
+import details from './details.saga';
+import resourceDetails from './resourceDetails.saga';
+import resourceSaga from './resource.saga';
+import resourceSearchSaga from './resourceSearch.saga';
+import deleteResourceSaga from './deleteResource.saga';
 
-// rootSaga is the primary saga.
-// It bundles up all of the other sagas so our project can use them.
-// This is imported in index.js as rootSaga
-
-// some sagas trigger other sagas, as an example
-// the registration triggers a login
-// and login triggers setting the user
 export default function* rootSaga() {
   yield all([
-    loginSaga(), // login saga is now registered
+    loginSaga(),
     registrationSaga(),
     userSaga(),
     categorySaga(),
@@ -35,6 +33,13 @@ export default function* rootSaga() {
     maladySaga(),
     vetSaga(),
     vetMatchSaga(),
-    vetSearchSaga()
+    vetSearchSaga(),
+    details(),
+    resourceDetails(),
+    emailSaga(),
+    details(),
+    resourceSaga(),
+    resourceSearchSaga(),
+    deleteResourceSaga(),
   ]);
 }

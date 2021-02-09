@@ -10,7 +10,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Typography from "@material-ui/core/Typography";
+// import Typography from "@material-ui/core/Typography";
 
 /*
 ----------------------------- TO DO LIST ON THIS PAGE: -----------------------------
@@ -27,9 +27,6 @@ const styles = theme => ({
     width: '100%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
-  },
-  table: {
-    minWidth: 700,
   },
 });
 
@@ -49,10 +46,9 @@ class AdminLandingPage extends Component {
     this.props.history.push("/adminVetView");
   };
 
-  //TODO Dispatch RESOURCE YOU SELECTED
   handleResource = (resourceID) => {
     console.log("RESOURCE YOU SELECTED:", resourceID);
-    // this.props.dispatch({type: 'GET_RESOURCE', payload: resourceID})
+    this.props.dispatch({type: 'GET_ONE_RESOURCE', payload: resourceID})
     this.props.history.push("/adminResourceEdit");
   };
 
@@ -63,8 +59,9 @@ class AdminLandingPage extends Component {
       return (
         <div className="container">
         <center>
-        {/* {JSON.stringify(this.props.store.vetReducer)} */}
+        {JSON.stringify(this.props.store.vetReducer)}
         <h2>Admin Landing Page</h2>
+        <h4><i>Connections In Progress (Track Time)</i></h4>
         </center>
             <Paper className={classes.root}>
               <Table className={classes.table}>
@@ -73,7 +70,7 @@ class AdminLandingPage extends Component {
                     <TableCell>Name</TableCell>
                     <TableCell align="right">Resource</TableCell>
                     <TableCell align="right">Time Stamp</TableCell>
-                    <TableCell align="right">Protein (g)</TableCell>
+                    {/* <TableCell align="right">Protein (g)</TableCell> */}
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -82,7 +79,7 @@ class AdminLandingPage extends Component {
                       <TableCell component="th" scope="vet" onClick={()=> this.handleVeteran(vet.id)}>
                         {vet.first_name} {vet.last_name}
                       </TableCell>
-                      <TableCell align="right" onClick={()=> this.handleResource(vet.name)}>{vet.name}</TableCell>
+                      <TableCell align="right" onClick={()=> this.handleResource(vet.org_id)}>{vet.name}</TableCell>
                       <TableCell align="right">{vet.received}</TableCell>
                     </TableRow>
                   ))}
@@ -93,4 +90,5 @@ class AdminLandingPage extends Component {
       )
   }
 }
+
 export default withRouter(withStyles(styles)(connect(mapStoreToProps)(AdminLandingPage)));

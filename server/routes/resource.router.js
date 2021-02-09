@@ -58,16 +58,13 @@ router.post("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
+
 // GETS one specific resource
-router.get("/:id", rejectUnauthenticated, (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
   let id = req.params.id;
-  console.log("--- This is the ID of the RESOURCE you clicked on: ", id);
-  const queryText = `SELECT *, organization.name, match.id, match.org_id FROM "organization"
-  JOIN "match" ON "match".org_id = "organization".id
-  WHERE "match".org_id = $1;`;
-  pool.query(queryText, [id]);
-  console.log("--- This is the ID of the RESOURCE you clicked on: ", id);
-  const queryText = `SELECT organization.org_id,
+  console.log('--- This is the ID of the RESOURCE you clicked on: ', id);
+  const queryText =
+    `SELECT organization.org_id,
     organization.name,
     organization.number,
     organization.email,
@@ -82,16 +79,18 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
     LEFT JOIN state ON state.id = "organization".state_id
     LEFT JOIN categories ON categories.id = "organization".categories_id
     WHERE organization.id = $1;`;
-  pool
-    .query(queryText, [id])
+  pool.query(queryText, [id])
     .then((result) => {
-      console.log("GET This is the RESOURCE you've selected: ", result.rows); // WORKING
+      console.log('GET This is the RESOURCE you\'ve selected: ', result.rows); // WORKING
       res.send(result.rows);
     })
     .catch((error) => {
-      console.log("Error inside GET RESOURCE ID route:", error);
+      console.log('Error inside GET RESOURCE ID route:', error);
       res.sendStatus(500);
     });
 });
+
+
+
 
 module.exports = router;

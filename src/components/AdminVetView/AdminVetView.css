@@ -1,0 +1,16 @@
+.flex-grid{
+    display: flex;
+}
+
+.col{
+    flex: 1;
+}
+
+hr{
+    margin-top: 2rem;
+    width: 70%;
+}
+
+/* .admin-landing-button{
+    float: right;
+} */

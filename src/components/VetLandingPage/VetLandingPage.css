@@ -7,10 +7,9 @@
 
 #btnContainer {
     margin-left: 50px;
-    padding: 30px;
+    padding-top: 50px;
     text-align: center;
 }
-
 
 #completeTitle {
   text-align: center;
@@ -18,6 +17,7 @@
 
 #editBtn {
     margin: 15px;
+    right: 8%;
 }
 
 #emergencyBtn {
@@ -26,6 +26,7 @@
 
 #allMatchBtn {
     margin: 15px;
+    left: 8%;
 }
 
 #completedPaper {
@@ -38,10 +39,8 @@
 #incompletePaper {
     margin-left: 50px;
     width: 550px;
-    height: 380px;
     padding-top: 25px;
-    padding-bottom: 25px;
-   
+    padding-bottom: 25px;  
 }
 
 #welcome {
@@ -50,11 +49,6 @@
 
 #incompleteTitle {
     text-align: center;
-}
-
-#incompleteContainer {
-    /* float: left; */
-    
 }
 
 #cardContainer {
@@ -69,6 +63,16 @@
     float: left;
 }
 
-#pageBody {
-    
+#modal-header {
+    margin: 0px;
+    padding: 1px;
+    background-color: rgb(199, 43, 43);
+    text-align: center;
+}
+
+#emergency-contacts {
+    list-style-type: none;
+    font-size: 18px;
+    padding: 0px;
+    margin: 0px;
 }

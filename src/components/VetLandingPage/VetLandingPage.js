@@ -1,68 +1,83 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import Demographic from '../Demographic/Demographic'
-import Service from '../Service/Service'
-// import Health from '../Health/Health'
-import Compensation from '../Compensation/Compensation';
-
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { withRouter } from 'react-router-dom';
 import './VetLandingPage.css';
 import { withStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
 import Grid from '@material-ui/core/Grid';
+import Modal from '@material-ui/core/Modal';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import IconButton from '@material-ui/core/IconButton';
 
 const styles = (theme) => ({
-  root: {
-    flexGrow: 1,
-    padding: theme.spacing(2),
-    display: 'flex',
-    flexWrap: 'wrap',
-    '& > *': {
-      margin: theme.spacing(1),
-      width: theme.spacing(16),
-      height: theme.spacing(16),
-    },
-  },
   gridList: {
     width: 200,
     height: 400,
     padding: 1,
     margin: 10,
+    minWidth: 0,
+    minHeight: 0,
   },
   gridListTile: {
-    border: '2px solid',
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
+    border: '3px ridge #ADFA3B',
+    overflow: 'hidden',
+    minWidth: 0,
   },
   title: {
-    fontSize: 14,
+    fontSize: 26,
   },
   pos: {
     marginBottom: 12,
   },
-  card: {
-    padding: 2,
+  description: {
+    marginTop: 30,
+    marginBottom: 30,
+  },
+  paper: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    width: 500,
+    height: 350,
+    margin: '-175px 0 0 -250px',
+    backgroundColor: '#de9595',
+    border: '2px solid #ADFA3B',
+    paddingBottom: '20px',
+  },
+  contacts: {
+    padding: theme.spacing(4, 5, 1),
+  },
+  closeModal: {
+    marginTop: '35px',
+    marginRight: '10px',
+    left: '85%',
+  },
+  matchContainer: {
+    border: '5px solid #ADFA3B',
   }
 });
 
 class UserPage extends Component {
+
+  constructor (props, context) {
+    super(props, context)
+    this.state = {
+      completeMatchIndex: 0,
+      incompleteMatchIndex: 0,
+      modalOpen: false,
+    }
+  }
   
   componentDidMount() {
     this.props.dispatch({
       type: 'FETCH_COMPLETE_MATCH',
       payload: this.props.store.user.id
     });
+
   }
 
   handleClick = (btnValue) => {
@@ -70,106 +85,158 @@ class UserPage extends Component {
       case 'edit':
         return this.props.history.push('/vetmatches');
       case 'emergency': 
-        return alert('clicked emergency button');
+        return this.setState({modalOpen: true});
+      case 'closeModal': 
+        return this.setState({modalOpen: false});
       case 'allMatches':
         return this.props.history.push('/vetmatches');
+      case 'incrementComplete':
+        return this.setState({completeMatchIndex: +1});
+      case 'incrementIncomplete':
+        return this.setState({incompleteMatchIndex: +1});
+      case 'decrementComplete':
+        return this.setState({completeMatchIndex: -1});
+      case 'decrementIncomplete':
+        return this.setState({incompleteMatchIndex: -1});
+      default:
+        return 'no button clicked';
     }
   }
 
   render() {
-    const { classes } = this.props; 
+
+    const { classes } = this.props;
+    
+    const emergencyModal = (
+      <div className={classes.paper}>
+        <header id="modal-header">
+          <h2 id="modal-title">Emergency Contact Numbers</h2>
+        </header>
+        <div className={classes.contacts}>
+          <ul id="emergency-contacts">
+            <li>Veteran’s Crisis Line</li>
+            <li>1-800-273-8255</li>
+            <br />
+            <li>National Suicide Prevention Lifeline</li>
+            <li>800-273-8255</li>
+            <br />
+            <li>The STARRY Counseling Program Crisis Hotline</li>
+            <li>800-440-9789</li>
+          </ul>      
+        <Button variant="contained" className={classes.closeModal} onClick={() => this.handleClick('closeModal')}>Close</Button>
+        </div>        
+      </div>
+    );
+
+    const matches = this.props.store.vetMatchReducer;
+    const incompleteMatches = this.props.store.incompleteMatchReducer;
+    const { completeMatchIndex, incompleteMatchIndex, modalOpen } = this.state
+
     return (
       <div id="pageBody">
         <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
-        <p>Your ID is: {this.props.store.user.id}</p>
-        REDUX STATE: {JSON.stringify(this.props.store)} 
-
-        {/* <LogOutButton className="log-in" /> */}
-        {/* <Demographic/> */}
-        {/* <Service/> */}
-        {/* <Health/> */}
-        {/* <Compensation/> */}
         <div id="cardContainer">
           <div id="completedMatches" className="matchDisplay"> 
             <h1 id="completeTitle">Complete Matches</h1>
-            <Paper id="completedPaper" elevation={3}>
+            <Paper id="completedPaper" className={classes.matchContainer} elevation={3}>
             <Grid container spacing={1} direction="row">
                 <Grid container item xs={12} spacing={3} justify="space-evenly" alignItems="stretch" className={classes.gridList} >
-                  {this.props.store.vetMatchReducer.map(match => {
-                    return(
-                      <Grid item xs={5} className={classes.gridListTile} key={match.id}>
-                      {/* <Card key={match.id} id="matchCard" variant="outlined" >
-                      <CardContent className={classes.card}> */}
-                      <Typography className={classes.title} color="textSecondary" gutterBottom>
-                        {match.name}
-                      </Typography>
-                      <Typography variant="h5" component="h2">
-                        {match.description}
-                      </Typography>
-                      <Typography className={classes.pos} color="textSecondary">
-                        {match.website}
-                      </Typography>
-                      <Typography variant="body2" component="p">
-                        {match.email}
-                      </Typography>
-                      <Typography variant="body2" component="p">
-                        {match.number}
-                      </Typography>
-                      {/* </CardContent>
-                      </Card>  */}
-                      </Grid>           
-          )
-        })}
-        </Grid>
-        </Grid>
-        </Paper>
+                  {matches.map( (match, index) => {
+                    if (match.approved !== null && (index === completeMatchIndex || index === completeMatchIndex + 1)) {
+                      return (
+                        <Grid item xs={5} className={classes.gridListTile} key={index}>
+                          <img className="resource-icon" alt={match.title} src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png" />
+                          <Typography className={classes.title} color="textSecondary" gutterBottom>
+                            {match.name}
+                          </Typography>
+                          <Typography className={classes.pos} variant="h7" component="h4">
+                            Website
+                          </Typography>
+                          <Typography className={classes.pos} color="textSecondary">
+                            {match.website}
+                          </Typography>
+                          <Typography className={classes.pos} variant="h7" component="h4">
+                            Email
+                          </Typography>                         
+                          <Typography className={classes.pos} color="textSecondary">
+                            {match.email}
+                          </Typography>
+                          <Typography className={classes.pos} variant="h7" component="h4">
+                            Phone Number
+                          </Typography>
+                          <Typography className={classes.pos} color="textSecondary">
+                            {match.number}
+                          </Typography>
+                        </Grid>           
+                      )
+                    } else {
+                      return (
+                        <h3>No Matches to Show</h3>
+                      )
+                    }
+                  })}
+                </Grid>
+              </Grid>
+              <IconButton id="decrement-match-index" variant="contained" onClick={() => this.handleClick('decrementComplete')}><ArrowBackIcon fontSize="large"/></IconButton>
+              <IconButton id="increment-match-index" variant="contained" onClick={() => this.handleClick('incrementComplete')}><ArrowForwardIcon fontSize="large"/></IconButton>
+            </Paper>
+          </div>
+          <div id="incompleteContainer" className="matchDisplay">
+            <h1 id="incompleteTitle">Matches in Progress</h1>
+            <Paper id="incompletePaper" className={classes.matchContainer} elevation={3}>
+            <Grid container spacing={1} direction="row">
+                <Grid container item xs={12} spacing={3} justify="space-evenly" alignItems="stretch" className={classes.gridList} >
+                  {incompleteMatches.map((match, index) => {
+                    if (index === incompleteMatchIndex || index === incompleteMatchIndex + 1) {
+                      return(
+                        <Grid item xs={5} className={classes.gridListTile} key={index}>
+                          <img className="resource-icon" alt={match.title} src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png" />
+                          <Typography className={classes.title} color="textSecondary" gutterBottom>
+                            {match.name}
+                          </Typography>
+                          <Typography className={classes.pos} variant="h7" component="h4">
+                            Website
+                          </Typography>
+                          <Typography className={classes.pos} color="textSecondary">
+                            {match.website}
+                          </Typography>
+                          <Typography className={classes.pos} variant="h7" component="h4">
+                            Email
+                          </Typography>
+                          <Typography className={classes.pos} color="textSecondary">
+                            {match.email}
+                          </Typography>
+                          <Typography className={classes.pos} variant="h7" component="h4">
+                            Phone Number
+                          </Typography>
+                          <Typography className={classes.pos} color="textSecondary">
+                            {match.number}
+                          </Typography>
+                        </Grid>           
+                      )
+                    } else {
+                      return (
+                        <h3>No In Progress Matches to Show</h3>
+                      )
+                    }
+                  })}
+                </Grid>
+              </Grid>
+              <IconButton id="decrement-incomplete-index" variant="contained" onClick={() => this.handleClick('decrementIncomplete')}><ArrowBackIcon fontSize="large"/></IconButton>
+              <IconButton id="increment-incomplete-index" variant="contained" onClick={() => this.handleClick('incrementIncomplete')}><ArrowForwardIcon fontSize="large"/></IconButton>
+            </Paper>
+          </div>
         </div>
-        <div id="incompleteContainer" className="matchDisplay">
-        <h1 id="incompleteTitle">Matches in Progress</h1>
-        <Paper id="incompletePaper" className={classes.root} elevation={3}>
-        <Card id="matchCard" variant="outlined">
-                <CardContent>
-                  <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    Blopadnfa
-                  </Typography>
-                  <Typography variant="h5" component="h2">
-                    asldkfn
-                  </Typography>
-                  <Typography className={classes.pos} color="textSecondary">
-                    asdfasdf
-                  </Typography>
-                  <Typography variant="body2" component="p">
-                    asdfasdfasdf
-                  </Typography>
-                  <Typography variant="body2" component="p">
-                    asdfasdfa
-                  </Typography>
-                </CardContent>
-              </Card>
-        </Paper>
-        </div>
-        </div>
-                    <div id="btnContainer">
-              <Button id="editBtn" variant="contained" onClick={() => this.handleClick('edit')}>View/Edit Profile</Button>
-              <Button id="emergencyBtn" variant="contained" color="secondary" onClick={() => this.handleClick('emergency')}>Emergency Numbers</Button>
-              <Button id="allMatchBtn" variant="contained" onClick={() => this.handleClick('allMatches')}>View All Matches</Button>
-            </div>  
+          <div id="btnContainer">
+              <Button id="editBtn" size="large" variant="contained" onClick={() => this.handleClick('edit')}>View/Edit Profile</Button>
+              <Button id="emergencyBtn" size="large" variant="contained" color="secondary" onClick={() => this.handleClick('emergency')}>Emergency Numbers</Button>
+              <Button id="allMatchBtn" size="large" variant="contained" onClick={() => this.handleClick('allMatches')}>View All Matches</Button>
+          </div>
+          <Modal open={modalOpen} aria-labelledby="modal-title" aria-describedby="emergency-contacts">{emergencyModal}</Modal>            
       </div>
     );
   }
 }
 
-// this allows us to use <App /> in index.js
 export default withRouter(withStyles(styles, {withTheme: true})(connect(mapStoreToProps)(UserPage)));
-
-
-// TODO //
-
-// Nav Bar
-// GET route to get their matches in progress
-// GET route to get their completed matches
-// Set up card view for in progress and completed matches
-// View and Edit button routes
-// Emergency numbers button
-// View all Matches button - route and dispatch
 
