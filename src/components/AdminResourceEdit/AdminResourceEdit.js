@@ -2,31 +2,21 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import "../AdminVetView/AdminVetView.css";
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
 
 // TO DO LIST ON THIS PAGE:
 // - Make this page editable for admin with text fields
-// -
-// -
-// -
-// -
 
-// const styles = theme => ({
-//   container: {
-//     display: 'flex',
-//     flexWrap: 'wrap',
-//   },
-//   textField: {
-//     marginLeft: theme.spacing.unit,
-//     marginRight: theme.spacing.unit,
-//     width: 200,
-//   },
-//   dense: {
-//     marginTop: 19,
-//   },
-//   menu: {
-//     width: 200,
-//   },
-// })
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+});
 
 class AdminResourceEdit extends Component {
   state = {
@@ -71,11 +61,11 @@ class AdminResourceEdit extends Component {
           );
         })}
         <hr></hr>
-        <center>
-          <button className="admin-landing-button" onClick={this.goBackHome}>
-            Back
-          </button>
-        </center>
+          <center>
+            <Button  
+              className="admin-landing-button" variant="contained" 
+              onClick={this.goBackHome}>Admin Landing Page</Button>
+          </center>
       </div>
     );
   }

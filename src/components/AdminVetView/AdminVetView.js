@@ -2,11 +2,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import '../AdminVetView/AdminVetView.css';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
 
-// Basic class component structure for React with default state
-// value setup. When making a new component be sure to replace
-// the component name TemplateClass with the name for the new
-// component.
+
+// TO DO LIST:
+// Style this page
+
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+});
+
+
 class AdminVetView extends Component {
   state = {
     heading: 'Admin Vet View',
@@ -65,11 +78,14 @@ class AdminVetView extends Component {
           )})}
           <hr></hr>
           <center>
-            <button className="admin-landing-button" onClick={this.goBackHome}>Back</button>
+            <Button  
+              className="admin-landing-button" variant="contained" 
+              onClick={this.goBackHome}>Admin Landing Page</Button>
           </center>
       </div>
     );
   }
 }
 
-export default connect(mapStoreToProps)(AdminVetView);
+
+export default connect(mapStoreToProps)(withStyles(styles)(AdminVetView));
