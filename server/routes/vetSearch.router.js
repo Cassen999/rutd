@@ -2,17 +2,20 @@ const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
 const {
-  rejectUnauthenticated,
+    rejectUnauthenticatedAdmin,
 } = require("../modules/authentication-middleware");
 
-router.get("/", rejectUnauthenticated, (req, res) => {
+router.get("/", rejectUnauthenticatedAdmin, (req, res) => {
     const searchText = `%${req.query.searchText}%`
     console.log('vetSearch req.query ', req.query)
-    const sqlText = `SELECT "first_name", "last_name", "match".received, "organization"."name" FROM "user"
+    const sqlText = `SELECT "first_name", "last_name", "match".received, 
+                        "organization"."name" FROM "user"
                         JOIN "veteran" ON "vet_id" = "user".id
                         JOIN "match" ON "match".vet_id = "veteran".id
-                        JOIN "organization" ON "organization".id = "match".org_id
-                        WHERE "user".type_id = '1' AND "veteran".first_name || "veteran".last_name 
+                        JOIN "organization" ON "organization".id = 
+                        "match".org_id
+                        WHERE "user".type_id = '1' AND "veteran".first_name || 
+                        "veteran".last_name 
                         ILIKE $1;`;
     pool.query(sqlText, [searchText])
     .then((result) => {

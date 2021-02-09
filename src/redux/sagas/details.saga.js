@@ -4,11 +4,8 @@ import {
     takeLatest
 } from 'redux-saga/effects';
 
-
-
 function* getOneVet(action) {
     try {
-        // sending id of dream selected
         console.log('You\'ve chosen a dream with ID #:', action.payload);
 
         const response = yield axios.get(`/api/vet/${action.payload}`) // 
@@ -21,11 +18,8 @@ function* getOneVet(action) {
     }
 }
 
-
-
 function* Details() {
     yield takeLatest('GET_ONE_VET', getOneVet);
 }
-
 
 export default Details;

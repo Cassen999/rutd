@@ -98,6 +98,8 @@ class UserPage extends Component {
         return this.setState({completeMatchIndex: -1});
       case 'decrementIncomplete':
         return this.setState({incompleteMatchIndex: -1});
+      default:
+        return 'no button clicked';
     }
   }
 
@@ -141,9 +143,9 @@ class UserPage extends Component {
                 <Grid container item xs={12} spacing={3} justify="space-evenly" alignItems="stretch" className={classes.gridList} >
                   {matches.map( (match, index) => {
                     if (match.approved !== null && (index === completeMatchIndex || index === completeMatchIndex + 1)) {
-                      return(
-                        <Grid item xs={5} className={classes.gridListTile} key={match.id}>
-                          <img className="resource-icon" src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png" />
+                      return (
+                        <Grid item xs={5} className={classes.gridListTile} key={index}>
+                          <img className="resource-icon" alt={match.title} src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png" />
                           <Typography className={classes.title} color="textSecondary" gutterBottom>
                             {match.name}
                           </Typography>
@@ -167,6 +169,10 @@ class UserPage extends Component {
                           </Typography>
                         </Grid>           
                       )
+                    } else {
+                      return (
+                        <h3>No Matches to Show</h3>
+                      )
                     }
                   })}
                 </Grid>
@@ -183,8 +189,8 @@ class UserPage extends Component {
                   {incompleteMatches.map((match, index) => {
                     if (index === incompleteMatchIndex || index === incompleteMatchIndex + 1) {
                       return(
-                        <Grid item xs={5} className={classes.gridListTile} key={match.id}>
-                          <img className="resource-icon" src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png" />
+                        <Grid item xs={5} className={classes.gridListTile} key={index}>
+                          <img className="resource-icon" alt={match.title} src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png" />
                           <Typography className={classes.title} color="textSecondary" gutterBottom>
                             {match.name}
                           </Typography>
@@ -207,6 +213,10 @@ class UserPage extends Component {
                             {match.number}
                           </Typography>
                         </Grid>           
+                      )
+                    } else {
+                      return (
+                        <h3>No In Progress Matches to Show</h3>
                       )
                     }
                   })}

@@ -2,10 +2,10 @@ const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
 const {
-  rejectUnauthenticated,
+    rejectUnauthenticatedAdmin,
 } = require("../modules/authentication-middleware");
 
-router.get("/", rejectUnauthenticated, (req, res) => {
+router.get("/", rejectUnauthenticatedAdmin, (req, res) => {
     const searchText = `%${req.query.searchText}%`
     console.log('vetSearch req.query ', req.query)
     const sqlText = `SELECT "organization"."id", "name" FROM "organization"
