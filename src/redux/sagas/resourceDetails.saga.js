@@ -4,13 +4,11 @@ import {
     takeLatest
 } from 'redux-saga/effects';
 
-
-
 function* getOneResource(action) {
     try {
         // sending id of dream selected
-        console.log('You\'ve chosen a resource with ID #:', action.payload); // chrome console log
-        const response = yield axios.get(`/api/resource/${action.payload}`) // 
+        console.log('You\'ve chosen a resource with ID #:', action.payload);
+        const response = yield axios.get(`/api/resource/${action.payload}`); 
         yield put({
             type: 'SET_ONE_RESOURCE',
             payload: response.data
@@ -20,11 +18,8 @@ function* getOneResource(action) {
     }
 }
 
-
-
 function* resourceDetails() {
     yield takeLatest('GET_ONE_RESOURCE', getOneResource);
 }
-
 
 export default resourceDetails;

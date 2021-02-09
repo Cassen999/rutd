@@ -3,8 +3,6 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import categorySaga from './category.saga';
-import matchSaga from './match.saga'
-import acctType from './acctType.saga';
 import demographicSaga from './demographic.saga'
 import serviceSaga from './service.saga'
 import compensationSaga from './compensation.saga'
@@ -25,8 +23,6 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     categorySaga(),
-    matchSaga(),
-    acctType(),
     demographicSaga(),
     serviceSaga(),
     compensationSaga(),

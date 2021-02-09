@@ -2,13 +2,10 @@ const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
 const {
-  rejectUnauthenticated,
+  rejectUnauthenticatedAdmin,
 } = require("../modules/authentication-middleware");
-/**
- * GET all organization
- */
 
-router.get("/", rejectUnauthenticated, (req, res) => {
+router.get("/", rejectUnauthenticatedAdmin, (req, res) => {
   const queryText = "SELECT * FROM organization;";
   pool
     .query(queryText)
@@ -19,10 +16,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
-/**
- * POST organization
- */
-router.post("/", rejectUnauthenticated, (req, res) => {
+router.post("/", rejectUnauthenticatedAdmin, (req, res) => {
   const name = req.body.name;
   const number = req.body.number;
   const email = req.body.email;
@@ -35,8 +29,10 @@ router.post("/", rejectUnauthenticated, (req, res) => {
   const categories_id = req.body.categories_id;
   const approved = req.body.approved;
   const queryText = `INSERT INTO organization	
-      (name, number, email, city, state_id, pdf, website, pictures, description, categories_id, approved)	
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id";`;
+                      (name, number, email, city, state_id, pdf, website, 
+                      pictures, description, categories_id, approved)	
+                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, 
+                      $11) RETURNING "id";`;
   pool
     .query(queryText, [
       name,
@@ -58,9 +54,8 @@ router.post("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
-
 // GETS one specific resource
-router.get('/:id', rejectUnauthenticated, (req, res) => {
+router.get('/:id', rejectUnauthenticatedAdmin, (req, res) => {
   let id = req.params.id;
   console.log('--- This is the ID of the RESOURCE you clicked on: ', id);
   const queryText =
@@ -89,8 +84,5 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
     });
 });
-
-
-
 
 module.exports = router;
