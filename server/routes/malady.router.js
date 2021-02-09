@@ -1,14 +1,8 @@
-//import mapStoreToProps from '../../redux/mapStoreToProps';
-
-
-
-
-
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 const {
-  rejectUnauthenticated,
+  rejectUnauthenticatedVet,
 } = require('../modules/authentication-middleware');
 
 /**
@@ -20,21 +14,14 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   console.log('req.user:', req.user);
 
   let queryText = `SELECT * FROM "injury"`;
-                    
-  
+
   pool.query(queryText).then((result) => {
       res.send(result.rows);
   }).catch((error) => {
       console.log(error);
       res.sendStatus(500);
   });
-
-
 });
-
-
-
-
 
 router.put('/',  (req, res) => {
   console.log('in PUT');
@@ -49,10 +36,9 @@ console.log('in /malady GET route');
   console.log('req.user:', req.user);
 
 
-  //console.log(`Updating book ${id} with `, book);
-let queryText = `UPDATE "veteran"
-SET "injury_id" = $1
-WHERE "id" = $2;`;
+  let queryText = `UPDATE "veteran"
+                    SET "injury_id" = $1
+                    WHERE "id" = $2;`;
 
   // TODO - REPLACE BELOW WITH YOUR CODE
   pool.query(queryText, [maladyId, ]).then( (result) => {
@@ -67,9 +53,4 @@ WHERE "id" = $2;`;
 
 });
 
-
-
-
-
-
-    module.exports = router;
+module.exports = router;

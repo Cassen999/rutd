@@ -1,22 +1,14 @@
-//import mapStoreToProps from '../../redux/mapStoreToProps';
-
-
-
-
-
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 const {
-  rejectUnauthenticated,
+  rejectUnauthenticatedVet,
 } = require('../modules/authentication-middleware');
 
-/**
- */
-router.put('/:id',  (req, res) => {
+router.put('/', rejectUnauthenticatedVet, (req, res) => {
   console.log('in PUT');
-  
-  let service = req.body; // Book with updated content
+  //might need id parameter that i deleted
+  let service = req.body;
   
   let userId = req.user.id; // id of the book to update
 console.log('Updating');
@@ -42,9 +34,4 @@ WHERE "vet_id" = $7;`;
 
 });
 
-
-
-
-
-
-    module.exports = router;
+module.exports = router;

@@ -1,40 +1,28 @@
-//import mapStoreToProps from '../../redux/mapStoreToProps';
-
-
-
-
-
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 const {
-  rejectUnauthenticated,
+  rejectUnauthenticatedVet,
 } = require('../modules/authentication-middleware');
 
-/**
- * GET route template
- */
-router.get('/', rejectUnauthenticated, (req, res) => {
-  // GET route code here
+router.get('/', rejectUnauthenticatedVet, (req, res) => {
+  
   console.log('in /match GET route');
   console.log('Is User logged in?', req.isAuthenticated());
   console.log('req.user:', req.user);
 
   let queryText = `SELECT * FROM "match"`;
                     
-  
   pool.query(queryText).then((result) => {
       res.send(result.rows);
   }).catch((error) => {
       console.log(error);
       res.sendStatus(500);
   });
-
-
 });
 
+// GET route for complete matches 
 router.get('/complete/:id', (req, res) => {
-  // GET route for complete matches 
   console.log('in /match/complete GET route');
   console.log('Is User logged in?');
   console.log('req.user:', req.user);
@@ -50,11 +38,6 @@ router.get('/complete/:id', (req, res) => {
       console.log(error);
       res.sendStatus(500);
   });
-
-
 });
 
-
-
-
-    module.exports = router;
+module.exports = router;

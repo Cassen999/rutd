@@ -1,19 +1,11 @@
 const percentageReducer = (state = [], action) => {
-    switch (action.type) {
-      case 'SET_PERCENTAGE':
-        return action.payload;
-        // case 'SET_COMPENSATION':
-        // return action.payload;
-    //   case 'UNSET_SECRETS':
-    //     return [];
-    
+  switch (action.type) {
+    case 'SET_PERCENTAGE':
+      return action.payload;
+    default:
+        return state;
+  }
+};
 
-      default:
-         return state;
-    }
-  };
-  
-  // user will be on the redux state at:
-  // state.user
-  export default percentageReducer;
+export default percentageReducer;
   
