@@ -82,8 +82,8 @@ class UserPage extends Component {
 
   handleClick = (btnValue) => {
     switch (btnValue) {
-      case 'edit':
-        return this.props.history.push('/vetmatches');
+      case 'profile':
+        return this.props.history.push('/profile');
       case 'emergency': 
         return this.setState({modalOpen: true});
       case 'closeModal': 
@@ -169,7 +169,7 @@ class UserPage extends Component {
                           </Typography>
                         </Grid>           
                       )
-                    } else {
+                    } else if ( !matches.length ) {
                       return (
                         <h3>No Matches to Show</h3>
                       )
@@ -214,7 +214,7 @@ class UserPage extends Component {
                           </Typography>
                         </Grid>           
                       )
-                    } else {
+                    } else if ( !incompleteMatches.length ) {
                       return (
                         <h3>No In Progress Matches to Show</h3>
                       )
@@ -228,7 +228,7 @@ class UserPage extends Component {
           </div>
         </div>
           <div id="btnContainer">
-              <Button id="editBtn" size="large" variant="contained" onClick={() => this.handleClick('edit')}>View/Edit Profile</Button>
+              <Button id="editBtn" size="large" variant="contained" onClick={() => this.handleClick('profile')}>View/Edit Profile</Button>
               <Button id="emergencyBtn" size="large" variant="contained" color="secondary" onClick={() => this.handleClick('emergency')}>Emergency Numbers</Button>
               <Button id="allMatchBtn" size="large" variant="contained" onClick={() => this.handleClick('allMatches')}>View All Matches</Button>
           </div>
