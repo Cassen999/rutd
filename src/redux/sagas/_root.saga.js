@@ -17,6 +17,7 @@ import details from './details.saga';
 import resourceDetails from './resourceDetails.saga';
 import resourceSaga from './resource.saga';
 import resourceSearchSaga from './resourceSearch.saga';
+import deleteResourceSaga from './deleteResource.saga';
 
 export default function* rootSaga() {
   yield all([
@@ -39,5 +40,6 @@ export default function* rootSaga() {
     details(),
     resourceSaga(),
     resourceSearchSaga(),
+    deleteResourceSaga(),
   ]);
 }

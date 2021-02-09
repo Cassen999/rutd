@@ -54,6 +54,11 @@ class AdminResourceList extends Component {
     })
   }
 
+  handleDelete = (resource_id) => {
+    this.props.dispatch({type: 'DELETE_RESOURCE', payload: resource_id})
+    console.log('handle delete event, resource_id', resource_id)
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -110,7 +115,8 @@ class AdminResourceList extends Component {
                     <TableCell>
                       <Button
                         variant="contained"
-                        color="secondary">
+                        color="secondary"
+                        onClick={() => this.handleDelete(resource.id)}>
                         Delete
                       </Button>
                     </TableCell>
@@ -134,14 +140,14 @@ class AdminResourceList extends Component {
                     <TableCell>
                       <Button
                         variant="contained">
-                        Delete
+                        Edit
                       </Button>
                     </TableCell>
                     <TableCell>
                       <Button
                         variant="contained"
                         color="secondary">
-                        Edit
+                        Delete
                       </Button>
                     </TableCell>
                   </TableRow>
