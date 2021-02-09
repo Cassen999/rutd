@@ -185,9 +185,9 @@ handleChange = event => {
             value={this.state.value}
             onChange={this.handleChange}
           >
-               {percentages.map((percent, i) => (
+               {percentages.map((percent) => (
 
-            <FormControlLabel value={percent.description} 
+            <FormControlLabel key={percent.description} value={percent.description} 
             control={<Radio onClick={(event)=>this.handleClick(event, percent.id)}
                
                />} 
