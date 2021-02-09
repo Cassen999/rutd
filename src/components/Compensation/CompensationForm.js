@@ -57,7 +57,11 @@ state = {
 
    type: '0',
    typeTwo: '2',
-   value: '0' 
+   value: '0',
+   name: '',
+   age: '',
+   multiline: '',
+   currency: '' 
 };
 
 handleChange = event => {
@@ -98,9 +102,20 @@ handleChange = event => {
 
    }
 
+   handleTextChange = name => event => {
+      this.setState({ 
+         ...this.state,
+         [name]: event.target.value }, function() {
+            console.log(`State has been set: ${this.state.multiline}`)
+         });
+    };
+  
+
    handleInputChangeFor = (propertyName) => (event) => {
       this.setState({
         [propertyName]: event.target.value,
+      }, function() {
+         console.log(`State has been set`)
       });
     };
   
@@ -209,7 +224,8 @@ handleChange = event => {
 
 
                 }  
-
+Have you been deployed to imminent danger areas
+<br/>
 <label>Yes</label>
               <Radio
                 checked={this.state.typeTwo === '3'}
@@ -236,9 +252,22 @@ handleChange = event => {
              />
 
          
-       
-       
-       
+{ this.state.typeTwo === '3' && // if this part is false, the next part won't show
+<form>
+<TextField
+          id="standard-multiline-flexible"
+          label="Describe danger areas"
+          multiline
+          rows="5"
+          variant='outlined'
+          rowsMax="10"
+          value={this.state.multiline}
+          onChange={this.handleTextChange('multiline')}
+          className={classes.textField}
+          margin="normal"
+        />
+       </form>
+            }
        
          {/* <div>
   {percentages.map((percent, i) => (
