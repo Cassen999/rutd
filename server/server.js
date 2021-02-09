@@ -22,6 +22,9 @@ const joinRouter = require("./routes/join-org.router.js");
 const resourceRouter = require("./routes/resource.router");
 const emailRouter = require("./routes/email.router");
 const resourceSearchRouter = require("./routes/resourceSearch.router");
+const deleteResourceRouter = require('./routes/deleteResource.router');
+// const { delete } = require("./routes/category.router");
+
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -48,7 +51,8 @@ app.use("/api/join", joinRouter);
 app.use("/api/resource", resourceRouter);
 app.use("/api/vetsearch", vetSearchRouter);
 app.use("/api/email", emailRouter);
-app.use("/api/resourceSearch", resourceSearchRouter)
+app.use("/api/resourceSearch", resourceSearchRouter);
+app.use("/api/deleteResource", deleteResourceRouter);
 
 // Serve static files
 app.use(express.static("build"));
