@@ -11,22 +11,23 @@ function* compensationSaga() {
   yield takeLatest('FETCH_PERCENTAGE', fetchPercentageSaga);
 }
 
-function* updateCompensationSaga(action) {
-  console.log('In updateCompensationSaga...')
-  console.log('payload:', action.payload)
-  try {
-    const config = {
-      headers: { 'Content-Type': 'application/json' },
-      withCredentials: true,
-    };
-
-    const response = yield axios.put('api/health', action.payload, config);
-
-    yield put({ type: 'FETCH_ART'});
-  } catch (error) {
-    console.log('Art get request failed', error);
+  function* updateCompensationSaga(action) {
+    console.log('In updateCompensationSaga...')
+    let compensation = action.payload
+    console.log('payload:', compensation)
+    try {
+      const config = {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      };
+  
+    //  const response = yield axios.put('compensation', action.payload, config);
+  
+      yield put({ type: 'SET_COMPENSATION', payload: compensation});
+    } catch (error) {
+      console.log('Art get request failed', error);
+    }
   }
-}
 
 function* fetchPercentageSaga(action) {
   console.log('In fetchPercentageSaga...')

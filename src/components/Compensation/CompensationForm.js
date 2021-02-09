@@ -88,7 +88,7 @@ handleChange = event => {
       // console.log('Setting state...');
 
       this.setState({
-         percentage : percentId
+         percentageId : percentId
 
          },function() {
             console.log(`percentage ID: ${this.state.percentage}`);
@@ -121,15 +121,15 @@ handleChange = event => {
   
 
    saveCompensation = () => {
-      if (this.state.newVet.first_name === '') {
-         alert('A name is required for registration.')
-      } else {
+      // if (this.state.newVet.first_name === '') {
+      //    alert('A name is required for registration.')
+      // } else {
 
-         console.log(`Saving ${this.state.newVet.first_name}'s demographics to Database...`);
+         console.log(`Saving compensation rate...`);
          //Clear message... should say Hello!
          //console.log(`Sending ${this.state.newArt} to DB.`);
 
-         this.props.dispatch({ type: 'UPDATE_COMPENSATION', payload: this.state.newVet })
+         this.props.dispatch({ type: 'UPDATE_COMPENSATION', payload: this.state.percentageId })
          this.setState({
             newVet: {
 
@@ -142,7 +142,7 @@ handleChange = event => {
          // this.props.history.push('/home')
       }
 
-   }
+   // }
 
 
    render() {
@@ -197,7 +197,7 @@ handleChange = event => {
             aria-label="Compensation Rate"
             name="gender1"
             className={classes.group}
-            value={this.state.value}
+            value={this.state.percentId}
             onChange={this.handleChange}
           >
                {percentages.map((percent) => (
@@ -266,9 +266,11 @@ Have you been deployed to imminent danger areas
           className={classes.textField}
           margin="normal"
         />
+
        </form>
             }
-       
+                               <button onClick={this.saveCompensation}>Next</button>
+
          {/* <div>
   {percentages.map((percent, i) => (
     this.state.type === '1'

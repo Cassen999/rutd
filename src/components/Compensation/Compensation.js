@@ -16,6 +16,9 @@ class Compensation extends Component {
       <div>
         <h2>{this.state.heading}</h2>
         PERCENTAGE REDUCER: {JSON.stringify(this.props.store.percentageReducer)} 
+        <br/>
+        COMPENSATION REDUCER: {JSON.stringify(this.props.store.compensationReducer)} 
+
 <center>
         <CompensationForm/>
         </center>
