@@ -1,7 +1,5 @@
 -- Enter in all commands in order they are written from top to bottom
-
 -- Tables
-
 CREATE TABLE "type" (
     "id" SERIAL PRIMARY KEY,
     "description" VARCHAR(255) NOT NULL
@@ -96,7 +94,6 @@ CREATE TABLE "user" (
 ALTER SEQUENCE user_id_seq RESTART WITH 1;
 
 -- STOP HERE, DO THE INSERTS FOR ALL OF THE DROPDOWN TABLES
-
 -- Start inserts for dropdowns
 INSERT INTO
     type (description)
@@ -239,8 +236,8 @@ INSERT INTO
     country (description)
 VALUES
     ('United States of America');
--- End inserts for dropdowns
 
+-- End inserts for dropdowns
 -- USING THE BROWSER ENTER 6 DIFFERENT USERS THAT ARE VETS
 -- IN POSTGRESS, CHANGE 3 OF THOSE USER TYPES FROM TYPE 1 TO TYPE 2
 -- NOW THERE SHOULD BE 3 VETS AND 3 ADMIN IN THE USER TABLE
@@ -248,7 +245,6 @@ VALUES
 -- BACK IN POSTGRESS, CHANGE THOSE LAST 3 ADDED USERS TO USER TYPE 3 MAKING THEM ORGS
 -- AFTER DOING THIS, YOU SHOULD HAVE 3 USERS OF EACH OF THE 3 TYPES
 -- NOW ADD THE VETERAN AND ORGANIZATION TABLES
-
 CREATE TABLE "veteran" (
     "id" SERIAL PRIMARY KEY,
     "vet_id" INT REFERENCES "user",
@@ -316,62 +312,358 @@ CREATE TABLE "match" (
 ALTER SEQUENCE match_id_seq RESTART WITH 1;
 
 -- End Tables
-
 -- Inserts into veteran
-INSERT INTO "veteran" ("vet_id", "first_name", "last_name", "email", "date_of_birth", "number", "gender_id", "married_id", "children", "homeless", "current_address", "city", "state_id", "zipcode", "country_id", "mailing_address", "branch_id", "rank_id", "start_date", "end_date", "status_id", "discharge_id", "injury_id", "compensation", "percentage", "danger_areas", "purple_heart")
-VALUES (1, 'Cassen', 'Gerber', 'fakeemail@email.email', '1990-01-01', 5555555555, 1, 1, 1, false, '1235 Second Street', 'Minneapolis', 1, 55420, 1, '1235 Second Street', 1, 1, '2015-03-15', '2019-03-15', 1, 1, 1, false, 1, false, false);
+INSERT INTO
+    "veteran" (
+        "vet_id",
+        "first_name",
+        "last_name",
+        "email",
+        "date_of_birth",
+        "number",
+        "gender_id",
+        "married_id",
+        "children",
+        "homeless",
+        "current_address",
+        "city",
+        "state_id",
+        "zipcode",
+        "country_id",
+        "mailing_address",
+        "branch_id",
+        "rank_id",
+        "start_date",
+        "end_date",
+        "status_id",
+        "discharge_id",
+        "injury_id",
+        "compensation",
+        "percentage",
+        "danger_areas",
+        "purple_heart"
+    )
+VALUES
+    (
+        1,
+        'Cassen',
+        'Gerber',
+        'fakeemail@email.email',
+        '1990-01-01',
+        5555555555,
+        1,
+        1,
+        1,
+        false,
+        '1235 Second Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        '1235 Second Street',
+        1,
+        1,
+        '2015-03-15',
+        '2019-03-15',
+        1,
+        1,
+        1,
+        false,
+        1,
+        false,
+        false
+    );
 
-INSERT INTO "veteran" ("vet_id", "first_name", "last_name", "email", "date_of_birth", "number", "gender_id", "married_id", "children", "homeless", "current_address", "city", "state_id", "zipcode", "country_id", "mailing_address", "branch_id", "rank_id", "start_date", "end_date", "status_id", "discharge_id", "injury_id", "compensation", "percentage", "danger_areas", "purple_heart")
-VALUES (2, 'Yer', 'Thao', 'fakeemail@email.email', '1990-01-01', 5555555555, 2, 2, 2, false, '1235 Second Street', 'Minneapolis', 1, 55420, 1, '1235 Second Street', 1, 1, '2015-03-15', '2019-03-15', 1, 1, 1, false, 1, false, false);
+INSERT INTO
+    "veteran" (
+        "vet_id",
+        "first_name",
+        "last_name",
+        "email",
+        "date_of_birth",
+        "number",
+        "gender_id",
+        "married_id",
+        "children",
+        "homeless",
+        "current_address",
+        "city",
+        "state_id",
+        "zipcode",
+        "country_id",
+        "mailing_address",
+        "branch_id",
+        "rank_id",
+        "start_date",
+        "end_date",
+        "status_id",
+        "discharge_id",
+        "injury_id",
+        "compensation",
+        "percentage",
+        "danger_areas",
+        "purple_heart"
+    )
+VALUES
+    (
+        2,
+        'Yer',
+        'Thao',
+        'fakeemail@email.email',
+        '1990-01-01',
+        5555555555,
+        2,
+        2,
+        2,
+        false,
+        '1235 Second Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        '1235 Second Street',
+        1,
+        1,
+        '2015-03-15',
+        '2019-03-15',
+        1,
+        1,
+        1,
+        false,
+        1,
+        false,
+        false
+    );
 
-INSERT INTO "veteran" ("vet_id", "first_name", "last_name", "email", "date_of_birth", "number", "gender_id", "married_id", "children", "homeless", "current_address", "city", "state_id", "zipcode", "country_id", "mailing_address", "branch_id", "rank_id", "start_date", "end_date", "status_id", "discharge_id", "injury_id", "compensation", "percentage", "danger_areas", "purple_heart")
-VALUES (3, 'Joel', 'Kado', 'fakeemail@email.email', '1990-01-01', 5555555555, 3, 3, 3, false, '1235 Second Street', 'Minneapolis', 1, 55420, 1, '1235 Second Street', 1, 1, '2015-03-15', '2019-03-15', 1, 1, 1, false, 1, false, false);
+INSERT INTO
+    "veteran" (
+        "vet_id",
+        "first_name",
+        "last_name",
+        "email",
+        "date_of_birth",
+        "number",
+        "gender_id",
+        "married_id",
+        "children",
+        "homeless",
+        "current_address",
+        "city",
+        "state_id",
+        "zipcode",
+        "country_id",
+        "mailing_address",
+        "branch_id",
+        "rank_id",
+        "start_date",
+        "end_date",
+        "status_id",
+        "discharge_id",
+        "injury_id",
+        "compensation",
+        "percentage",
+        "danger_areas",
+        "purple_heart"
+    )
+VALUES
+    (
+        3,
+        'Joel',
+        'Kado',
+        'fakeemail@email.email',
+        '1990-01-01',
+        5555555555,
+        3,
+        3,
+        3,
+        false,
+        '1235 Second Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        '1235 Second Street',
+        1,
+        1,
+        '2015-03-15',
+        '2019-03-15',
+        1,
+        1,
+        1,
+        false,
+        1,
+        false,
+        false
+    );
+
 -- End inserts into veteran
-
 -- Inserts into organization
-INSERT INTO "organization" ("org_id", "name", "number", "email", "city", "state_id", "pdf", "website", "pictures", "description", "categories_id", "approved")
-VALUES (7, 'Wounded Warrior Project', 5555555555, 'fakeemail@email.com', 'Minneapolis', 1, 'none', 'www.Woundedwarriorproject.org', 'none', 'Wounded Warrior Project stuff', 1, true);
+INSERT INTO
+    "organization" (
+        "org_id",
+        "name",
+        "number",
+        "email",
+        "city",
+        "state_id",
+        "pdf",
+        "website",
+        "pictures",
+        "description",
+        "categories_id",
+        "approved"
+    )
+VALUES
+    (
+        7,
+        'Wounded Warrior Project',
+        5555555555,
+        'fakeemail@email.com',
+        'Minneapolis',
+        1,
+        'none',
+        'www.Woundedwarriorproject.org',
+        'none',
+        'Wounded Warrior Project stuff',
+        1,
+        true
+    );
 
-INSERT INTO "organization" ("org_id", "name", "number", "email", "city", "state_id", "pdf", "website", "pictures", "description", "categories_id", "approved")
-VALUES (8, 'Hives for Heroes', 8323651183, 'support@hivesforheroes.com', 'Houston', 1, 'none', 'www.hivesforheroes.com', 'none', 'We do beekeeping stuff', 1, true);
+INSERT INTO
+    "organization" (
+        "org_id",
+        "name",
+        "number",
+        "email",
+        "city",
+        "state_id",
+        "pdf",
+        "website",
+        "pictures",
+        "description",
+        "categories_id",
+        "approved"
+    )
+VALUES
+    (
+        8,
+        'Hives for Heroes',
+        8323651183,
+        'support@hivesforheroes.com',
+        'Houston',
+        1,
+        'none',
+        'www.hivesforheroes.com',
+        'none',
+        'We do beekeeping stuff',
+        1,
+        true
+    );
 
-INSERT INTO "organization" ("org_id", "name", "number", "email", "city", "state_id", "pdf", "website", "pictures", "description", "categories_id", "approved")
-VALUES (9, 'American Red Cross', 5555555555, 'fakeemail@email.com', 'Minneapolis', 1, 'none', 'www.redcross.org', 'none', 'American Red Cross stuff', 1, true);
+INSERT INTO
+    "organization" (
+        "org_id",
+        "name",
+        "number",
+        "email",
+        "city",
+        "state_id",
+        "pdf",
+        "website",
+        "pictures",
+        "description",
+        "categories_id",
+        "approved"
+    )
+VALUES
+    (
+        9,
+        'American Red Cross',
+        5555555555,
+        'fakeemail@email.com',
+        'Minneapolis',
+        1,
+        'none',
+        'www.redcross.org',
+        'none',
+        'American Red Cross stuff',
+        1,
+        true
+    );
+
 -- End inserts into organization
-
 -- Inserts into match
-INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (1, 1, '05:00:00', '06:00:00', '07:00:00');
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (1, 1, '05:00:00', '06:00:00', '07:00:00');
 
-INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (2, 2, '04:00:00', '05:00:00', '06:00:00');
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (2, 2, '04:00:00', '05:00:00', '06:00:00');
 
-INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (3, 3, '03:00:00', '04:00:00', '05:00:00');
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (3, 3, '03:00:00', '04:00:00', '05:00:00');
+
 -- End inserts into match
-
 -- Query for AdminVetList
-SELECT "first_name", "last_name", "match".received, "organization"."name" FROM "user"
-JOIN "veteran" ON "vet_id" = "user".id
-JOIN "match" ON "match".vet_id = "veteran".id
-JOIN "organization" ON "organization".id = "match".org_id
-ORDER BY "last_name" ASC
-LIMIT 10;
+SELECT
+    "first_name",
+    "last_name",
+    "match".received,
+    "organization"."name"
+FROM
+    "user"
+    JOIN "veteran" ON "vet_id" = "user".id
+    JOIN "match" ON "match".vet_id = "veteran".id
+    JOIN "organization" ON "organization".id = "match".org_id
+ORDER BY
+    "last_name" ASC
+LIMIT
+    10;
+
 -- End query for AdminVetList
-
 -- Query to get all vets
-SELECT * FROM veteran;
+SELECT
+    *
+FROM
+    veteran;
+
 -- End query to get all vets
-
 -- Query to get vet and org name for matches
-SELECT match.*, veteran.first_name, organization.* FROM match
-INNER JOIN veteran ON veteran.id = match.vet_id
-INNER JOIN organization ON organization.id = match.org_id;
--- End query to get vet and org name for matches
+SELECT
+    match.*,
+    veteran.first_name,
+    organization.*
+FROM
+    match
+    INNER JOIN veteran ON veteran.id = match.vet_id
+    INNER JOIN organization ON organization.id = match.org_id;
 
+-- End query to get vet and org name for matches
 -- Drop all tables
-DROP TABLE 
-"user",
+DROP TABLE "user",
 "type",
 "rank",
 "gender",
@@ -387,4 +679,109 @@ DROP TABLE
 "veteran",
 "match",
 "organization" CASCADE;
+
 -- End drop all tables
+CREATE TABLE "veteran_categories" (
+    "id" SERIAL PRIMARY KEY,
+    "vet_id" INT REFERENCES "veteran",
+    "categories_id" INT REFERENCES "categories"
+);
+
+CREATE TABLE "organization_categories" (
+    "id" SERIAL PRIMARY KEY,
+    "org_id" INT REFERENCES "organization",
+    "categories_id" INT REFERENCES "categories"
+);
+
+INSERT INTO
+    veteran_categories(vet_id, categories_id)
+VALUES
+(1, 1),
+(1, 2),
+    (1, 3),
+(1, 4);
+
+INSERT INTO
+    organization_categories(org_id, categories_id)
+VALUES
+(1, 1),
+(1, 2),
+(1, 5),
+(2, 3),
+(3, 4),
+(3, 3);
+
+INSERT INTO
+    organization_categories(org_id, categories_id)
+VALUES
+(4, 5);
+
+SELECT
+    *
+FROM
+    veteran;
+
+SELECT
+    *
+FROM
+    (
+        SELECT
+            oc.org_id,
+            count(oc.categories_id) AS org_needs,
+            count(vc.categories_id) AS vet_has,
+            (count(vc.categories_id) + 0.0) / (count(oc.categories_id) + 0.0) * 100 AS percent_match
+        FROM
+            organization_categories oc
+            LEFT JOIN veteran_categories vc ON vc.categories_id = oc.categories_id
+            AND vc.vet_id = 1
+        GROUP BY
+            oc.org_id
+        ORDER BY
+            percent_match desc,
+            vet_has desc
+    ) AS records
+WHERE
+    percent_match = 0;
+
+SELECT
+    veteran.first_name,
+    veteran.last_name,
+    veteran.email,
+    veteran.date_of_birth,
+    veteran.number,
+    veteran.children,
+    veteran.homeless,
+    veteran.current_address,
+    veteran.city,
+    veteran.city2,
+    veteran.zipcode,
+    veteran.mailing_address,
+    veteran.zipcode2,
+    veteran.start_date,
+    veteran.end_date,
+    veteran.compensation,
+    veteran.danger_areas,
+    veteran.purple_heart,
+    gender.description AS gender,
+    married.description AS married,
+    state.description AS state,
+    country.description AS country,
+    branch.description AS branch,
+    rank.description AS rank,
+    percentage.description AS percentage
+FROM
+    veteran
+    LEFT JOIN gender ON gender.id = veteran.gender_id
+    LEFT JOIN married ON married.id = veteran.married_id
+    LEFT JOIN state ON state.id = veteran.state_id
+    LEFT JOIN country ON country.id = veteran.country_id
+    LEFT JOIN branch ON branch.id = veteran.branch_id
+    LEFT JOIN rank ON rank.id = veteran.rank_id
+    LEFT JOIN percentage ON percentage.id = veteran.percentage
+WHERE
+    veteran.id = 1;
+
+DELETE FROM
+    organization
+WHERE
+    id = 1;
