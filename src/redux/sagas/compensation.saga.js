@@ -1,9 +1,5 @@
 import axios from "axios";
 import { put, takeLatest } from "redux-saga/effects";
-//import { createStore, combineReducers, applyMiddleware } from 'redux';
-//import registerServiceWorker from './registerServiceWorker';
-
-// worker Saga: will be fired on "FETCH_SECRETS" actions
 
 function* compensationSaga() {
   yield takeLatest("UPDATE_COMPENSATION", updateCompensationSaga);
@@ -29,8 +25,7 @@ function* updateCompensationSaga(action) {
 
 function* fetchPercentageSaga(action) {
   console.log("In fetchPercentageSaga...");
-  // console.log('payload:', action.payload)
-
+  
   try {
     const config = {
       headers: { "Content-Type": "application/json" },

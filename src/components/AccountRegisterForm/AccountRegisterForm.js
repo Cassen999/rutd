@@ -25,10 +25,6 @@ class AccountRegisterForm extends Component {
     type: '0'
   };
 
-  componentDidMount() {
-    this.props.dispatch({type: 'FETCH_ACCT_TYPE'})
-  }
-
   registerUser = (event) => {
     event.preventDefault();
 
