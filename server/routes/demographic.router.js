@@ -8,7 +8,7 @@ const {
 router.post('/', rejectUnauthenticatedVet, (req, res) => {
 
   let demographic = req.body;
-  console.log(`Adding art`, art);
+  console.log(`Adding demographic`, demographic);
 
   let queryText = `INSERT INTO "veteran" ("first_name", "last_name", 
                     "email", "date_of_birth", "number", "gender_id", 
@@ -27,7 +27,7 @@ router.post('/', rejectUnauthenticatedVet, (req, res) => {
       res.sendStatus(201);
     })
     .catch(error => {
-      console.log(`Error adding new artwork`, error);
+      console.log(`Error adding new veteran`, error);
       res.sendStatus(500);
     });
 
