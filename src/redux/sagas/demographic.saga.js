@@ -1,15 +1,8 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
-//import { createStore, combineReducers, applyMiddleware } from 'redux';
-//import registerServiceWorker from './registerServiceWorker';
-
-
-// worker Saga: will be fired on "FETCH_SECRETS" actions
 
 function* demographicSaga() {
   yield takeLatest('ADD_DEMOGRAPHIC', addDemographicSaga);
-
-
 }
 
 function* addDemographicSaga(action) {
@@ -23,12 +16,9 @@ function* addDemographicSaga(action) {
 
     const response = yield axios.post('api/demographic', action.payload, config);
 
-    // yield put({ type: 'FETCH_ART'});
   } catch (error) {
     console.log('Art get request failed', error);
   }
 }
-
-
 
 export default demographicSaga;
