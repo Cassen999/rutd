@@ -53,6 +53,7 @@ componentDidMount(){
 
 }
 state = {
+   percentageId: '0',
    type: '0',
    value: '0' 
 };
@@ -80,18 +81,20 @@ handleChange = event => {
       console.log(percentId);
       // console.log('Setting state...');
 
-      // this.setState({
-      //    newVet: {
-      //       ...this.state.newVet,
-      //       [inputProperty]: event.target.value,
-      //       user_id: this.props.store.user.id
-      //    }
+      this.setState({
+         percentage : percentId
+
+         },function() {
+            console.log(`percentage ID: ${this.state.percentage}`);
+            
+         }
+        
       // }, function () {
       //    console.log('state has been set:', this.state);
       // })
+   )
+
    }
-
-
 
    handleInputChangeFor = (propertyName) => (event) => {
       this.setState({
@@ -139,7 +142,7 @@ handleChange = event => {
                // className={classes.paper} 
                // backgroundImage={canvas}                                                      
                >
-                  Are you currently being compensated by the VA?
+                  Are you currently registered with the VA?
                   <br/>
                   <label>Yes</label>
               <Radio
