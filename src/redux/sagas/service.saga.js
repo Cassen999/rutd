@@ -13,7 +13,7 @@ function* serviceSaga() {
 }
 
 function* updateServiceSaga(action) {
-  console.log('In updateServiceHistorySaga...')
+  console.log('In updateServiceSaga...')
   console.log('payload:', action.payload)
   try {
     const config = {
@@ -21,9 +21,9 @@ function* updateServiceSaga(action) {
       withCredentials: true,
     };
 
-    const response = yield axios.put('api/health', action.payload, config);
+    const response = yield axios.put('api/service', action.payload, config);
 
-    yield put({ type: 'FETCH_ART'});
+    // yield put({ type: ''});
   } catch (error) {
     console.log('Art get request failed', error);
   }

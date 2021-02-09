@@ -33,7 +33,7 @@ componentDidMount(){
         newVet: {
          
 
-
+          malady: '',
           injury_id: '',
          
          //   compensation: '',
@@ -42,6 +42,26 @@ componentDidMount(){
          //   purple_heart: '',
         },
     }
+
+    handleMalady = (event, maladyId) => {
+      console.log('Handling input-change...');
+      console.log('Setting state...');
+      
+                  this.setState({
+                    newVet : {
+                      ...this.state.newVet,
+                      malady : maladyId,
+                      user_id: this.props.store.user.id
+                    }
+                  }, function () {
+                      console.log('state has been set:', this.state);
+                  })
+                }
+
+
+
+
+
 
     handleInputChange = (event, inputProperty) => {
         console.log('Handling input-change...');
@@ -67,12 +87,13 @@ componentDidMount(){
                     //Clear message... should say Hello!
                     //console.log(`Sending ${this.state.newArt} to DB.`);
         
-                         this.props.dispatch({ type: 'UPDATE_HEALTH', payload: this.state.newVet })
+                         this.props.dispatch({ type: 'UPDATE_MALADY', payload: this.state.newVet.malady })
                          this.setState({
                           newVet: {
           
           
           injury_id: '',
+          malady: ''
            
                           },
                          })
@@ -120,7 +141,7 @@ render(){
             <em>None</em>
           </MenuItem>
         {malady.map((each) => (
-                    <MenuItem value={each.id}>{each.description}
+                    <MenuItem value={each.id} onClick={(event)=> this.handleMalady(event, each.id)}>{each.description}
 
                     
                     </MenuItem>

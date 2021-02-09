@@ -59,10 +59,7 @@ const styles = {
                   }
 
                   saveServiceHistory = () => {
-                    if(this.state.newVet.first_name === '') {
-                        alert('A name is required for registration.')
-                    } else {
-                    
+                   
                         console.log(`Saving to Database...`);
                     //Clear message... should say Hello!
                     //console.log(`Sending ${this.state.newArt} to DB.`);
@@ -82,7 +79,7 @@ const styles = {
           
                           },
                          })
-                    }
+                    
                     
                   }
         

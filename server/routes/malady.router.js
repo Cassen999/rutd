@@ -39,11 +39,15 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.put('/',  (req, res) => {
   console.log('in PUT');
   
-  let health = req.body; // Book with updated content
+  let maladyId = req.body; // Book with updated content
   
   let id = req.params.id; // id of the book to update
 // console.log('Updating', health.title);
-console.log(health);
+console.log('malady id:', maladyId);
+console.log('in /malady GET route');
+  console.log('Is User logged in?', req.isAuthenticated());
+  console.log('req.user:', req.user);
+
 
   //console.log(`Updating book ${id} with `, book);
 let queryText = `UPDATE "veteran"
@@ -51,7 +55,7 @@ SET "injury_id" = $1
 WHERE "id" = $2;`;
 
   // TODO - REPLACE BELOW WITH YOUR CODE
-  pool.query(queryText, [health.injury_id,]).then( (result) => {
+  pool.query(queryText, [maladyId, ]).then( (result) => {
             // Delete sends back an OK status, 
             // client will then ask for all the data with a GET
             res.sendStatus(200);

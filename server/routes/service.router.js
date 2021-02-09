@@ -13,24 +13,24 @@ const {
 
 /**
  */
-router.put('/',  (req, res) => {
+router.put('/:id',  (req, res) => {
   console.log('in PUT');
   
   let service = req.body; // Book with updated content
   
-  let id = req.params.id; // id of the book to update
-console.log('Updating', art.title);
-console.log(art);
+  let userId = req.user.id; // id of the book to update
+console.log('Updating');
+console.log(service);
 
   //console.log(`Updating book ${id} with `, book);
 let queryText = `UPDATE "veteran"
 SET "branch_id" = $1, "rank_id" = $2, "start_date" = $3, "end_date" = $4, "status_id" = $5, "discharge_id" = $6
-WHERE "id" = $7;`;
+WHERE "vet_id" = $7;`;
 
   // TODO - REPLACE BELOW WITH YOUR CODE
-  pool.query(queryText, [serviceHistory.branch_id, 
-    serviceHistory.rank_id, serviceHistory.start_date, serviceHistory.end_date, 
-    serviceHistory.status_id, serviceHistory.discharge_id ]).then( (result) => {
+  pool.query(queryText, [service.branch_id, 
+    service.rank_id, service.start_date, service.end_date, 
+    service.status_id, service.discharge_id, userId]).then( (result) => {
             // Delete sends back an OK status, 
             // client will then ask for all the data with a GET
             res.sendStatus(200);
