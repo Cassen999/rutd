@@ -661,7 +661,71 @@ FROM
     INNER JOIN veteran ON veteran.id = match.vet_id
     INNER JOIN organization ON organization.id = match.org_id;
 
--- End query to get vet and org name for matches
+-- Query to get one specific veteran
+SELECT
+    veteran.first_name,
+    veteran.last_name,
+    veteran.email,
+    veteran.date_of_birth,
+    veteran.number,
+    veteran.children,
+    veteran.homeless,
+    veteran.current_address,
+    veteran.city,
+    veteran.city2,
+    veteran.zipcode,
+    veteran.state_id2,
+    veteran.country_id2,
+    veteran.mailing_address,
+    veteran.zipcode2,
+    veteran.start_date,
+    veteran.end_date,
+    veteran.compensation,
+    veteran.danger_areas,
+    veteran.purple_heart,
+    injury.description AS injury,
+    discharge.description AS discharge,
+    gender.description AS gender,
+    married.description AS married,
+    state.description AS state,
+    country.description AS country,
+    branch.description AS branch,
+    rank.description AS rank,
+    percentage.description AS percentage
+FROM
+    veteran
+    LEFT JOIN injury ON injury.id = veteran.injury_id
+    LEFT JOIN discharge ON discharge.id = veteran.discharge_id
+    LEFT JOIN gender ON gender.id = veteran.gender_id
+    LEFT JOIN married ON married.id = veteran.married_id
+    LEFT JOIN state ON state.id = veteran.state_id
+    LEFT JOIN country ON country.id = veteran.country_id
+    LEFT JOIN branch ON branch.id = veteran.branch_id
+    LEFT JOIN rank ON rank.id = veteran.rank_id
+    LEFT JOIN percentage ON percentage.id = veteran.percentage
+WHERE
+    veteran.id = 1;
+
+-- Query to get one specific resource
+SELECT
+    organization.org_id,
+    organization.name,
+    organization.number,
+    organization.email,
+    organization.city,
+    organization.pdf,
+    organization.website,
+    organization.pictures,
+    organization.description,
+    state.description AS state,
+    categories.description AS categories
+FROM
+    "organization"
+    LEFT JOIN state ON state.id = "organization".state_id
+    LEFT JOIN categories ON categories.id = "organization".categories_id
+WHERE
+    organization.id = 1;
+
 -- Drop all tables
 DROP TABLE "user",
 "type",
