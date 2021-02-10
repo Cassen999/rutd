@@ -28,14 +28,6 @@ const conversion = (newBoolean) => {
 }
 
 
-const conversion = (newBoolean) => {
-    if(newBoolean === false){
-      return 'No';
-    } else if (newBoolean === true){
-      return 'Yes';
-    }
-}
-
 class AdminVetView extends Component {
   state = {
     boolean: []
