@@ -55,7 +55,7 @@ router.post("/", rejectUnauthenticatedAdmin, (req, res) => {
 });
 
 // GETS one specific resource
-router.get("/:id", rejectUnauthenticated, (req, res) => {
+router.get("/:id", rejectUnauthenticatedAdmin, (req, res) => {
   let id = req.params.id;
   console.log("--- This is the ID of the RESOURCE you clicked on: ", id);
   const queryText = `SELECT organization.org_id,
