@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+// import Paper from '@material-ui/core/Paper';
 // import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -17,6 +17,7 @@ import swal from 'sweetalert';
 // - Material UI text fields so admin can edit details
 // - save button
 // - cancel edit button
+// - no more category router 
  
 const styles = theme => ({
   button: {
@@ -133,8 +134,8 @@ handleChange = (event, input) => {
           </center>
           {resourceDetails.map((resource, i) => {
             return(
-            <Paper key={i}>
-                  <form>
+                  <form key={i}>
+                    <div className="white-background">
                         <TextField
                           id="standard-name"
                           placeholder="Name"
@@ -225,8 +226,8 @@ handleChange = (event, input) => {
                             variant="contained" 
                             onClick={this.cancelSubmit}>Cancel
                           </Button>
+                    </div>
                   </form>
-              </Paper>
             )
           })}
       </div>
