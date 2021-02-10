@@ -12,16 +12,16 @@ class VetMatches extends Component {
     console.log("Contacting Org");
   };
 
-  componentDidMount() {
-    this.props.dispatch({ type: "FETCH_CATEGORY" });
-    this.props.dispatch({ type: "FETCH_MATCH" });
-  }
+  // componentDidMount() {
+  //   this.props.dispatch({ type: "FETCH_CATEGORY" });
+  //   this.props.dispatch({ type: "FETCH_MATCH" });
+  // }
 
   render() {
     return (
       <div>
+        {JSON.stringify(this.props.store.vetMatchReducer)}
         <h2>{this.state.heading}</h2>
-        REDUX STATE: {JSON.stringify(this.props.store)}
         <button onClick={(event) => this.props.history.push("/home")}>
           BACK TO HOME
         </button>

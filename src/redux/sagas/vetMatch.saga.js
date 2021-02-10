@@ -1,6 +1,7 @@
 import axios from "axios";
 import { put, takeLatest } from "redux-saga/effects";
 
+// GETs all matches for certain vet from match table
 function* getCompleteMatch(action) {
   console.log("Fetch veteran matches is working");
   try {
@@ -19,11 +20,12 @@ function findIncompleteMatch(match) {
   return match.approved === null;
 }
 
+// GETs all matches for certain vet, not from match table using algorithm
 function* getNewMatches(action) {
   try {
-    console.log("In getNewMatches");
     const response = yield axios.get(`/api/match/newMatches/${action.payload}`);
     const newMatches = response.data;
+    console.log("In getNewMatches response.data", response.data);
     yield put({ type: "SET_VET_MATCHES", payload: newMatches });
     console.log("response.data from db get new vet matches:", newMatches);
   } catch (error) {
