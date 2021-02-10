@@ -12,11 +12,11 @@ const styles = {
     },
 };
 
-class Phone extends Component {
+class Status extends Component {
 
     state = {
         vet: {
-            phone: ""
+            status: ""
         },
     }
 
@@ -38,25 +38,25 @@ class Phone extends Component {
         );
     };
 
-    savePhone = () => {
+    saveStatus = () => {
         let vetVar = this.state.vet
 
-        if (vetVar.phone === '') {
-            alert("An phone number is required for registration.");
+        if (vetVar.status === '') {
+            alert("Please indicate your current service status.");
         } else {
             console.log(
-                `Saving ${vetVar.phone} to Database...`
+                `Saving ${vetVar.status} to Database...`
             );
 
             this.props.dispatch({
-                type: "ADD_PHONE",
+                type: "ADD_STATUS",
                 payload: this.state.vet
             });
 
             this.setState(
                 {
                     vet: {
-                        phone: "",
+                        status: "",
                     },
                 },
                 function () {
@@ -72,7 +72,7 @@ class Phone extends Component {
 
         return (
             <>
-                <h1>Phone Entry</h1>
+                <h1>Service Status Entry</h1>
                 <Grid
                     container
                     spacing={2}
@@ -87,16 +87,15 @@ class Phone extends Component {
                             <Grid item xs={12.0} sm={12}>
 
                                 <TextField
-                                    id="standard-textarea"
                                     variant="outlined"
-                                    label="Phone Number"
-                                    name="phone"
-                                    value={this.state.vet.phone}
-                                    onChange={(event) => this.handleInputChange(event, "phone")}
+                                    label="Service Status"
+                                    name="status"
+                                    value={this.state.vet.status}
+                                    onChange={(event) => this.handleInputChange(event, "status")}
                                 />
                                 <br />
-                                <Button onClick={(event) => { this.savePhone(event) }}>SAVE</Button>
-                                <br />
+                                <Button onClick={(event)=>{this.saveStatus(event)}}>SAVE</Button>
+                                <br/>
                             </Grid>
                         </form>
                     </Paper>
@@ -106,4 +105,4 @@ class Phone extends Component {
     };//END render
 };//END Name
 
-export default connect(mapStoreToProps)(withStyles(styles)(Phone));
+export default connect(mapStoreToProps)(withStyles(styles)(Status));

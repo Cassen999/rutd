@@ -7,8 +7,8 @@ const styles = {
     inputs: {
         width: "",
         paddingTop: "",
-        verticalAlign: "middle",
-        fontFamily: "Arial",
+        verticalAlign: "",
+        fontFamily: "",
     },
 };
 
@@ -42,7 +42,7 @@ class Marriage extends Component {
         let vetVar = this.state.vet
 
         if (vetVar.marriage === '') {
-            alert("An marriage address is required for registration.");
+            alert("Please indicate your marital status.");
         } else {
             console.log(
                 `Saving ${vetVar.marriage} to Database...`

@@ -7,8 +7,8 @@ const styles = {
     inputs: {
         width: "",
         paddingTop: "",
-        verticalAlign: "middle",
-        fontFamily: "Arial",
+        verticalAlign: "",
+        fontFamily: "",
     },
 };
 
@@ -42,7 +42,7 @@ class Branch extends Component {
         let vetVar = this.state.vet
 
         if (vetVar.branch === '') {
-            alert("An branch address is required for registration.");
+            alert("Please indicate your branch of service.");
         } else {
             console.log(
                 `Saving ${vetVar.branch} to Database...`

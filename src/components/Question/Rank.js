@@ -7,8 +7,8 @@ const styles = {
     inputs: {
         width: "",
         paddingTop: "",
-        verticalAlign: "middle",
-        fontFamily: "Arial",
+        verticalAlign: "",
+        fontFamily: "",
     },
 };
 
@@ -42,7 +42,7 @@ class Rank extends Component {
         let vetVar = this.state.vet
 
         if (vetVar.rank === '') {
-            alert("An rank address is required for registration.");
+            alert("Please indicate your highest attained rank.");
         } else {
             console.log(
                 `Saving ${vetVar.rank} to Database...`

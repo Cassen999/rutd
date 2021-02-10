@@ -7,8 +7,8 @@ const styles = {
     inputs: {
         width: "",
         paddingTop: "",
-        verticalAlign: "middle",
-        fontFamily: "Arial",
+        verticalAlign: "",
+        fontFamily: "",
     },
 };
 
@@ -42,7 +42,7 @@ class StartDate extends Component {
         let vetVar = this.state.vet
 
         if (vetVar.startDate === '') {
-            alert("An startDate address is required for registration.");
+            alert("Please indidate the start date of your military service.");
         } else {
             console.log(
                 `Saving ${vetVar.startDate} to Database...`

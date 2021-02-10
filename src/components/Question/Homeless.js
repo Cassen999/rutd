@@ -7,8 +7,8 @@ const styles = {
     inputs: {
         width: "",
         paddingTop: "",
-        verticalAlign: "middle",
-        fontFamily: "Arial",
+        verticalAlign: "",
+        fontFamily: "",
     },
 };
 
@@ -42,7 +42,7 @@ class Homeless extends Component {
         let vetVar = this.state.vet
 
         if (vetVar.homeless === '') {
-            alert("An homeless address is required for registration.");
+            alert("Please indicate whether or not you are homeless.");
         } else {
             console.log(
                 `Saving ${vetVar.homeless} to Database...`

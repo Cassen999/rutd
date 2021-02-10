@@ -7,8 +7,8 @@ const styles = {
     inputs: {
         width: "",
         paddingTop: "",
-        verticalAlign: "middle",
-        fontFamily: "Arial",
+        verticalAlign: "",
+        fontFamily: "",
     },
 };
 
@@ -47,7 +47,7 @@ class HomeAddress extends Component {
         let vetVar = this.state.vet
 
         if (vetVar.address === '') {
-            alert("An homeAddress address is required for registration.");
+            alert("An home address is required for registration.");
         } else {
             console.log(
                 `Saving ${vetVar.homeAddress} to Database...`

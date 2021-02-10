@@ -7,8 +7,8 @@ const styles = {
     inputs: {
         width: "",
         paddingTop: "",
-        verticalAlign: "middle",
-        fontFamily: "Arial",
+        verticalAlign: "",
+        fontFamily: "",
     },
 };
 
@@ -42,7 +42,7 @@ class Children extends Component {
         let vetVar = this.state.vet
 
         if (vetVar.children === '') {
-            alert("An children address is required for registration.");
+            alert("Please disclose your number of children.");
         } else {
             console.log(
                 `Saving ${vetVar.children} to Database...`

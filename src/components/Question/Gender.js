@@ -7,8 +7,8 @@ const styles = {
     inputs: {
         width: "",
         paddingTop: "",
-        verticalAlign: "middle",
-        fontFamily: "Arial",
+        verticalAlign: "",
+        fontFamily: "",
     },
 };
 
@@ -42,7 +42,7 @@ class Gender extends Component {
         let vetVar = this.state.vet
 
         if (vetVar.gender === '') {
-            alert("An gender address is required for registration.");
+            alert("Pleas indicate your gender.");
         } else {
             console.log(
                 `Saving ${vetVar.gender} to Database...`

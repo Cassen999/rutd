@@ -16,6 +16,9 @@ import MailAddress from '../Question/MailAddress'
 import Branch from '../Question/Branch'
 import Rank from '../Question/Rank'
 import StartDate from '../Question/StartDate'
+import EndDate from '../Question/EndDate'
+import Status from '../Question/Status'
+import Discharge from '../Question/Discharge'
 
 const styles = {
   inputs: {
@@ -27,25 +30,6 @@ const styles = {
 };
 
 class DemographicForm extends Component {
-  state = {
-    newVet: {
-      first_name: "",
-      last_name: "",
-      email: "",
-      date_of_birth: "",
-      number: "",
-      gender_id: "",
-      married_id: "",
-      children: "",
-      homeless: "",
-      current_address: "",
-      city: "",
-      state_id: "",
-      zipcode: "",
-      country_id: "",
-      mailing_address: "",
-    },
-  };
 
   handleInputChange = (event, inputProperty) => {
     console.log("Handling input-change...");
@@ -96,6 +80,9 @@ class DemographicForm extends Component {
                 <Branch/>
                 <Rank/>
                 <StartDate/>
+                <EndDate/>
+                <Status/>
+                <Discharge/>
                 <br />
 
               </form>

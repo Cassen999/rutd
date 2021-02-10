@@ -12,11 +12,11 @@ const styles = {
     },
 };
 
-class Phone extends Component {
+class EndDate extends Component {
 
     state = {
         vet: {
-            phone: ""
+            endDate: ""
         },
     }
 
@@ -38,25 +38,25 @@ class Phone extends Component {
         );
     };
 
-    savePhone = () => {
+    saveEndDate = () => {
         let vetVar = this.state.vet
 
-        if (vetVar.phone === '') {
-            alert("An phone number is required for registration.");
+        if (vetVar.endDate === '') {
+            alert("Please indicate the end date of your military service (EAOS).");
         } else {
             console.log(
-                `Saving ${vetVar.phone} to Database...`
+                `Saving ${vetVar.endDate} to Database...`
             );
 
             this.props.dispatch({
-                type: "ADD_PHONE",
+                type: "ADD_END_DATE",
                 payload: this.state.vet
             });
 
             this.setState(
                 {
                     vet: {
-                        phone: "",
+                        endDate: "",
                     },
                 },
                 function () {
@@ -72,7 +72,7 @@ class Phone extends Component {
 
         return (
             <>
-                <h1>Phone Entry</h1>
+                <h1>End Date Entry</h1>
                 <Grid
                     container
                     spacing={2}
@@ -87,16 +87,15 @@ class Phone extends Component {
                             <Grid item xs={12.0} sm={12}>
 
                                 <TextField
-                                    id="standard-textarea"
                                     variant="outlined"
-                                    label="Phone Number"
-                                    name="phone"
-                                    value={this.state.vet.phone}
-                                    onChange={(event) => this.handleInputChange(event, "phone")}
+                                    label="End Date"
+                                    name="endDate"
+                                    value={this.state.vet.endDate}
+                                    onChange={(event) => this.handleInputChange(event, "endDate")}
                                 />
                                 <br />
-                                <Button onClick={(event) => { this.savePhone(event) }}>SAVE</Button>
-                                <br />
+                                <Button onClick={(event)=>{this.saveEndDate(event)}}>SAVE</Button>
+                                <br/>
                             </Grid>
                         </form>
                     </Paper>
@@ -106,4 +105,4 @@ class Phone extends Component {
     };//END render
 };//END Name
 
-export default connect(mapStoreToProps)(withStyles(styles)(Phone));
+export default connect(mapStoreToProps)(withStyles(styles)(EndDate));
