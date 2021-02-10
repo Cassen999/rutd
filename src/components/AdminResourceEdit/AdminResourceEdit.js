@@ -9,10 +9,11 @@ import Typography from '@material-ui/core/Typography';
 
 
 // TO DO LIST ON THIS PAGE:
+// - Rename this component to AdminResourceView
 // - Edit button to allow admins to edit organization profile
 // - create saga with PUT route to update organization
 // - create reducer to accept updated organization details
-// - 
+// - this.props.history.push('/adminResourceEdit')
 
 
 const styles = theme => ({
@@ -46,8 +47,8 @@ class AdminResourceEdit extends Component {
 
   editOrganization = (id) => {
     console.log("Editing Organization with ID:", id);
-    // this.props.dispatch({type: 'EDIT_ORG', payload: id});
-    // this.props.history.push("/edit")
+    this.props.dispatch({type: 'GET_ONE_RESOURCE', payload: id})
+    this.props.history.push("/editResource")
   }
 
   render() {

@@ -31,6 +31,7 @@ import Malady from "../Malady/Malady";
 import Compensation from "../Compensation/Compensation";
 import AdminVetView from "../AdminVetView/AdminVetView";
 import AdminResourceEdit from "../AdminResourceEdit/AdminResourceEdit";
+import EditResource from "../EditResource/EditResource";
 
 import "./App.css";
 
@@ -169,6 +170,12 @@ class App extends Component {
               exact
               path="/adminResourceEdit"
               component={AdminResourceEdit}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/editResource"
+              component={EditResource}
             />
 
             <ProtectedRoute
