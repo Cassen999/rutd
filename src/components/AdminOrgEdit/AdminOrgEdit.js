@@ -34,7 +34,7 @@ const styles = theme => ({
 class AdminOrgEdit extends Component {
   state = {
     name: '',
-    numer: '',
+    number: '',
     email: '',
     city: '',
     pdf: '',
@@ -47,12 +47,28 @@ class AdminOrgEdit extends Component {
 
   componentDidMount(){
     console.log('Admin Organization Edit')
+    this.setState({
+      name: this.props.store.resourceDetails.name,
+      number: this.props.store.resourceDetails.number,
+      email: this.props.store.resourceDetails.email,
+      city: this.props.store.resourceDetails.city,
+      pdf: this.props.store.resourceDetails.pdf,
+      pictures: this.props.store.resourceDetails.pictures,
+      website: this.props.store.resourceDetails.website,
+      description: this.props.store.resourceDetails.description,
+      state: this.props.store.resourceDetails.state,
+      categories: this.props.store.resourceDetails.categories
+    })
   }
 
   // this will handle the change of the textfields
-  handleChange = name => event => {
-    this.setState({ [name]: event.target.value });
-  };
+handleChange = (event, input) => {
+  console.log('Details of org details:', this.state);
+  this.setState({
+    ...this.state,
+    [input]: event.target.value,
+  })
+}
 
   render() {
     const {resourceDetails} = this.props.store;
@@ -74,63 +90,63 @@ class AdminOrgEdit extends Component {
                           label="Name"
                           className={classes.textField}
                           value={resource.name}
-                          onChange={this.handleChange('name')}
+                          onChange={(event)=>this.handleChange(event, 'name')}
                           margin="normal"
                           />
                         <TextField
                           id="standard-name"
-                          label="Name"
+                          label="Number"
                           className={classes.textField}
                           value={resource.number}
-                          onChange={this.handleChange('name')}
+                          onChange={(event)=>this.handleChange(event, 'number')}
                           margin="normal"
                           />
                         <TextField
                           id="standard-name"
-                          label="Name"
+                          label="Email"
                           className={classes.textField}
                           value={resource.email}
-                          onChange={this.handleChange('name')}
+                          onChange={(event)=>this.handleChange(event, 'email')}
                           margin="normal"
                           />
                         <TextField
                           id="standard-name"
-                          label="Name"
+                          label="City"
                           className={classes.textField}
                           value={resource.city}
-                          onChange={this.handleChange('name')}
+                          onChange={(event)=>this.handleChange(event, 'city')}
                           margin="normal"
                           />
                         <TextField
                           id="standard-name"
-                          label="Name"
+                          label="Website"
                           className={classes.textField}
                           value={resource.website}
-                          onChange={this.handleChange('name')}
+                          onChange={(event)=>this.handleChange(event, 'website')}
                           margin="normal"
                           />
                         <TextField
                           id="standard-name"
-                          label="Name"
+                          label="Description"
                           className={classes.textField}
                           value={resource.description}
-                          onChange={this.handleChange('name')}
+                          onChange={(event)=>this.handleChange(event, 'description')}
                           margin="normal"
                           />
                         <TextField
                           id="standard-name"
-                          label="Name"
+                          label="State"
                           className={classes.textField}
                           value={resource.state}
-                          onChange={this.handleChange('name')}
+                          onChange={(event)=>this.handleChange(event, 'state')}
                           margin="normal"
                           />
                         <TextField
                           id="standard-name"
-                          label="Name"
+                          label="Categories"
                           className={classes.textField}
                           value={resource.categories}
-                          onChange={this.handleChange('name')}
+                          onChange={(event)=>this.handleChange(event, 'categories')}
                           margin="normal"
                           />
                       </Paper>
