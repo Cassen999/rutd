@@ -11,8 +11,7 @@ router.put('/', rejectUnauthenticatedVet, (req, res) => {
   let service = req.body;
   
   let id = req.params.id;
-  console.log('Updating', art.title);
-  console.log(art);
+  console.log('Updating');
 
   let queryText = `UPDATE "veteran"
                   SET "branch_id" = $1, "rank_id" = $2, "start_date" = $3, 
