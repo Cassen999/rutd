@@ -9,13 +9,15 @@ class VetFindMatches extends Component {
 
   handleMatchClick = (vetId) => {
     this.props.dispatch({ type: "FETCH_ALL_MATCHES", payload: vetId });
-    this.props.history.push();
+    this.props.history.push("/vetmatches");
   };
 
   render() {
     return (
       <div>
-        <button onClick={() => this.handleMatchClick(1)}>See Matches</button>
+        <button onClick={(event) => this.handleMatchClick(1)}>
+          See Matches
+        </button>
       </div>
     );
   }

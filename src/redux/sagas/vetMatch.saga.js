@@ -21,9 +21,9 @@ function findIncompleteMatch(match) {
 
 function* getNewMatches(action) {
   try {
-    console.log("In getNewMatches");
     const response = yield axios.get(`/api/match/newMatches/${action.payload}`);
     const newMatches = response.data;
+    console.log("In getNewMatches response.data", response.data);
     yield put({ type: "SET_VET_MATCHES", payload: newMatches });
     console.log("response.data from db get new vet matches:", newMatches);
   } catch (error) {

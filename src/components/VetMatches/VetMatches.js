@@ -12,10 +12,10 @@ class VetMatches extends Component {
     console.log("Contacting Org");
   };
 
-  componentDidMount() {
-    this.props.dispatch({ type: "FETCH_CATEGORY" });
-    this.props.dispatch({ type: "FETCH_MATCH" });
-  }
+  // componentDidMount() {
+  //   this.props.dispatch({ type: "FETCH_CATEGORY" });
+  //   this.props.dispatch({ type: "FETCH_MATCH" });
+  // }
 
   render() {
     return (
