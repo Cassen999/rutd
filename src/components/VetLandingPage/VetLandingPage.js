@@ -101,9 +101,8 @@ class UserPage extends Component {
     }
   };
 
-  handleMatchClick = (vetId) => {
-    this.props.dispatch({ type: "FETCH_ALL_MATCHES", payload: vetId });
-    this.props.history.push("/vetmatches");
+  handleMatchClick = () => {
+    this.props.history.push("/vetFindMatches");
   };
 
   render() {
@@ -376,7 +375,7 @@ class UserPage extends Component {
             id="allMatchBtn"
             size="large"
             variant="contained"
-            onClick={() => this.handleMatchClick(1)}
+            onClick={() => this.handleMatchClick()}
           >
             View All Matches
           </Button>

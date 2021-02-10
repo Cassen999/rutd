@@ -20,8 +20,8 @@ class VetMatches extends Component {
   render() {
     return (
       <div>
+        {JSON.stringify(this.props.store.vetMatchReducer)}
         <h2>{this.state.heading}</h2>
-        REDUX STATE: {JSON.stringify(this.props.store)}
         <button onClick={(event) => this.props.history.push("/home")}>
           BACK TO HOME
         </button>
