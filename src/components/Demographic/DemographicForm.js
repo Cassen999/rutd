@@ -6,6 +6,7 @@ import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
 import Name from '../Question/Name'
 import Email from '../Question/Email'
 import Birth from '../Question/Birth'
+import Phone from '../Question/phone'
 // AppBar, AppBar, Badge, CardMedia, IconButton, makeStyles, InputBase, Card, CardActionArea
 // import '../../../App/App.css';
 
@@ -123,6 +124,7 @@ class DemographicForm extends Component {
 <Name/>
 <Email/>
 <Birth/>
+<Phone/>
 <br/>
               <Grid item xs={12.0} sm={12}>
                
@@ -131,19 +133,7 @@ class DemographicForm extends Component {
                
 
                 
-                <TextField
-                  id="standard-textarea"
-                  variant="outlined"
-                  label="Number"
-                  //  rows={4}
-                  //   rowsMax={20}
-                  name="number"
-                  //  multiline
-                  //  className={classes.inputs}
-                  //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                  value={this.state.newVet.number}
-                  onChange={(event) => this.handleInputChange(event, "number")}
-                />
+                
 
                 {/* </Grid>  */}
                 <br />
