@@ -87,7 +87,7 @@ class UserPage extends Component {
       case "closeModal":
         return this.setState({ modalOpen: false });
       case "allMatches":
-        return this.props.history.push("/vetmatches");
+        return this.props.history.push("/vetFindMatches");
       case "incrementComplete":
         return this.setState({ completeMatchIndex: +1 });
       case "incrementIncomplete":
@@ -99,10 +99,6 @@ class UserPage extends Component {
       default:
         return "no button clicked";
     }
-  };
-
-  handleMatchClick = () => {
-    this.props.history.push("/vetFindMatches");
   };
 
   render() {
