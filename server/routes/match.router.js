@@ -4,13 +4,13 @@ const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
 const {
-  rejectUnauthenticated,
+  rejectUnauthenticatedVet,
 } = require("../modules/authentication-middleware");
 
 /**
  * GET route template
  */
-router.get("/", rejectUnauthenticated, (req, res) => {
+router.get("/", rejectUnauthenticatedVet, (req, res) => {
   // GET route code here
   console.log("in /match GET route");
   console.log("Is User logged in?", req.isAuthenticated());
@@ -29,7 +29,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.get("/complete/:id", (req, res) => {
+router.get("/complete/:id", rejectUnauthenticatedVet, (req, res) => {
   // GET route for complete matches
   console.log("in /match/complete GET route");
   console.log("Is User logged in?");
