@@ -46,7 +46,7 @@ class MailAddress extends Component {
     saveMailAddress = () => {
         let vetVar = this.state.vet
 
-        if (vetVar.mailAddress === '') {
+        if (vetVar.address === '') {
             alert("An mailAddress address is required for registration.");
         } else {
             console.log(

@@ -12,11 +12,11 @@ const styles = {
     },
 };
 
-class Children extends Component {
+class Rank extends Component {
 
     state = {
         vet: {
-            children: ""
+            rank: ""
         },
     }
 
@@ -38,25 +38,25 @@ class Children extends Component {
         );
     };
 
-    saveChildren = () => {
+    saveRank = () => {
         let vetVar = this.state.vet
 
-        if (vetVar.children === '') {
-            alert("An children address is required for registration.");
+        if (vetVar.rank === '') {
+            alert("An rank address is required for registration.");
         } else {
             console.log(
-                `Saving ${vetVar.children} to Database...`
+                `Saving ${vetVar.rank} to Database...`
             );
 
             this.props.dispatch({
-                type: "ADD_CHILDREN",
+                type: "ADD_RANK",
                 payload: this.state.vet
             });
 
             this.setState(
                 {
                     vet: {
-                        children: "",
+                        rank: "",
                     },
                 },
                 function () {
@@ -72,7 +72,7 @@ class Children extends Component {
 
         return (
             <>
-                <h1>Children Entry</h1>
+                <h1>Rank Entry</h1>
                 <Grid
                     container
                     spacing={2}
@@ -85,16 +85,17 @@ class Children extends Component {
                             <br />
 
                             <Grid item xs={12.0} sm={12}>
+
                                 <TextField
                                     variant="outlined"
-                                    label="Children"
-                                    name="children"
-                                    value={this.state.vet.children}
-                                    onChange={(event) => this.handleInputChange(event, "children")}
+                                    label="Rank"
+                                    name="rank"
+                                    value={this.state.vet.rank}
+                                    onChange={(event) => this.handleInputChange(event, "rank")}
                                 />
                                 <br />
-                                <Button onClick={(event) => { this.saveChildren(event) }}>SAVE</Button>
-                                <br />
+                                <Button onClick={(event)=>{this.saveRank(event)}}>SAVE</Button>
+                                <br/>
                             </Grid>
                         </form>
                     </Paper>
@@ -104,4 +105,4 @@ class Children extends Component {
     };//END render
 };//END Name
 
-export default connect(mapStoreToProps)(withStyles(styles)(Children));
+export default connect(mapStoreToProps)(withStyles(styles)(Rank));

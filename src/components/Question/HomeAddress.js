@@ -46,7 +46,7 @@ class HomeAddress extends Component {
     saveHomeAddress = () => {
         let vetVar = this.state.vet
 
-        if (vetVar.homeAddress === '') {
+        if (vetVar.address === '') {
             alert("An homeAddress address is required for registration.");
         } else {
             console.log(

@@ -112,40 +112,14 @@ class ServiceForm extends Component {
 
               <Grid item xs={12.0} sm={12}>
                 {/* <Grid item xs={12.0} sm={12}>  */}
-                <TextField
-                  id="standard-textarea"
-                  variant="outlined"
-                  label="Branch ID"
-                  //  rows={4}
-                  //   rowsMax={20}
-                  name="branch_id"
-                  //  multiline
-                  //  className={classes.inputs}
-                  //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                  value={this.state.newVet.branch_id}
-                  onChange={(event) =>
-                    this.handleInputChange(event, "branch_id")
-                  }
-                />
+                
 
                 {/* </Grid>  */}
 
                 <br />
 
                 {/* <Grid item xs={12.0} sm={12}>  */}
-                <TextField
-                  id="standard-textarea"
-                  variant="outlined"
-                  label="Rank ID"
-                  //  rows={4}
-                  //   rowsMax={20}
-                  name="rank_id"
-                  //  multiline
-                  //  className={classes.inputs}
-                  //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                  value={this.state.newVet.rank_id}
-                  onChange={(event) => this.handleInputChange(event, "rank_id")}
-                />
+                
 
                 {/* </Grid>  */}
 

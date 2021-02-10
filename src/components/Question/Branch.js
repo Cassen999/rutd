@@ -12,11 +12,11 @@ const styles = {
     },
 };
 
-class Children extends Component {
+class Branch extends Component {
 
     state = {
         vet: {
-            children: ""
+            branch: ""
         },
     }
 
@@ -38,25 +38,25 @@ class Children extends Component {
         );
     };
 
-    saveChildren = () => {
+    saveBranch = () => {
         let vetVar = this.state.vet
 
-        if (vetVar.children === '') {
-            alert("An children address is required for registration.");
+        if (vetVar.branch === '') {
+            alert("An branch address is required for registration.");
         } else {
             console.log(
-                `Saving ${vetVar.children} to Database...`
+                `Saving ${vetVar.branch} to Database...`
             );
 
             this.props.dispatch({
-                type: "ADD_CHILDREN",
+                type: "ADD_BRANCH",
                 payload: this.state.vet
             });
 
             this.setState(
                 {
                     vet: {
-                        children: "",
+                        branch: "",
                     },
                 },
                 function () {
@@ -72,7 +72,7 @@ class Children extends Component {
 
         return (
             <>
-                <h1>Children Entry</h1>
+                <h1>Branch Entry</h1>
                 <Grid
                     container
                     spacing={2}
@@ -85,16 +85,17 @@ class Children extends Component {
                             <br />
 
                             <Grid item xs={12.0} sm={12}>
+
                                 <TextField
                                     variant="outlined"
-                                    label="Children"
-                                    name="children"
-                                    value={this.state.vet.children}
-                                    onChange={(event) => this.handleInputChange(event, "children")}
+                                    label="Branch"
+                                    name="branch"
+                                    value={this.state.vet.branch}
+                                    onChange={(event) => this.handleInputChange(event, "branch")}
                                 />
                                 <br />
-                                <Button onClick={(event) => { this.saveChildren(event) }}>SAVE</Button>
-                                <br />
+                                <Button onClick={(event)=>{this.saveBranch(event)}}>SAVE</Button>
+                                <br/>
                             </Grid>
                         </form>
                     </Paper>
@@ -104,4 +105,4 @@ class Children extends Component {
     };//END render
 };//END Name
 
-export default connect(mapStoreToProps)(withStyles(styles)(Children));
+export default connect(mapStoreToProps)(withStyles(styles)(Branch));

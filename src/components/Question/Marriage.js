@@ -87,7 +87,7 @@ class Marriage extends Component {
                             <Grid item xs={12.0} sm={12}>
                                 <TextField
                                     variant="outlined"
-                                    label="marriage"
+                                    label="Marriage"
                                     name="marriage"
                                     value={this.state.vet.marriage}
                                     onChange={(event) => this.handleInputChange(event, "marriage")}
