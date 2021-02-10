@@ -844,7 +844,9 @@ WHERE
 SELECT
     oc.org_id,
     o.name,
-    o.contact,
+    o.number,
+    o.website,
+    o.pdf,
     count(oc.categories_id) AS org_needs,
     count(vc.categories_id) AS vet_has,
     (count(vc.categories_id) + 0.0) / (count(oc.categories_id) + 0.0) * 100 AS percent_match
@@ -856,7 +858,9 @@ FROM
 GROUP BY
     oc.org_id,
     o.name,
-    o.contact
+    o.number,
+    o.website,
+    o.pdf
 ORDER BY
     percent_match DESC,
     vet_has DESC;
