@@ -31,6 +31,7 @@ import Malady from "../Malady/Malady";
 import Compensation from "../Compensation/Compensation";
 import AdminVetView from "../AdminVetView/AdminVetView";
 import AdminResourceEdit from "../AdminResourceEdit/AdminResourceEdit";
+import VetFindMatches from "../VetFindMatches/VetFindMatches";
 
 import "./App.css";
 
@@ -177,11 +178,11 @@ class App extends Component {
               component={OrganizationLandingPage}
             />
 
-            {/* <ProtectedRoute
-                exact
-                path="/vetlanding"
-                component={VetLandingPage}
-              />    */}
+            <ProtectedRoute
+              exact
+              path="/vetFindMatches"
+              component={VetFindMatches}
+            />
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

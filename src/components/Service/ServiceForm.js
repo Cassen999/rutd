@@ -23,7 +23,7 @@ const styles = {
   //     fontFamily : 'Arial'
 };
 
-class ServiceHistoryForm extends Component {
+class ServiceForm extends Component {
   state = {
     newVet: {
       branch_id: "",
@@ -60,7 +60,7 @@ class ServiceHistoryForm extends Component {
     );
   };
 
-  saveServiceHistory = () => {
+  saveService = () => {
     if (this.state.newVet.first_name === "") {
       alert("A name is required for registration.");
     } else {
@@ -69,7 +69,7 @@ class ServiceHistoryForm extends Component {
       //console.log(`Sending ${this.state.newArt} to DB.`);
 
       this.props.dispatch({
-        type: "UPDATE_SERVICE_HISTORY",
+        type: "UPDATE_SERVICE",
         payload: this.state.newVet,
       });
       this.setState({
@@ -242,7 +242,7 @@ class ServiceHistoryForm extends Component {
 
               <Grid item xs={12.0} sm={12}>
                 <Button
-                  onClick={this.saveServiceHistory}
+                  onClick={this.saveService}
                   // addArtProp={this.addArt}
                   //  elevation={20}
                   //  className={classes.typography}
@@ -274,4 +274,4 @@ class ServiceHistoryForm extends Component {
   } //END render
 } //END DemographicsForm
 
-export default connect(mapStoreToProps)(withStyles(styles)(ServiceHistoryForm));
+export default connect(mapStoreToProps)(withStyles(styles)(ServiceForm));

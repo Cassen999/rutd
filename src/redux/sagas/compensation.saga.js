@@ -34,7 +34,7 @@ function* fetchPercentageSaga(action) {
 
     const response = yield axios.get(`/api/compensation/percentage`, config);
 
-    yield put({ type: "SET_COMPENSATION", payload: response.data });
+    yield put({ type: "SET_PERCENTAGE", payload: response.data });
   } catch (error) {
     console.log("GET Compensation request failed", error);
   }
