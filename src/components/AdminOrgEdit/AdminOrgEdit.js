@@ -43,13 +43,16 @@ const styles = theme => ({
 
 
 class AdminOrgEdit extends Component {
+  
   state = {
     name: '',
     number: '',
     email: '',
     city: '',
-    pdf: '',
-    pictures: '',
+                // the below are not rendering currently
+                // no officially items from DB
+                // pdf: '',
+                // pictures: '',
     website: '',
     description: '',
     state: '',
@@ -63,8 +66,8 @@ class AdminOrgEdit extends Component {
       number: this.props.store.resourceDetails.number,
       email: this.props.store.resourceDetails.email,
       city: this.props.store.resourceDetails.city,
-      pdf: this.props.store.resourceDetails.pdf,
-      pictures: this.props.store.resourceDetails.pictures,
+      // pdf: this.props.store.resourceDetails.pdf,
+      // pictures: this.props.store.resourceDetails.pictures,
       website: this.props.store.resourceDetails.website,
       description: this.props.store.resourceDetails.description,
       state: this.props.store.resourceDetails.state,
@@ -94,6 +97,21 @@ cancelSubmit = () =>{
 
 
 
+
+updateOrg = (orgID) =>{
+  console.log('Updating organization with ID:', orgID);
+  // this dispatch below will send the id of the dream to update, with the payload of the state
+  // this.props.dispatch({type: 'UPDATE_DREAM', payload: {id: orgID, resourceDetails: this.state}});
+  this.setState({
+    title: '',
+    date: '',
+    image: '',
+    details: '',
+    name: '',
+    genre_id: ''
+  })
+}
+
 // this will handle the change of the textfields
 handleChange = (event, input) => {
   console.log('Details of org details:', this.state);
@@ -103,17 +121,11 @@ handleChange = (event, input) => {
   })
 }
 
-updateOrg = (orgID) =>{
-  console.log('Updating organization with ID:', orgID);
-  this.props.dispatch({type: 'UPDATE_DREAM', payload: {id: orgID, resourceDetails: this.state}});
-}
-
-
   render() {
     const {resourceDetails} = this.props.store;
         const { classes } = this.props;
     return (
-      <div>
+      <div className="container">
         {JSON.stringify(resourceDetails)}
           <center>
             <h2>Admin Organization Edit</h2>
