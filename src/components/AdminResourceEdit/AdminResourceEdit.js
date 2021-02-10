@@ -9,7 +9,10 @@ import Typography from '@material-ui/core/Typography';
 
 
 // TO DO LIST ON THIS PAGE:
-// - Make this page editable for admin with text fields
+// - Edit button to allow admins to edit organization profile
+// - create saga with PUT route to update organization
+// - create reducer to accept updated organization details
+// - 
 
 
 const styles = theme => ({
@@ -40,6 +43,12 @@ class AdminResourceEdit extends Component {
     console.log("Going back to Admin Landing Page");
     this.props.history.push("/adminlanding");
   };
+
+  editOrganization = (id) => {
+    console.log("Editing Organization with ID:", id);
+    // this.props.dispatch({type: 'EDIT_ORG', payload: id});
+    // this.props.history.push("/edit")
+  }
 
   render() {
     // line below is equivalent to this.props.store.details
@@ -89,6 +98,10 @@ class AdminResourceEdit extends Component {
                         PLACEHOLDER FOR PICTURES
                       </Typography>
                     </Paper>
+                    <br></br>
+                    <Button  
+                      className="edit-org-btn" variant="contained" 
+                      onClick={() => this.editOrganization(resource.org_id)}>Edit</Button>
                   </div>
                 );
               })}
@@ -98,9 +111,6 @@ class AdminResourceEdit extends Component {
                     className="admin-landing-button" variant="contained" 
                     onClick={this.goBackHome}>Admin Landing Page</Button>
                     <span>&nbsp;&nbsp;</span>
-                  <Button  
-                    className="admin-landing-button" variant="contained" 
-                    onClick={this.editOrganization}>Edit</Button>
                 </center>
             </div>
           );
