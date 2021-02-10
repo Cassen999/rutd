@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
 import Name from '../Question/Name'
 import Email from '../Question/Email'
+import Birth from '../Question/Birth'
 // AppBar, AppBar, Badge, CardMedia, IconButton, makeStyles, InputBase, Card, CardActionArea
 // import '../../../App/App.css';
 
@@ -121,30 +122,15 @@ class DemographicForm extends Component {
 
 <Name/>
 <Email/>
+<Birth/>
 <br/>
               <Grid item xs={12.0} sm={12}>
                
                 
 
-                <TextField
-                  variant="outlined"
-                  label="Email"
-                  name="email"
-                  value={this.state.newVet.email}
-                  onChange={(event) => this.handleInputChange(event, "email")}
-                />
-                <br />
+               
 
-                <TextField
-                  variant="outlined"
-                  label="Date of Birth"
-                  name="date_of_birth"
-                  value={this.state.newVet.date_of_birth}
-                  onChange={(event) =>
-                    this.handleInputChange(event, "date_of_birth")
-                  }
-                />
-                <br />
+                
                 <TextField
                   id="standard-textarea"
                   variant="outlined"

@@ -94,7 +94,7 @@ class Email extends Component {
                                     onChange={(event) => this.handleInputChange(event, "email")}
                                 />
                                 <br />
-                                <Button onClick={(event)=>{this.saveEmail(event)}}></Button>
+                                <Button onClick={(event)=>{this.saveEmail(event)}}>SAVE</Button>
                                 <br/>
                             </Grid>
                         </form>
