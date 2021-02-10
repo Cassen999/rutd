@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 // import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import '../AdminOrgEdit/AdminOrgEdit.css';
 // import InputLabel from '@material-ui/core/InputLabel';
 // import Select from '@material-ui/core/Select';
 // import MenuItem from '@material-ui/core/MenuItem';
@@ -102,14 +103,14 @@ updateOrg = (orgID) =>{
   console.log('Updating organization with ID:', orgID);
   // this dispatch below will send the id of the dream to update, with the payload of the state
   // this.props.dispatch({type: 'UPDATE_DREAM', payload: {id: orgID, resourceDetails: this.state}});
-  this.setState({
-    title: '',
-    date: '',
-    image: '',
-    details: '',
-    name: '',
-    genre_id: ''
-  })
+  // this.setState({
+  //   title: '',
+  //   date: '',
+  //   image: '',
+  //   details: '',
+  //   name: '',
+  //   genre_id: ''
+  // })
 }
 
 // this will handle the change of the textfields
@@ -132,11 +133,11 @@ handleChange = (event, input) => {
           </center>
           {resourceDetails.map((resource, i) => {
             return(
-                  <form className={classes.container} key={i} noValidate autoComplete="off">
-                      <Paper>
+            <Paper key={i}>
+                  <form>
                         <TextField
                           id="standard-name"
-                          placeholder={this.state.name}
+                          placeholder="Name"
                           className={classes.textField}
                           value={this.state.name}
                           onChange={(event)=>this.handleChange(event, 'name')}
@@ -144,7 +145,7 @@ handleChange = (event, input) => {
                           />
                         <TextField
                           id="standard-name"
-                          placeholder={this.state.number}
+                          placeholder="Number"
                           className={classes.textField}
                           value={this.state.number}
                           onChange={(event)=>this.handleChange(event, 'number')}
@@ -152,7 +153,7 @@ handleChange = (event, input) => {
                           />
                         <TextField
                           id="standard-name"
-                          placeholder={this.state.email}
+                          placeholder="Email"
                           className={classes.textField}
                           value={this.state.email}
                           onChange={(event)=>this.handleChange(event, 'email')}
@@ -160,7 +161,7 @@ handleChange = (event, input) => {
                           />
                         <TextField
                           id="standard-name"
-                          placeholder={this.state.city}
+                          placeholder="City"
                           className={classes.textField}
                           value={this.state.city}
                           onChange={(event)=>this.handleChange(event, 'city')}
@@ -168,7 +169,7 @@ handleChange = (event, input) => {
                           />
                         <TextField
                           id="standard-name"
-                          placeholder={this.state.website}
+                          placeholder="Website"
                           className={classes.textField}
                           value={this.state.website}
                           onChange={(event)=>this.handleChange(event, 'website')}
@@ -176,7 +177,7 @@ handleChange = (event, input) => {
                           />
                         <TextField
                           id="standard-name"
-                          placeholder={this.state.description}
+                          placeholder="Description"
                           className={classes.textField}
                           value={this.state.description}
                           onChange={(event)=>this.handleChange(event, 'description')}
@@ -184,7 +185,7 @@ handleChange = (event, input) => {
                           />
                         <TextField
                           id="standard-name"
-                          placeholder={this.state.state}
+                          placeholder="State"
                           className={classes.textField}
                           value={this.state.state}
                           onChange={(event)=>this.handleChange(event, 'state')}
@@ -206,27 +207,26 @@ handleChange = (event, input) => {
                                 className="dropdown"
                                 value={this.state.categories} 
                                 onChange={(event) => this.handleChange(event, 'categories')}>                                  
-                                  {this.props.store.genre.map((genre, i) =>
-                                      <MenuItem key={i} value={genre.id}>
-                                          {genre.name}
-                                      </MenuItem>)}
+                                {this.props.store.genre.map((genre, i) =>
+                                  <MenuItem key={i} value={genre.id}>
+                                      {genre.name}
+                                  </MenuItem>)}
                             </Select> */}
-                      </Paper>
-                      <br></br>
-                    <Button 
-                      style={{marginTop:"1rem"}}
-                      className="float-right" 
-                      variant="contained" 
-                      onClick={()=> this.updateOrg(resource.org_id)}>Update organization
-                    </Button>
-                      <span>&nbsp;&nbsp;</span>
-                    <Button 
-                      style={{marginTop:"1rem"}}
-                      className="float-right" 
-                      variant="contained" 
-                      onClick={this.cancelSubmit}>Cancel
-                    </Button>
+                          <span className="margin-above-button"></span>
+                          <Button 
+                            style={{marginTop:"1rem"}}
+                            className="float-right" 
+                            variant="contained" 
+                            onClick={()=> this.updateOrg(resourceDetails.org_id)}>Update organization
+                          </Button>
+                          <Button 
+                            style={{marginTop:"1rem"}}
+                            className="float-right" 
+                            variant="contained" 
+                            onClick={this.cancelSubmit}>Cancel
+                          </Button>
                   </form>
+              </Paper>
             )
           })}
       </div>
