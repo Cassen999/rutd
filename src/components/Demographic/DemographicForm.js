@@ -4,6 +4,7 @@ import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
 import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
 import Name from '../Question/Name'
+import Email from '../Question/Email'
 // AppBar, AppBar, Badge, CardMedia, IconButton, makeStyles, InputBase, Card, CardActionArea
 // import '../../../App/App.css';
 
@@ -119,29 +120,11 @@ class DemographicForm extends Component {
               <br />
 
 <Name/>
+<Email/>
 <br/>
               <Grid item xs={12.0} sm={12}>
-                <TextField
-                  variant="outlined"
-                  label="First Name"
-                  name="first_name"
-                  // className={classes.inputs}
-                  value={this.state.newVet.first_name}
-                  onChange={(event) =>
-                    this.handleInputChange(event, "first_name")
-                  }
-                />
-                <br />
-                <TextField
-                  variant="outlined"
-                  label="Last Name"
-                  name="last_name"
-                  value={this.state.newVet.last_name}
-                  onChange={(event) =>
-                    this.handleInputChange(event, "last_name")
-                  }
-                />
-                <br />
+               
+                
 
                 <TextField
                   variant="outlined"

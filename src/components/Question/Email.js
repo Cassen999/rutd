@@ -12,13 +12,11 @@ const styles = {
     },
 };
 
-class Name extends Component {
-    
+class Email extends Component {
+
     state = {
         vet: {
-            first_name: "",
-            last_name: "",
-
+            email: ""
         },
     }
 
@@ -40,26 +38,25 @@ class Name extends Component {
         );
     };
 
-    saveName = () => {
+    saveEmail = () => {
         let vetVar = this.state.vet
 
-        if (vetVar.first_name === '' || vetVar.last_name === '') {
-            alert("A first and last name is required for registration.");
+        if (vetVar.email === '') {
+            alert("An email address is required for registration.");
         } else {
             console.log(
-                `Saving ${vetVar.first_name}'s name to Database...`
+                `Saving ${vetVar.email} to Database...`
             );
 
             this.props.dispatch({
-                type: "ADD_NAME",
-                payload: this.state.vet,
+                type: "ADD_EMAIL",
+                payload: this.state.vet
             });
-           
+
             this.setState(
                 {
                     vet: {
-                        first_name: "",
-                        last_name: "",
+                        email: "",
                     },
                 },
                 function () {
@@ -75,7 +72,7 @@ class Name extends Component {
 
         return (
             <>
-                <h1>Name Entry</h1>
+                <h1>Email Entry</h1>
                 <Grid
                     container
                     spacing={2}
@@ -88,29 +85,17 @@ class Name extends Component {
                             <br />
 
                             <Grid item xs={12.0} sm={12}>
-                                <TextField
-                                    variant="outlined"
-                                    label="First Name"
-                                    name="first_name"
-                                    value={this.state.vet.first_name}
-                                    onChange={(event) =>
-                                        this.handleInputChange(event, "first_name")
-                                    }
-                                />
-                                <br />
 
                                 <TextField
                                     variant="outlined"
-                                    label="Last Name"
-                                    name="last_name"
-                                    value={this.state.vet.last_name}
-                                    onChange={(event) =>
-                                        this.handleInputChange(event, "last_name")
-                                    }
+                                    label="Email"
+                                    name="email"
+                                    value={this.state.vet.email}
+                                    onChange={(event) => this.handleInputChange(event, "email")}
                                 />
                                 <br />
-                                <Button onClick={(event)=>{this.saveName(event)}}></Button>
-                                <br />
+                                <Button onClick={(event)=>{this.saveEmail(event)}}></Button>
+                                <br/>
                             </Grid>
                         </form>
                     </Paper>
@@ -120,4 +105,4 @@ class Name extends Component {
     };//END render
 };//END Name
 
-export default connect(mapStoreToProps)(withStyles(styles)(Name));
+export default connect(mapStoreToProps)(withStyles(styles)(Email));
