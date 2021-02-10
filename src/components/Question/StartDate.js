@@ -12,11 +12,11 @@ const styles = {
     },
 };
 
-class Rank extends Component {
+class StartDate extends Component {
 
     state = {
         vet: {
-            rank: ""
+            startDate: ""
         },
     }
 
@@ -38,25 +38,25 @@ class Rank extends Component {
         );
     };
 
-    saveRank = () => {
+    saveStartDate = () => {
         let vetVar = this.state.vet
 
-        if (vetVar.rank === '') {
-            alert("An rank address is required for registration.");
+        if (vetVar.startDate === '') {
+            alert("An startDate address is required for registration.");
         } else {
             console.log(
-                `Saving ${vetVar.rank} to Database...`
+                `Saving ${vetVar.startDate} to Database...`
             );
 
             this.props.dispatch({
-                type: "ADD_RANK",
+                type: "ADD_START_DATE",
                 payload: this.state.vet
             });
 
             this.setState(
                 {
                     vet: {
-                        rank: "",
+                        startDate: "",
                     },
                 },
                 function () {
@@ -72,7 +72,7 @@ class Rank extends Component {
 
         return (
             <>
-                <h1>Rank Entry</h1>
+                <h1>Start Date Entry</h1>
                 <Grid
                     container
                     spacing={2}
@@ -88,13 +88,13 @@ class Rank extends Component {
 
                                 <TextField
                                     variant="outlined"
-                                    label="Rank"
-                                    name="rank"
-                                    value={this.state.vet.rank}
-                                    onChange={(event) => this.handleInputChange(event, "rank")}
+                                    label="Start Date"
+                                    name="startDate"
+                                    value={this.state.vet.startDate}
+                                    onChange={(event) => this.handleInputChange(event, "startDate")}
                                 />
                                 <br />
-                                <Button onClick={(event)=>{this.saveRank(event)}}>SAVE</Button>
+                                <Button onClick={(event)=>{this.saveStartDate(event)}}>SAVE</Button>
                                 <br/>
                             </Grid>
                         </form>
@@ -105,4 +105,4 @@ class Rank extends Component {
     };//END render
 };//END Name
 
-export default connect(mapStoreToProps)(withStyles(styles)(Rank));
+export default connect(mapStoreToProps)(withStyles(styles)(StartDate));

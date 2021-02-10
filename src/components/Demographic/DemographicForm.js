@@ -15,6 +15,7 @@ import HomeAddress from '../Question/HomeAddress'
 import MailAddress from '../Question/MailAddress'
 import Branch from '../Question/Branch'
 import Rank from '../Question/Rank'
+import StartDate from '../Question/StartDate'
 
 const styles = {
   inputs: {
@@ -94,6 +95,7 @@ class DemographicForm extends Component {
                 <MailAddress />
                 <Branch/>
                 <Rank/>
+                <StartDate/>
                 <br />
 
               </form>

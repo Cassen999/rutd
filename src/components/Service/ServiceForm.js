@@ -126,21 +126,7 @@ class ServiceForm extends Component {
                 <br />
 
                 {/* <Grid item xs={12.0} sm={12}>  */}
-                <TextField
-                  id="standard-textarea"
-                  variant="outlined"
-                  label="Start Date"
-                  //  rows={4}
-                  //   rowsMax={20}
-                  name="start_date"
-                  //  multiline
-                  //  className={classes.inputs}
-                  //  style={{width: '130px', height: '130px', marginBottom: '50px'}}
-                  value={this.state.newVet.start_date}
-                  onChange={(event) =>
-                    this.handleInputChange(event, "start_date")
-                  }
-                />
+               
 
                 {/* </Grid>  */}
 
