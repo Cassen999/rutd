@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
 import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
+import Name from '../Question/Name'
 // AppBar, AppBar, Badge, CardMedia, IconButton, makeStyles, InputBase, Card, CardActionArea
 // import '../../../App/App.css';
 
@@ -117,6 +118,8 @@ class DemographicForm extends Component {
             >
               <br />
 
+<Name/>
+<br/>
               <Grid item xs={12.0} sm={12}>
                 <TextField
                   variant="outlined"

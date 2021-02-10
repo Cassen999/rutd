@@ -13,6 +13,7 @@ const styles = {
 };
 
 class Name extends Component {
+    
     state = {
         vet: {
             first_name: "",
@@ -40,13 +41,13 @@ class Name extends Component {
     };
 
     saveName = () => {
-        let vet = this.state.vet
-        
-        if (vet.first_name === '' || vet.last_name === '') {
+        let vetVar = this.state.vet
+
+        if (vetVar.first_name === '' || vetVar.last_name === '') {
             alert("A first and last name is required for registration.");
         } else {
             console.log(
-                `Saving ${vet.first_name}'s name to Database...`
+                `Saving ${vetVar.first_name}'s name to Database...`
             );
 
             this.props.dispatch({
@@ -91,7 +92,7 @@ class Name extends Component {
                                     variant="outlined"
                                     label="First Name"
                                     name="first_name"
-                                    value={this.state.newVet.first_name}
+                                    value={this.state.vet.first_name}
                                     onChange={(event) =>
                                         this.handleInputChange(event, "first_name")
                                     }
@@ -102,7 +103,7 @@ class Name extends Component {
                                     variant="outlined"
                                     label="Last Name"
                                     name="last_name"
-                                    value={this.state.newVet.last_name}
+                                    value={this.state.vet.last_name}
                                     onChange={(event) =>
                                         this.handleInputChange(event, "last_name")
                                     }
