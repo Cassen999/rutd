@@ -133,7 +133,6 @@ handleChange = (event, input) => {
           {resourceDetails.map((resource, i) => {
             return(
               <div key={i}>
-                {/* INSERT TEXT FIELDS HERE */}
                   <form className={classes.container} noValidate autoComplete="off">
                       <Paper>
                         <TextField
@@ -214,8 +213,20 @@ handleChange = (event, input) => {
                                       </MenuItem>)}
                             </Select> */}
                       </Paper>
-                    <Button className="float-right" variant="contained" onClick={()=> this.updateOrg(resource.org_id)}>Update organization</Button>
-                    <Button className="float-right" variant="contained" onClick={this.cancelSubmit}>Cancel</Button>
+                      <br></br>
+                    <Button 
+                      style={{minWidth: '90px', minHeight: '36px', marginTop:"1rem"}}
+                      className="float-right" 
+                      variant="contained" 
+                      onClick={()=> this.updateOrg(resource.org_id)}>Update organization
+                    </Button>
+                      <span>&nbsp;&nbsp;</span>
+                    <Button 
+                      style={{minWidth: '90px', minHeight: '36px', marginTop:"1rem"}}
+                      className="float-right" 
+                      variant="contained" 
+                      onClick={this.cancelSubmit}>Cancel
+                    </Button>
                   </form>
               </div>
             )
