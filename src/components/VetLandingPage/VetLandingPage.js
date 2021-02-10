@@ -83,7 +83,7 @@ class UserPage extends Component {
   handleClick = (btnValue) => {
     switch (btnValue) {
       case 'profile':
-        return this.props.history.push('/profile');
+        return this.props.history.push('/adminVetView');
       case 'emergency': 
         return this.setState({modalOpen: true});
       case 'closeModal': 
@@ -169,7 +169,7 @@ class UserPage extends Component {
                           </Typography>
                         </Grid>           
                       )
-                    } else if ( !matches.length ) {
+                    } else {
                       return (
                         <h3>No Matches to Show</h3>
                       )
@@ -187,7 +187,12 @@ class UserPage extends Component {
             <Grid container spacing={1} direction="row">
                 <Grid container item xs={12} spacing={3} justify="space-evenly" alignItems="stretch" className={classes.gridList} >
                   {incompleteMatches.map((match, index) => {
-                    if (index === incompleteMatchIndex || index === incompleteMatchIndex + 1) {
+                    if (incompleteMatchIndex >= incompleteMatches.length) {
+                      return (
+                        <h3>No In Progress Matches to Show</h3>
+                      )
+                    }
+                    else if (index === incompleteMatchIndex || index === incompleteMatchIndex + 1) {
                       return(
                         <Grid item xs={5} className={classes.gridListTile} key={index}>
                           <img className="resource-icon" alt={match.title} src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png" />
@@ -214,7 +219,7 @@ class UserPage extends Component {
                           </Typography>
                         </Grid>           
                       )
-                    } else if ( !incompleteMatches.length ) {
+                    } else {
                       return (
                         <h3>No In Progress Matches to Show</h3>
                       )
