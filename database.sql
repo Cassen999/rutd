@@ -839,3 +839,24 @@ DELETE FROM
     organization
 WHERE
     id = 1;
+
+-- match org categories with veteran categories; and display org with most matches first
+SELECT
+    oc.org_id,
+    o.name,
+    o.contact,
+    count(oc.categories_id) AS org_needs,
+    count(vc.categories_id) AS vet_has,
+    (count(vc.categories_id) + 0.0) / (count(oc.categories_id) + 0.0) * 100 AS percent_match
+FROM
+    organization_categories oc
+    INNER JOIN veteran_categories vc ON vc.categories_id = oc.categories_id
+    AND vc.vet_id = 1
+    INNER JOIN organization o ON o.id = oc.org_id
+GROUP BY
+    oc.org_id,
+    o.name,
+    o.contact
+ORDER BY
+    percent_match DESC,
+    vet_has DESC;
