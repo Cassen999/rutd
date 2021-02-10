@@ -48,7 +48,7 @@ class AdminResourceEdit extends Component {
   editOrganization = (id) => {
     console.log("Editing Organization with ID:", id);
     this.props.dispatch({type: 'GET_ONE_RESOURCE', payload: id})
-    this.props.history.push("/editResource")
+    this.props.history.push("/adminOrgEdit")
   }
 
   render() {
