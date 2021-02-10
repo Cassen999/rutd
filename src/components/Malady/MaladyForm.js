@@ -37,7 +37,6 @@ class MaladyForm extends Component {
   componentDidMount() {
     console.log("Mounted");
     this.props.dispatch({ type: "FETCH_MALADY" });
-    this.props.dispatch({ type: "FETCH_PERCENTAGE" });
   }
   state = {
     newVet: {
@@ -77,7 +76,7 @@ class MaladyForm extends Component {
       //console.log(`Sending ${this.state.newArt} to DB.`);
 
       this.props.dispatch({
-        type: "UPDATE_HEALTH",
+        type: "UPDATE_MALADY",
         payload: this.state.newVet,
       });
       this.setState({
