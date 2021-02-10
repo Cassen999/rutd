@@ -10,16 +10,9 @@ const styles = {
   inputs: {
     width: "",
     paddingTop: "0px",
-    // marginTop: '20px',
     verticalAlign: "middle",
     fontFamily: "Arial",
-    // height: '100%'
   },
-  //     paperContainer: {
-  //       backgroundImage: `url(${canvas})`
-  //   },
-  //   typography : {
-  //     fontFamily : 'Arial'
 };
 
 class DemographicForm extends Component {
@@ -116,12 +109,8 @@ class DemographicForm extends Component {
           spacing={2}
           direction="column"
         >
-          <Paper
-            // className={classes.paddingTop}
-            // style={styles.paperContainer}
-            elevation={10}
-            // className={classes.paper}
-            // backgroundImage={canvas}
+          <Paper            
+            elevation={10}           
           >
             <form
             //   style={{ verticalAlign: 'middle' }}
@@ -139,38 +128,27 @@ class DemographicForm extends Component {
                     this.handleInputChange(event, "first_name")
                   }
                 />
-                {/* </Grid>  */}
                 <br />
-                {/* <Grid item xs={12.0} sm={12}> */}
-                {/* // align="center">  */}
                 <TextField
                   variant="outlined"
                   label="Last Name"
                   name="last_name"
-                  //  className={classes.inputs}
                   value={this.state.newVet.last_name}
                   onChange={(event) =>
                     this.handleInputChange(event, "last_name")
                   }
                 />
-                {/* </Grid> */}
                 <br />
 
-                {/* <Grid item xs={12.0} sm={12}>  */}
                 <TextField
                   variant="outlined"
                   label="Email"
                   name="email"
-                  //  className={classes.inputs}
-
                   value={this.state.newVet.email}
                   onChange={(event) => this.handleInputChange(event, "email")}
                 />
-
-                {/* </Grid>   */}
                 <br />
 
-                {/* <Grid item xs={12.0} sm={12}>  */}
                 <TextField
                   variant="outlined"
                   label="Date of Birth"
@@ -180,11 +158,7 @@ class DemographicForm extends Component {
                     this.handleInputChange(event, "date_of_birth")
                   }
                 />
-
-                {/* </Grid>  */}
                 <br />
-
-                {/* <Grid item xs={12.0} sm={12}>  */}
                 <TextField
                   id="standard-textarea"
                   variant="outlined"
@@ -207,8 +181,6 @@ class DemographicForm extends Component {
                   id="standard-textarea"
                   variant="outlined"
                   label="Gender ID"
-                  //  rows={4}
-                  //   rowsMax={20}
                   name="gender_id"
                   //  multiline
                   //  className={classes.inputs}
@@ -225,9 +197,7 @@ class DemographicForm extends Component {
                 <TextField
                   id="standard-textarea"
                   variant="outlined"
-                  label="Married ID"
-                  //  rows={4}
-                  //   rowsMax={20}
+                  label="Married ID"                 
                   name="married_id"
                   //  multiline
                   //  className={classes.inputs}
@@ -409,31 +379,12 @@ class DemographicForm extends Component {
                 {/* <button onClick={(event)=>this.props.history.push('/home')}>BACK TO HOME</button> */}
 
                 <Button
-                  onClick={(event) => this.saveDemographic(event)}
-                  // addArtProp={this.addArt}
-                  //   elevation={20}
-                  //  className={classes.typography}
-                  //  textAlign='center'
-                  //  justify='center'
-                  //   style={{justifyContent: 'center'}}
-                  //  <Button elevation={10}
-                  //  Box display="flex" flexDirection="column"
-                  //  textAlign='center'
-                  //  display='flex'
-                  //  justifyContent='center'
-                  //  justify="center"
-                  //  onClick={this.addArt}
-                  //  variant="raised"
-                  //  color="purple"
-                  //  className={classes.alignAndJustify}
-                >
+                  onClick={(event) => this.saveDemographic(event)}>
                   SAVE
                 </Button>
               </Grid>
               <br />
             </form>
-            {/* </Card> */}
-            {/* </Grid> */}
           </Paper>
         </Grid>
       </>
