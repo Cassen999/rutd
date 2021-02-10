@@ -111,7 +111,7 @@ class MailAddress extends Component {
                                     variant="outlined"
                                     label="Apt/PO Box/Bldg"
                                     name="APT"
-                                    value={this.state.vet.address}
+                                    value={this.state.vet.apt}
                                     onChange={(event) => this.handleInputChange(event, "apt")}
                                 />
                                 <br />
