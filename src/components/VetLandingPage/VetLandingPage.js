@@ -80,8 +80,8 @@ class UserPage extends Component {
 
   handleClick = (btnValue) => {
     switch (btnValue) {
-      case "edit":
-        return this.props.history.push("/vetmatches");
+      case "profile":
+        return this.props.history.push("/adminVetView");
       case "emergency":
         return this.setState({ modalOpen: true });
       case "closeModal":
@@ -266,7 +266,9 @@ class UserPage extends Component {
                   className={classes.gridList}
                 >
                   {incompleteMatches.map((match, index) => {
-                    if (
+                    if (incompleteMatchIndex >= incompleteMatches.length) {
+                      return <h3>No In Progress Matches to Show</h3>;
+                    } else if (
                       index === incompleteMatchIndex ||
                       index === incompleteMatchIndex + 1
                     ) {
@@ -358,7 +360,7 @@ class UserPage extends Component {
             id="editBtn"
             size="large"
             variant="contained"
-            onClick={() => this.handleClick("edit")}
+            onClick={() => this.handleClick("profile")}
           >
             View/Edit Profile
           </Button>
@@ -375,7 +377,7 @@ class UserPage extends Component {
             id="allMatchBtn"
             size="large"
             variant="contained"
-            onClick={() => this.handleMatchClick()}
+            onClick={() => this.handleClick("allMatches")}
           >
             View All Matches
           </Button>
