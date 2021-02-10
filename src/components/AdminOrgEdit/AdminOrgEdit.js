@@ -103,6 +103,12 @@ handleChange = (event, input) => {
   })
 }
 
+updateOrg = (id) =>{
+  console.log('Updating organization', id);
+  // this.props.dispatch({type:'UPDATE_ORG', {id: dreamID, dreamDetails: this.state});
+}
+
+
   render() {
     const {resourceDetails} = this.props.store;
         const { classes } = this.props;
@@ -196,7 +202,7 @@ handleChange = (event, input) => {
                                       </MenuItem>)}
                             </Select> */}
                       </Paper>
-                    <Button className="float-right" variant="contained" onClick={this.updateOrg}>Update organization</Button>
+                    <Button className="float-right" variant="contained" onClick={()=> this.updateOrg(resource.org_id)}>Update organization</Button>
                     <Button className="float-right" variant="contained" onClick={this.cancelSubmit}>Cancel</Button>
                   </form>
               </div>
