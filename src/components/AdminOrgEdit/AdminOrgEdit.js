@@ -3,8 +3,13 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import MenuItem from '@material-ui/core/MenuItem';
+// import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+// import InputLabel from '@material-ui/core/InputLabel';
+// import Select from '@material-ui/core/Select';
+// import MenuItem from '@material-ui/core/MenuItem';
+import swal from 'sweetalert';
 
 // TO DO :
 // - Map out the reducer resourceDetails to edit 
@@ -13,6 +18,12 @@ import TextField from '@material-ui/core/TextField';
 // - cancel edit button
  
 const styles = theme => ({
+  button: {
+      margin: theme.spacing.unit,
+    },
+    input: {
+      display: 'none',
+    },
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -61,6 +72,28 @@ class AdminOrgEdit extends Component {
     })
   }
 
+
+cancelSubmit = () =>{
+  swal({
+      title: "Are you sure?",
+      text: "Once cancelled, your edit will not be made!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("Your edit has not been saved!", {
+          icon: "success",
+        });
+      } else {
+        swal("You can keep working on the edits");
+      }
+    });
+}
+
+
+
   // this will handle the change of the textfields
 handleChange = (event, input) => {
   console.log('Details of org details:', this.state);
@@ -87,69 +120,84 @@ handleChange = (event, input) => {
                       <Paper>
                         <TextField
                           id="standard-name"
-                          label="Name"
+                          placeholder={this.state.name}
                           className={classes.textField}
-                          value={resource.name}
+                          value={this.state.name}
                           onChange={(event)=>this.handleChange(event, 'name')}
                           margin="normal"
                           />
                         <TextField
                           id="standard-name"
-                          label="Number"
+                          placeholder={this.state.number}
                           className={classes.textField}
-                          value={resource.number}
+                          value={this.state.number}
                           onChange={(event)=>this.handleChange(event, 'number')}
                           margin="normal"
                           />
                         <TextField
                           id="standard-name"
-                          label="Email"
+                          placeholder={this.state.email}
                           className={classes.textField}
-                          value={resource.email}
+                          value={this.state.email}
                           onChange={(event)=>this.handleChange(event, 'email')}
                           margin="normal"
                           />
                         <TextField
                           id="standard-name"
-                          label="City"
+                          placeholder={this.state.city}
                           className={classes.textField}
-                          value={resource.city}
+                          value={this.state.city}
                           onChange={(event)=>this.handleChange(event, 'city')}
                           margin="normal"
                           />
                         <TextField
                           id="standard-name"
-                          label="Website"
+                          placeholder={this.state.website}
                           className={classes.textField}
-                          value={resource.website}
+                          value={this.state.website}
                           onChange={(event)=>this.handleChange(event, 'website')}
                           margin="normal"
                           />
                         <TextField
                           id="standard-name"
-                          label="Description"
+                          placeholder={this.state.description}
                           className={classes.textField}
-                          value={resource.description}
+                          value={this.state.description}
                           onChange={(event)=>this.handleChange(event, 'description')}
                           margin="normal"
                           />
                         <TextField
                           id="standard-name"
-                          label="State"
+                          placeholder={this.state.state}
                           className={classes.textField}
-                          value={resource.state}
+                          value={this.state.state}
                           onChange={(event)=>this.handleChange(event, 'state')}
                           margin="normal"
                           />
-                        <TextField
+                    {/* THIS NEEDS A DROP DOWN MENU SELECT --- COMMENTING OUT RIGHT NOW */}
+                        {/* <TextField
                           id="standard-name"
-                          label="Categories"
+                          placeholder="Categories"
                           className={classes.textField}
                           value={resource.categories}
                           onChange={(event)=>this.handleChange(event, 'categories')}
                           margin="normal"
-                          />
+                          /> */}
+                        {/* <InputLabel>
+                            Categories
+                        </InputLabel>
+                            <Select 
+                                className="dropdown"
+                                value={this.state.categories} 
+                                onChange={(event) => this.handleChange(event, 'categories')}>                                  
+                                  {this.props.store.genre.map((genre, i) =>
+                                      <MenuItem key={i} value={genre.id}>
+                                          {genre.name}
+                                      </MenuItem>)}
+                            </Select> */}
                       </Paper>
+                    <Button className="float-right" variant="contained" onClick={this.updateOrg}>Update organization</Button>
+                    <Button className="float-right" variant="contained" onClick={this.cancelSubmit}>Cancel</Button>
                   </form>
               </div>
             )
