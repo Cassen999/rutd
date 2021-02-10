@@ -30,7 +30,7 @@ import Demographic from "../Demographic/Demographic";
 import Malady from "../Malady/Malady";
 import Compensation from "../Compensation/Compensation";
 import AdminVetView from "../AdminVetView/AdminVetView";
-import AdminResourceEdit from "../AdminResourceEdit/AdminResourceEdit";
+import AdminOrgView from "../AdminOrgView/AdminOrgView";
 import AdminOrgEdit from "../AdminOrgEdit/AdminOrgEdit";
 
 import "./App.css";
@@ -168,8 +168,8 @@ class App extends Component {
 
             <ProtectedRoute
               exact
-              path="/adminResourceEdit"
-              component={AdminResourceEdit}
+              path="/adminOrgView"
+              component={AdminOrgView}
             />
 
             <ProtectedRoute

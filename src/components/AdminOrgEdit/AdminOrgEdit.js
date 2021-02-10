@@ -94,7 +94,7 @@ cancelSubmit = () =>{
 
 
 
-  // this will handle the change of the textfields
+// this will handle the change of the textfields
 handleChange = (event, input) => {
   console.log('Details of org details:', this.state);
   this.setState({
@@ -103,9 +103,9 @@ handleChange = (event, input) => {
   })
 }
 
-updateOrg = (id) =>{
-  console.log('Updating organization', id);
-  // this.props.dispatch({type:'UPDATE_ORG', {id: dreamID, dreamDetails: this.state});
+updateOrg = (orgID) =>{
+  console.log('Updating organization with ID:', orgID);
+  this.props.dispatch({type: 'UPDATE_DREAM', payload: {id: orgID, resourceDetails: this.state}});
 }
 
 
