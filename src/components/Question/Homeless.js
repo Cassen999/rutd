@@ -49,7 +49,7 @@ class Homeless extends Component {
             );
 
             this.props.dispatch({
-                type: "ADD_homeless",
+                type: "ADD_HOMELESS",
                 payload: this.state.vet
             });
 

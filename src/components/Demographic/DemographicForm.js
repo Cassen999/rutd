@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
 import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
+//REGISTRATION QUESTIONS
 import Name from '../Question/Name'
 import Email from '../Question/Email'
 import Birth from '../Question/Birth'

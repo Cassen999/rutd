@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import DemographicsForm from './DemographicForm';
+import DemographicForm from './DemographicForm';
 
 // Basic class component structure for React with default state
 // value setup. When making a new component be sure to replace
@@ -18,7 +18,7 @@ class Demographics extends Component {
         <h2>{this.state.heading}</h2>
         REDUX STORE: {JSON.stringify(this.props.store)} 
 
-        <DemographicsForm/>
+        <DemographicForm/>
       </div>
     );
   }
