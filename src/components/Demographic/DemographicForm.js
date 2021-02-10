@@ -6,7 +6,14 @@ import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
 import Name from '../Question/Name'
 import Email from '../Question/Email'
 import Birth from '../Question/Birth'
-import Phone from '../Question/phone'
+import Phone from '../Question/Phone'
+import Gender from '../Question/Gender'
+import Marriage from '../Question/Marriage'
+import Children from '../Question/Children'
+import Homeless from '../Question/Homeless'
+import HomeAddress from '../Question/HomeAdress'
+import MailAddress from '../Question/MailAdress'
+
 // AppBar, AppBar, Badge, CardMedia, IconButton, makeStyles, InputBase, Card, CardActionArea
 // import '../../../App/App.css';
 
@@ -125,6 +132,12 @@ class DemographicForm extends Component {
 <Email/>
 <Birth/>
 <Phone/>
+<Gender/>
+<Marriage/>
+<Children/>
+<Homeless/>
+<HomeAddress/>
+<MailAddress/>
 <br/>
               <Grid item xs={12.0} sm={12}>
                
