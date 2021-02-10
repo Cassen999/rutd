@@ -82,7 +82,7 @@ class HomeAddress extends Component {
 
         return (
             <>
-                <h1>homeAddress Entry</h1>
+                <h1>Home Address Entry</h1>
                 <Grid
                     container
                     spacing={2}

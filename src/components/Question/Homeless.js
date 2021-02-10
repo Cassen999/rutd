@@ -72,7 +72,7 @@ class Homeless extends Component {
 
         return (
             <>
-                <h1>homeless Entry</h1>
+                <h1>Homeless Entry</h1>
                 <Grid
                     container
                     spacing={2}
@@ -93,8 +93,8 @@ class Homeless extends Component {
                                     onChange={(event) => this.handleInputChange(event, "homeless")}
                                 />
                                 <br />
-                                <Button onClick={(event)=>{this.savehomeless(event)}}>SAVE</Button>
-                                <br/>
+                                <Button onClick={(event) => { this.savehomeless(event) }}>SAVE</Button>
+                                <br />
                             </Grid>
                         </form>
                     </Paper>

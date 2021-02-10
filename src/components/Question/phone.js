@@ -72,7 +72,7 @@ class Phone extends Component {
 
         return (
             <>
-                <h1>phone Entry</h1>
+                <h1>Phone Entry</h1>
                 <Grid
                     container
                     spacing={2}
@@ -86,17 +86,17 @@ class Phone extends Component {
 
                             <Grid item xs={12.0} sm={12}>
 
-                            <TextField
-                  id="standard-textarea"
-                  variant="outlined"
-                  label="Phone Number"
-                  name="phone"
-                  value={this.state.vet.phone}
-                  onChange={(event) => this.handleInputChange(event, "phone")}
-                />
+                                <TextField
+                                    id="standard-textarea"
+                                    variant="outlined"
+                                    label="Phone Number"
+                                    name="phone"
+                                    value={this.state.vet.phone}
+                                    onChange={(event) => this.handleInputChange(event, "phone")}
+                                />
                                 <br />
-                                <Button onClick={(event)=>{this.savePhone(event)}}>SAVE</Button>
-                                <br/>
+                                <Button onClick={(event) => { this.savePhone(event) }}>SAVE</Button>
+                                <br />
                             </Grid>
                         </form>
                     </Paper>

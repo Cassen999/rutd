@@ -72,7 +72,7 @@ class Marriage extends Component {
 
         return (
             <>
-                <h1>marriage Entry</h1>
+                <h1>Marriage Entry</h1>
                 <Grid
                     container
                     spacing={2}
@@ -93,8 +93,8 @@ class Marriage extends Component {
                                     onChange={(event) => this.handleInputChange(event, "marriage")}
                                 />
                                 <br />
-                                <Button onClick={(event)=>{this.savemarriage(event)}}>SAVE</Button>
-                                <br/>
+                                <Button onClick={(event) => { this.savemarriage(event) }}>SAVE</Button>
+                                <br />
                             </Grid>
                         </form>
                     </Paper>

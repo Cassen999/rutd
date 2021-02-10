@@ -82,7 +82,7 @@ class MailAddress extends Component {
 
         return (
             <>
-                <h1>mailAddress Entry</h1>
+                <h1>Mail Address Entry</h1>
                 <Grid
                     container
                     spacing={2}
@@ -95,7 +95,6 @@ class MailAddress extends Component {
                             <br />
 
                             <Grid item xs={12.0} sm={12}>
-
 
                                 <TextField
                                     id="standard-textarea"

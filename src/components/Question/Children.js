@@ -72,7 +72,7 @@ class Children extends Component {
 
         return (
             <>
-                <h1>children Entry</h1>
+                <h1>Children Entry</h1>
                 <Grid
                     container
                     spacing={2}
@@ -93,8 +93,8 @@ class Children extends Component {
                                     onChange={(event) => this.handleInputChange(event, "children")}
                                 />
                                 <br />
-                                <Button onClick={(event)=>{this.savechildren(event)}}>SAVE</Button>
-                                <br/>
+                                <Button onClick={(event) => { this.savechildren(event) }}>SAVE</Button>
+                                <br />
                             </Grid>
                         </form>
                     </Paper>

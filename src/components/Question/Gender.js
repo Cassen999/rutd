@@ -72,7 +72,7 @@ class Gender extends Component {
 
         return (
             <>
-                <h1>gender Entry</h1>
+                <h1>Gender Entry</h1>
                 <Grid
                     container
                     spacing={2}
@@ -93,8 +93,8 @@ class Gender extends Component {
                                     onChange={(event) => this.handleInputChange(event, "gender")}
                                 />
                                 <br />
-                                <Button onClick={(event)=>{this.saveGender(event)}}>SAVE</Button>
-                                <br/>
+                                <Button onClick={(event) => { this.saveGender(event) }}>SAVE</Button>
+                                <br />
                             </Grid>
                         </form>
                     </Paper>

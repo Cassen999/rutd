@@ -13,7 +13,7 @@ const styles = {
 };
 
 class Name extends Component {
-    
+
     state = {
         vet: {
             first_name: "",
@@ -54,7 +54,7 @@ class Name extends Component {
                 type: "ADD_NAME",
                 payload: this.state.vet,
             });
-           
+
             this.setState(
                 {
                     vet: {
@@ -109,7 +109,7 @@ class Name extends Component {
                                     }
                                 />
                                 <br />
-                                <Button onClick={(event)=>{this.saveName(event)}}>SAVE</Button>
+                                <Button onClick={(event) => { this.saveName(event) }}>SAVE</Button>
                                 <br />
                             </Grid>
                         </form>
