@@ -38,7 +38,7 @@ class Homeless extends Component {
         );
     };
 
-    savehomeless = () => {
+    saveHomeless = () => {
         let vetVar = this.state.vet
 
         if (vetVar.homeless === '') {
@@ -93,7 +93,7 @@ class Homeless extends Component {
                                     onChange={(event) => this.handleInputChange(event, "homeless")}
                                 />
                                 <br />
-                                <Button onClick={(event) => { this.savehomeless(event) }}>SAVE</Button>
+                                <Button onClick={(event) => { this.saveHomeless(event) }}>SAVE</Button>
                                 <br />
                             </Grid>
                         </form>

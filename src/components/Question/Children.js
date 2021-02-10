@@ -38,7 +38,7 @@ class Children extends Component {
         );
     };
 
-    savechildren = () => {
+    saveChildren = () => {
         let vetVar = this.state.vet
 
         if (vetVar.children === '') {
@@ -93,7 +93,7 @@ class Children extends Component {
                                     onChange={(event) => this.handleInputChange(event, "children")}
                                 />
                                 <br />
-                                <Button onClick={(event) => { this.savechildren(event) }}>SAVE</Button>
+                                <Button onClick={(event) => { this.saveChildren(event) }}>SAVE</Button>
                                 <br />
                             </Grid>
                         </form>

@@ -43,7 +43,7 @@ class MailAddress extends Component {
         );
     };
 
-    savemailAddress = () => {
+    saveMailAddress = () => {
         let vetVar = this.state.vet
 
         if (vetVar.mailAddress === '') {

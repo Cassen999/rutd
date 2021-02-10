@@ -38,7 +38,7 @@ class Birth extends Component {
         );
     };
 
-    saveEmail = () => {
+    saveDOB = () => {
         let vetVar = this.state.vet
 
         if (vetVar.dOB === '') {
@@ -90,13 +90,13 @@ class Birth extends Component {
                                     variant="outlined"
                                     label="Date of Birth"
                                     name="date_of_birth"
-                                    value={this.state.vet.date_of_birth}
+                                    value={this.state.vet.dOB}
                                     onChange={(event) =>
                                         this.handleInputChange(event, "dOB")
                                     }
                                 />
                                 <br />
-                                <Button onClick={(event) => { this.saveEmail(event) }}>SAVE</Button>
+                                <Button onClick={(event) => { this.saveDOB(event) }}>SAVE</Button>
                                 <br />
                             </Grid>
 

@@ -38,7 +38,7 @@ class Phone extends Component {
         );
     };
 
-    savephone = () => {
+    savePhone = () => {
         let vetVar = this.state.vet
 
         if (vetVar.phone === '') {

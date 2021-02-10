@@ -43,7 +43,7 @@ class HomeAddress extends Component {
         );
     };
 
-    savehomeAddress = () => {
+    saveHomeAddress = () => {
         let vetVar = this.state.vet
 
         if (vetVar.homeAddress === '') {
@@ -157,7 +157,7 @@ class HomeAddress extends Component {
                                 />
                                 <br />
 
-                                <Button onClick={(event) => { this.savehomeAddress(event) }}>SAVE</Button>
+                                <Button onClick={(event) => { this.saveHomeAddress(event) }}>SAVE</Button>
                                 <br />
                             </Grid>
                         </form>

@@ -38,7 +38,7 @@ class Gender extends Component {
         );
     };
 
-    savegender = () => {
+    saveGender = () => {
         let vetVar = this.state.vet
 
         if (vetVar.gender === '') {

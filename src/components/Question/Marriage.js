@@ -38,7 +38,7 @@ class Marriage extends Component {
         );
     };
 
-    savemarriage = () => {
+    saveMarriage = () => {
         let vetVar = this.state.vet
 
         if (vetVar.marriage === '') {
@@ -93,7 +93,7 @@ class Marriage extends Component {
                                     onChange={(event) => this.handleInputChange(event, "marriage")}
                                 />
                                 <br />
-                                <Button onClick={(event) => { this.savemarriage(event) }}>SAVE</Button>
+                                <Button onClick={(event) => { this.saveMarriage(event) }}>SAVE</Button>
                                 <br />
                             </Grid>
                         </form>
