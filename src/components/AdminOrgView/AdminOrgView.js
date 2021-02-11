@@ -64,6 +64,7 @@ class AdminResourceEdit extends Component {
                 return (
                   <div key={i}>
                     <Paper className={classes.root} elevation={1}>
+                      <hr></hr>
                       <Typography variant="h5" component="h3">
                         Organization Details
                       </Typography>
@@ -91,12 +92,13 @@ class AdminResourceEdit extends Component {
                       <Typography component="p">
                         Categories: {resource.categories}
                       </Typography>
-                      <Typography component="p">
+                      {/* <Typography component="p">
                         PLACEHOLDER FOR PDF
                       </Typography>
                       <Typography component="p">
                         PLACEHOLDER FOR PICTURES
-                      </Typography>
+                      </Typography> */}
+                      <hr></hr>
                     </Paper>
                     <br></br>
                     <Button  

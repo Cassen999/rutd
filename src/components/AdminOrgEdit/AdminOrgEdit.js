@@ -112,6 +112,23 @@ updateOrg = (orgID) =>{
   //   name: '',
   //   genre_id: ''
   // })
+    swal({
+      title: "Update Organization details?",
+      text: "Once cancelled, your edit will not be saved!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("You've updated the details!", {
+          icon: "success",
+        });
+        this.props.history.push("/adminOrgView", orgID)
+      } else {
+        swal("You can keep working on the edits");
+      }
+    });
 }
 
 // this will handle the change of the textfields
@@ -213,9 +230,9 @@ handleChange = (event, input) => {
                                       {genre.name}
                                   </MenuItem>)}
                             </Select> */}
-                          <span className="margin-above-button"></span>
+                          <br></br>
                           <Button 
-                            style={{marginTop:"1rem"}}
+                            style={{marginTop:"1rem", marginLeft:"2rem"}}
                             className="float-right" 
                             variant="contained" 
                             onClick={()=> this.updateOrg(resource.org_id)}>Update organization
