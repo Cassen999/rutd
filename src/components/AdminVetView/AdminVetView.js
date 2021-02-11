@@ -56,6 +56,7 @@ class AdminVetView extends Component {
                 return(
                   <div key={i}>
                     <Paper className={classes.root} elevation={1}>
+                      <hr></hr>
                       <Typography component="p">Name: {vet.first_name} {vet.last_name}</Typography>
                       <Typography component="p">Email: {vet.email}</Typography>
                       <Typography component="p">Date of Birth:{vet.date_of_birth}</Typography>
@@ -67,12 +68,13 @@ class AdminVetView extends Component {
                       <Typography component="p">Current Address: {vet.current_address}</Typography>
                       <Typography component="p">City: {vet.city}</Typography>
                       <Typography component="p">State: {vet.state}</Typography>
-                      <Typography component="p">Zipcode: {vet.ziTypographycode}</Typography>
+                      <Typography component="p">Zipcode: {vet.zipcode}</Typography>
                       <Typography component="p">Country: {vet.country}</Typography>
-                      <Typography component="p">City2: {vet.city2}</Typography>
-                      <Typography component="p">Zipcode2: {vet.zipcode2}</Typography>
-                      <Typography component="p">County2: {vet.country2}</Typography>
                       <Typography component="p">Mailing Address: {vet.mailing_address}</Typography>
+                      <Typography component="p">City2: {vet.city2}</Typography>
+                      <Typography component="p">State2: {vet.state_id2}</Typography>
+                      <Typography component="p">Zipcode2: {vet.zipcode2}</Typography>
+                      <Typography component="p">Country2: {vet.country2}</Typography>
                       <Typography component="p">Branch: {vet.branch}</Typography>
                       <Typography component="p">Rank: {vet.rank}</Typography>
                       <Typography component="p">Start Date: {vet.start_date}</Typography>
@@ -83,10 +85,11 @@ class AdminVetView extends Component {
                       <Typography component="p">Percentage: {vet.percentage}</Typography>
                       <Typography component="p">Danger Areas: {conversion(vet.danger_areas)}</Typography>
                       <Typography component="p">Purple Heart: {conversion(vet.purple_heart)}</Typography>
+                      <hr></hr>
                     </Paper>
+                  <br></br>
                 </div>
               )})}
-              <hr></hr>
               <center>
                 <Button  
                   className="admin-landing-button" variant="contained" 
