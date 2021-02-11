@@ -149,7 +149,7 @@ class Hazard extends Component {
     const percentages = this.props.store.percentageReducer;
     return (
       <>
-        <h1>CompensationForm</h1>
+        <h1>Hazard Form</h1>
         <Paper
           className=""
           elevation={10}
