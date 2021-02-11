@@ -75,7 +75,7 @@ class DemographicForm extends Component {
               <form>
                 <br />
 
-                {formIndex === 0 &&
+                {formIndex <= 0 &&
                   <Name />
                 }
 
@@ -153,6 +153,15 @@ class DemographicForm extends Component {
 
                 {formIndex === 19 &&
                   <PurpleHeart/>
+                }
+
+                {formIndex >= 20 &&
+                  <Button
+                    variant="contained"
+                    onClick={this.handleNext}
+                  >
+                    All Done!
+                  </Button>
                 }                                
 
                 <br />

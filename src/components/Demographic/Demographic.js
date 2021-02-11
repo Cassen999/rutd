@@ -15,8 +15,8 @@ class Demographics extends Component {
   render() {
     return (
       <div>
-        <h2>{this.state.heading}</h2>
-        REDUX STORE: {JSON.stringify(this.props.store)} 
+        {/* <h2>{this.state.heading}</h2>
+        REDUX STORE: {JSON.stringify(this.props.store)}  */}
 
         <DemographicForm/>
       </div>
