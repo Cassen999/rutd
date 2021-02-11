@@ -7,7 +7,8 @@ import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
 import green from '@material-ui/core/colors/green';
 import swal from 'sweetalert';
-import './VetFindMatches.css'
+import './VetFindMatches.css';
+import VetMatches from '../VetMatches/VetMatches';
 
 const styles = theme => ({
   textField: {
@@ -68,7 +69,10 @@ class VetFindMatches extends Component {
   handleTextboxChange = (event) => {
     this.setState({
       textbox: event.target.value
-    })
+    },
+    function () {
+      this.props.dispatch({type: 'SET_EMAIL', payload: this.state.textbox})
+    });
   }
 
   handleRadioSelect = (event) => {
@@ -82,6 +86,7 @@ class VetFindMatches extends Component {
     const {vetReducer} = this.props.store;
     return (
       <div>
+        {JSON.stringify(this.state.textbox)}
         <center>
           <h2>Before we find your resource matches...</h2>
         </center>
