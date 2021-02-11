@@ -49,7 +49,7 @@ class Rank extends Component {
             );
 
             this.props.dispatch({
-                type: "ADD_RANK",
+                type: "UPDATE_RANK",
                 payload: this.state.vet
             });
 

@@ -49,7 +49,7 @@ class Branch extends Component {
             );
 
             this.props.dispatch({
-                type: "ADD_BRANCH",
+                type: "UPDATE_BRANCH",
                 payload: this.state.vet
             });
 

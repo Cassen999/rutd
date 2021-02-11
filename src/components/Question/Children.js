@@ -48,7 +48,7 @@ class Children extends Component {
             );
 
             this.props.dispatch({
-                type: "ADD_CHILDREN",
+                type: "UPDATE_CHILDREN",
                 payload: this.state.vet
             });
 
