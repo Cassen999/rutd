@@ -7,6 +7,11 @@ import { withStyles } from "@material-ui/core/styles";
 import compose from 'recompose/compose';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 const styles = (theme) => ({
   root: {
@@ -16,6 +21,11 @@ const styles = (theme) => ({
     padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary,
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    maxWidth: 300,
   },
 });
 
@@ -44,14 +54,33 @@ class VetMatches extends Component {
         <button onClick={(event) => this.props.history.push("/home")}>
           BACK TO HOME
         </button>
-        <button onClick={(event) => this.contactOrg(event)}>CONTACT ORG</button>
+
+        
+      <FormControl className={classes.formControl}>
+        <InputLabel id="search-category-label">Category</InputLabel>
+        <Select
+          labelId="search-category-label"
+          id="search-category"
+          multiple
+          value={matches}
+          //onChange={handleChange}
+          input={<Input />}
+          //MenuProps={MenuProps}
+        >
+          {matches.map((match, i) => (
+            <MenuItem key={i} value={match.name} >
+              {match.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
 
         <div className={classes.root}>
           <Grid container spacing={1}>
             <Grid container item xs={12} spacing={3}>
               {matches.map((match, i) => (
                 <React.Fragment>
-                  <Grid item key={i} xs={4}>
+                  <Grid item key={i} xs={2}>
                     <Paper className={classes.paper}>
                       <img
                         className="resource-icon"
@@ -60,17 +89,17 @@ class VetMatches extends Component {
                       />
                     </Paper>        
                   </Grid>
-                  <Grid item key={i} xs={4}>
+                  <Grid item key={i} xs={3}>
                     <Paper className={classes.paper}>
                       {match.name}
                     </Paper>        
                   </Grid>
-                  <Grid item key={i} xs={4}>
+                  <Grid item key={i} xs={3}>
                     <Paper className={classes.paper}>
                       {match.description}
                     </Paper>        
                   </Grid>
-                  <Grid item key={i} xs={4}>
+                  <Grid item key={i} xs={3}>
                     <Paper className={classes.paper}>
                       <button onClick={(event) => this.contactOrg(event)}>
                         CONTACT ORG
