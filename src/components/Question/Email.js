@@ -4,12 +4,12 @@ import { connect } from "react-redux";
 import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
 
 const styles = {
-  inputs: {
-    width: "",
-    paddingTop: "",
-    verticalAlign: "middle",
-    fontFamily: "Arial",
-  },
+    inputs: {
+        width: "",
+        paddingTop: "",
+        verticalAlign: "",
+        fontFamily: "",
+    },
 };
 
 class Email extends Component {

@@ -4,12 +4,12 @@ import { connect } from "react-redux";
 import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
 
 const styles = {
-  inputs: {
-    width: "",
-    paddingTop: "",
-    verticalAlign: "middle",
-    fontFamily: "Arial",
-  },
+    inputs: {
+        width: "",
+        paddingTop: "",
+        verticalAlign: "",
+        fontFamily: "",
+    },
 };
 
 class Gender extends Component {
@@ -37,13 +37,15 @@ class Gender extends Component {
     );
   };
 
-  savegender = () => {
-    let vetVar = this.state.vet;
+    saveGender = () => {
+        let vetVar = this.state.vet
 
-    if (vetVar.gender === "") {
-      alert("An gender address is required for registration.");
-    } else {
-      console.log(`Saving ${vetVar.gender} to Database...`);
+        if (vetVar.gender === '') {
+            alert("Pleas indicate your gender.");
+        } else {
+            console.log(
+                `Saving ${vetVar.gender} to Database...`
+            );
 
       this.props.dispatch({
         type: "ADD_GENDER",

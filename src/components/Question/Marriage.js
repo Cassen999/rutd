@@ -4,12 +4,12 @@ import { connect } from "react-redux";
 import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
 
 const styles = {
-  inputs: {
-    width: "",
-    paddingTop: "",
-    verticalAlign: "middle",
-    fontFamily: "Arial",
-  },
+    inputs: {
+        width: "",
+        paddingTop: "",
+        verticalAlign: "",
+        fontFamily: "",
+    },
 };
 
 class Marriage extends Component {
@@ -37,13 +37,15 @@ class Marriage extends Component {
     );
   };
 
-  savemarriage = () => {
-    let vetVar = this.state.vet;
+    saveMarriage = () => {
+        let vetVar = this.state.vet
 
-    if (vetVar.marriage === "") {
-      alert("An marriage address is required for registration.");
-    } else {
-      console.log(`Saving ${vetVar.marriage} to Database...`);
+        if (vetVar.marriage === '') {
+            alert("Please indicate your marital status.");
+        } else {
+            console.log(
+                `Saving ${vetVar.marriage} to Database...`
+            );
 
       this.props.dispatch({
         type: "ADD_MARRIAGE",
@@ -75,32 +77,24 @@ class Marriage extends Component {
             <form>
               <br />
 
-              <Grid item xs={12.0} sm={12}>
-                <TextField
-                  variant="outlined"
-                  label="marriage"
-                  name="marriage"
-                  value={this.state.vet.marriage}
-                  onChange={(event) =>
-                    this.handleInputChange(event, "marriage")
-                  }
-                />
-                <br />
-                <Button
-                  onClick={(event) => {
-                    this.savemarriage(event);
-                  }}
-                >
-                  SAVE
-                </Button>
-                <br />
-              </Grid>
-            </form>
-          </Paper>
-        </Grid>
-      </>
-    ); //END return
-  } //END render
-} //END Name
+                            <Grid item xs={12.0} sm={12}>
+                                <TextField
+                                    variant="outlined"
+                                    label="Marriage"
+                                    name="marriage"
+                                    value={this.state.vet.marriage}
+                                    onChange={(event) => this.handleInputChange(event, "marriage")}
+                                />
+                                <br />
+                                <Button onClick={(event) => { this.saveMarriage(event) }}>SAVE</Button>
+                                <br />
+                            </Grid>
+                        </form>
+                    </Paper>
+                </Grid>
+            </>
+        )//END return
+    };//END render
+};//END Name
 
 export default connect(mapStoreToProps)(withStyles(styles)(Marriage));

@@ -4,12 +4,12 @@ import { connect } from "react-redux";
 import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
 
 const styles = {
-  inputs: {
-    width: "",
-    paddingTop: "",
-    verticalAlign: "middle",
-    fontFamily: "Arial",
-  },
+    inputs: {
+        width: "",
+        paddingTop: "",
+        verticalAlign: "",
+        fontFamily: "",
+    },
 };
 
 class Homeless extends Component {
@@ -37,18 +37,20 @@ class Homeless extends Component {
     );
   };
 
-  savehomeless = () => {
-    let vetVar = this.state.vet;
+    saveHomeless = () => {
+        let vetVar = this.state.vet
 
-    if (vetVar.homeless === "") {
-      alert("An homeless address is required for registration.");
-    } else {
-      console.log(`Saving ${vetVar.homeless} to Database...`);
+        if (vetVar.homeless === '') {
+            alert("Please indicate whether or not you are homeless.");
+        } else {
+            console.log(
+                `Saving ${vetVar.homeless} to Database...`
+            );
 
-      this.props.dispatch({
-        type: "ADD_homeless",
-        payload: this.state.vet,
-      });
+            this.props.dispatch({
+                type: "ADD_HOMELESS",
+                payload: this.state.vet
+            });
 
       this.setState(
         {
@@ -75,32 +77,24 @@ class Homeless extends Component {
             <form>
               <br />
 
-              <Grid item xs={12.0} sm={12}>
-                <TextField
-                  variant="outlined"
-                  label="homeless"
-                  name="homeless"
-                  value={this.state.vet.homeless}
-                  onChange={(event) =>
-                    this.handleInputChange(event, "homeless")
-                  }
-                />
-                <br />
-                <Button
-                  onClick={(event) => {
-                    this.savehomeless(event);
-                  }}
-                >
-                  SAVE
-                </Button>
-                <br />
-              </Grid>
-            </form>
-          </Paper>
-        </Grid>
-      </>
-    ); //END return
-  } //END render
-} //END Name
+                            <Grid item xs={12.0} sm={12}>
+                                <TextField
+                                    variant="outlined"
+                                    label="homeless"
+                                    name="homeless"
+                                    value={this.state.vet.homeless}
+                                    onChange={(event) => this.handleInputChange(event, "homeless")}
+                                />
+                                <br />
+                                <Button onClick={(event) => { this.saveHomeless(event) }}>SAVE</Button>
+                                <br />
+                            </Grid>
+                        </form>
+                    </Paper>
+                </Grid>
+            </>
+        )//END return
+    };//END render
+};//END Name
 
 export default connect(mapStoreToProps)(withStyles(styles)(Homeless));

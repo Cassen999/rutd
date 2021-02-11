@@ -4,12 +4,12 @@ import { connect } from "react-redux";
 import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
 
 const styles = {
-  inputs: {
-    width: "",
-    paddingTop: "",
-    verticalAlign: "middle",
-    fontFamily: "Arial",
-  },
+    inputs: {
+        width: "",
+        paddingTop: "",
+        verticalAlign: "",
+        fontFamily: "",
+    },
 };
 
 class Phone extends Component {
@@ -19,50 +19,54 @@ class Phone extends Component {
     },
   };
 
-  handleInputChange = (event, inputProperty) => {
-    console.log("Handling input-change...");
-    console.log("Setting state...");
+    handleInputChange = (event, inputProperty) => {
+        console.log("Handling input-change...");
+        console.log("Setting state...");
 
-    this.setState(
-      {
-        vet: {
-          ...this.state.vet,
-          [inputProperty]: event.target.value,
-          user_id: this.props.store.user.id,
-        },
-      },
-      function () {
-        console.log("state has been set:", this.state.vet);
-      }
-    );
-  };
+        this.setState(
+            {
+                vet: {
+                    ...this.state.vet,
+                    [inputProperty]: event.target.value,
+                    user_id: this.props.store.user.id,
+                },
+            },
+            function () {
+                console.log("state has been set:", this.state.vet);
+            }
+        );
+    };
 
-  savephone = () => {
-    let vetVar = this.state.vet;
+    savePhone = () => {
+        let vetVar = this.state.vet
 
-    if (vetVar.phone === "") {
-      alert("An phone address is required for registration.");
-    } else {
-      console.log(`Saving ${vetVar.phone} to Database...`);
+        if (vetVar.phone === '') {
+            alert("An phone number is required for registration.");
+        } else {
+            console.log(
+                `Saving ${vetVar.phone} to Database...`
+            );
 
-      this.props.dispatch({
-        type: "ADD_PHONE",
-        payload: this.state.vet,
-      });
+            this.props.dispatch({
+                type: "ADD_PHONE",
+                payload: this.state.vet
+            });
 
-      this.setState(
-        {
-          vet: {
-            phone: "",
-          },
-        },
-        function () {
-          // {this.props.history.push('/servicehistory')}
-          console.log("state has been reset");
+            this.setState(
+                {
+                    vet: {
+                        phone: "",
+                    },
+                },
+                function () {
+                    // {this.props.history.push('/servicehistory')}
+                    console.log("state has been reset");
+                }
+            );
         }
-      );
+      
     }
-  };
+  //
 
   render() {
     // const { classes } = this.props;

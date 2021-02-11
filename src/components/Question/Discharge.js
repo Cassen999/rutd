@@ -12,14 +12,15 @@ const styles = {
     },
 };
 
-class Birth extends Component {
-  state = {
-    vet: {
-      dOB: "",
-    },
-  };
+class Discharge extends Component {
 
-   handleInputChange = (event, inputProperty) => {
+    state = {
+        vet: {
+            discharge: ""
+        },
+    }
+
+    handleInputChange = (event, inputProperty) => {
         console.log("Handling input-change...");
         console.log("Setting state...");
 
@@ -37,25 +38,25 @@ class Birth extends Component {
         );
     };
 
-    saveDOB = () => {
+    saveDischarge = () => {
         let vetVar = this.state.vet
 
-        if (vetVar.dOB === '') {
-            alert("Your date of birth is required for registration.");
+        if (vetVar.discharge === '') {
+            alert("An discharge type is required for registration.");
         } else {
             console.log(
-                `Saving ${vetVar.dOB} to Database...`
+                `Saving ${vetVar.discharge} to Database...`
             );
 
             this.props.dispatch({
-                type: "ADD_DOB",
+                type: "ADD_DISCHARGE",
                 payload: this.state.vet
             });
 
             this.setState(
                 {
                     vet: {
-                        dOB: "",
+                        discharge: "",
                     },
                 },
                 function () {
@@ -64,36 +65,39 @@ class Birth extends Component {
                 }
             );
         }
-      
-    }
-  
-  render() {
-    // const { classes } = this.props;
+    };
 
-    return (
-      <>
-        <h1>Date of Birth Entry</h1>
-        <Grid container spacing={2} direction="column">
-          <Paper elevation={10}>
-            <form>
-                                      <br />
+    render() {
+        const { classes } = this.props;
+
+        return (
+            <>
+                <h1>Discharge Type Entry</h1>
+                <Grid
+                    container
+                    spacing={2}
+                    direction="column"
+                >
+
+                    <Paper elevation={10}>
+
+                        <form>
+                            <br />
 
                             <Grid item xs={12.0} sm={12}>
 
                                 <TextField
                                     variant="outlined"
-                                    label="Date of Birth"
-                                    name="date_of_birth"
-                                    value={this.state.vet.dOB}
-                                    onChange={(event) =>
-                                        this.handleInputChange(event, "dOB")
-                                    }
+                                    label="Discharge Type"
+                                    name="discharge"
+                                    value={this.state.vet.discharge}
+                                    onChange={(event) => this.handleInputChange(event, "discharge")}
                                 />
                                 <br />
-                                <Button onClick={(event) => { this.saveDOB(event) }}>SAVE</Button>
-                                <br />
+                                <Button onClick={(event)=>{this.saveDischarge(event)}}>SAVE</Button>
+                                <br/>
                             </Grid>
-                       </form>
+                        </form>
                     </Paper>
                 </Grid>
             </>
@@ -101,4 +105,4 @@ class Birth extends Component {
     };//END render
 };//END Name
 
-export default connect(mapStoreToProps)(withStyles(styles)(Birth));
+export default connect(mapStoreToProps)(withStyles(styles)(Discharge));

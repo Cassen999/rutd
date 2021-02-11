@@ -12,14 +12,15 @@ const styles = {
     },
 };
 
-class Birth extends Component {
-  state = {
-    vet: {
-      dOB: "",
-    },
-  };
+class EndDate extends Component {
 
-   handleInputChange = (event, inputProperty) => {
+    state = {
+        vet: {
+            endDate: ""
+        },
+    }
+
+    handleInputChange = (event, inputProperty) => {
         console.log("Handling input-change...");
         console.log("Setting state...");
 
@@ -37,25 +38,25 @@ class Birth extends Component {
         );
     };
 
-    saveDOB = () => {
+    saveEndDate = () => {
         let vetVar = this.state.vet
 
-        if (vetVar.dOB === '') {
-            alert("Your date of birth is required for registration.");
+        if (vetVar.endDate === '') {
+            alert("Please indicate the end date of your military service (EAOS).");
         } else {
             console.log(
-                `Saving ${vetVar.dOB} to Database...`
+                `Saving ${vetVar.endDate} to Database...`
             );
 
             this.props.dispatch({
-                type: "ADD_DOB",
+                type: "ADD_END_DATE",
                 payload: this.state.vet
             });
 
             this.setState(
                 {
                     vet: {
-                        dOB: "",
+                        endDate: "",
                     },
                 },
                 function () {
@@ -64,36 +65,39 @@ class Birth extends Component {
                 }
             );
         }
-      
-    }
-  
-  render() {
-    // const { classes } = this.props;
+    };
 
-    return (
-      <>
-        <h1>Date of Birth Entry</h1>
-        <Grid container spacing={2} direction="column">
-          <Paper elevation={10}>
-            <form>
-                                      <br />
+    render() {
+        const { classes } = this.props;
+
+        return (
+            <>
+                <h1>End Date Entry</h1>
+                <Grid
+                    container
+                    spacing={2}
+                    direction="column"
+                >
+
+                    <Paper elevation={10}>
+
+                        <form>
+                            <br />
 
                             <Grid item xs={12.0} sm={12}>
 
                                 <TextField
                                     variant="outlined"
-                                    label="Date of Birth"
-                                    name="date_of_birth"
-                                    value={this.state.vet.dOB}
-                                    onChange={(event) =>
-                                        this.handleInputChange(event, "dOB")
-                                    }
+                                    label="End Date"
+                                    name="endDate"
+                                    value={this.state.vet.endDate}
+                                    onChange={(event) => this.handleInputChange(event, "endDate")}
                                 />
                                 <br />
-                                <Button onClick={(event) => { this.saveDOB(event) }}>SAVE</Button>
-                                <br />
+                                <Button onClick={(event)=>{this.saveEndDate(event)}}>SAVE</Button>
+                                <br/>
                             </Grid>
-                       </form>
+                        </form>
                     </Paper>
                 </Grid>
             </>
@@ -101,4 +105,4 @@ class Birth extends Component {
     };//END render
 };//END Name
 
-export default connect(mapStoreToProps)(withStyles(styles)(Birth));
+export default connect(mapStoreToProps)(withStyles(styles)(EndDate));

@@ -4,12 +4,12 @@ import { connect } from "react-redux";
 import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
 
 const styles = {
-  inputs: {
-    width: "",
-    paddingTop: "",
-    verticalAlign: "middle",
-    fontFamily: "Arial",
-  },
+    inputs: {
+        width: "",
+        paddingTop: "",
+        verticalAlign: "",
+        fontFamily: "",
+    },
 };
 
 class Children extends Component {
@@ -37,18 +37,20 @@ class Children extends Component {
     );
   };
 
-  savechildren = () => {
-    let vetVar = this.state.vet;
+    saveChildren = () => {
+        let vetVar = this.state.vet
 
-    if (vetVar.children === "") {
-      alert("An children address is required for registration.");
-    } else {
-      console.log(`Saving ${vetVar.children} to Database...`);
+        if (vetVar.children === '') {
+            alert("Please disclose your number of children.");
+        } else {
+            console.log(
+                `Saving ${vetVar.children} to Database...`
+            );
 
-      this.props.dispatch({
-        type: "ADD_children",
-        payload: this.state.vet,
-      });
+            this.props.dispatch({
+                type: "ADD_CHILDREN",
+                payload: this.state.vet
+            });
 
       this.setState(
         {
@@ -75,32 +77,24 @@ class Children extends Component {
             <form>
               <br />
 
-              <Grid item xs={12.0} sm={12}>
-                <TextField
-                  variant="outlined"
-                  label="children"
-                  name="children"
-                  value={this.state.vet.children}
-                  onChange={(event) =>
-                    this.handleInputChange(event, "children")
-                  }
-                />
-                <br />
-                <Button
-                  onClick={(event) => {
-                    this.savechildren(event);
-                  }}
-                >
-                  SAVE
-                </Button>
-                <br />
-              </Grid>
-            </form>
-          </Paper>
-        </Grid>
-      </>
-    ); //END return
-  } //END render
-} //END Name
+                            <Grid item xs={12.0} sm={12}>
+                                <TextField
+                                    variant="outlined"
+                                    label="Children"
+                                    name="children"
+                                    value={this.state.vet.children}
+                                    onChange={(event) => this.handleInputChange(event, "children")}
+                                />
+                                <br />
+                                <Button onClick={(event) => { this.saveChildren(event) }}>SAVE</Button>
+                                <br />
+                            </Grid>
+                        </form>
+                    </Paper>
+                </Grid>
+            </>
+        )//END return
+    };//END render
+};//END Name
 
 export default connect(mapStoreToProps)(withStyles(styles)(Children));
