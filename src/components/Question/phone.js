@@ -13,12 +13,11 @@ const styles = {
 };
 
 class Phone extends Component {
-
-    state = {
-        vet: {
-            phone: ""
-        },
-    }
+  state = {
+    vet: {
+      phone: "",
+    },
+  };
 
     handleInputChange = (event, inputProperty) => {
         console.log("Handling input-change...");
@@ -65,45 +64,46 @@ class Phone extends Component {
                 }
             );
         }
-    };
+      
+    }
+  //
 
-    render() {
-        const { classes } = this.props;
+  render() {
+    // const { classes } = this.props;
 
-        return (
-            <>
-                <h1>Phone Entry</h1>
-                <Grid
-                    container
-                    spacing={2}
-                    direction="column"
+    return (
+      <>
+        <h1>Phone Entry</h1>
+        <Grid container spacing={2} direction="column">
+          <Paper elevation={10}>
+            <form>
+              <br />
+
+              <Grid item xs={12.0} sm={12}>
+                <TextField
+                  id="standard-textarea"
+                  variant="outlined"
+                  label="Phone Number"
+                  name="phone"
+                  value={this.state.vet.phone}
+                  onChange={(event) => this.handleInputChange(event, "phone")}
+                />
+                <br />
+                <Button
+                  onClick={(event) => {
+                    this.savePhone(event);
+                  }}
                 >
-
-                    <Paper elevation={10}>
-
-                        <form>
-                            <br />
-
-                            <Grid item xs={12.0} sm={12}>
-
-                                <TextField
-                                    id="standard-textarea"
-                                    variant="outlined"
-                                    label="Phone Number"
-                                    name="phone"
-                                    value={this.state.vet.phone}
-                                    onChange={(event) => this.handleInputChange(event, "phone")}
-                                />
-                                <br />
-                                <Button onClick={(event) => { this.savePhone(event) }}>SAVE</Button>
-                                <br />
-                            </Grid>
-                        </form>
-                    </Paper>
-                </Grid>
-            </>
-        )//END return
-    };//END render
-};//END Name
+                  SAVE
+                </Button>
+                <br />
+              </Grid>
+            </form>
+          </Paper>
+        </Grid>
+      </>
+    ); //END return
+  } //END render
+} //END Name
 
 export default connect(mapStoreToProps)(withStyles(styles)(Phone));

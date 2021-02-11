@@ -13,96 +13,92 @@ const styles = {
 };
 
 class Email extends Component {
+  state = {
+    vet: {
+      email: "",
+    },
+  };
 
-    state = {
+  handleInputChange = (event, inputProperty) => {
+    console.log("Handling input-change...");
+    console.log("Setting state...");
+
+    this.setState(
+      {
         vet: {
-            email: ""
+          ...this.state.vet,
+          [inputProperty]: event.target.value,
+          user_id: this.props.store.user.id,
         },
-    }
+      },
+      function () {
+        console.log("state has been set:", this.state.vet);
+      }
+    );
+  };
 
-    handleInputChange = (event, inputProperty) => {
-        console.log("Handling input-change...");
-        console.log("Setting state...");
+  saveEmail = () => {
+    let vetVar = this.state.vet;
 
-        this.setState(
-            {
-                vet: {
-                    ...this.state.vet,
-                    [inputProperty]: event.target.value,
-                    user_id: this.props.store.user.id,
-                },
-            },
-            function () {
-                console.log("state has been set:", this.state.vet);
-            }
-        );
-    };
+    if (vetVar.email === "") {
+      alert("An email address is required for registration.");
+    } else {
+      console.log(`Saving ${vetVar.email} to Database...`);
 
-    saveEmail = () => {
-        let vetVar = this.state.vet
+      this.props.dispatch({
+        type: "ADD_EMAIL",
+        payload: this.state.vet,
+      });
 
-        if (vetVar.email === '') {
-            alert("An email address is required for registration.");
-        } else {
-            console.log(
-                `Saving ${vetVar.email} to Database...`
-            );
-
-            this.props.dispatch({
-                type: "ADD_EMAIL",
-                payload: this.state.vet
-            });
-
-            this.setState(
-                {
-                    vet: {
-                        email: "",
-                    },
-                },
-                function () {
-                    // {this.props.history.push('/servicehistory')}
-                    console.log("state has been reset");
-                }
-            );
+      this.setState(
+        {
+          vet: {
+            email: "",
+          },
+        },
+        function () {
+          // {this.props.history.push('/servicehistory')}
+          console.log("state has been reset");
         }
-    };
+      );
+    }
+  };
 
-    render() {
-        const { classes } = this.props;
+  render() {
+    // const { classes } = this.props;
 
-        return (
-            <>
-                <h1>Email Entry</h1>
-                <Grid
-                    container
-                    spacing={2}
-                    direction="column"
+    return (
+      <>
+        <h1>Email Entry</h1>
+        <Grid container spacing={2} direction="column">
+          <Paper elevation={10}>
+            <form>
+              <br />
+
+              <Grid item xs={12.0} sm={12}>
+                <TextField
+                  variant="outlined"
+                  label="Email"
+                  name="email"
+                  value={this.state.vet.email}
+                  onChange={(event) => this.handleInputChange(event, "email")}
+                />
+                <br />
+                <Button
+                  onClick={(event) => {
+                    this.saveEmail(event);
+                  }}
                 >
-
-                    <Paper elevation={10}>
-
-                        <form>
-                            <br />
-
-                            <Grid item xs={12.0} sm={12}>
-
-                                <TextField
-                                    variant="outlined"
-                                    label="Email"
-                                    name="email"
-                                    value={this.state.vet.email}
-                                    onChange={(event) => this.handleInputChange(event, "email")}
-                                />
-                                <br />
-                                <Button onClick={(event)=>{this.saveEmail(event)}}>SAVE</Button>
-                                <br/>
-                            </Grid>
-                        </form>
-                    </Paper>
-                </Grid>
-            </>
-        )//END return
-    };//END render
-};//END Name
+                  SAVE
+                </Button>
+                <br />
+              </Grid>
+            </form>
+          </Paper>
+        </Grid>
+      </>
+    ); //END return
+  } //END render
+} //END Name
 
 export default connect(mapStoreToProps)(withStyles(styles)(Email));

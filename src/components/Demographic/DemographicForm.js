@@ -51,7 +51,7 @@ class DemographicForm extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    // const { classes } = this.props;
 
     return (
       <>
@@ -85,7 +85,6 @@ class DemographicForm extends Component {
                 <Status/>
                 <Discharge/>
                 <br />
-
               </form>
             </Paper>
           </Grid>

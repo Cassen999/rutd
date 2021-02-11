@@ -13,19 +13,18 @@ const styles = {
 };
 
 class HomeAddress extends Component {
+  state = {
+    vet: {
+      address: "",
+      apt: "",
+      city: "",
+      state: "",
+      zip: "",
+      country: "",
+    },
+  };
 
-    state = {
-        vet: {
-            address: '',
-            apt: '',
-            city: '',
-            state: '',
-            zip: '',
-            country: ''
-        },
-    }
-
-    handleInputChange = (event, inputProperty) => {
+      handleInputChange = (event, inputProperty) => {
         console.log("Handling input-change...");
         console.log("Setting state...");
 
@@ -75,29 +74,24 @@ class HomeAddress extends Component {
                 }
             );
         }
-    };
+      
+    }
+  
+  render() {
+    // const { classes } = this.props;
 
-    render() {
-        const { classes } = this.props;
-
-        return (
-            <>
-                <h1>Home Address Entry</h1>
-                <Grid
-                    container
-                    spacing={2}
-                    direction="column"
-                >
-
-                    <Paper elevation={10}>
-
-                        <form>
+    return (
+      <>
+        <h1>Home Address Entry</h1>
+        <Grid container spacing={2} direction="column">
+          <Paper elevation={10}>
+            
+                                   <form>
                             <br />
 
                             <Grid item xs={12.0} sm={12}>
 
-
-                                <TextField
+                               <TextField
                                     id="standard-textarea"
                                     variant="outlined"
                                     label="Address"

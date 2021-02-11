@@ -13,30 +13,29 @@ const styles = {
 };
 
 class Marriage extends Component {
+  state = {
+    vet: {
+      marriage: "",
+    },
+  };
 
-    state = {
+  handleInputChange = (event, inputProperty) => {
+    console.log("Handling input-change...");
+    console.log("Setting state...");
+
+    this.setState(
+      {
         vet: {
-            marriage: ""
+          ...this.state.vet,
+          [inputProperty]: event.target.value,
+          user_id: this.props.store.user.id,
         },
-    }
-
-    handleInputChange = (event, inputProperty) => {
-        console.log("Handling input-change...");
-        console.log("Setting state...");
-
-        this.setState(
-            {
-                vet: {
-                    ...this.state.vet,
-                    [inputProperty]: event.target.value,
-                    user_id: this.props.store.user.id,
-                },
-            },
-            function () {
-                console.log("state has been set:", this.state.vet);
-            }
-        );
-    };
+      },
+      function () {
+        console.log("state has been set:", this.state.vet);
+      }
+    );
+  };
 
     saveMarriage = () => {
         let vetVar = this.state.vet
@@ -48,41 +47,35 @@ class Marriage extends Component {
                 `Saving ${vetVar.marriage} to Database...`
             );
 
-            this.props.dispatch({
-                type: "ADD_MARRIAGE",
-                payload: this.state.vet
-            });
+      this.props.dispatch({
+        type: "ADD_MARRIAGE",
+        payload: this.state.vet,
+      });
 
-            this.setState(
-                {
-                    vet: {
-                        marriage: "",
-                    },
-                },
-                function () {
-                    // {this.props.history.push('/servicehistory')}
-                    console.log("state has been reset");
-                }
-            );
+      this.setState(
+        {
+          vet: {
+            marriage: "",
+          },
+        },
+        function () {
+          // {this.props.history.push('/servicehistory')}
+          console.log("state has been reset");
         }
-    };
+      );
+    }
+  };
 
-    render() {
-        const { classes } = this.props;
+  render() {
+    // const { classes } = this.props;
 
-        return (
-            <>
-                <h1>Marriage Entry</h1>
-                <Grid
-                    container
-                    spacing={2}
-                    direction="column"
-                >
-
-                    <Paper elevation={10}>
-
-                        <form>
-                            <br />
+    return (
+      <>
+        <h1>Marriage Entry</h1>
+        <Grid container spacing={2} direction="column">
+          <Paper elevation={10}>
+            <form>
+              <br />
 
                             <Grid item xs={12.0} sm={12}>
                                 <TextField
