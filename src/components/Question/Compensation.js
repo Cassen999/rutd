@@ -45,7 +45,7 @@ const styles = (theme) => ({
   //   typography : {
   //     fontFamily : 'Arial'
 });
-class CompensationForm extends Component {
+class Compensation extends Component {
   componentDidMount() {
     console.log("Mounted");
     this.props.dispatch({ type: "FETCH_PERCENTAGE" });
@@ -81,6 +81,7 @@ class CompensationForm extends Component {
       }
     );
   };
+  
   handleClick = (event, percentId) => {
     console.log(percentId);
     // console.log('Setting state...');
@@ -301,4 +302,4 @@ class CompensationForm extends Component {
     ); //END return
   } //END render
 } //END DemographicsForm
-export default connect(mapStoreToProps)(withStyles(styles)(CompensationForm));
+export default connect(mapStoreToProps)(withStyles(styles)(Compensation));

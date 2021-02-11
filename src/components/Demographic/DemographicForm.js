@@ -21,6 +21,7 @@ import EndDate from '../Question/EndDate'
 import Status from '../Question/Status'
 import Discharge from '../Question/Discharge'
 import Malady from '../Question/Malady'
+import Compensation from '../Question/Compensation'
 
 const styles = {
   inputs: {
@@ -86,6 +87,7 @@ class DemographicForm extends Component {
                 <Status/>
                 <Discharge/>
                 <Malady/>
+                <Compensation/>
                 <br />
               </form>
             </Paper>

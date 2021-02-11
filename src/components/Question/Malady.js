@@ -83,7 +83,7 @@ class Malady extends Component {
         <h1>Malady Entry</h1>
         <Grid container spacing={2} direction="column">
           <Paper elevation={10}>
-            <FormControl className={classes.formControl}>
+            <FormControl>
               <InputLabel>
                 SELECT
               </InputLabel>
