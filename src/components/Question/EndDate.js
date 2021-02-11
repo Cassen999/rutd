@@ -12,12 +12,13 @@ const styles = {
     },
 };
 
-class Marriage extends Component {
+class EndDate extends Component {
+
     state = {
         vet: {
-            marriage: "",
+            endDate: ""
         },
-    };
+    }
 
     handleInputChange = (event, inputProperty) => {
         console.log("Handling input-change...");
@@ -37,29 +38,28 @@ class Marriage extends Component {
         );
     };
 
-    saveMarriage = () => {
+    saveEndDate = () => {
         let vetVar = this.state.vet
 
-        if (vetVar.marriage === '') {
-            alert("Please indicate your marital status.");
+        if (vetVar.endDate === '') {
+            alert("Please indicate the end date of your military service (EAOS).");
         } else {
             console.log(
-                `Saving ${vetVar.marriage} to Database...`
+                `Saving ${vetVar.endDate} to Database...`
             );
 
             this.props.dispatch({
-                type: "UPDATE_MARRIAGE",
-                payload: this.state.vet,
+                type: "UPDATE_END_DATE",
+                payload: this.state.vet
             });
 
             this.setState(
                 {
                     vet: {
-                        marriage: "",
+                        endDate: "",
                     },
                 },
                 function () {
-                    // {this.props.history.push('/servicehistory')}
                     console.log("state has been reset");
                 }
             );
@@ -71,22 +71,29 @@ class Marriage extends Component {
 
         return (
             <>
-                <h1>Marriage Entry</h1>
-                <Grid container spacing={2} direction="column">
+                <h1>End Date Entry</h1>
+                <Grid
+                    container
+                    spacing={2}
+                    direction="column"
+                >
+
                     <Paper elevation={10}>
+
                         <form>
                             <br />
 
                             <Grid item xs={12.0} sm={12}>
+
                                 <TextField
                                     variant="outlined"
-                                    label="Marriage"
-                                    name="marriage"
-                                    value={this.state.vet.marriage}
-                                    onChange={(event) => this.handleInputChange(event, "marriage")}
+                                    label="End Date"
+                                    name="endDate"
+                                    value={this.state.vet.endDate}
+                                    onChange={(event) => this.handleInputChange(event, "endDate")}
                                 />
                                 <br />
-                                <Button onClick={(event) => { this.saveMarriage(event) }}>SAVE</Button>
+                                <Button onClick={(event) => { this.saveEndDate(event) }}>SAVE</Button>
                                 <br />
                             </Grid>
                         </form>
@@ -97,4 +104,4 @@ class Marriage extends Component {
     };//END render
 };//END Name
 
-export default connect(mapStoreToProps)(withStyles(styles)(Marriage));
+export default connect(mapStoreToProps)(withStyles(styles)(EndDate));

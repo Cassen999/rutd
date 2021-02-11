@@ -7,8 +7,8 @@ const styles = {
     inputs: {
         width: "",
         paddingTop: "",
-        verticalAlign: "middle",
-        fontFamily: "Arial",
+        verticalAlign: "",
+        fontFamily: "",
     },
 };
 
@@ -71,7 +71,7 @@ class Name extends Component {
     };
 
     render() {
-        // const { classes } = this.props;
+        const { classes } = this.props;
 
         return (
             <>
