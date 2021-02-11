@@ -89,6 +89,8 @@ class UserPage extends Component {
         return this.setState({ modalOpen: false });
       case "allMatches":
         return this.props.history.push("/vetFindMatches");
+      case "completeProfile":
+        return this.props.history.push("/demographic");
       case "incrementComplete":
         return this.setState({ completeMatchIndex: +1 });
       case "incrementIncomplete":
@@ -139,6 +141,14 @@ class UserPage extends Component {
     return (
       <div id="pageBody">
         <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
+        <Button
+          id="completeProfileBtn"
+          size="large"
+          variant="contained"
+          onClick={() => this.handleClick("completeProfile")}
+        >
+          Complete Profile Information
+        </Button>
         <div id="cardContainer">
           <div id="completedMatches" className="matchDisplay">
             <h1 id="completeTitle">Complete Matches</h1>
