@@ -60,7 +60,6 @@ class Discharge extends Component {
                     },
                 },
                 function () {
-                    // {this.props.history.push('/servicehistory')}
                     console.log("state has been reset");
                 }
             );
@@ -94,8 +93,8 @@ class Discharge extends Component {
                                     onChange={(event) => this.handleInputChange(event, "discharge")}
                                 />
                                 <br />
-                                <Button onClick={(event)=>{this.saveDischarge(event)}}>SAVE</Button>
-                                <br/>
+                                <Button onClick={(event) => { this.saveDischarge(event) }}>SAVE</Button>
+                                <br />
                             </Grid>
                         </form>
                     </Paper>

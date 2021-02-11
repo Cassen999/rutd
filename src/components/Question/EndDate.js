@@ -60,7 +60,6 @@ class EndDate extends Component {
                     },
                 },
                 function () {
-                    // {this.props.history.push('/servicehistory')}
                     console.log("state has been reset");
                 }
             );
@@ -94,8 +93,8 @@ class EndDate extends Component {
                                     onChange={(event) => this.handleInputChange(event, "endDate")}
                                 />
                                 <br />
-                                <Button onClick={(event)=>{this.saveEndDate(event)}}>SAVE</Button>
-                                <br/>
+                                <Button onClick={(event) => { this.saveEndDate(event) }}>SAVE</Button>
+                                <br />
                             </Grid>
                         </form>
                     </Paper>

@@ -94,8 +94,8 @@ class Status extends Component {
                                     onChange={(event) => this.handleInputChange(event, "status")}
                                 />
                                 <br />
-                                <Button onClick={(event)=>{this.saveStatus(event)}}>SAVE</Button>
-                                <br/>
+                                <Button onClick={(event) => { this.saveStatus(event) }}>SAVE</Button>
+                                <br />
                             </Grid>
                         </form>
                     </Paper>

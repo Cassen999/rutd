@@ -94,8 +94,8 @@ class Rank extends Component {
                                     onChange={(event) => this.handleInputChange(event, "rank")}
                                 />
                                 <br />
-                                <Button onClick={(event)=>{this.saveRank(event)}}>SAVE</Button>
-                                <br/>
+                                <Button onClick={(event) => { this.saveRank(event) }}>SAVE</Button>
+                                <br />
                             </Grid>
                         </form>
                     </Paper>

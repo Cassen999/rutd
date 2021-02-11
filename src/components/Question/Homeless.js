@@ -13,29 +13,29 @@ const styles = {
 };
 
 class Homeless extends Component {
-  state = {
-    vet: {
-      homeless: "",
-    },
-  };
-
-  handleInputChange = (event, inputProperty) => {
-    console.log("Handling input-change...");
-    console.log("Setting state...");
-
-    this.setState(
-      {
+    state = {
         vet: {
-          ...this.state.vet,
-          [inputProperty]: event.target.value,
-          user_id: this.props.store.user.id,
+            homeless: "",
         },
-      },
-      function () {
-        console.log("state has been set:", this.state.vet);
-      }
-    );
-  };
+    };
+
+    handleInputChange = (event, inputProperty) => {
+        console.log("Handling input-change...");
+        console.log("Setting state...");
+
+        this.setState(
+            {
+                vet: {
+                    ...this.state.vet,
+                    [inputProperty]: event.target.value,
+                    user_id: this.props.store.user.id,
+                },
+            },
+            function () {
+                console.log("state has been set:", this.state.vet);
+            }
+        );
+    };
 
     saveHomeless = () => {
         let vetVar = this.state.vet
@@ -52,30 +52,30 @@ class Homeless extends Component {
                 payload: this.state.vet
             });
 
-      this.setState(
-        {
-          vet: {
-            homeless: "",
-          },
-        },
-        function () {
-          // {this.props.history.push('/servicehistory')}
-          console.log("state has been reset");
+            this.setState(
+                {
+                    vet: {
+                        homeless: "",
+                    },
+                },
+                function () {
+                    // {this.props.history.push('/servicehistory')}
+                    console.log("state has been reset");
+                }
+            );
         }
-      );
-    }
-  };
+    };
 
-  render() {
-    // const { classes } = this.props;
+    render() {
+        const { classes } = this.props;
 
-    return (
-      <>
-        <h1>Homeless Entry</h1>
-        <Grid container spacing={2} direction="column">
-          <Paper elevation={10}>
-            <form>
-              <br />
+        return (
+            <>
+                <h1>Homeless Entry</h1>
+                <Grid container spacing={2} direction="column">
+                    <Paper elevation={10}>
+                        <form>
+                            <br />
 
                             <Grid item xs={12.0} sm={12}>
                                 <TextField
