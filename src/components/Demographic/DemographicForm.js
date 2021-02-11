@@ -2,7 +2,10 @@ import React, { Component } from "react";
 //import { useDispatch } from 'react-redux';//
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
-import {Grid, Paper, withStyles} from "@material-ui/core";
+import {Grid, Paper, withStyles, Button} from "@material-ui/core";
+import ProgressBar from "../ProgressBar/ProgressBar";
+import { withRouter } from "react-router-dom";
+import compose from 'recompose/compose';
 //REGISTRATION QUESTIONS
 import Name from '../Question/Name'
 import Email from '../Question/Email'
@@ -25,42 +28,42 @@ import Compensation from '../Question/Compensation'
 import Hazard from '../Question/Hazard'
 import PurpleHeart from '../Question/PurpleHeart'
 
-const styles = {
+const styles = (theme) => ({
   inputs: {
     width: "",
     paddingTop: "0px",
     verticalAlign: "middle",
     fontFamily: "Arial",
   },
-};
+});
 
 class DemographicForm extends Component {
 
-  handleInputChange = (event, inputProperty) => {
-    console.log("Handling input-change...");
-    console.log("Setting state...");
+  state = {
+    formIndex: 0,
+  }
 
-    this.setState(
-      {
-        newVet: {
-          ...this.state.newVet,
-          [inputProperty]: event.target.value,
-          user_id: this.props.store.user.id,
-        },
-      },
-      function () {
-        console.log("state has been set:", this.state);
-      }
-    );
-  };
+  getProgress = (formIndex) => {
+    let currentProgress = (formIndex / 20) * 100;
+    return currentProgress;
+  }
+
+  handleNext = () => {
+    this.setState({ formIndex: this.state.formIndex + 1 });
+  }
+
+  handleBack = () => {
+    this.setState({ formIndex: this.state.formIndex - 1 });
+  }
 
   render() {
-    // const { classes } = this.props;
-
+    const formIndex = this.state.formIndex;
+    const { classes } = this.props;
+    console.log('Current Form Index is:', formIndex);
     return (
       <>
         <center>
-          <h1>DemographicForm</h1>
+          <h1>Demographic Form</h1>
           <Grid
             container
             //   className={classes.paper}
@@ -72,28 +75,101 @@ class DemographicForm extends Component {
               <form>
                 <br />
 
-                <Name />
-                <Email />
-                <Birth />
-                <Phone />
-                <Gender />
-                <Marriage />
-                <Children />
-                <Homeless />
-                <HomeAddress />
-                <MailAddress />
-                <Branch/>
-                <Rank/>
-                <StartDate/>
-                <EndDate/>
-                <Status/>
-                <Discharge/>
-                <Malady/>
-                <Compensation/>
-                <Hazard/>
-                <PurpleHeart/>
+                {formIndex === 0 &&
+                  <Name />
+                }
+
+                {formIndex === 1 &&
+                  <Email />
+                }
+
+                {formIndex === 2 &&
+                  <Birth />
+                }
+
+                {formIndex === 3 &&
+                  <Phone />
+                }
+
+                {formIndex === 4 &&
+                  <Gender />
+                }
+
+                {formIndex === 5 &&
+                  <Marriage />
+                }
+
+                {formIndex === 6 &&
+                  <Children />
+                }
+
+                {formIndex === 7 &&
+                  <Homeless />
+                }
+
+                {formIndex === 8 &&
+                  <HomeAddress />
+                }
+
+                {formIndex === 9 &&
+                  <MailAddress />
+                }
+
+                {formIndex === 10 &&
+                  <Branch/>
+                }
+
+                {formIndex === 11 &&
+                  <Rank/>
+                }
+
+                {formIndex === 12 &&
+                  <StartDate/>
+                }
+
+                {formIndex === 13 &&
+                  <EndDate/>
+                }
+
+                {formIndex === 14 &&
+                  <Status/>
+                }
+
+                {formIndex === 15 &&
+                  <Discharge/>
+                }
+
+                {formIndex === 16 &&
+                  <Malady/>
+                }
+
+                {formIndex === 17 &&
+                  <Compensation/>
+                }
+
+                {formIndex === 18 &&
+                  <Hazard/>
+                }
+
+                {formIndex === 19 &&
+                  <PurpleHeart/>
+                }                                
+
                 <br />
               </form>
+              <ProgressBar value={this.getProgress(formIndex)} />
+              <Button
+                variant="contained"
+                onClick={this.handleBack}
+              >
+                Back
+              </Button>
+              <Button
+                variant="contained"
+                onClick={this.handleNext}
+              >
+                Next
+              </Button>
             </Paper>
           </Grid>
         </center>
@@ -102,4 +178,9 @@ class DemographicForm extends Component {
   } //END render
 } //END DemographicsForm
 
-export default connect(mapStoreToProps)(withStyles(styles)(DemographicForm));
+export default compose(
+  withStyles(styles, { withTheme: true }),
+  connect(mapStoreToProps)
+)(withRouter(DemographicForm));
+
+// export default connect(mapStoreToProps)(withStyles(styles)(DemographicForm));
