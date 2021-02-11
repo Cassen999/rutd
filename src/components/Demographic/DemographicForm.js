@@ -1,18 +1,29 @@
 import React, { Component } from "react";
-//import { useDispatch } from 'react-redux';
+//import { useDispatch } from 'react-redux';//
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
-import { Grid, Paper, withStyles } from "@material-ui/core";
-import Name from "../Question/Name";
-import Email from "../Question/Email";
-import Birth from "../Question/Birth";
-import Phone from "../Question/phone";
-import Gender from "../Question/Gender";
-import Marriage from "../Question/Marriage";
-import Children from "../Question/Children";
-import Homeless from "../Question/Homeless";
-import HomeAddress from "../Question/HomeAddress";
-import MailAddress from "../Question/MailAddress";
+import {Grid, Paper, withStyles} from "@material-ui/core";
+//REGISTRATION QUESTIONS
+import Name from '../Question/Name'
+import Email from '../Question/Email'
+import Birth from '../Question/Birth'
+import Phone from '../Question/phone'
+import Gender from '../Question/Gender'
+import Marriage from '../Question/Marriage'
+import Children from '../Question/Children'
+import Homeless from '../Question/Homeless'
+import HomeAddress from '../Question/HomeAddress'
+import MailAddress from '../Question/MailAddress'
+import Branch from '../Question/Branch'
+import Rank from '../Question/Rank'
+import StartDate from '../Question/StartDate'
+import EndDate from '../Question/EndDate'
+import Status from '../Question/Status'
+import Discharge from '../Question/Discharge'
+import Malady from '../Question/Malady'
+import Compensation from '../Question/Compensation'
+import Hazard from '../Question/Hazard'
+import PurpleHeart from '../Question/PurpleHeart'
 
 const styles = {
   inputs: {
@@ -24,25 +35,6 @@ const styles = {
 };
 
 class DemographicForm extends Component {
-  state = {
-    newVet: {
-      first_name: "",
-      last_name: "",
-      email: "",
-      date_of_birth: "",
-      number: "",
-      gender_id: "",
-      married_id: "",
-      children: "",
-      homeless: "",
-      current_address: "",
-      city: "",
-      state_id: "",
-      zipcode: "",
-      country_id: "",
-      mailing_address: "",
-    },
-  };
 
   handleInputChange = (event, inputProperty) => {
     console.log("Handling input-change...");
@@ -61,48 +53,6 @@ class DemographicForm extends Component {
       }
     );
   };
-
-  // saveDemographic = () => {
-  //   if (this.state.newVet.first_name === "") {
-  //     alert("A name is required for registration.");
-  //   } else {
-  //     console.log(
-  //       `Saving ${this.state.newVet.first_name}'s demographics to Database...`
-  //     );
-  //     //Clear message... should say Hello!
-  //     //console.log(`Sending ${this.state.newArt} to DB.`);
-
-  //     this.props.dispatch({
-  //       type: "ADD_DEMOGRAPHIC",
-  //       payload: this.state.newVet,
-  //     });
-  //     this.setState(
-  //       {
-  //         newVet: {
-  //           first_name: "",
-  //           last_name: "",
-  //           email: "",
-  //           date_of_birth: "",
-  //           number: "",
-  //           gender_id: "",
-  //           married_id: "",
-  //           children: "",
-  //           homeless: "",
-  //           current_address: "",
-  //           city: "",
-  //           state_id: "",
-  //           zipcode: "",
-  //           country_id: "",
-  //           mailing_address: "",
-  //         },
-  //       },
-  //       function () {
-  //         // {this.props.history.push('/servicehistory')}
-  //         console.log("state has been reset");
-  //       }
-  //     );
-  //   }
-  // };
 
   render() {
     // const { classes } = this.props;
@@ -132,6 +82,16 @@ class DemographicForm extends Component {
                 <Homeless />
                 <HomeAddress />
                 <MailAddress />
+                <Branch/>
+                <Rank/>
+                <StartDate/>
+                <EndDate/>
+                <Status/>
+                <Discharge/>
+                <Malady/>
+                <Compensation/>
+                <Hazard/>
+                <PurpleHeart/>
                 <br />
               </form>
             </Paper>

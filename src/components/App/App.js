@@ -25,12 +25,10 @@ import AdminResourceList from "../AdminResourceList/AdminResourceList";
 import AdminVetList from "../AdminVetList/AdminVetList";
 import GenericLanding from "../GenericLanding/GenericLanding";
 import OrganizationLandingPage from "../OrganizationLandingPage/OrganizationLandingPage";
-import Service from "../Service/Service";
 import Demographic from "../Demographic/Demographic";
-import Malady from "../Malady/Malady";
-import Compensation from "../Compensation/Compensation";
 import AdminVetView from "../AdminVetView/AdminVetView";
-import AdminResourceEdit from "../AdminResourceEdit/AdminResourceEdit";
+import AdminOrgView from "../AdminOrgView/AdminOrgView";
+import AdminOrgEdit from "../AdminOrgEdit/AdminOrgEdit";
 import VetFindMatches from "../VetFindMatches/VetFindMatches";
 
 import "./App.css";
@@ -120,29 +118,8 @@ class App extends Component {
 
             <ProtectedRoute
               exact
-              path="/service"
-              component={Service}
-              // authRedirect="/user"
-            />
-
-            <ProtectedRoute
-              exact
               path="/demographic"
               component={Demographic}
-              // authRedirect="/user"
-            />
-
-            <ProtectedRoute
-              exact
-              path="/malady"
-              component={Malady}
-              // authRedirect="/user"
-            />
-
-            <ProtectedRoute
-              exact
-              path="/compensation"
-              component={Compensation}
               // authRedirect="/user"
             />
 
@@ -168,8 +145,14 @@ class App extends Component {
 
             <ProtectedRoute
               exact
-              path="/adminResourceEdit"
-              component={AdminResourceEdit}
+              path="/adminOrgView"
+              component={AdminOrgView}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/adminOrgEdit"
+              component={AdminOrgEdit}
             />
 
             <ProtectedRoute
