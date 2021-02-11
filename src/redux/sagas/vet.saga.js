@@ -13,8 +13,19 @@ function* fetchVet() {
     }        
 }
 
+function* fetchVetId(action) {
+    try{
+        const vetId = action.payload
+        const response = yield axios.get(`/api/vet/vetid/${vetId}`)
+        yield put({type: 'SET_VET', payload: response.data});
+    } catch(error){
+        console.log('error with vet fetch request', error);
+    }        
+}
+
 function* vet() {
     yield takeLatest('FETCH_VET', fetchVet);
+    yield takeLatest('FETCH_VET_ID', fetchVetId);
 }
 
 export default vet;

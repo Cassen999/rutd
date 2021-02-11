@@ -2,10 +2,10 @@ const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
 const {
-  rejectUnauthenticatedAdmin, rejectUnauthenticatedVetAdmin
+  rejectUnauthenticatedAdmin, rejectUnauthenticatedVet, rejectUnauthenticatedVetAdmin
 } = require("../modules/authentication-middleware");
 
-// GETs all vets by name limited to 10
+// GETs all vets by name
 router.get("/", rejectUnauthenticatedAdmin, (req, res) => {
   const sqlText = `SELECT "first_name", "last_name", "match".received, 
                   "match".org_id, "organization"."name", "veteran".id, 
@@ -18,7 +18,6 @@ router.get("/", rejectUnauthenticatedAdmin, (req, res) => {
   pool
     .query(sqlText)
     .then((result) => {
-      console.log("Getting vets by name result", result.rows);
       res.send(result.rows);
     })
     .catch((error) => {
@@ -177,6 +176,24 @@ router.get('/:id', rejectUnauthenticatedAdmin, (req, res) => {
     console.log('Error inside GET ID route:', error);
     res.sendStatus(500);
   });
+});
+
+// Get a vet's id from vet table
+router.get("/vetid/:id", rejectUnauthenticatedVet, (req, res) => {
+  const sqlText = `SELECT "veteran".id FROM "veteran"
+                    JOIN "user" ON "user".id = "veteran".vet_id
+                    WHERE "user".id = $1;`;
+  const id = req.params.id
+  pool
+    .query(sqlText, [id])
+    .then((result) => {
+      console.log("Getting vets id", result.rows);
+      res.send(result.rows[0]);
+    })
+    .catch((error) => {
+      console.log("ERROR in get vets id", error);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;

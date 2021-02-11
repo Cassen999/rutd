@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { withRouter } from "react-router-dom";
+import compose from 'recompose/compose';
 import "./VetLandingPage.css";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -390,6 +391,7 @@ class UserPage extends Component {
   }
 }
 
-export default withRouter(
-  withStyles(styles, { withTheme: true })(connect(mapStoreToProps)(UserPage))
-);
+export default compose(
+  withStyles(styles, { withTheme: true }),
+  connect(mapStoreToProps)
+)(withRouter(UserPage));
