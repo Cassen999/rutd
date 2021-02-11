@@ -46,7 +46,7 @@ class Email extends Component {
             console.log(`Saving ${vetVar.email} to Database...`);
 
             this.props.dispatch({
-                type: "ADD_EMAIL",
+                type: "UPDATE_EMAIL",
                 payload: this.state.vet,
             });
 

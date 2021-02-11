@@ -53,7 +53,7 @@ class MailAddress extends Component {
             );
 
             this.props.dispatch({
-                type: "ADD_MAIL_ADDRESS",
+                type: "UPDATE_MAIL_ADDRESS",
                 payload: this.state.vet
             });
 

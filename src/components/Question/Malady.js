@@ -1,16 +1,18 @@
 import React, { Component } from "react";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
-import { Button, Grid, Paper, withStyles, FormControl, InputLabel, Select, 
-  MenuItem, FormHelperText } from "@material-ui/core";
+import {
+  Button, Grid, Paper, withStyles, FormControl, InputLabel, Select,
+  MenuItem, FormHelperText
+} from "@material-ui/core";
 
 const styles = {
-    inputs: {
-        width: "",
-        paddingTop: "",
-        verticalAlign: "",
-        fontFamily: "",
-    },
+  inputs: {
+    width: "",
+    paddingTop: "",
+    verticalAlign: "",
+    fontFamily: "",
+  },
 };
 
 class Malady extends Component {
@@ -42,18 +44,18 @@ class Malady extends Component {
     );
   };
 
-    saveMalady = () => {
-        let vetVar = this.state.vet
+  saveMalady = () => {
+    let vetVar = this.state.vet
 
-        if (vetVar.malady === '') {
-            alert("Pleas indicate your malady.");
-        } else {
-            console.log(
-                `Saving ${vetVar.malady} to Database...`
-            );
+    if (vetVar.malady === '') {
+      alert("Pleas indicate your malady.");
+    } else {
+      console.log(
+        `Saving ${vetVar.malady} to Database...`
+      );
 
       this.props.dispatch({
-        type: "ADD_MALADY",
+        type: "UPDATE_MALADY",
         payload: this.state.vet,
       });
 
@@ -76,44 +78,43 @@ class Malady extends Component {
 
     return (
       <>
-              MALADY REDUCER: {JSON.stringify(this.props.store.maladyReducer)} 
+        MALADY REDUCER: {JSON.stringify(this.props.store.maladyReducer)}
 
         <h1>Malady Entry</h1>
         <Grid container spacing={2} direction="column">
           <Paper elevation={10}>
-          <FormControl className={classes.formControl}>
+            <FormControl className={classes.formControl}>
               <InputLabel>
                 SELECT
               </InputLabel>
               <Select
-                // value={age}
-                //onChange={(event)=>this.handleChange(event)}
+              // value={age}
+              //onChange={(event)=>this.handleChange(event)}
               >
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
                 {malady.map((each) => (
-                  <MenuItem 
-                  key={each}
-                  value={each.id}
-                  onClick={(event)=>this.handleClick(event)}
-                   >
+                  <MenuItem
+                    key={each}
+                    value={each.id}
+                    onClick={(event) => this.handleClick(event)}
+                  >
                     {each.description}</MenuItem>
                 ))}
 
-                
               </Select>
               <FormHelperText>Some important helper text</FormHelperText>
             </FormControl>
-                <br />
-                <Button
-                  onClick={(event) => {
-                    this.saveMalady(event);
-                  }}
-                >
-                  SAVE
+            <br />
+            <Button
+              onClick={(event) => {
+                this.saveMalady(event);
+              }}
+            >
+              SAVE
                 </Button>
-                <br />
+            <br />
           </Paper>
         </Grid>
       </>

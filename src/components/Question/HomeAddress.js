@@ -53,7 +53,7 @@ class HomeAddress extends Component {
             );
 
             this.props.dispatch({
-                type: "ADD_HOME_ADDRESS",
+                type: "UPDATE_HOME_ADDRESS",
                 payload: this.state.vet
             });
 

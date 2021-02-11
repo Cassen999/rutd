@@ -48,7 +48,7 @@ class Birth extends Component {
             );
 
             this.props.dispatch({
-                type: "ADD_DOB",
+                type: "UPDATE_BIRTH",
                 payload: this.state.vet
             });
 
