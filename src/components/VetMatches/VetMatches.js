@@ -31,17 +31,19 @@ const styles = (theme) => ({
 
 class VetMatches extends Component {
   state = {
-    heading: "Vet Matches",
+    vetId: this.props.store.vetReducer.id,
   };
 
-  contactOrg = (event) => {
-    console.log("Contacting Org");
+  contactOrg = (org_id) => {
+    let today = new Date();
+    let time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    console.log("Contacting Org and time, org_id, vet_id", time, org_id, this.state.vetId);
+    this.props.dispatch({type: 'POST_NEW_MATCH', payload: {vet_id: this.state.vetId, org_id: org_id, time: time}})
   };
 
-  // componentDidMount() {
-  //   this.props.dispatch({ type: "FETCH_CATEGORY" });
-  //   this.props.dispatch({ type: "FETCH_MATCH" });
-  // }
+  componentDidMount() {
+    this.props.dispatch({type: 'FETCH_VET_ID', payload: this.props.store.user.id})
+  };
 
   render() {
 
@@ -50,9 +52,11 @@ class VetMatches extends Component {
 
     return (
         <div>
+          {JSON.stringify(matches)}
+          {JSON.stringify(this.state)}
           <h2>{this.state.heading}</h2>
           <FormControl className={classes.formControl}>
-            <InputLabel id="search-category-label">Category</InputLabel>
+            {/* <InputLabel id="search-category-label">Category</InputLabel>
             <Select
               labelId="search-category-label"
               id="search-category"
@@ -64,19 +68,19 @@ class VetMatches extends Component {
                   {match.name}
                 </MenuItem>
               ))}
-            </Select>
+            </Select> */}
           </FormControl>
           <div className={classes.root}>
             <Grid container spacing={1}>
-              <Grid container item xs={12} spacing={3}>
+              <Grid container item xs={9} spacing={3}>
                 {matches.map((match, i) => (
                   <React.Fragment>
                     <Grid item key={i} xs={2}>
                       <Paper className={classes.paper}>
                         <img
                           className="resource-icon"
-                          alt={match.title}
-                          src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png"
+                          alt={match.pictures}
+                          // src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png"
                         />
                       </Paper>        
                     </Grid>
@@ -92,8 +96,13 @@ class VetMatches extends Component {
                     </Grid>
                     <Grid item key={i} xs={3}>
                       <Paper className={classes.paper}>
-                        <button onClick={(event) => this.contactOrg(event)}>
-                          CONTACT ORG
+                        {match.website}
+                      </Paper>        
+                    </Grid>
+                    <Grid item key={i} xs={3}>
+                      <Paper className={classes.paper}>
+                        <button onClick={(event) => this.contactOrg(match.org_id)}>
+                          Save Match and Contact
                         </button>
                       </Paper>        
                     </Grid>              

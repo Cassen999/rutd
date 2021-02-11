@@ -134,7 +134,6 @@ class VetFindMatches extends Component {
           />
         </div>
         <div className="match-btn">
-          {JSON.stringify(vetReducer)}
           <Button 
             onClick={() => this.handleMatchClick(vetReducer)}
             color="primary"

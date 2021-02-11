@@ -13,6 +13,7 @@ import resourceDetails from './resourceDetails.reducer';
 import resourceReducer from './resource.reducer';
 import resourceSearch from './resourceSearch.reducer';
 import demographicReducer from './demographic.reducer';
+import addNewMatchReducer from './addNewMatch.reducer';
 
 const rootReducer = combineReducers({
   errors,
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   details,
   resourceReducer,
   resourceSearch,
+  addNewMatchReducer,
 });
 
 export default rootReducer;
