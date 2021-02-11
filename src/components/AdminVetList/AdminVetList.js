@@ -2,43 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
-const styles = {
-  card: {
-    minWidth: 275,
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  dense: {
-    marginTop: 16,
-  },
-  menu: {
-    width: 200,
-  },
-  searchContainer: {
-    // backgroundColor: "white",
-  },
+const styles = theme => ({
   textField: {
     width: "100%",
     height: "100%",
     background: "white",
     borderRadius: "4px"
-  }
-};
+  }, 
+});
 
 
 class AdminVetList extends Component {
@@ -51,13 +30,16 @@ class AdminVetList extends Component {
     this.props.dispatch({type: 'FETCH_VET'})
   }
 
-  handleVeteran = () =>{
-    console.log('CLICKING ON VETERAN');
-    this.props.dispatch({type: 'POST_EMAIL', payload: this.props.store.user.id})
+  handleVeteran = (veteranID) =>{
+    console.log("VETERAN YOU SELECTED:", veteranID);
+      this.props.dispatch({type:'GET_ONE_VET', payload: veteranID});
+    this.props.history.push("/adminVetView");
   }
 
-  handleResource = () =>{
-    console.log('CLICKING ON RESOURCE');
+  handleResource = (resourceID) =>{
+    console.log("RESOURCE YOU SELECTED:", resourceID);
+    this.props.dispatch({type: 'GET_ONE_RESOURCE', payload: resourceID})
+    this.props.history.push("/adminOrgEdit");
   }
 
   handleInputChangeForSearch = (event) => {
@@ -74,10 +56,8 @@ class AdminVetList extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <h2>List of Veterans still waiting on their matched resource to respond</h2>
         <div className="container">
           <div className={classes.searchContainer}>
-            {JSON.stringify(this.state)}
             <center>
               <TextField
                 id="outlined-search"
@@ -91,66 +71,43 @@ class AdminVetList extends Component {
               />
             </center>
           </div>
-            {this.state.searchText === '' ? 
-              <div>
-                {this.props.store.vetReducer.map((vet, i) => {
-                  return(
-                    <Card className={classes.card} key={i}>
-                      <CardContent>
-                        <Typography className={classes.title} color="textSecondary" gutterBottom>
-                          {vet.received}
-                        </Typography>
-                        <CardActions>
-                          <Button size="small" onClick={this.handleVeteran}>
-                            <Typography variant="h5" component="h2">
-                                {vet.first_name} {vet.last_name}
-                            </Typography>
-                          </Button>
-                        </CardActions> 
-                        <CardActions>
-                          <Button size="small" onClick={this.handleResource}>
-                            <Typography component="p">
-                                {vet.name}
-                              <br />
-                            </Typography>
-                          </Button>
-                        </CardActions> 
-                      </CardContent>
-                    </Card>
-                  )
-                })}
-              </div>
+            <h2>List of Veterans still waiting on their matched resource to respond</h2>
+            <Paper className={classes.root}>
+              <Table className={classes.table}>
+                <TableHead className="table-head-color">
+                  <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell align='left'>Resource</TableCell>
+                    <TableCell align='left'>Time Stamp</TableCell>
+                  </TableRow>
+                </TableHead>
+                {this.state.searchText === '' ? 
+                <TableBody>
+                  {this.props.store.vetReducer.map((vet, i) => 
+                    <TableRow key={i}>
+                      <TableCell onClick={() =>  this.handleVeteran(vet.id)}>
+                        {vet.first_name} {vet.last_name}
+                      </TableCell>
+                      <TableCell onClick={() => this.handleResource(vet.org_id)}>{vet.name}</TableCell>
+                      <TableCell>{vet.received}</TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
               :
-              <div>
-                <h2>Search Results</h2>
-                {this.props.store.vetSearchReducer.map((result, i) => {
-                  return(
-                    <Card className={classes.card} key={i}>
-                      <CardContent>
-                        <Typography className={classes.title} color="textSecondary" gutterBottom>
-                          {result.received}
-                        </Typography>
-                      <CardActions>
-                        <Button size="small" onClick={this.handleVeteran}>
-                          <Typography variant="h5" component="h2">
-                            {result.first_name} {result.last_name}
-                          </Typography>
-                        </Button>
-                      </CardActions> 
-                      <CardActions>
-                        <Button size="small" onClick={this.handleResource}>
-                          <Typography component="p">
-                            {result.name}
-                            <br />
-                          </Typography>
-                        </Button>
-                      </CardActions> 
-                      </CardContent>
-                    </Card>
-                  )
-                })}
-            </div>
+              <TableBody>
+                {this.props.store.vetSearchReducer.map((result, i) => 
+                  <TableRow key={i}>
+                    <TableCell component="th" scope="vet" onClick={() => this.handleVeteran(result.id)}>
+                      {result.first_name} {result.last_name}
+                    </TableCell>
+                    <TableCell align="right" onClick={() => this.handleResource(result.org_id)}>{result.name}</TableCell>
+                    <TableCell align="right">{result.received}</TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
             }
+            </Table>
+          </Paper>
         </div>
       </div>
     );

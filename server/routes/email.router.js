@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
+const {
+    rejectUnauthenticatedGeneral,
+  } = require("../modules/authentication-middleware");
 require('dotenv').config();
-// NODEMAILER && POST ROUTE to send an email to admin
-router.post('/', (req, res) => {
+// NODEMAILER && POST ROUTE to send an email
+router.post('/', rejectUnauthenticatedGeneral, (req, res) => {
     console.log('email', req.body);
     const data = req.body;
     const password = process.env.password;
@@ -29,10 +32,9 @@ router.post('/', (req, res) => {
       // 'to' will change after development
       // this is the message that will send
     const mailOptions = {
-        // from: `cassenthebarber@gmail.com`,
         to: 'cassen.gerber@gmail.com',
-        subject: `test`,
-        html: '<p>cassenpt@gmail.com</p>'
+        subject: ``,
+        html: '<p></p>'
     };
     smtpTransport.sendMail(mailOptions,
         (error, response) => {
