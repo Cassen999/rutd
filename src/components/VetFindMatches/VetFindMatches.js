@@ -7,10 +7,11 @@ import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
 import green from '@material-ui/core/colors/green';
 import swal from 'sweetalert';
+import './VetFindMatches.css'
 
 const styles = theme => ({
   textField: {
-    width: "50%",
+    width: "75%",
     background: "white",
     borderRadius: "4px",
     marginLeft: theme.spacing.unit,
@@ -36,6 +37,10 @@ class VetFindMatches extends Component {
     textbox: '',
     safe: ''
   };
+
+  componentDidMount() {
+    this.props.dispatch({type: 'FETCH_VET_ID', payload: this.props.store.user.id})
+  }
 
   handleMatchClick = (vetId) => {
     if (this.state.safe === '') {
@@ -74,16 +79,22 @@ class VetFindMatches extends Component {
 
   render() {
     const { classes } = this.props;
+    const {vetReducer} = this.props.store;
     return (
       <div>
         <center>
-          <h2>Before we find your resources...</h2>
+          {JSON.stringify(this.props.store.vetReducer[0])}
+          <h2>Before we find your resource matches...</h2>
         </center>
-        <form className={classes.container} noValidate autoComplete="off">
-          {JSON.stringify(this.state)}
+        <center>
+          <p>Use this section to give your resources more information</p>
+          <p>You can write anything from specifics of a problem you may be having, to thanking them for their help!</p>
+          <p>Anything you write will be sent to the resource(s) you choose to contact on the next page</p>
+        </center>
+        <form className="text-container" noValidate autoComplete="off">
           <TextField
             id="outlined-multiline-flexible"
-            label="Enter the specifics of what you would like help with. You may enter whatever you like."
+            label="Start typing here"
             multiline
             value={this.state.textbox}
             onChange={this.handleTextboxChange}
@@ -93,36 +104,45 @@ class VetFindMatches extends Component {
             variant="outlined"
           />
         </form>
-        <label>Yes</label>
-        <Radio
-          checked={this.state.safe === 'yes'}
-          onChange={this.handleRadioSelect}
-          value='yes'
-          name="Yes"
-          aria-label="Yes"
-          classes={{
-            root: classes.root,
-            checked: classes.checked,
+        <center>
+          <h4>Although RUTD would love to help everyone, it is not an emergency service</h4>
+          <p>Please indicate here whether or not you are safe</p>
+        </center>
+        <div className="radio-container">
+          <label>I am safe</label>
+          <Radio
+            checked={this.state.safe === 'yes'}
+            onChange={this.handleRadioSelect}
+            value='yes'
+            name="Yes"
+            aria-label="Yes"
+            classes={{
+              root: classes.root,
+              checked: classes.checked,
+            }}
+            />
+          <label>I am not safe</label>
+          <Radio
+            checked={this.state.safe === 'no'}
+            onChange={this.handleRadioSelect}
+            value='no'
+            name="No"
+            aria-label="No"
+            classes={{
+              root: classes.root,
+              checked: classes.checked,
           }}
           />
-        <label>No</label>
-        <Radio
-          checked={this.state.safe === 'no'}
-          onChange={this.handleRadioSelect}
-          value='no'
-          name="No"
-          aria-label="No"
-          classes={{
-            root: classes.root,
-            checked: classes.checked,
-        }}
-        />
-        <Button 
-          onClick={(event) => this.handleMatchClick(1)}
-          color="primary"
-          variant="contained">
-          See Matches
-        </Button>
+        </div>
+        <div className="match-btn">
+          {JSON.stringify(vetReducer)}
+          <Button 
+            onClick={() => this.handleMatchClick(vetReducer)}
+            color="primary"
+            variant="contained">
+            See Matches
+          </Button>
+        </div>
       </div>
     );
   }

@@ -52,8 +52,8 @@ router.get("/complete/:id", rejectUnauthenticatedVet, (req, res) => {
 
 router.get(`/newMatches/:id`, rejectUnauthenticatedVet, (req, res) => {
   // GET route for complete matches
-  console.log("query.params", req.params.id);
-  const vetId = Number(req.params.id);
+  console.log("req.params", req.params);
+  const vetId = req.params.id;
   let queryText = `SELECT oc.org_id, o.name, o.number, o.website, o.pdf,
             count(oc.categories_id) AS org_needs, count(vc.categories_id) 
             AS vet_has, (count(vc.categories_id) + 0.0) / 
