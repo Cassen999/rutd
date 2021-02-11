@@ -13,7 +13,6 @@ import '../AdminOrgEdit/AdminOrgEdit.css';
 import swal from 'sweetalert';
 
 // TO DO :
-// - Material UI text fields so admin can edit details
 // - save button
 // - cancel edit button
 // - no more category router 
