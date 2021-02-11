@@ -46,31 +46,42 @@ class VetMatches extends Component {
         </button>
         <button onClick={(event) => this.contactOrg(event)}>CONTACT ORG</button>
 
-    <div className={classes.root}>
-      <Grid container spacing={1}>
-        <Grid container item xs={12} spacing={3}>
-          <FormRow />
-        </Grid>
-        <Grid container item xs={12} spacing={3}>
-          <FormRow />
-        </Grid>
-        <Grid container item xs={12} spacing={3}>
-          <FormRow />
-        </Grid>
-      </Grid>
-    </div>
-        
-        <Grid container className={classes.root} spacing={2}><Paper className={classes.paper}>
-          <Grid item xs={12}>
-            <Grid container justify="center" spacing={2}>
+        <div className={classes.root}>
+          <Grid container spacing={1}>
+            <Grid container item xs={12} spacing={3}>
               {matches.map((match, i) => (
-                <Grid key={i} item>
-                  
-                </Grid>
+                <React.Fragment>
+                  <Grid item key={i} xs={4}>
+                    <Paper className={classes.paper}>
+                      <img
+                        className="resource-icon"
+                        alt={match.title}
+                        src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png"
+                      />
+                    </Paper>        
+                  </Grid>
+                  <Grid item key={i} xs={4}>
+                    <Paper className={classes.paper}>
+                      {match.name}
+                    </Paper>        
+                  </Grid>
+                  <Grid item key={i} xs={4}>
+                    <Paper className={classes.paper}>
+                      {match.description}
+                    </Paper>        
+                  </Grid>
+                  <Grid item key={i} xs={4}>
+                    <Paper className={classes.paper}>
+                      <button onClick={(event) => this.contactOrg(event)}>
+                        CONTACT ORG
+                      </button>
+                    </Paper>        
+                  </Grid>              
+                </React.Fragment>            
               ))}
             </Grid>
-         </Grid></Paper>
-        </Grid>
+          </Grid>
+        </div>
         
         <ProgressBar value={30} />
       </div>
