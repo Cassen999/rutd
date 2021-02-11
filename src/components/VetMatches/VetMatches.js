@@ -16,11 +16,15 @@ import Select from '@material-ui/core/Select';
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
+    display: 'flex',
+    width: '100%',
+    flexWrap: 'wrap',
   },
   paper: {
     padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary,
+    margin: '2em'
   },
   formControl: {
     margin: theme.spacing(1),
@@ -31,17 +35,16 @@ const styles = (theme) => ({
 
 class VetMatches extends Component {
   state = {
-    heading: "Vet Matches",
+    vetId: this.props.store.vetReducer.id,
+    textbox: this.props.store.emailReducer
   };
 
-  contactOrg = (event) => {
-    console.log("Contacting Org");
+  contactOrg = (org_id) => {
+    let today = new Date();
+    let time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    console.log("Contacting Org and time, org_id, vet_id", time, org_id, this.state.vetId);
+    this.props.dispatch({type: 'POST_NEW_MATCH', payload: {vet_id: this.state.vetId, org_id: org_id, time: time}});
   };
-
-  // componentDidMount() {
-  //   this.props.dispatch({ type: "FETCH_CATEGORY" });
-  //   this.props.dispatch({ type: "FETCH_MATCH" });
-  // }
 
   render() {
 
@@ -50,9 +53,11 @@ class VetMatches extends Component {
 
     return (
         <div>
+          {JSON.stringify(matches)}
+          {JSON.stringify(this.state)}
           <h2>{this.state.heading}</h2>
           <FormControl className={classes.formControl}>
-            <InputLabel id="search-category-label">Category</InputLabel>
+            {/* <InputLabel id="search-category-label">Category</InputLabel>
             <Select
               labelId="search-category-label"
               id="search-category"
@@ -64,45 +69,41 @@ class VetMatches extends Component {
                   {match.name}
                 </MenuItem>
               ))}
-            </Select>
+            </Select> */}
           </FormControl>
           <div className={classes.root}>
             <Grid container spacing={1}>
-              <Grid container item xs={12} spacing={3}>
-                {matches.map((match, i) => (
+              <Grid container item xs={9} spacing={3}>
+                {matches.map((match, i, j, k, l, m) => (
                   <React.Fragment>
-                    <Grid item key={i} xs={2}>
-                      <Paper className={classes.paper}>
-                        <img
-                          className="resource-icon"
-                          alt={match.title}
-                          src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png"
-                        />
-                      </Paper>        
-                    </Grid>
-                    <Grid item key={i} xs={3}>
-                      <Paper className={classes.paper}>
-                        {match.name}
-                      </Paper>        
-                    </Grid>
-                    <Grid item key={i} xs={3}>
-                      <Paper className={classes.paper}>
-                        {match.description}
-                      </Paper>        
-                    </Grid>
-                    <Grid item key={i} xs={3}>
-                      <Paper className={classes.paper}>
-                        <button onClick={(event) => this.contactOrg(event)}>
-                          CONTACT ORG
-                        </button>
-                      </Paper>        
-                    </Grid>              
+                    <Paper className={classes.paper}> 
+                      <Grid item key={i} xs={2}>
+                          <img
+                            className="resource-icon"
+                            alt={match.pictures}
+                            // src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png"
+                          />        
+                      </Grid>
+                      <Grid item key={j} xs={3}>
+                          {match.name}       
+                      </Grid>
+                      <Grid item key={k} xs={3}>
+                          {match.description}       
+                      </Grid>
+                      <Grid item key={l} xs={3}>
+                          {match.website}      
+                      </Grid>
+                      <Grid item key={m} xs={3}>
+                          <button onClick={(event) => this.contactOrg(match.org_id)}>
+                            Save Match and Contact
+                          </button>
+                      </Grid>              
+                    </Paper>        
                   </React.Fragment>            
                 ))}
               </Grid>
             </Grid>
           </div>
-        
         <ProgressBar value={30} />
         <button onClick={(event) => this.props.history.push("/home")}>
           BACK TO HOME
