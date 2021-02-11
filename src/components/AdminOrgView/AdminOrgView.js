@@ -60,51 +60,53 @@ class AdminResourceEdit extends Component {
                 {JSON.stringify(this.props.store.resourceDetails)}
                 <h2>{this.state.heading}</h2>
               </center>
-              {resourceDetails.map((resource, i) => {
-                return (
-                  <div key={i}>
+              {/* {resourceDetails.map((resource, i) => {
+                return ( */}
+                  <div>
                     <Paper className={classes.root} elevation={1}>
+                      <hr></hr>
                       <Typography variant="h5" component="h3">
                         Organization Details
                       </Typography>
                       <Typography component="p">
-                        Name: {resource.name}
+                        Name: {resourceDetails.name}
                       </Typography>
                       <Typography component="p">
-                        Number: {resource.number}
+                        Number: {resourceDetails.number}
                       </Typography>
                       <Typography component="p">
-                        Email: {resource.email}
+                        Email: {resourceDetails.email}
                       </Typography>
                       <Typography component="p">
-                        City: {resource.city}
+                        City: {resourceDetails.city}
                       </Typography>
                       <Typography component="p">
-                        State: {resource.state}
+                        State: {resourceDetails.state}
                       </Typography>
                       <Typography component="p">
-                        Website:{ resource.website}
+                        Website:{ resourceDetails.website}
                       </Typography>
                       <Typography component="p">
-                        Description: {resource.description}
+                        Description: {resourceDetails.description}
                       </Typography>
                       <Typography component="p">
-                        Categories: {resource.categories}
+                        Categories: {resourceDetails.categories}
                       </Typography>
-                      <Typography component="p">
+                      {/* <Typography component="p">
                         PLACEHOLDER FOR PDF
                       </Typography>
                       <Typography component="p">
                         PLACEHOLDER FOR PICTURES
-                      </Typography>
+                      </Typography> */}
+                      <hr></hr>
                     </Paper>
                     <br></br>
                     <Button  
                       className="edit-org-btn" variant="contained" 
-                      onClick={() => this.editOrganization(resource.org_id)}>Edit</Button>
+                      onClick={() => this.editOrganization(resourceDetails.org_id)}>Edit</Button>
                   </div>
-                );
-              })}
+                {/* );
+              })} */}
               <hr></hr>
                 <center>
                   <Button  
