@@ -23,6 +23,7 @@ import Discharge from '../Question/Discharge'
 import Malady from '../Question/Malady'
 import Compensation from '../Question/Compensation'
 import Hazard from '../Question/Hazard'
+import PurpleHeart from '../Question/PurpleHeart'
 
 const styles = {
   inputs: {
@@ -90,6 +91,7 @@ class DemographicForm extends Component {
                 <Malady/>
                 <Compensation/>
                 <Hazard/>
+                <PurpleHeart/>
                 <br />
               </form>
             </Paper>
