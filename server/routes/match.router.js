@@ -51,8 +51,6 @@ router.get("/complete/:id", rejectUnauthenticatedVet, (req, res) => {
 });
 
 router.get(`/newMatches/:id`, rejectUnauthenticatedVet, (req, res) => {
-  // GET route for complete matches
-  console.log("req.params", req.params);
   const vetId = req.params.id;
   let queryText = `SELECT oc.org_id, o.name, o.number, o.website, o.pdf,
             count(oc.categories_id) AS org_needs, count(vc.categories_id) 
@@ -68,7 +66,6 @@ router.get(`/newMatches/:id`, rejectUnauthenticatedVet, (req, res) => {
   pool
     .query(queryText, [vetId])
     .then((result) => {
-      console.log("newMatches get result.rows", result.rows);
       res.send(result.rows);
     })
     .catch((error) => {
