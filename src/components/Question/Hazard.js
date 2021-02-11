@@ -38,8 +38,14 @@ const styles = (theme) => ({
   dense: {
     marginTop: 19,
   },
+
+  //     paperContainer: {
+  //       backgroundImage: `url(${canvas})`
+  //   },
+  //   typography : {
+  //     fontFamily : 'Arial'
 });
-class Compensation extends Component {
+class Hazard extends Component {
   componentDidMount() {
     console.log("Mounted");
     this.props.dispatch({ type: "FETCH_PERCENTAGE" });
@@ -146,74 +152,87 @@ class Compensation extends Component {
         <h1>CompensationForm</h1>
         <Paper
           className=""
-          // style={styles.paperContainer}
           elevation={10}
-          // className={classes.paper}
-          // backgroundImage={canvas}
-        >
-          Are you currently registered with the VA?
-          <br />
-          <label>Yes</label>
-          <Radio
-            checked={this.state.type === "1"}
-            onChange={this.handleInputChangeFor("type")}
-            value="1"
-            name="Yes"
-            aria-label="Yes"
-            classes={{
-              root: classes.root,
-              checked: classes.checked,
-            }}
-          />
-          <label>No</label>
-          <Radio
-            checked={this.state.type === "0"}
-            onChange={this.handleInputChangeFor("type")}
-            value="0"
-            name="No"
-            aria-label="No"
-            classes={{
-              root: classes.root,
-              checked: classes.checked,
-            }}
-          />
-          <div>
-            {" "}
-            &nbsp;
-            {this.state.type === "1" && ( // if this part is false, the next part won't show
-              <FormControl component="fieldset" className={classes.formControl}>
-                <FormLabel component="legend">Compensation Rate</FormLabel>
-                <RadioGroup
-                  aria-label="Compensation Rate"
-                  name="gender1"
-                  className={classes.group}
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                >
-                  {percentages.map((percent) => (
-                    <FormControlLabel
-                      key={percent.description}
-                      value={percent.description}
-                      control={
-                        <Radio
-                          onClick={(event) =>
-                            this.handleClick(event, percent.id)
-                          }
-                        />
-                      }
-                      label={percent.description}
-                    />
-                  ))}
-                </RadioGroup>
-              </FormControl>
+                 >
+          
+            Have you been deployed to imminent danger areas
+            <br />
+            <label>Yes</label>
+            <Radio
+              checked={this.state.typeTwo === "3"}
+              onChange={this.handleInputChangeFor("typeTwo")}
+              value="3"
+              name="Yes"
+              aria-label="Yes"
+              classes={{
+                root: classes.root,
+                checked: classes.checked,
+              }}
+            />
+            <label>No</label>
+            <Radio
+              checked={this.state.typeTwo === "2"}
+              onChange={this.handleInputChangeFor("typeTwo")}
+              value="2"
+              name="No"
+              aria-label="No"
+              classes={{
+                root: classes.root,
+                checked: classes.checkedTwo,
+              }}
+            />
+            {this.state.typeTwo === "3" && ( // if this part is false, the next part won't show
+              <form>
+                <TextField
+                  id="standard-multiline-flexible"
+                  label="Describe danger areas"
+                  multiline
+                  rows="5"
+                  variant="outlined"
+                  rowsMax="10"
+                  value={this.state.multiline}
+                  onChange={this.handleTextChange("multiline")}
+                  className={classes.textField}
+                  margin="normal"
+                />
+              </form>
             )}
-            
-           
-          </div>
-        
+            {/* <div>
+  {percentages.map((percent, i) => (
+    this.state.type === '1'
+      ? (              
+      <Radio
+      key={i}
+         checked={this.setstate({
+            percentage : percent.id
+         })
+      
+      
+      
+      }
+         onChange={this.handleInputChangeFor('type')}
+         value={percent.description}
+         name="No"
+         label={percent.description}
+         aria-label="No"
+         classes={{
+           root: classes.root,
+           checked: classes.checked,
+       }}
+      />)
+      : null
+  ))}
+</div> */}
+          <form></form>
+          {/* <Grid container
+               className=''
+               //alignItems="center"
+               spacing={2}
+               direction="column"> */}
         </Paper>
+        {/* </Grid> */}
       </>
     ); //END return
   } //END render
 } //END DemographicsForm
-export default connect(mapStoreToProps)(withStyles(styles)(Compensation));
+export default connect(mapStoreToProps)(withStyles(styles)(Hazard));
