@@ -14,13 +14,10 @@ function* fetchVet() {
 }
 
 function* fetchVetId(action) {
-    // console.log('Fetch vets id from DB action.payload', action.payload);
     try{
         const vetId = action.payload
-        console.log('vetId: ', vetId)
         const response = yield axios.get(`/api/vet/vetid/${vetId}`)
         yield put({type: 'SET_VET', payload: response.data});
-        console.log('response.data from db get vet id:', response.data);
     } catch(error){
         console.log('error with vet fetch request', error);
     }        

@@ -83,7 +83,6 @@ class VetFindMatches extends Component {
     return (
       <div>
         <center>
-          {JSON.stringify(this.props.store.vetReducer[0])}
           <h2>Before we find your resource matches...</h2>
         </center>
         <center>
