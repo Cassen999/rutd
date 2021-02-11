@@ -26,8 +26,6 @@ import AdminVetList from "../AdminVetList/AdminVetList";
 import GenericLanding from "../GenericLanding/GenericLanding";
 import OrganizationLandingPage from "../OrganizationLandingPage/OrganizationLandingPage";
 import Demographic from "../Demographic/Demographic";
-import Malady from "../Malady/Malady";
-import Compensation from "../Compensation/Compensation";
 import AdminVetView from "../AdminVetView/AdminVetView";
 import AdminOrgView from "../AdminOrgView/AdminOrgView";
 import AdminOrgEdit from "../AdminOrgEdit/AdminOrgEdit";
@@ -122,20 +120,6 @@ class App extends Component {
               exact
               path="/demographic"
               component={Demographic}
-              // authRedirect="/user"
-            />
-
-            <ProtectedRoute
-              exact
-              path="/malady"
-              component={Malady}
-              // authRedirect="/user"
-            />
-
-            <ProtectedRoute
-              exact
-              path="/compensation"
-              component={Compensation}
               // authRedirect="/user"
             />
 

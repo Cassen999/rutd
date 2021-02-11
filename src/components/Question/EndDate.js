@@ -49,7 +49,7 @@ class EndDate extends Component {
             );
 
             this.props.dispatch({
-                type: "ADD_END_DATE",
+                type: "UPDATE_END_DATE",
                 payload: this.state.vet
             });
 

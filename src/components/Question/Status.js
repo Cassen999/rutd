@@ -49,7 +49,7 @@ class Status extends Component {
             );
 
             this.props.dispatch({
-                type: "ADD_STATUS",
+                type: "UPDATE_STATUS",
                 payload: this.state.vet
             });
 

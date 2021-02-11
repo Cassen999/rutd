@@ -48,7 +48,7 @@ class Phone extends Component {
             );
 
             this.props.dispatch({
-                type: "ADD_PHONE",
+                type: "UPDATE_PHONE",
                 payload: this.state.vet
             });
 

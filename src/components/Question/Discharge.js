@@ -49,7 +49,7 @@ class Discharge extends Component {
             );
 
             this.props.dispatch({
-                type: "ADD_DISCHARGE",
+                type: "UPDATE_DISCHARGE",
                 payload: this.state.vet
             });
 
