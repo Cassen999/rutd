@@ -77,7 +77,7 @@ router.get("/:id", rejectUnauthenticatedAdmin, (req, res) => {
     .query(queryText, [id])
     .then((result) => {
       console.log("GET This is the RESOURCE you've selected: ", result.rows); // WORKING
-      res.send(result.rows);
+      res.send(result.rows[0]);
     })
     .catch((error) => {
       console.log("Error inside GET RESOURCE ID route:", error);

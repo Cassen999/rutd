@@ -49,10 +49,6 @@ class AdminOrgEdit extends Component {
     number: '',
     email: '',
     city: '',
-                // the below are not rendering currently
-                // no officially items from DB
-                // pdf: '',
-                // pictures: '',
     website: '',
     description: '',
     state: '',
@@ -66,8 +62,6 @@ class AdminOrgEdit extends Component {
       number: this.props.store.resourceDetails.number,
       email: this.props.store.resourceDetails.email,
       city: this.props.store.resourceDetails.city,
-      // pdf: this.props.store.resourceDetails.pdf,
-      // pictures: this.props.store.resourceDetails.pictures,
       website: this.props.store.resourceDetails.website,
       description: this.props.store.resourceDetails.description,
       state: this.props.store.resourceDetails.state,
@@ -149,10 +143,9 @@ handleChange = (event, input) => {
           <center>
             <h2>Admin Organization Edit</h2>
           </center>
-          {resourceDetails.map((resource, i) => {
-            return(
-                  <form key={i}>
-                    <div className="white-background">
+          {/* {resourceDetails.map((resource, i) => {
+            return( */}
+                  <form className="white-background">
                         <TextField
                           id="standard-name"
                           placeholder="Name"
@@ -235,18 +228,17 @@ handleChange = (event, input) => {
                             style={{marginTop:"1rem", marginLeft:"2rem"}}
                             className="float-right" 
                             variant="contained" 
-                            onClick={()=> this.updateOrg(resource.org_id)}>Update organization
+                            onClick={()=> this.updateOrg(resourceDetails.org_id)}>Update organization
                           </Button>
                           <Button 
                             style={{marginTop:"1rem"}}
                             className="float-right" 
                             variant="contained" 
-                            onClick={()=>this.cancelSubmit(resource.org_id)}>Cancel
+                            onClick={()=>this.cancelSubmit(resourceDetails.org_id)}>Cancel
                           </Button>
-                    </div>
                   </form>
-            )
-          })}
+            {/* )
+          })} */}
       </div>
     );
   }
