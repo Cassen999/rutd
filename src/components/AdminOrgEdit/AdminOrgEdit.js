@@ -76,7 +76,8 @@ class AdminOrgEdit extends Component {
   }
 
 
-cancelSubmit = () =>{
+cancelSubmit = (orgID) => {
+  console.log('ID of the org edit cancelled on: ', orgID)
   swal({
       title: "Are you sure?",
       text: "Once cancelled, your edit will not be made!",
@@ -89,6 +90,7 @@ cancelSubmit = () =>{
         swal("Your edit has not been saved!", {
           icon: "success",
         });
+        this.props.history.push("/adminOrgView", orgID)
       } else {
         swal("You can keep working on the edits");
       }
@@ -222,7 +224,7 @@ handleChange = (event, input) => {
                             style={{marginTop:"1rem"}}
                             className="float-right" 
                             variant="contained" 
-                            onClick={this.cancelSubmit}>Cancel
+                            onClick={()=>this.cancelSubmit(resource.org_id)}>Cancel
                           </Button>
                     </div>
                   </form>

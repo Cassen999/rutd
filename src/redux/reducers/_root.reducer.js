@@ -9,7 +9,7 @@ import percentageReducer from './percentage.reducer'
 import vetSearchReducer from './vetSearch.reducer';
 import emailReducer from './email.reducer';
 import details from './details.reducer';
-import resourceDetails from './resourceReducer.reducer';
+import resourceDetails from './resourceDetails.reducer';
 import resourceReducer from './resource.reducer';
 import resourceSearch from './resourceSearch.reducer';
 import demographicReducer from './demographic.reducer';
