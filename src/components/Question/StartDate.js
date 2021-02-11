@@ -94,8 +94,8 @@ class StartDate extends Component {
                                     onChange={(event) => this.handleInputChange(event, "startDate")}
                                 />
                                 <br />
-                                <Button onClick={(event)=>{this.saveStartDate(event)}}>SAVE</Button>
-                                <br/>
+                                <Button onClick={(event) => { this.saveStartDate(event) }}>SAVE</Button>
+                                <br />
                             </Grid>
                         </form>
                     </Paper>

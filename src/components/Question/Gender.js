@@ -59,7 +59,6 @@ class Gender extends Component {
           },
         },
         function () {
-          // {this.props.history.push('/servicehistory')}
           console.log("state has been reset");
         }
       );
@@ -67,7 +66,7 @@ class Gender extends Component {
   };
 
   render() {
-    // const { classes } = this.props;
+    const { classes } = this.props;
 
     return (
       <>

@@ -60,7 +60,6 @@ class Branch extends Component {
                     },
                 },
                 function () {
-                    // {this.props.history.push('/servicehistory')}
                     console.log("state has been reset");
                 }
             );
@@ -78,7 +77,7 @@ class Branch extends Component {
                     spacing={2}
                     direction="column"
                 >
-                    
+
                     <Paper elevation={10}>
 
                         <form>
@@ -94,8 +93,8 @@ class Branch extends Component {
                                     onChange={(event) => this.handleInputChange(event, "branch")}
                                 />
                                 <br />
-                                <Button onClick={(event)=>{this.saveBranch(event)}}>SAVE</Button>
-                                <br/>
+                                <Button onClick={(event) => { this.saveBranch(event) }}>SAVE</Button>
+                                <br />
                             </Grid>
                         </form>
                     </Paper>

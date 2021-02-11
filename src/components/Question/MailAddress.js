@@ -13,18 +13,16 @@ const styles = {
 };
 
 class MailAddress extends Component {
-  state = {
-    vet: {
-      address: "",
-      apt: "",
-      city: "",
-      state: "",
-      zip: "",
-      country: "",
-    },
-  };
-
-  
+    state = {
+        vet: {
+            address: "",
+            apt: "",
+            city: "",
+            state: "",
+            zip: "",
+            country: "",
+        },
+    };
 
     handleInputChange = (event, inputProperty) => {
         console.log("Handling input-change...");
@@ -76,20 +74,20 @@ class MailAddress extends Component {
                 }
             );
         }
-      
+
     }
-  
 
-  render() {
-    // const { classes } = this.props;
 
-    return (
-      <>
-        <h1>Mail Address Entry</h1>
-        <Grid container spacing={2} direction="column">
-          <Paper elevation={10}>
-            <form>
-                                         <br />
+    render() {
+        const { classes } = this.props;
+
+        return (
+            <>
+                <h1>Mail Address Entry</h1>
+                <Grid container spacing={2} direction="column">
+                    <Paper elevation={10}>
+                        <form>
+                            <br />
 
                             <Grid item xs={12.0} sm={12}>
 

@@ -13,13 +13,13 @@ const styles = {
 };
 
 class Birth extends Component {
-  state = {
-    vet: {
-      dOB: "",
-    },
-  };
+    state = {
+        vet: {
+            dOB: "",
+        },
+    };
 
-   handleInputChange = (event, inputProperty) => {
+    handleInputChange = (event, inputProperty) => {
         console.log("Handling input-change...");
         console.log("Setting state...");
 
@@ -59,24 +59,23 @@ class Birth extends Component {
                     },
                 },
                 function () {
-                    // {this.props.history.push('/servicehistory')}
                     console.log("state has been reset");
                 }
             );
         }
-      
-    }
-  
-  render() {
-    // const { classes } = this.props;
 
-    return (
-      <>
-        <h1>Date of Birth Entry</h1>
-        <Grid container spacing={2} direction="column">
-          <Paper elevation={10}>
-            <form>
-                                      <br />
+    }
+
+    render() {
+        // const { classes } = this.props;
+
+        return (
+            <>
+                <h1>Date of Birth Entry</h1>
+                <Grid container spacing={2} direction="column">
+                    <Paper elevation={10}>
+                        <form>
+                            <br />
 
                             <Grid item xs={12.0} sm={12}>
 
@@ -93,7 +92,7 @@ class Birth extends Component {
                                 <Button onClick={(event) => { this.saveDOB(event) }}>SAVE</Button>
                                 <br />
                             </Grid>
-                       </form>
+                        </form>
                     </Paper>
                 </Grid>
             </>
