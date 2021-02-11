@@ -52,16 +52,16 @@ router.get("/complete/:id", rejectUnauthenticatedVet, (req, res) => {
 
 router.get(`/newMatches/:id`, rejectUnauthenticatedVet, (req, res) => {
   const vetId = req.params.id;
-  let queryText = `SELECT oc.org_id, o.name, o.number, o.website, o.pdf,
-            count(oc.categories_id) AS org_needs, count(vc.categories_id) 
-            AS vet_has, (count(vc.categories_id) + 0.0) / 
-            (count(oc.categories_id) + 0.0) * 100 AS percent_match
-            FROM organization_categories oc
-            INNER JOIN veteran_categories vc ON vc.categories_id = oc.categories_id
-            AND vc.vet_id = $1 
-            INNER JOIN organization o ON o.id = oc.org_id
-            GROUP BY oc.org_id, o.name, o.number, o.website, o.pdf
-            ORDER BY percent_match DESC, vet_has DESC;`;
+  let queryText = `SELECT oc.org_id, o.name,  o.pictures, o.website, o.pdf,  o.pictures,
+          count(oc.categories_id) AS org_needs, count(vc.categories_id) 
+          AS vet_has, (count(vc.categories_id) + 0.0) / 
+          (count(oc.categories_id) + 0.0) * 100 AS percent_match
+          FROM organization_categories oc
+          INNER JOIN veteran_categories vc ON vc.categories_id = oc.categories_id
+          AND vc.vet_id = $1 
+          INNER JOIN organization o ON o.id = oc.org_id
+          GROUP BY oc.org_id, o.name,  o.pictures, o.website, o.pdf
+          ORDER BY percent_match DESC, vet_has DESC;`;
 
   pool
     .query(queryText, [vetId])
@@ -72,6 +72,25 @@ router.get(`/newMatches/:id`, rejectUnauthenticatedVet, (req, res) => {
       console.log(error);
       res.sendStatus(500);
     });
+});
+
+// POST new match into match table
+router.post('/postnew', rejectUnauthenticatedVet, (req, res) => {
+  const vet_id = req.body.vet_id;
+  console.log('match post vet_id', vet_id)
+  const org_id = req.body.org_id;
+  const time = req.body.time
+  const queryText = `INSERT INTO "match" ("vet_id", "org_id", "received")
+                      VALUES ($1, $2, $3);`;
+  pool.query(queryText, [vet_id, org_id, time])
+  .then((result) => {
+    console.log('result.rows from match post router', result.rows)
+    res.send(result.rows)
+  })
+  .catch((error) => {
+    console.log(`Error from match post router ${error}`);
+    res.sendStatus(500);
+  });
 });
 
 module.exports = router;

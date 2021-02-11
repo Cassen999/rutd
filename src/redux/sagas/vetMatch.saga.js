@@ -31,9 +31,22 @@ function* getNewMatches(action) {
   }
 }
 
+function* postNewMatch(action) {
+  try {
+    console.log('postNewMatch action.payload', action.payload)
+    const response = yield axios.post('/api/match/postnew', action.payload)
+    console.log('postNewMatch response.data', response.data)
+    yield put({type: "SET_NEW_MATCH", payload: response.data})
+  }
+  catch(error) {
+    console.log('Error in postNewMatch saga error: ', error)
+}
+}
+
 function* vetMatchSaga() {
   yield takeLatest("FETCH_COMPLETE_MATCH", getCompleteMatch);
   yield takeLatest("FETCH_ALL_MATCHES", getNewMatches);
+  yield takeLatest("POST_NEW_MATCH", postNewMatch);
 }
 
 export default vetMatchSaga;
