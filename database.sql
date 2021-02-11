@@ -277,7 +277,8 @@ CREATE TABLE "veteran" (
     "compensation" BOOLEAN,
     "percentage" INT REFERENCES "percentage" ON DELETE CASCADE,
     "danger_areas" BOOLEAN,
-    "purple_heart" BOOLEAN
+    "purple_heart" BOOLEAN,
+    "categories_id" INT REFERENCES "categories" ON DELETE CASCADE
 );
 
 ALTER SEQUENCE veteran_id_seq RESTART WITH 1;
@@ -839,3 +840,28 @@ DELETE FROM
     organization
 WHERE
     id = 1;
+
+-- match org categories with veteran categories; and display org with most matches first
+SELECT
+    oc.org_id,
+    o.name,
+    o.number,
+    o.website,
+    o.pdf,
+    count(oc.categories_id) AS org_needs,
+    count(vc.categories_id) AS vet_has,
+    (count(vc.categories_id) + 0.0) / (count(oc.categories_id) + 0.0) * 100 AS percent_match
+FROM
+    organization_categories oc
+    INNER JOIN veteran_categories vc ON vc.categories_id = oc.categories_id
+    AND vc.vet_id = 1
+    INNER JOIN organization o ON o.id = oc.org_id
+GROUP BY
+    oc.org_id,
+    o.name,
+    o.number,
+    o.website,
+    o.pdf
+ORDER BY
+    percent_match DESC,
+    vet_has DESC;

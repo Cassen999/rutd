@@ -6,7 +6,7 @@ const {
 } = require('../modules/authentication-middleware');
 
 router.get('/', rejectUnauthenticatedVet, (req, res) => {
-  console.log('in /health GET route');
+  console.log('in /malady GET route');
   console.log('Is User logged in?', req.isAuthenticated());
   console.log('req.user:', req.user);
 

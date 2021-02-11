@@ -1,8 +1,9 @@
 import axios from "axios";
-import { put, takeLatest } from "redux-saga/effects";
+import { takeLatest } from "redux-saga/effects";
+//  put
 
 function* serviceSaga() {
-  yield takeLatest("UPDATE_SERVICE_HISTORY", updateServiceSaga);
+  yield takeLatest("UPDATE_SERVICE", updateServiceSaga);
 }
 
 function* updateServiceSaga(action) {
@@ -13,10 +14,10 @@ function* updateServiceSaga(action) {
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     };
-    const response = yield axios.put("api/health", action.payload, config);
-    yield put({ type: "FETCH_ART", payload: response.data });
+    const response = yield axios.put("api/service", action.payload, config);
+    // yield put({ type: "FETCH_ART", payload: response.data });
   } catch (error) {
-    console.log("Art get request failed", error);
+    console.log("Update service failed", error);
   }
 }
 
