@@ -7,7 +7,7 @@ import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
 import Name from '../Question/Name'
 import Email from '../Question/Email'
 import Birth from '../Question/Birth'
-import Phone from '../Question/Phone'
+import Phone from '../Question/phone'
 import Gender from '../Question/Gender'
 import Marriage from '../Question/Marriage'
 import Children from '../Question/Children'

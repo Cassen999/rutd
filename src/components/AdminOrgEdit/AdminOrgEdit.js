@@ -218,7 +218,7 @@ handleChange = (event, input) => {
                             style={{marginTop:"1rem"}}
                             className="float-right" 
                             variant="contained" 
-                            onClick={()=> this.updateOrg(resourceDetails.org_id)}>Update organization
+                            onClick={()=> this.updateOrg(resource.org_id)}>Update organization
                           </Button>
                           <Button 
                             style={{marginTop:"1rem"}}
