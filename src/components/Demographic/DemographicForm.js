@@ -2,17 +2,17 @@ import React, { Component } from "react";
 //import { useDispatch } from 'react-redux';
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
-import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
-import Name from '../Question/Name'
-import Email from '../Question/Email'
-import Birth from '../Question/Birth'
-import Phone from '../Question/Phone'
-import Gender from '../Question/Gender'
-import Marriage from '../Question/Marriage'
-import Children from '../Question/Children'
-import Homeless from '../Question/Homeless'
-import HomeAddress from '../Question/HomeAddress'
-import MailAddress from '../Question/MailAddress'
+import { Grid, Paper, withStyles } from "@material-ui/core";
+import Name from "../Question/Name";
+import Email from "../Question/Email";
+import Birth from "../Question/Birth";
+import Phone from "../Question/phone";
+import Gender from "../Question/Gender";
+import Marriage from "../Question/Marriage";
+import Children from "../Question/Children";
+import Homeless from "../Question/Homeless";
+import HomeAddress from "../Question/HomeAddress";
+import MailAddress from "../Question/MailAddress";
 
 const styles = {
   inputs: {
@@ -105,7 +105,7 @@ class DemographicForm extends Component {
   // };
 
   render() {
-    const { classes } = this.props;
+    // const { classes } = this.props;
 
     return (
       <>
@@ -133,7 +133,6 @@ class DemographicForm extends Component {
                 <HomeAddress />
                 <MailAddress />
                 <br />
-
               </form>
             </Paper>
           </Grid>
