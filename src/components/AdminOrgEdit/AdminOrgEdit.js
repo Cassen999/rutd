@@ -13,7 +13,6 @@ import '../AdminOrgEdit/AdminOrgEdit.css';
 import swal from 'sweetalert';
 
 // TO DO :
-// - Map out the reducer resourceDetails to edit 
 // - Material UI text fields so admin can edit details
 // - save button
 // - cancel edit button
