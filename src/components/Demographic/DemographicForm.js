@@ -2,7 +2,7 @@ import React, { Component } from "react";
 //import { useDispatch } from 'react-redux';//
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
-import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
+import {Grid, Paper, withStyles} from "@material-ui/core";
 //REGISTRATION QUESTIONS
 import Name from '../Question/Name'
 import Email from '../Question/Email'
@@ -20,6 +20,7 @@ import StartDate from '../Question/StartDate'
 import EndDate from '../Question/EndDate'
 import Status from '../Question/Status'
 import Discharge from '../Question/Discharge'
+import Malady from '../Question/Malady'
 
 const styles = {
   inputs: {
@@ -84,6 +85,7 @@ class DemographicForm extends Component {
                 <EndDate/>
                 <Status/>
                 <Discharge/>
+                <Malady/>
                 <br />
               </form>
             </Paper>
