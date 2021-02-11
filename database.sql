@@ -277,7 +277,8 @@ CREATE TABLE "veteran" (
     "compensation" BOOLEAN,
     "percentage" INT REFERENCES "percentage" ON DELETE CASCADE,
     "danger_areas" BOOLEAN,
-    "purple_heart" BOOLEAN
+    "purple_heart" BOOLEAN,
+    "categories_id" INT REFERENCES "categories" ON DELETE CASCADE
 );
 
 ALTER SEQUENCE veteran_id_seq RESTART WITH 1;
