@@ -35,6 +35,17 @@ const styles = (theme) => ({
     verticalAlign: "middle",
     fontFamily: "Arial",
   },
+  paper: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    width: 500,
+    height: 350,
+    margin: "-175px 0 0 -250px",
+    backgroundColor: "#de9595",
+    border: "2px solid #ADFA3B",
+    paddingBottom: "20px",
+  },
 });
 
 class DemographicForm extends Component {
@@ -156,29 +167,36 @@ class DemographicForm extends Component {
                 }
 
                 {formIndex >= 20 &&
-                  <Button
-                    variant="contained"
-                    onClick={this.handleNext}
-                  >
-                    All Done!
-                  </Button>
+                  <div className={classes.paper}>
+                    <h2>Thank you for submitting your information!</h2>
+                    <Button
+                      variant="contained"
+                      onClick={this.handleNext}
+                    >
+                      All Done!
+                    </Button> 
+                  </div>
                 }                                
 
                 <br />
               </form>
               <ProgressBar value={this.getProgress(formIndex)} />
-              <Button
-                variant="contained"
-                onClick={this.handleBack}
-              >
-                Back
-              </Button>
+              {formIndex > 0 &&
+                <Button
+                  variant="contained"
+                  onClick={this.handleBack}
+                >
+                  Back
+                </Button>
+              }
+              {formIndex < 20 &&
               <Button
                 variant="contained"
                 onClick={this.handleNext}
               >
                 Next
               </Button>
+              }
             </Paper>
           </Grid>
         </center>
