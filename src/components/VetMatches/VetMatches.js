@@ -49,70 +49,64 @@ class VetMatches extends Component {
     const matches = this.props.store.vetMatchReducer;
 
     return (
-      <div>
-        <h2>{this.state.heading}</h2>
+        <div>
+          <h2>{this.state.heading}</h2>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="search-category-label">Category</InputLabel>
+            <Select
+              labelId="search-category-label"
+              id="search-category"
+              value={matches}
+              input={<Input />}
+            >
+              {matches.map((match, i) => (
+                <MenuItem key={i} value={match.name} >
+                  {match.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <div className={classes.root}>
+            <Grid container spacing={1}>
+              <Grid container item xs={12} spacing={3}>
+                {matches.map((match, i) => (
+                  <React.Fragment>
+                    <Grid item key={i} xs={2}>
+                      <Paper className={classes.paper}>
+                        <img
+                          className="resource-icon"
+                          alt={match.title}
+                          src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png"
+                        />
+                      </Paper>        
+                    </Grid>
+                    <Grid item key={i} xs={3}>
+                      <Paper className={classes.paper}>
+                        {match.name}
+                      </Paper>        
+                    </Grid>
+                    <Grid item key={i} xs={3}>
+                      <Paper className={classes.paper}>
+                        {match.description}
+                      </Paper>        
+                    </Grid>
+                    <Grid item key={i} xs={3}>
+                      <Paper className={classes.paper}>
+                        <button onClick={(event) => this.contactOrg(event)}>
+                          CONTACT ORG
+                        </button>
+                      </Paper>        
+                    </Grid>              
+                  </React.Fragment>            
+                ))}
+              </Grid>
+            </Grid>
+          </div>
+        
+        <ProgressBar value={30} />
         <button onClick={(event) => this.props.history.push("/home")}>
           BACK TO HOME
         </button>
-
-        
-      <FormControl className={classes.formControl}>
-        <InputLabel id="search-category-label">Category</InputLabel>
-        <Select
-          labelId="search-category-label"
-          id="search-category"
-          multiple
-          value={matches}
-          //onChange={handleChange}
-          input={<Input />}
-          //MenuProps={MenuProps}
-        >
-          {matches.map((match, i) => (
-            <MenuItem key={i} value={match.name} >
-              {match.name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-
-        <div className={classes.root}>
-          <Grid container spacing={1}>
-            <Grid container item xs={12} spacing={3}>
-              {matches.map((match, i) => (
-                <React.Fragment>
-                  <Grid item key={i} xs={2}>
-                    <Paper className={classes.paper}>
-                      <img
-                        className="resource-icon"
-                        alt={match.title}
-                        src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png"
-                      />
-                    </Paper>        
-                  </Grid>
-                  <Grid item key={i} xs={3}>
-                    <Paper className={classes.paper}>
-                      {match.name}
-                    </Paper>        
-                  </Grid>
-                  <Grid item key={i} xs={3}>
-                    <Paper className={classes.paper}>
-                      {match.description}
-                    </Paper>        
-                  </Grid>
-                  <Grid item key={i} xs={3}>
-                    <Paper className={classes.paper}>
-                      <button onClick={(event) => this.contactOrg(event)}>
-                        CONTACT ORG
-                      </button>
-                    </Paper>        
-                  </Grid>              
-                </React.Fragment>            
-              ))}
-            </Grid>
-          </Grid>
-        </div>
-        
-        <ProgressBar value={30} />
       </div>
     );
   }
