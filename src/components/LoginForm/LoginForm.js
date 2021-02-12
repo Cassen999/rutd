@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import Image from '../../Images/logo.jpg';
+import Image from '../../Images/black-logo.png';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -49,11 +49,9 @@ class LoginForm extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <form className="formPanel" onSubmit={this.login}>
-        {/* LOGO GOES HERE */}
-
-        {/* <img src="../../Images/logo.jpg" alt="logo"></img> */}
-        <img src={Image} alt="Logo"/>
+      <form onSubmit={this.login}>
+      <div className="formPanel">
+        <img className="form-logo border-radius-img" src={Image} alt="Logo"/>
         <center>
           <p>Log in if you have been here before</p>
           
@@ -94,7 +92,9 @@ class LoginForm extends Component {
               color="primary">Log In</Button>
           </div>
         </center>
+        </div>
       </form>
+
     );
   }
 }

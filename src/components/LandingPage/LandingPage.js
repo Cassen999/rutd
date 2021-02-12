@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
 
 import './LandingPage.css';
 
@@ -60,9 +62,9 @@ class LandingPage extends Component {
 
             <center>
               <h4>Already a Member?</h4>
-              <button className="btn btn_sizeSm" onClick={this.onLogin}>
+              <Button className="btn btn_sizeSm" onClick={this.onLogin}>
                 Login
-              </button>
+              </Button>
             </center>
           </div>
         </div>
@@ -71,4 +73,4 @@ class LandingPage extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(LandingPage);
+export default connect(mapStoreToProps)(withStyles(styles)(LandingPage));
