@@ -7,17 +7,16 @@ function* maladySaga() {
 }
 
 function* updateMaladySaga(action) {
-  console.log("In updateHealthSaga...");
+  console.log("In updateMaladySaga...");
   console.log("payload:", action.payload);
   try {
     const config = {
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     };
-    const response = yield axios.put("api/malady", action.payload, config);
-    yield put({ type: "FETCH_ART", payload: response.data });
+    const response = yield axios.put("api/question/malady", action.payload, config);
   } catch (error) {
-    console.log("Art get request failed", error);
+    console.log('Error in updateMaladySaga', error);
   }
 }
 
@@ -31,7 +30,7 @@ function* fetchMaladySaga(action) {
     const response = yield axios.get(`/api/malady`, config);
     yield put({ type: "SET_MALADY", payload: response.data });
   } catch (error) {
-    console.log("GET health request failed", error);
+    console.log("Error in fetchMaladySaga", error);
   }
 }
 

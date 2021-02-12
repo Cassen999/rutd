@@ -8,7 +8,6 @@ import Radio from '@material-ui/core/Radio';
 import green from '@material-ui/core/colors/green';
 import swal from 'sweetalert';
 import './VetFindMatches.css';
-import VetMatches from '../VetMatches/VetMatches';
 
 const styles = theme => ({
   textField: {

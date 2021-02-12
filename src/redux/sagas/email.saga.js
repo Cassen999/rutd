@@ -2,7 +2,7 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 function* postEmail(action) {
-    console.log('Fetch veteran matches is working');
+    console.log('In postEmail');
     try{
         const response = yield axios.post(`/api/email`);
         yield put({type: 'SET_EMAIL', payload: response.data});
@@ -12,8 +12,26 @@ function* postEmail(action) {
     }        
 }
 
+
+function* updateEmailSaga(action) {
+    console.log("In updateEmailSaga...");
+    console.log("payload:", action.payload);
+    try {
+      const config = {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      };
+      const response = yield axios.put("api/question/email", action.payload, config);
+    } catch (error) {
+      console.log('Error in updateEmailSaga', error);
+    }
+  }
+
+
 function* emailSaga() {
     yield takeLatest('POST_EMAIL', postEmail);
+    yield takeLatest('UPDATE_EMAIL', updateEmailSaga);
+
 }
 
 export default emailSaga;
