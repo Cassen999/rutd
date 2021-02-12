@@ -1,107 +1,92 @@
 -- Enter in all commands in order they are written from top to bottom
 -- Tables
-CREATE TABLE "type" (
-    "id" SERIAL PRIMARY KEY,
-    "description" VARCHAR(255) NOT NULL
-);
-
-ALTER SEQUENCE type_id_seq RESTART WITH 1;
-
+-- HIGHLIGHT TO THE THE END COMMENT AND EXECUTE!
 CREATE TABLE "gender" (
     "id" SERIAL PRIMARY KEY,
     "description" VARCHAR(255) NOT NULL
 );
-
-ALTER SEQUENCE gender_id_seq RESTART WITH 1;
 
 CREATE TABLE "married" (
     "id" SERIAL PRIMARY KEY,
     "description" VARCHAR(255) NOT NULL
 );
 
-ALTER SEQUENCE married_id_seq RESTART WITH 1;
-
 CREATE TABLE "branch" (
     "id" SERIAL PRIMARY KEY,
     "description" VARCHAR(255) NOT NULL
 );
-
-ALTER SEQUENCE branch_id_seq RESTART WITH 1;
 
 CREATE TABLE "rank" (
     "id" SERIAL PRIMARY KEY,
     "description" VARCHAR(255) NOT NULL
 );
 
-ALTER SEQUENCE rank_id_seq RESTART WITH 1;
-
 CREATE TABLE "status" (
     "id" SERIAL PRIMARY KEY,
     "description" VARCHAR(255) NOT NULL
 );
-
-ALTER SEQUENCE status_id_seq RESTART WITH 1;
 
 CREATE TABLE "country" (
     "id" SERIAL PRIMARY KEY,
     "description" VARCHAR(255) NOT NULL
 );
 
-ALTER SEQUENCE country_id_seq RESTART WITH 1;
-
 CREATE TABLE "state" (
     "id" SERIAL PRIMARY KEY,
     "description" VARCHAR(255) NOT NULL
 );
-
-ALTER SEQUENCE state_id_seq RESTART WITH 1;
 
 CREATE TABLE "discharge" (
     "id" SERIAL PRIMARY KEY,
     "description" VARCHAR(255) NOT NULL
 );
 
-ALTER SEQUENCE discharge_id_seq RESTART WITH 1;
-
 CREATE TABLE "injury" (
     "id" SERIAL PRIMARY KEY,
     "description" VARCHAR(255) NOT NULL
 );
-
-ALTER SEQUENCE injury_id_seq RESTART WITH 1;
 
 CREATE TABLE "percentage" (
     "id" SERIAL PRIMARY KEY,
     "description" VARCHAR(255) NOT NULL
 );
 
-ALTER SEQUENCE percentage_id_seq RESTART WITH 1;
-
 CREATE TABLE "categories" (
     "id" SERIAL PRIMARY KEY,
     "description" VARCHAR(255) NOT NULL
 );
 
+-- STOP HERE! AFTER CREATING THE TABLES, RESTART THE TABLES TO 1 BY HIGHLIGHTING THEM! 
+ALTER SEQUENCE gender_id_seq RESTART WITH 1;
+
+ALTER SEQUENCE married_id_seq RESTART WITH 1;
+
+ALTER SEQUENCE branch_id_seq RESTART WITH 1;
+
+ALTER SEQUENCE rank_id_seq RESTART WITH 1;
+
+ALTER SEQUENCE status_id_seq RESTART WITH 1;
+
+ALTER SEQUENCE country_id_seq RESTART WITH 1;
+
+ALTER SEQUENCE state_id_seq RESTART WITH 1;
+
+ALTER SEQUENCE discharge_id_seq RESTART WITH 1;
+
+ALTER SEQUENCE injury_id_seq RESTART WITH 1;
+
+ALTER SEQUENCE percentage_id_seq RESTART WITH 1;
+
 ALTER SEQUENCE categories_id_seq RESTART WITH 1;
 
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL,
-    "type_id" INT REFERENCES "type" ON DELETE CASCADE
-);
-
-ALTER SEQUENCE user_id_seq RESTART WITH 1;
-
--- STOP HERE, DO THE INSERTS FOR ALL OF THE DROPDOWN TABLES
 -- Start inserts for dropdowns
-INSERT INTO
-    type (description)
-VALUES
-    ('veteran'),
-    ('admin'),
-    ('organization');
-
+--INSERT INTO
+--    type (description)
+--VALUES
+--    ('veteran'),
+--    ('admin'),
+--    ('organization');
+-- DO THE INSERTS FOR ALL OF THE DROPDOWN TABLES
 INSERT INTO
     gender (description)
 VALUES
@@ -247,72 +232,88 @@ VALUES
 -- NOW ADD THE VETERAN AND ORGANIZATION TABLES
 CREATE TABLE "veteran" (
     "id" SERIAL PRIMARY KEY,
-    "vet_id" INT REFERENCES "user" ON DELETE CASCADE,
+    "vet_id" INT REFERENCES "user",
     "first_name" VARCHAR (255),
     "last_name" VARCHAR (255),
     "email" VARCHAR (255),
     "date_of_birth" DATE,
     "number" VARCHAR (10),
-    "gender_id" INT REFERENCES "gender" ON DELETE CASCADE,
-    "married_id" INT REFERENCES "married" ON DELETE CASCADE,
+    "gender_id" INT REFERENCES "gender",
+    "married_id" INT REFERENCES "married",
     "children" INT,
     "homeless" BOOLEAN,
     "current_address" varchar(255),
     "city" VARCHAR(255),
-    "state_id" INT REFERENCES "state" ON DELETE CASCADE,
+    "state_id" INT REFERENCES "state",
     "zipcode" VARCHAR (5),
-    "country_id" INT REFERENCES "country" ON DELETE CASCADE,
+    "country_id" INT REFERENCES "country",
     "mailing_address" VARCHAR(255),
     "city2" VARCHAR(255),
-    "state_id2" INT REFERENCES "state" ON DELETE CASCADE,
+    "state_id2" INT REFERENCES "state",
     "zipcode2" VARCHAR (5),
-    "country_id2" INT REFERENCES "country" ON DELETE CASCADE,
-    "branch_id" INT REFERENCES "branch" ON DELETE CASCADE,
-    "rank_id" INT REFERENCES "rank" ON DELETE CASCADE,
+    "country_id2" INT REFERENCES "country",
+    "branch_id" INT REFERENCES "branch",
+    "rank_id" INT REFERENCES "rank",
     "start_date" DATE,
     "end_date" DATE,
-    "status_id" INT REFERENCES "status" ON DELETE CASCADE,
-    "discharge_id" INT REFERENCES "discharge" ON DELETE CASCADE,
-    "injury_id" INT REFERENCES "injury" ON DELETE CASCADE,
+    "status_id" INT REFERENCES "status",
+    "discharge_id" INT REFERENCES "discharge",
+    "injury_id" INT REFERENCES "injury",
     "compensation" BOOLEAN,
-    "percentage" INT REFERENCES "percentage" ON DELETE CASCADE,
+    "percentage" INT REFERENCES "percentage",
     "danger_areas" BOOLEAN,
-    "purple_heart" BOOLEAN,
-    "vc" INT REFERENCES "veteran_categories" ON DELETE CASCADE
+    "purple_heart" BOOLEAN
 );
 
-ALTER SEQUENCE veteran_id_seq RESTART WITH 1;
-
 CREATE TABLE "organization" (
-    "id" SERIAL PRIMARY KEY,
-    "org_id" INT REFERENCES "user" ON DELETE CASCADE,
+    "id" SERIAL PRIMARY KEY UNIQUE,
+    "org_id" INT REFERENCES "user",
     "name" VARCHAR(255),
     "number" bigint,
     "email" VARCHAR(255),
     "city" VARCHAR(255),
-    "state_id" INT REFERENCES "state" ON DELETE CASCADE,
+    "state_id" INT REFERENCES "state",
     "pdf" bytea,
     "website" VARCHAR(255),
     "pictures" bytea,
     "description" VARCHAR(1000),
-    "oc" INT REFERENCES "organization_categories" ON DELETE CASCADE,
     "approved" BOOLEAN
 );
 
-ALTER SEQUENCE organization_id_seq RESTART WITH 1;
+CREATE TABLE "veteran_categories" (
+    "id" SERIAL PRIMARY KEY,
+    "vet_id" INT REFERENCES "veteran",
+    "categories_id" INT REFERENCES "categories"
+);
+
+CREATE TABLE "organization_categories" (
+    "id" SERIAL PRIMARY KEY,
+    "org_id" INT REFERENCES "organization",
+    "categories_id" INT REFERENCES "categories"
+);
 
 CREATE TABLE "match" (
     "id" SERIAL PRIMARY KEY,
-    "vet_id" INT REFERENCES "veteran" ON DELETE CASCADE,
-    "org_id" INT REFERENCES "organization" ON DELETE CASCADE,
+    "vet_id" INT REFERENCES "veteran",
+    "org_id" INT REFERENCES "organization",
     "received" TIME,
     "contacted" TIME,
     "approved" TIME
 );
 
+-- End Tables
+-- STOP HERE! AFTER CREATING THE TABLES, RESTART THE TABLES TO 1 BY HIGHLIGHTING THEM!
+ALTER SEQUENCE veteran_id_seq RESTART WITH 1;
+
+ALTER SEQUENCE organization_id_seq RESTART WITH 1;
+
+ALTER SEQUENCE veteran_categories_id_seq RESTART WITH 1;
+
+ALTER SEQUENCE organization_categories_id_seq RESTART WITH 1;
+
 ALTER SEQUENCE match_id_seq RESTART WITH 1;
 
--- End Tables
+-- HIGHLIGHT VETERAN AND ORGNAIZATION ONLY!!
 -- Inserts into veteran
 INSERT INTO
     "veteran" (
@@ -511,7 +512,6 @@ INSERT INTO
         "website",
         "pictures",
         "description",
-        "categories_id",
         "approved"
     )
 VALUES
@@ -526,7 +526,6 @@ VALUES
         'www.Woundedwarriorproject.org',
         'none',
         'Wounded Warrior Project stuff',
-        1,
         true
     );
 
@@ -542,7 +541,6 @@ INSERT INTO
         "website",
         "pictures",
         "description",
-        "categories_id",
         "approved"
     )
 VALUES
@@ -557,7 +555,6 @@ VALUES
         'www.hivesforheroes.com',
         'none',
         'We do beekeeping stuff',
-        1,
         true
     );
 
@@ -573,7 +570,6 @@ INSERT INTO
         "website",
         "pictures",
         "description",
-        "categories_id",
         "approved"
     )
 VALUES
@@ -588,52 +584,11 @@ VALUES
         'www.redcross.org',
         'none',
         'American Red Cross stuff',
-        8,
-        'Hives for Heroes',
-        8323651183,
-        'support@hivesforheroes.com',
-        'Houston',
-        1,
-        'none',
-        'www.hivesforheroes.com',
-        'none',
-        'We do beekeeping stuff',
-        1,
-        true
-    );
-
-INSERT INTO
-    "organization" (
-        "org_id",
-        "name",
-        "number",
-        "email",
-        "city",
-        "state_id",
-        "pdf",
-        "website",
-        "pictures",
-        "description",
-        "categories_id",
-        "approved"
-    )
-VALUES
-    (
-        9,
-        'American Red Cross',
-        5555555555,
-        'fakeemail@email.com',
-        'Minneapolis',
-        1,
-        'none',
-        'www.redcross.org',
-        'none',
-        'American Red Cross stuff',
-        1,
         true
     );
 
 -- End inserts into organization
+-- HIGHLIGHT MATCH, VETERAN_CATEGORIES, ORG_CATAGORIES!
 -- Inserts into match
 INSERT INTO
     "match" (
@@ -666,96 +621,27 @@ INSERT INTO
         "approved"
     )
 VALUES
-    (2, 2, '04:00:00', '05:00:00', '06:00:00');
-
-INSERT INTO
-    "match" (
-        "vet_id",
-        "org_id",
-        "received",
-        "contacted",
-        "approved"
-    )
-VALUES
     (3, 3, '03:00:00', '04:00:00', '05:00:00');
 
-(3, 3, '03:00:00', '04:00:00', '05:00:00');
-
 -- End inserts into match
--- Query for AdminVetList
-SELECT
-    "first_name",
-    "last_name",
-    "match".received,
-    "organization"."name"
-FROM
-    "user"
-    JOIN "veteran" ON "vet_id" = "user".id
-    JOIN "match" ON "match".vet_id = "veteran".id
-    JOIN "organization" ON "organization".id = "match".org_id
-ORDER BY
-    "last_name" ASC
-LIMIT
-    10;
-
--- End query for AdminVetList
--- Query to get all vets
-SELECT
-    *
-FROM
-    veteran;
-
--- End query to get all vets
--- Query to get vet and org name for matches
-SELECT
-    match.*,
-    veteran.first_name,
-    organization.*
-FROM
-    match
-    INNER JOIN veteran ON veteran.id = match.vet_id
-    INNER JOIN organization ON organization.id = match.org_id;
-
--- End query to get vet and org name for matches
--- Drop all tables
-DROP TABLE "user",
-"type",
-"rank",
-"gender",
-"married",
-"branch",
-"status",
-"country",
-"state",
-"discharge",
-"injury",
-"percentage",
-"categories",
-"veteran",
-"match",
-"organization" CASCADE;
-
--- End drop all tables
-CREATE TABLE "veteran_categories" (
-    "id" SERIAL PRIMARY KEY,
-    "vet_id" INT REFERENCES "veteran" ON DELETE CASCADE,
-    "categories_id" INT REFERENCES "categories" ON DELETE CASCADE
-);
-
-CREATE TABLE "organization_categories" (
-    "id" SERIAL PRIMARY KEY,
-    "org_id" INT REFERENCES "organization" ON DELETE CASCADE,
-    "categories_id" INT REFERENCES "categories" ON DELETE CASCADE
-);
-
+-- Inserts into veteran_categories 
 INSERT INTO
     veteran_categories(vet_id, categories_id)
 VALUES
     (1, 1),
     (1, 2),
     (1, 3),
-    (1, 4);
+    (1, 4),
+    (2, 5),
+    (2, 6),
+    (2, 7),
+    (2, 8),
+    (3, 9),
+    (3, 10),
+    (3, 3),
+(3, 4);
 
+-- Inserts into organization_categories
 INSERT INTO
     organization_categories(org_id, categories_id)
 VALUES
@@ -763,13 +649,12 @@ VALUES
     (1, 2),
     (1, 5),
     (2, 3),
+    (2, 9),
+    (3, 3),
+    (3, 10),
+    (3, 7),
     (3, 4),
-    (3, 3);
-
-INSERT INTO
-    organization_categories(org_id, categories_id)
-VALUES
-    (4, 5);
+    (2, 6);
 
 SELECT
     *
