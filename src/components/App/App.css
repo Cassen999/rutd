@@ -127,6 +127,32 @@ input {
 Image Styles
 -------------------------------------------------------------------------------- */
 
-.border-radius-img{
+
+.form-logo{
   border-radius: 0.3rem;
+  -webkit-box-shadow: -1px 1px 5px 5px rgba(22, 22, 22, 0.432);
+  -moz-box-shadow: -1px 1px 5px 5px rgba(22, 22, 22, 0.432);
+  box-shadow: -1px 1px 5px 5px rgba(22, 22, 22, 0.432);
+}
+
+
+.container {
+  /* padding: 0 3rem; */
+  justify-content: center
+}
+
+.panel {
+  /* padding: 4rem;
+  margin: 4rem 0; */
+  /* background-position: center; */
+  /* background-size: cover; */
+  /* border-radius: 20%; */
+  box-shadow: 0 0 5px 20px rgba(0, 0, 0, 0);
+}
+
+.scrim {
+  /* color: rgb(209, 209, 209); */
+  fill: space-around;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: larger;
 }

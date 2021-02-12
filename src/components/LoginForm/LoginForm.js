@@ -49,11 +49,12 @@ class LoginForm extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <form className="formPanel" onSubmit={this.login}>
+      <form onSubmit={this.login}>
         {/* LOGO GOES HERE */}
 
         {/* <img src="../../Images/logo.jpg" alt="logo"></img> */}
-        <img className="border-radius-img" src={Image} alt="Logo"/>
+              <div className="formPanel">
+                <img className="form-logo border-radius-img" src={Image} alt="Logo"/>
         <center>
           <p>Log in if you have been here before</p>
           
@@ -94,7 +95,9 @@ class LoginForm extends Component {
               color="primary">Log In</Button>
           </div>
         </center>
+        </div>
       </form>
+
     );
   }
 }
