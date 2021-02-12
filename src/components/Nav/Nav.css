@@ -8,14 +8,14 @@
 
 .nav {
   margin: 0 0 30px;
-  background-color: #adfa3b;
+  /* background-color: #79fb0e; */
   overflow: hidden;
 }
 
 .nav-link {
   float: left;
-  color: #444343;
-  background-color: #adfa3b;
+  color: white;
+  /* background-color: #79fb0e; */
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
@@ -29,7 +29,7 @@
 }
 
 .nav-link:hover {
-  background-color: #7aad2c;
+  background-color: #adafaa88;
 }
 
 .nav-right {
