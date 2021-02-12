@@ -36,15 +36,39 @@ const styles = (theme) => ({
 class VetMatches extends Component {
   state = {
     vetId: this.props.store.vetReducer.id,
-    textbox: this.props.store.emailReducer
+    vetFirstName: this.props.store.vetReducer.first_name,
+    vetLastName: this.props.store.vetReducer.last_name,
+    vetEmail: this.props.store.vetReducer.email,
+    textbox: this.props.store.emailReducer,
+    sender_type: 1
   };
 
-  contactOrg = (org_id) => {
-    let today = new Date();
-    let time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+  contactOrg = (org_id, orgName, org_email) => {
+    const today = new Date();
+    const time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    const state = this.state
     console.log("Contacting Org and time, org_id, vet_id", time, org_id, this.state.vetId);
-    this.props.dispatch({type: 'POST_NEW_MATCH', payload: {vet_id: this.state.vetId, org_id: org_id, time: time}});
+    this.props.dispatch({type: 'POST_NEW_MATCH', payload: {vet_id: this.state.vetId, 
+      org_id: org_id, time: time}});
+    this.props.dispatch({type: 'POST_EMAIL', payload: {org_id: org_id, 
+      orgName: orgName,  org_email: org_email,
+      text: state.textbox, vetFirstName: state.vetFirstName, 
+      vetLastName: state.vetLastName, vetEmail: state.vetEmail, 
+      sender_type: state.sender_type}})
   };
+
+  componentDidMount() {
+    if(this.props.store.emailReducer !== []) {
+      this.setState({
+        textbox: this.props.store.emailReducer
+      })
+    }
+    else if(this.props.store.emailReducer === []) {
+      this.setState({
+        textbox: ''
+      })
+    }
+  }
 
   render() {
 
@@ -55,22 +79,6 @@ class VetMatches extends Component {
         <div>
           {JSON.stringify(matches)}
           {JSON.stringify(this.state)}
-          <h2>{this.state.heading}</h2>
-          <FormControl className={classes.formControl}>
-            {/* <InputLabel id="search-category-label">Category</InputLabel>
-            <Select
-              labelId="search-category-label"
-              id="search-category"
-              value={matches}
-              input={<Input />}
-            >
-              {matches.map((match, i) => (
-                <MenuItem key={i} value={match.name} >
-                  {match.name}
-                </MenuItem>
-              ))}
-            </Select> */}
-          </FormControl>
           <div className={classes.root}>
             <Grid container spacing={1}>
               <Grid container item xs={9} spacing={3}>
@@ -94,7 +102,7 @@ class VetMatches extends Component {
                           {match.website}      
                       </Grid>
                       <Grid item key={m} xs={3}>
-                          <button onClick={(event) => this.contactOrg(match.org_id)}>
+                          <button onClick={(event) => this.contactOrg(match.org_id, match.name, match.email)}>
                             Save Match and Contact
                           </button>
                       </Grid>              
