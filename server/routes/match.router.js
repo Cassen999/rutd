@@ -52,7 +52,7 @@ router.get("/complete/:id", rejectUnauthenticatedVet, (req, res) => {
 
 router.get(`/newMatches/:id`, rejectUnauthenticatedVet, (req, res) => {
   const vetId = req.params.id;
-  let queryText = `SELECT oc.org_id, o.name,  o.pictures, o.website, o.pdf,  o.pictures,
+  let queryText = `SELECT oc.org_id, o.name, o.pictures, o.email, o.website, o.pdf,  o.pictures,
           count(oc.categories_id) AS org_needs, count(vc.categories_id) 
           AS vet_has, (count(vc.categories_id) + 0.0) / 
           (count(oc.categories_id) + 0.0) * 100 AS percent_match
@@ -60,7 +60,7 @@ router.get(`/newMatches/:id`, rejectUnauthenticatedVet, (req, res) => {
           INNER JOIN veteran_categories vc ON vc.categories_id = oc.categories_id
           AND vc.vet_id = $1 
           INNER JOIN organization o ON o.id = oc.org_id
-          GROUP BY oc.org_id, o.name,  o.pictures, o.website, o.pdf
+          GROUP BY oc.org_id, o.name,  o.pictures, o.website, o.pdf, o.email
           ORDER BY percent_match DESC, vet_has DESC;`;
 
   pool

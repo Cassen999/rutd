@@ -5,46 +5,142 @@ const {
     rejectUnauthenticatedGeneral,
   } = require("../modules/authentication-middleware");
 require('dotenv').config();
+
 // NODEMAILER && POST ROUTE to send an email
 router.post('/', rejectUnauthenticatedGeneral, (req, res) => {
     console.log('email', req.body);
-    const data = req.body;
+    const vet_email = 'req.body';
+    const org_email = 'req.body';
+    const detailText = 'req.body';
+    const orgName = 'req.body';
+    const vetFirstName = 'req.body';
+    const vetLastName = 'req.body';
+    // This will be the generic email body for a vet
+    const vetHtmlBody = '';
+    // This will be the generic email body for an org
+    const orgHtmlBody = '';
+    // This will be the generic email body for the admin
+    const adminHtmlBody = '';
+    // This is the type_id of who is the SENDER
+    // This will make the conditional work
+    const sender_type = '';
     const password = process.env.password;
-    const smtpTransport = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 587,
-        secure: false,
-        auth: { // SENDING EMAIL FROM THIS ADDRESS
-            user: 'cassenpt@gmail.com',
-            pass: password
-        },
-        tls: {
-            rejectUnauthorized: false 
-        }
-    });
-    smtpTransport.verify(function(error, success) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("Server is ready to take our messages!");
-        }
-      });
-      // 'to' will change after development
-      // this is the message that will send
-    const mailOptions = {
-        to: 'cassen.gerber@gmail.com',
-        subject: ``,
-        html: '<p></p>'
-    };
-    smtpTransport.sendMail(mailOptions,
-        (error, response) => {
-            if (error) {
-                console.log('error sending', error);
-            } else {
-                console.log('Success!');
+
+    // Conditional to decide which email to send
+    if (sender_type === 1) {
+        const smtpTransport = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
+            auth: { // SENDING EMAIL FROM THIS ADDRESS
+                user: 'cassenpt@gmail.com',
+                pass: password
+            },
+            tls: {
+                rejectUnauthorized: false 
             }
-            // ULTRA MEGA IMPORTANT TO CLOSE THE TRANSPORT
-            smtpTransport.close();
-    });
+        });
+        smtpTransport.verify(function(error, success) {
+            if (error) {
+              console.log(error);
+            } else {
+              console.log("Server is ready to take our messages!");
+            }
+          });
+          // 'to' will change after development
+          // this is the message that will send
+        const mailOptions = {
+            to: org_email,
+            subject: `A new Veteran is requesting to connect!`,
+            html: vetHtmlBody
+        };
+        smtpTransport.sendMail(mailOptions,
+            (error, response) => {
+                if (error) {
+                    console.log('error sending', error);
+                } else {
+                    console.log('Success!');
+                }
+                // ULTRA MEGA IMPORTANT TO CLOSE THE TRANSPORT
+                smtpTransport.close();
+        });
+    }
+    else if (sender_type === 2) {
+        const smtpTransport = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
+            auth: { // SENDING EMAIL FROM THIS ADDRESS
+                user: 'cassenpt@gmail.com',
+                pass: password
+            },
+            tls: {
+                rejectUnauthorized: false 
+            }
+        });
+        smtpTransport.verify(function(error, success) {
+            if (error) {
+              console.log(error);
+            } else {
+              console.log("Server is ready to take our messages!");
+            }
+          });
+          // 'to' will change after development
+          // this is the message that will send
+        const mailOptions = {
+            to: org_email,
+            subject: `A Veteran is waiting to hear back from you!`,
+            html: adminHtmlBody
+        };
+        smtpTransport.sendMail(mailOptions,
+            (error, response) => {
+                if (error) {
+                    console.log('error sending', error);
+                } else {
+                    console.log('Success!');
+                }
+                // ULTRA MEGA IMPORTANT TO CLOSE THE TRANSPORT
+                smtpTransport.close();
+        });
+    }
+    else if (sender_type === 3) {
+        const smtpTransport = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
+            auth: { // SENDING EMAIL FROM THIS ADDRESS
+                user: 'cassenpt@gmail.com',
+                pass: password
+            },
+            tls: {
+                rejectUnauthorized: false 
+            }
+        });
+        smtpTransport.verify(function(error, success) {
+            if (error) {
+              console.log(error);
+            } else {
+              console.log("Server is ready to take our messages!");
+            }
+          });
+          // 'to' will change after development
+          // this is the message that will send
+        const mailOptions = {
+            to: vet_email,
+            subject: ``,
+            html: orgHtmlBody
+        };
+        smtpTransport.sendMail(mailOptions,
+            (error, response) => {
+                if (error) {
+                    console.log('error sending', error);
+                } else {
+                    console.log('Success!');
+                }
+                // ULTRA MEGA IMPORTANT TO CLOSE THE TRANSPORT
+                smtpTransport.close();
+        });
+    }
+
 });
 module.exports = router;
