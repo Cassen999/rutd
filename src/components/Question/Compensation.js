@@ -143,7 +143,7 @@ class Compensation extends Component {
     const percentages = this.props.store.percentageReducer;
     return (
       <>
-        <h1>CompensationForm</h1>
+        <h1>Compensation Form</h1>
         <Paper
           className=""
           // style={styles.paperContainer}

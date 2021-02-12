@@ -15,11 +15,10 @@ function* updateCompensationSaga(action) {
       withCredentials: true,
     };
 
-    const response = yield axios.put("api/health", action.payload, config);
+    const response = yield axios.put("api/question/compensation", action.payload, config);
 
-    yield put({ type: "FETCH_ART", payload: response.data });
   } catch (error) {
-    console.log("Art get request failed", error);
+    console.log("Error in updateCompensationSaga", error);
   }
 }
 
@@ -36,7 +35,7 @@ function* fetchPercentageSaga(action) {
 
     yield put({ type: "SET_PERCENTAGE", payload: response.data });
   } catch (error) {
-    console.log("GET Compensation request failed", error);
+    console.log("Error in fetchPercentage", error);
   }
 }
 
