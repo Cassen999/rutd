@@ -48,6 +48,12 @@ const styles = (theme) => ({
     border: "2px solid #ADFA3B",
     paddingBottom: "20px",
   },
+  formContainer: {
+    textAlign: "center",
+  }
+  // progress: {
+  //   float: "right",
+  // }
 });
 
 class DemographicForm extends Component {
@@ -109,15 +115,14 @@ class DemographicForm extends Component {
     );
 
     return (
-      <>
-        <center>
+      <div className={classes.formContainer}>
           <h1>Demographic Form</h1>
-          <ProgressBar value={this.getProgress(formIndex)} />
           <Grid
             container
             spacing={2}
             direction="column"
           >
+            <ProgressBar value={this.getProgress(formIndex)} />
             <Paper elevation={10}>
                 {intakeForm.map((formItem, index) => {
                     let displayItem;
@@ -128,7 +133,6 @@ class DemographicForm extends Component {
                     }
                     return displayItem;                                         
                 })}
-
               
               {0 < formIndex < intakeForm.length &&
                 <Button
@@ -148,8 +152,7 @@ class DemographicForm extends Component {
               }
             </Paper>
           </Grid>
-        </center>
-      </>
+      </div>
     ); //END return
   } //END render
 } //END DemographicsForm
