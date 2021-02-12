@@ -30,7 +30,7 @@ const Nav = (props) => {
   return (
     <div className="nav">
       <Link to="/home">
-        <img className="nav-logo" src={NewLogo} alt="rutd logo"></img>
+        <img className="nav-logo nav-title" src={NewLogo} alt="rutd logo"></img>
       </Link>
       <div className="nav-right">
         <Link className="nav-link" to={loginLinkData.path}>
