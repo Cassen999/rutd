@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Radio from '@material-ui/core/Radio';
 import green from '@material-ui/core/colors/green';
+import Image from '../../Images/black-logo.png';
 // import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 // import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 
@@ -58,8 +59,10 @@ class AccountRegisterForm extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <form className="formPanel" onSubmit={this.registerUser}>
-        <div className="container">
+      <form onSubmit={this.registerUser}>
+        <div className="formPanel">
+          <img className="form-logo border-radius-img" src={Image} alt="Logo"/>
+          <center>
             <h2>Register User</h2>
             {this.props.store.errors.registrationMessage && (
               <h3 className="alert" role="alert">
@@ -90,7 +93,7 @@ class AccountRegisterForm extends Component {
                 />
               </label>
             </div>
-            <h4>Are you a Veteran?</h4>
+            <h4 className="margin-question">Are you a Veteran?</h4>
             <label>Yes</label>
               <Radio
                 checked={this.state.type === '1'}
@@ -123,6 +126,7 @@ class AccountRegisterForm extends Component {
                 name="submit" 
                 color="primary">Register</Button>
             </div>
+        </center>
         </div>
       </form>
     );

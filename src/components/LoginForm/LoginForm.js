@@ -50,11 +50,8 @@ class LoginForm extends Component {
     const { classes } = this.props;
     return (
       <form onSubmit={this.login}>
-        {/* LOGO GOES HERE */}
-
-        {/* <img src="../../Images/logo.jpg" alt="logo"></img> */}
-              <div className="formPanel">
-                <img className="form-logo border-radius-img" src={Image} alt="Logo"/>
+      <div className="formPanel">
+        <img className="form-logo border-radius-img" src={Image} alt="Logo"/>
         <center>
           <p>Log in if you have been here before</p>
           
