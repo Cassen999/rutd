@@ -10,7 +10,7 @@ import compose from 'recompose/compose';
 import Name from '../Question/Name'
 import Email from '../Question/Email'
 import Birth from '../Question/Birth'
-import Phone from '../Question/phone'
+import Phone from '../Question/Phone'
 import Gender from '../Question/Gender'
 import Marriage from '../Question/Marriage'
 import Children from '../Question/Children'
@@ -30,14 +30,11 @@ import PurpleHeart from '../Question/PurpleHeart'
 //CATEGORIES
 import Category from '../Category/Category'
 
-const styles = (theme) => ({
-  inputs: {
-    width: "",
-    paddingTop: "0px",
-    verticalAlign: "middle",
-    fontFamily: "Arial",
+const styles = ({
+  button: {
+    marginTop: '1%',
   },
-  paper: {
+  complete: {
     position: "absolute",
     top: "50%",
     left: "50%",
@@ -48,6 +45,17 @@ const styles = (theme) => ({
     border: "2px solid #ADFA3B",
     paddingBottom: "20px",
   },
+  formContainer: {
+    textAlign: "center",
+  },
+  paper: {
+    backgroundColor: 'white',
+    marginBottom: 0,
+    minHeight: '400px',
+  },
+  displayItem: {
+    
+  }
 });
 
 class DemographicForm extends Component {
@@ -56,8 +64,8 @@ class DemographicForm extends Component {
     formIndex: 0,
   }
 
-  getProgress = (formIndex) => {
-    let currentProgress = (formIndex / 20) * 100;
+  getProgress = (formIndex, formLength) => {
+    let currentProgress = (formIndex / formLength) * 100;
     return currentProgress;
   }
 
@@ -72,137 +80,111 @@ class DemographicForm extends Component {
   render() {
     const formIndex = this.state.formIndex;
     const { classes } = this.props;
-    console.log('Current Form Index is:', formIndex);
+    const intakeForm = [
+      <Name />,
+      <Email />,
+      <Birth />,
+      <Phone />,
+      <Gender />,
+      <Marriage />,
+      <Children />,
+      <Homeless />,
+      <HomeAddress/>,
+      <MailAddress />,
+      <Branch/>,
+      <Rank/>,
+      <StartDate/>,
+      <EndDate/>,
+      <Status/>,
+      <Discharge/>,
+      <Malady/>,
+      <Compensation/>,
+      <Hazard/>,
+      <PurpleHeart/>,
+      <Category/>
+    ];
+
+    const formComplete = (
+      <div className={classes.complete}>
+        <h2>Thank you for submitting your information!</h2>
+        <Button
+          variant="contained"
+          onClick={this.handleNext}
+        >
+          All Done!
+        </Button> 
+      </div>
+    );
+
     return (
-      <>
-        <center>
+      <div>
           <h1>Demographic Form</h1>
           <Grid
             container
-            //   className={classes.paper}
-            //alignItems="center"
-            spacing={2}
+            spacing={1}
             direction="column"
+            display="inline-flex"
           >
-            <Paper elevation={10}>
-              <form>
-                <br />
-
-                {formIndex <= 0 &&
-                  <Name />
-                }
-
-                {formIndex === 1 &&
-                  <Email />
-                }
-
-                {formIndex === 2 &&
-                  <Birth />
-                }
-
-                {formIndex === 3 &&
-                  <Phone />
-                }
-
-                {formIndex === 4 &&
-                  <Gender />
-                }
-
-                {formIndex === 5 &&
-                  <Marriage />
-                }
-
-                {formIndex === 6 &&
-                  <Children />
-                }
-
-                {formIndex === 7 &&
-                  <Homeless />
-                }
-
-                {formIndex === 8 &&
-                  <HomeAddress />
-                }
-
-                {formIndex === 9 &&
-                  <MailAddress />
-                }
-
-                {formIndex === 10 &&
-                  <Branch/>
-                }
-
-                {formIndex === 11 &&
-                  <Rank/>
-                }
-
-                {formIndex === 12 &&
-                  <StartDate/>
-                }
-
-                {formIndex === 13 &&
-                  <EndDate/>
-                }
-
-                {formIndex === 14 &&
-                  <Status/>
-                }
-
-                {formIndex === 15 &&
-                  <Discharge/>
-                }
-
-                {formIndex === 16 &&
-                  <Malady/>
-                }
-
-                {formIndex === 17 &&
-                  <Compensation/>
-                }
-
-                {formIndex === 18 &&
-                  <Hazard/>
-                }
-
-                {formIndex === 19 &&
-                  <PurpleHeart/>
-                }
-
-                {formIndex >= 20 &&
-                  <div className={classes.paper}>
-                    <h2>Thank you for submitting your information!</h2>
-                    <Button
-                      variant="contained"
-                      onClick={this.handleNext}
-                    >
-                      All Done!
-                    </Button> 
-                  </div>
-                }                                
-
-                <br />
-              </form>
-              <ProgressBar value={this.getProgress(formIndex)} />
-              {formIndex > 0 &&
+            <ProgressBar value={this.getProgress(formIndex, intakeForm.length)} />
+            <Paper elevation={10} align="center" className={classes.paper}>
+                {intakeForm.map((formItem, index) => {
+                    let displayItem;
+                    if (formIndex === index) {
+                      displayItem = formItem;
+                    } else if (formIndex === intakeForm.length) {
+                      displayItem = formComplete;
+                    }
+                    return displayItem;                                         
+                })}
+              
+              <Grid 
+                container
+                spacing={1} 
+                direction="row"
+                justify="space-evenly"
+                alignItems="flex-start"
+              >
+              
+              <Grid
+                container item 
+                xs={12}
+                sm={6} 
+                spacing={3} 
+                display="flex"
+                justify="center"
+              >
+              { formIndex > 0 
+               &&
+               <Grid item xs={6}>
                 <Button
                   variant="contained"
+                  position="relative"
+                  className={classes.button}
                   onClick={this.handleBack}
                 >
                   Back
                 </Button>
+              </Grid>
               }
-              {formIndex < 20 &&
-              <Button
-                variant="contained"
-                onClick={this.handleNext}
-              >
-                Next
-              </Button>
+              { formIndex < intakeForm.length 
+               &&
+               <Grid item xs={6}>
+                <Button
+                  variant="contained"
+                  display="flex"
+                  className={classes.button}
+                  onClick={this.handleNext}
+                >
+                  Next
+                </Button>
+              </Grid>
               }
+              </Grid>
+              </Grid>
             </Paper>
+            <ProgressBar value={100} />
           </Grid>
-        </center>
-      </>
+      </div>
     ); //END return
   } //END render
 } //END DemographicsForm
