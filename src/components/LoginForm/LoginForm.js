@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import Image from '../../Images/logo.jpg';
+import Image from '../../Images/black-logo.png';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -53,7 +53,7 @@ class LoginForm extends Component {
         {/* LOGO GOES HERE */}
 
         {/* <img src="../../Images/logo.jpg" alt="logo"></img> */}
-        <img src={Image} alt="Logo"/>
+        <img className="border-radius-img" src={Image} alt="Logo"/>
         <center>
           <p>Log in if you have been here before</p>
           
