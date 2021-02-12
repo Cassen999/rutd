@@ -92,7 +92,8 @@ class DemographicForm extends Component {
       <Malady/>,
       <Compensation/>,
       <Hazard/>,
-      <PurpleHeart/>
+      <PurpleHeart/>,
+      <Category/>
     ];
 
     const formComplete = (
@@ -111,30 +112,25 @@ class DemographicForm extends Component {
       <>
         <center>
           <h1>Demographic Form</h1>
+          <ProgressBar value={this.getProgress(formIndex)} />
           <Grid
             container
-            //   className={classes.paper}
-            //alignItems="center"
             spacing={2}
             direction="column"
           >
             <Paper elevation={10}>
-              <form>
-                <br />
                 {intakeForm.map((formItem, index) => {
                     let displayItem;
                     if (formIndex === index) {
                       displayItem = formItem;
-                    } else if (formIndex === 20) {
+                    } else if (formIndex === intakeForm.length) {
                       displayItem = formComplete;
                     }
                     return displayItem;                                         
                 })}
-                
-                <br />
-              </form>
-              <ProgressBar value={this.getProgress(formIndex)} />
-              {formIndex > 0 &&
+
+              
+              {0 < formIndex < intakeForm.length &&
                 <Button
                   variant="contained"
                   onClick={this.handleBack}
@@ -142,7 +138,7 @@ class DemographicForm extends Component {
                   Back
                 </Button>
               }
-              {formIndex < 20 &&
+              {formIndex < intakeForm.length &&
               <Button
                 variant="contained"
                 onClick={this.handleNext}
