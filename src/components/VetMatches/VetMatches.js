@@ -7,11 +7,6 @@ import { withStyles } from "@material-ui/core/styles";
 import compose from 'recompose/compose';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 
 const styles = (theme) => ({
   root: {
@@ -77,8 +72,6 @@ class VetMatches extends Component {
 
     return (
         <div>
-          {JSON.stringify(matches)}
-          {JSON.stringify(this.state)}
           <div className={classes.root}>
             <Grid container spacing={1}>
               <Grid container item xs={9} spacing={3}>

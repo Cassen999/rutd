@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
-import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
+import { Button, Paper, withStyles, MenuItem, FormControl, 
+  Select} from "@material-ui/core";
+import swal from 'sweetalert';
 
 const styles = {
     inputs: {
@@ -14,89 +16,72 @@ const styles = {
 
 class Gender extends Component {
   state = {
-    vet: {
-      gender: "",
-    },
+    gender: "",
   };
 
-  handleInputChange = (event, inputProperty) => {
+  componentDidMount() {
+    this.props.dispatch({type: 'FETCH_GENDER'})
+  }
+
+  saveGender = () => {
+    const vetVar = this.state.vet
+    if(vetVar.gender === '') {
+      swal("Pleas indicate your gender.")
+    }
+    else {
+      console.log(`Saving ${vetVar.gender} to Database...`);
+      this.props.dispatch({type: "UPDATE_GENDER", payload: this.state.vet});
+    }
+    this.setState({
+        gender: ''
+    })
+  };
+
+  handleChange = (event) => {
+    event.preventDefault();
     console.log("Handling input-change...");
     console.log("Setting state...");
-
-    this.setState(
-      {
-        vet: {
-          ...this.state.vet,
-          [inputProperty]: event.target.value,
-          user_id: this.props.store.user.id,
-        },
-      },
-      function () {
-        console.log("state has been set:", this.state.vet);
-      }
-    );
-  };
-
-    saveGender = () => {
-        let vetVar = this.state.vet
-
-        if (vetVar.gender === '') {
-            alert("Pleas indicate your gender.");
-        } else {
-            console.log(
-                `Saving ${vetVar.gender} to Database...`
-            );
-
-      this.props.dispatch({
-        type: "UPDATE_GENDER",
-        payload: this.state.vet,
-      });
-
-      this.setState(
-        {
-          vet: {
-            gender: "",
-          },
-        },
-        function () {
-          console.log("state has been reset");
-        }
-      );
-    }
+    this.setState({
+      vet: event.target.value
+    }, 
+    function () {
+      console.log("state has been set:", this.state.vet);
+    });
   };
 
   render() {
     const { classes } = this.props;
-
     return (
       <>
-        <h1>Gender Entry</h1>
-        <Grid container spacing={2} direction="column">
-          <Paper elevation={10}>
-            <form>
-              <br />
-
-              <Grid item xs={12.0} sm={12}>
-                <TextField
-                  variant="outlined"
-                  label="Gender"
-                  name="gender"
-                  value={this.state.vet.gender}
-                  onChange={(event) => this.handleInputChange(event, "gender")}
-                />
-                <br />
-                <Button
-                  onClick={(event) => {
-                    this.saveGender(event);
-                  }}
-                >
-                  SAVE
-                </Button>
-                <br />
-              </Grid>
-            </form>
-          </Paper>
-        </Grid>
+      <h1>Gender Entry</h1>
+        <Paper elevation={10}>
+          <form>
+            <FormControl>
+              <Select
+                value={this.state.gender}
+                onChange={this.handleChange}
+                inputProps={{
+                  name: 'gender',
+                  id: 'gender-simple',
+                }}>
+                  {this.props.store.dropdownReducer.map((gender, i) => {
+                    return(
+                      <MenuItem key={i} value={gender.id}>{gender.description}</MenuItem>
+                    )
+                  })}
+              </Select>
+            </FormControl>
+            <br />
+            <Button
+              onClick={() => this.saveGender()}
+              variant="contained"
+              color="primary"
+              >
+              SAVE
+            </Button>
+            <br />
+          </form>
+        </Paper>
       </>
     ); //END return
   } //END render
