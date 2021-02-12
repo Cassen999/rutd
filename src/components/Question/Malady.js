@@ -18,7 +18,7 @@ const styles = {
 class Malady extends Component {
   componentDidMount() {
     console.log("Mounted");
-    this.props.dispatch({ type: "FETCH_MALADY" });
+    this.props.dispatch({ type: "FETCH_MALADY"});
   }
   state = {
     vet: {
@@ -56,7 +56,7 @@ class Malady extends Component {
 
       this.props.dispatch({
         type: "UPDATE_MALADY",
-        payload: this.state.vet,
+        payload: this.state.vet.malady,
       });
 
       this.setState(

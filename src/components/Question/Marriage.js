@@ -49,7 +49,7 @@ class Marriage extends Component {
 
             this.props.dispatch({
                 type: "UPDATE_MARRIAGE",
-                payload: this.state.vet,
+                payload: this.state.vet.marriage,
             });
 
             this.setState(

@@ -47,7 +47,7 @@ class Email extends Component {
 
             this.props.dispatch({
                 type: "UPDATE_EMAIL",
-                payload: this.state.vet,
+                payload: this.state.vet.email
             });
 
             this.setState(

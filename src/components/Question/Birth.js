@@ -15,7 +15,7 @@ const styles = {
 class Birth extends Component {
     state = {
         vet: {
-            dOB: "",
+            birth: "",
         },
     };
 
@@ -37,25 +37,25 @@ class Birth extends Component {
         );
     };
 
-    saveDOB = () => {
+    savebirth = () => {
         let vetVar = this.state.vet
 
-        if (vetVar.dOB === '') {
+        if (vetVar.birth === '') {
             alert("Your date of birth is required for registration.");
         } else {
             console.log(
-                `Saving ${vetVar.dOB} to Database...`
+                `Saving ${vetVar.birth} to Database...`
             );
 
             this.props.dispatch({
                 type: "UPDATE_BIRTH",
-                payload: this.state.vet
+                payload: this.state.vet.birth
             });
 
             this.setState(
                 {
                     vet: {
-                        dOB: "",
+                        birth: "",
                     },
                 },
                 function () {
@@ -83,13 +83,13 @@ class Birth extends Component {
                                     variant="outlined"
                                     label="Date of Birth"
                                     name="date_of_birth"
-                                    value={this.state.vet.dOB}
+                                    value={this.state.vet.birth}
                                     onChange={(event) =>
-                                        this.handleInputChange(event, "dOB")
+                                        this.handleInputChange(event, "birth")
                                     }
                                 />
                                 <br />
-                                <Button onClick={(event) => { this.saveDOB(event) }}>SAVE</Button>
+                                <Button onClick={(event) => { this.savebirth(event) }}>SAVE</Button>
                                 <br />
                             </Grid>
                         </form>

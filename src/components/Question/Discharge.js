@@ -50,7 +50,7 @@ class Discharge extends Component {
 
             this.props.dispatch({
                 type: "UPDATE_DISCHARGE",
-                payload: this.state.vet
+                payload: this.state.vet.discharge
             });
 
             this.setState(

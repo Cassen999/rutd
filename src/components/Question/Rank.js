@@ -50,7 +50,7 @@ class Rank extends Component {
 
             this.props.dispatch({
                 type: "UPDATE_RANK",
-                payload: this.state.vet
+                payload: this.state.vet.rank
             });
 
             this.setState(

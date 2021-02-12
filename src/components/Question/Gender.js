@@ -49,7 +49,7 @@ class Gender extends Component {
 
       this.props.dispatch({
         type: "UPDATE_GENDER",
-        payload: this.state.vet,
+        payload: this.state.vet.gender
       });
 
       this.setState(

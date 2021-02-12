@@ -50,7 +50,7 @@ class StartDate extends Component {
 
             this.props.dispatch({
                 type: "UPDATE_START_DATE",
-                payload: this.state.vet
+                payload: this.state.vet.startDate
             });
 
             this.setState(

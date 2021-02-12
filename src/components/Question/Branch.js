@@ -50,7 +50,7 @@ class Branch extends Component {
 
             this.props.dispatch({
                 type: "UPDATE_BRANCH",
-                payload: this.state.vet
+                payload: this.state.vet.branch
             });
 
             this.setState(

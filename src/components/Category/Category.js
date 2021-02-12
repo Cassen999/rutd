@@ -78,7 +78,7 @@ class Category extends Component {
 
     return (
       <>
-        MALADY REDUCER: {JSON.stringify(categories)}
+        CATEGORY REDUCER: {JSON.stringify(categories)}
 
         <h1>Category Entry</h1>
         <Grid container spacing={2} direction="column">

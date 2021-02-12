@@ -21,6 +21,7 @@ const emailRouter = require("./routes/email.router");
 const resourceSearchRouter = require("./routes/resourceSearch.router");
 const deleteResourceRouter = require('./routes/deleteResource.router');
 const categoryRouter = require('./routes/category.router')
+const questionRouter = require('./routes/question.router')
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -47,6 +48,7 @@ app.use("/api/email", emailRouter);
 app.use("/api/resourceSearch", resourceSearchRouter);
 app.use("/api/deleteResource", deleteResourceRouter);
 app.use("/api/category", categoryRouter)
+app.use('/api/question', questionRouter)
 // Serve static files
 app.use(express.static("build"));
 

@@ -49,7 +49,7 @@ class Phone extends Component {
 
             this.props.dispatch({
                 type: "UPDATE_PHONE",
-                payload: this.state.vet
+                payload: this.state.vet.phone
             });
 
             this.setState(

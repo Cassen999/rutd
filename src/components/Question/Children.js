@@ -49,7 +49,7 @@ class Children extends Component {
 
             this.props.dispatch({
                 type: "UPDATE_CHILDREN",
-                payload: this.state.vet
+                payload: this.state.vet.children
             });
 
             this.setState(
