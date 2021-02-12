@@ -9,7 +9,6 @@ const useStyles = makeStyles({
   barRoot: {
     width: '100%', 
     
-    marginTop: '15px',
   },
   root: {
     height: '25px',
@@ -41,8 +40,8 @@ const ProgressBar = (props) => {
     //         right={0}
     //         position="absolute"
     //         display="flex"
-    //         alignItems="center"
-    //         justifyContent="center"
+            // alignItems="center"
+            // justifyContent="center"
     //         className={classes.progressBox}
     //         >
     //         <Typography variant="caption" component="div" color="textSecondary">{`${props.value}%`}</Typography>

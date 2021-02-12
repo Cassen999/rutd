@@ -10,6 +10,14 @@ const styles = {
         verticalAlign: "",
         fontFamily: "",
     },
+    paper: {
+        paddingBottom: "10px",
+        paddingTop: "20px",
+        width: "100%",
+    },
+    gridForm: {
+        padding: "3px",
+    }
 };
 
 class HomeAddress extends Component {
@@ -82,77 +90,106 @@ class HomeAddress extends Component {
         return (
             <>
                 <h1>Home Address Entry</h1>
-                <Grid container spacing={2} direction="column">
-                    <Paper elevation={10}>
-
-                        <form>
-                            <br />
-
-                            <Grid item xs={12.0} sm={12}>
-
-                                <TextField
-                                    id="standard-textarea"
-                                    variant="outlined"
-                                    label="Address"
-                                    name="address"
-                                    value={this.state.vet.address}
-                                    onChange={(event) => this.handleInputChange(event, "address")}
-                                />
-                                <br />
-
-                                <TextField
-                                    id="standard-textarea"
-                                    variant="outlined"
-                                    label="Apt/PO Box/Bldg"
-                                    name="APT"
-                                    value={this.state.vet.apt}
-                                    onChange={(event) => this.handleInputChange(event, "apt")}
-                                />
-                                <br />
-
-                                <TextField
-                                    id="standard-textarea"
-                                    variant="outlined"
-                                    label="City"
-                                    name="city"
-                                    value={this.state.vet.city}
-                                    onChange={(event) => this.handleInputChange(event, "city")}
-                                />
-                                <br />
-
-                                <TextField
-                                    id="standard-textarea"
-                                    variant="outlined"
-                                    label="State"
-                                    name="state"
-                                    value={this.state.vet.state}
-                                    onChange={(event) => this.handleInputChange(event, "state")}
-                                />
-                                <br />
-
-                                <TextField
-                                    id="standard-textarea"
-                                    variant="outlined"
-                                    label="Zip Code"
-                                    name="zip"
-                                    value={this.state.vet.zip}
-                                    onChange={(event) => this.handleInputChange(event, "zip")}
-                                />
-                                <br />
-
-                                <TextField
-                                    id="standard-textarea"
-                                    variant="outlined"
-                                    label="Country"
-                                    name="country"
-                                    value={this.state.vet.country}
-                                    onChange={(event) => this.handleInputChange(event, "country")}
-                                />
-                                <br />
-
-                                <Button onClick={(event) => { this.saveHomeAddress(event) }}>SAVE</Button>
-                                <br />
+                <Grid 
+                    container 
+                    spacing={1} 
+                    direction="row" 
+                    display="inline-flex" 
+                    justify="center"
+                >
+                    <Paper elevation={10} className={classes.paper} >
+                        <form className={classes.gridForm}>
+                            <Grid 
+                                container 
+                                item 
+                                xs={12}
+                                sm={6} 
+                                spacing={1} 
+                                display="flex"
+                            >
+                                <Grid item xs={4}>
+                                    <TextField
+                                        id="standard-textarea"
+                                        variant="outlined"
+                                        label="Address"
+                                        name="address"
+                                        value={this.state.vet.address}
+                                        onChange={(event) => this.handleInputChange(event, "address")}
+                                    />
+                                </Grid>
+                                <Grid item xs={4}>
+                                    <TextField
+                                        id="standard-textarea"
+                                        variant="outlined"
+                                        label="Apt/PO Box/Bldg"
+                                        name="APT"
+                                        value={this.state.vet.apt}
+                                        onChange={(event) => this.handleInputChange(event, "apt")}
+                                    />
+                                </Grid>
+                                <Grid item xs={4}>
+                                    <TextField
+                                        id="standard-textarea"
+                                        variant="outlined"
+                                        label="City"
+                                        name="city"
+                                        value={this.state.vet.city}
+                                        onChange={(event) => this.handleInputChange(event, "city")}
+                                    />
+                                </Grid>
                             </Grid>
+                            <Grid 
+                                container 
+                                item 
+                                xs={12}
+                                sm={6} 
+                                spacing={1} 
+                                display="flex" 
+                            >
+                                <Grid item xs={4}>
+                                    <TextField
+                                        id="standard-textarea"
+                                        variant="outlined"
+                                        label="State"
+                                        name="state"
+                                        value={this.state.vet.state}
+                                        onChange={(event) => this.handleInputChange(event, "state")}
+                                    />
+                                </Grid>
+                                <Grid item xs={4}>
+                                    <TextField
+                                        id="standard-textarea"
+                                        variant="outlined"
+                                        label="Zip Code"
+                                        name="zip"
+                                        value={this.state.vet.zip}
+                                        onChange={(event) => this.handleInputChange(event, "zip")}
+                                    />
+                                </Grid>
+                                <Grid item xs={4}>
+                                    <TextField
+                                        id="standard-textarea"
+                                        variant="outlined"
+                                        label="Country"
+                                        name="country"
+                                        value={this.state.vet.country}
+                                        onChange={(event) => this.handleInputChange(event, "country")}
+                                    />
+                                </Grid>                             
+                            </Grid>
+                            <Grid 
+                                container 
+                                item 
+                                xs={12}
+                                sm={6} 
+                                spacing={1} 
+                                display="flex"
+                                justify="center" 
+                            >
+                                <Grid item xs={4}>
+                                    <Button onClick={(event) => { this.saveHomeAddress(event) }}>SAVE</Button>
+                                </Grid>
+                            </Grid>    
                         </form>
                     </Paper>
                 </Grid>

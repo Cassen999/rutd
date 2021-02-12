@@ -52,6 +52,9 @@ const styles = ({
     backgroundColor: 'white',
     marginBottom: 0,
     minHeight: '400px',
+  },
+  displayItem: {
+    
   }
 });
 
@@ -61,8 +64,8 @@ class DemographicForm extends Component {
     formIndex: 0,
   }
 
-  getProgress = (formIndex) => {
-    let currentProgress = (formIndex / 20) * 100;
+  getProgress = (formIndex, formLength) => {
+    let currentProgress = (formIndex / formLength) * 100;
     return currentProgress;
   }
 
@@ -78,7 +81,7 @@ class DemographicForm extends Component {
     const formIndex = this.state.formIndex;
     const { classes } = this.props;
     const intakeForm = [
-      <Name display="flex" />,
+      <Name />,
       <Email />,
       <Birth />,
       <Phone />,
@@ -86,7 +89,7 @@ class DemographicForm extends Component {
       <Marriage />,
       <Children />,
       <Homeless />,
-      <HomeAddress display="flex" position="relative"/>,
+      <HomeAddress/>,
       <MailAddress />,
       <Branch/>,
       <Rank/>,
@@ -114,16 +117,16 @@ class DemographicForm extends Component {
     );
 
     return (
-      <div className={classes.formContainer}>
+      <div>
           <h1>Demographic Form</h1>
           <Grid
             container
-            spacing={2}
+            spacing={1}
             direction="column"
             display="inline-flex"
           >
-            <ProgressBar value={this.getProgress(formIndex)} />
-            <Paper display="inline-flex" elevation={10} className={classes.paper}>
+            <ProgressBar value={this.getProgress(formIndex, intakeForm.length)} />
+            <Paper elevation={10} align="center" className={classes.paper}>
                 {intakeForm.map((formItem, index) => {
                     let displayItem;
                     if (formIndex === index) {
@@ -134,29 +137,52 @@ class DemographicForm extends Component {
                     return displayItem;                                         
                 })}
               
-              {0 < formIndex < intakeForm.length &&
+              <Grid 
+                container
+                spacing={1} 
+                direction="row"
+                justify="space-evenly"
+                alignItems="flex-start"
+              >
+              
+              <Grid
+                container item 
+                xs={12}
+                sm={6} 
+                spacing={3} 
+                display="flex"
+                justify="center"
+              >
+              { formIndex > 0 
+               &&
+               <Grid item xs={6}>
                 <Button
                   variant="contained"
                   position="relative"
-                  display="flex"
                   className={classes.button}
                   onClick={this.handleBack}
                 >
                   Back
                 </Button>
+              </Grid>
               }
-              {formIndex < intakeForm.length &&
-              <Button
-                variant="contained"
-                display="flex"
-                className={classes.button}
-                onClick={this.handleNext}
-              >
-                Next
-              </Button>
+              { formIndex < intakeForm.length 
+               &&
+               <Grid item xs={6}>
+                <Button
+                  variant="contained"
+                  display="flex"
+                  className={classes.button}
+                  onClick={this.handleNext}
+                >
+                  Next
+                </Button>
+              </Grid>
               }
+              </Grid>
+              </Grid>
             </Paper>
-            <ProgressBar value={this.getProgress(formIndex)} />
+            <ProgressBar value={100} />
           </Grid>
       </div>
     ); //END return

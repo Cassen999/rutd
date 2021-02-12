@@ -10,6 +10,10 @@ const styles = {
         verticalAlign: "",
         fontFamily: "",
     },
+    gridItem: {
+        width: "100%",
+        minHeight: 200,
+    }
 };
 
 class Email extends Component {
@@ -64,17 +68,17 @@ class Email extends Component {
     };
 
     render() {
-        // const { classes } = this.props;
+        const { classes } = this.props;
 
         return (
-            <>
+            <React.Fragment>
                 <h1>Email Entry</h1>
-                <Grid container spacing={2} direction="column">
+                <Grid container spacing={2} direction="column" display="inline-flex">
                     <Paper elevation={10}>
                         <form>
                             <br />
 
-                            <Grid item xs={12.0} sm={12}>
+                            <Grid item xs={12.0} sm={12} display="flex" >
                                 <TextField
                                     variant="outlined"
                                     label="Email"
@@ -95,7 +99,7 @@ class Email extends Component {
                         </form>
                     </Paper>
                 </Grid>
-            </>
+            </React.Fragment>
         ); //END return
     } //END render
 } //END Name
