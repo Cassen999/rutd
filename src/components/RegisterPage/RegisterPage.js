@@ -28,8 +28,8 @@ class RegisterPage extends Component {
 
         <center>
           <Button
-            type="button"
-            className="btn btn_asLink"
+            variant="contained"
+            
             onClick={() => {
               this.props.history.push('/login');
             }}

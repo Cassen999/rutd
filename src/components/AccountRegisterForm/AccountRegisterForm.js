@@ -59,7 +59,6 @@ class AccountRegisterForm extends Component {
     const { classes } = this.props;
     return (
       <form className="formPanel" onSubmit={this.registerUser}>
-        {JSON.stringify(this.state)}
         <div className="container">
             <h2>Register User</h2>
             {this.props.store.errors.registrationMessage && (

@@ -6,6 +6,11 @@
   padding-left: 10rem;
 }
 
+.nav-logo{
+    width: 10rem;
+    height:5rem;
+}
+
 .nav {
   margin: 0 0 30px;
   /* background-color: #79fb0e; */
