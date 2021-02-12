@@ -139,7 +139,7 @@ handleChange = (event, input) => {
         const { classes } = this.props;
     return (
       <div className="container">
-        {JSON.stringify(resourceDetails)}
+        {/* {JSON.stringify(resourceDetails)} */}
           <center>
             <h2>Admin Organization Edit</h2>
           </center>

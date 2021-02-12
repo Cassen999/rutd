@@ -59,7 +59,6 @@ class AdminLandingPage extends Component {
       return (
         <div className="container">
         <center>
-        {JSON.stringify(this.props.store.vetReducer)}
         <h2>Admin Landing Page</h2>
         <h4><i>Connections In Progress (Track Time)</i></h4>
         </center>
@@ -70,7 +69,6 @@ class AdminLandingPage extends Component {
                     <TableCell>Name</TableCell>
                     <TableCell align="right">Resource</TableCell>
                     <TableCell align="right">Time Stamp</TableCell>
-                    {/* <TableCell align="right">Protein (g)</TableCell> */}
                   </TableRow>
                 </TableHead>
                 <TableBody>

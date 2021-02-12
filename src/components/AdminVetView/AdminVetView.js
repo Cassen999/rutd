@@ -48,7 +48,7 @@ class AdminVetView extends Component {
         return (
           <div className="container">
             <center>
-              {JSON.stringify(this.props.store.details)}
+              {/* {JSON.stringify(this.props.store.details)} */}
             <h2>Admin Vet View</h2>
             </center>
               {details.map((vet, i) => {
