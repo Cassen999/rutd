@@ -30,14 +30,11 @@ import PurpleHeart from '../Question/PurpleHeart'
 //CATEGORIES
 import Category from '../Category/Category'
 
-const styles = (theme) => ({
-  inputs: {
-    width: "",
-    paddingTop: "0px",
-    verticalAlign: "middle",
-    fontFamily: "Arial",
+const styles = ({
+  button: {
+    marginTop: '1%',
   },
-  paper: {
+  complete: {
     position: "absolute",
     top: "50%",
     left: "50%",
@@ -50,10 +47,12 @@ const styles = (theme) => ({
   },
   formContainer: {
     textAlign: "center",
+  },
+  paper: {
+    backgroundColor: 'white',
+    marginBottom: 0,
+    minHeight: '400px',
   }
-  // progress: {
-  //   float: "right",
-  // }
 });
 
 class DemographicForm extends Component {
@@ -79,7 +78,7 @@ class DemographicForm extends Component {
     const formIndex = this.state.formIndex;
     const { classes } = this.props;
     const intakeForm = [
-      <Name />,
+      <Name display="flex" />,
       <Email />,
       <Birth />,
       <Phone />,
@@ -87,7 +86,7 @@ class DemographicForm extends Component {
       <Marriage />,
       <Children />,
       <Homeless />,
-      <HomeAddress />,
+      <HomeAddress display="flex" position="relative"/>,
       <MailAddress />,
       <Branch/>,
       <Rank/>,
@@ -103,7 +102,7 @@ class DemographicForm extends Component {
     ];
 
     const formComplete = (
-      <div className={classes.paper}>
+      <div className={classes.complete}>
         <h2>Thank you for submitting your information!</h2>
         <Button
           variant="contained"
@@ -121,9 +120,10 @@ class DemographicForm extends Component {
             container
             spacing={2}
             direction="column"
+            display="inline-flex"
           >
             <ProgressBar value={this.getProgress(formIndex)} />
-            <Paper elevation={10}>
+            <Paper display="inline-flex" elevation={10} className={classes.paper}>
                 {intakeForm.map((formItem, index) => {
                     let displayItem;
                     if (formIndex === index) {
@@ -137,6 +137,9 @@ class DemographicForm extends Component {
               {0 < formIndex < intakeForm.length &&
                 <Button
                   variant="contained"
+                  position="relative"
+                  display="flex"
+                  className={classes.button}
                   onClick={this.handleBack}
                 >
                   Back
@@ -145,12 +148,15 @@ class DemographicForm extends Component {
               {formIndex < intakeForm.length &&
               <Button
                 variant="contained"
+                display="flex"
+                className={classes.button}
                 onClick={this.handleNext}
               >
                 Next
               </Button>
               }
             </Paper>
+            <ProgressBar value={this.getProgress(formIndex)} />
           </Grid>
       </div>
     ); //END return
