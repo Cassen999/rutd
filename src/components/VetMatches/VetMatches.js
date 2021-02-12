@@ -48,8 +48,8 @@ class VetMatches extends Component {
     const time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
     const state = this.state
     console.log("Contacting Org and time, org_id, vet_id", time, org_id, this.state.vetId);
-    // this.props.dispatch({type: 'POST_NEW_MATCH', payload: {vet_id: this.state.vetId, 
-    //   org_id: org_id, time: time}});
+    this.props.dispatch({type: 'POST_NEW_MATCH', payload: {vet_id: this.state.vetId, 
+      org_id: org_id, time: time}});
     this.props.dispatch({type: 'POST_EMAIL', payload: {org_id: org_id, 
       orgName: orgName,  org_email: org_email,
       text: state.textbox, vetFirstName: state.vetFirstName, 
