@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import Radio from '@material-ui/core/Radio';
 import green from '@material-ui/core/colors/green';
 // import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 // import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 
 
-const styles = {
+const styles = theme =>  ({
   root: {
     color: green[600],
     '&$checked': {
@@ -16,7 +17,12 @@ const styles = {
     },
   },
   checked: {},
-};
+    button: {
+      margin: theme.spacing.unit,
+    },
+});
+
+
 
 class AccountRegisterForm extends Component {
   state = {
@@ -111,7 +117,12 @@ class AccountRegisterForm extends Component {
               }}
               />
             <div>
-              <input className="btn" type="submit" name="submit" value="Register" />
+              <Button className={classes.button} 
+                variant="contained" 
+                value="Register" 
+                type="submit" 
+                name="submit" 
+                color="primary">Register</Button>
             </div>
         </div>
       </form>

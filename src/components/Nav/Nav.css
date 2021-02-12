@@ -2,8 +2,8 @@
   font-size: 24px;
   font-weight: 700;
   display: inline-block;
-  color: #f2f2f2;
-  padding-left: 10px;
+  color: grey;
+  padding-left: 10rem;
 }
 
 .nav {
@@ -14,7 +14,7 @@
 
 .nav-link {
   float: left;
-  color: white;
+  color: grey;
   /* background-color: #79fb0e; */
   text-align: center;
   padding: 24px 10px;
@@ -26,6 +26,10 @@
   border: none;
   cursor: pointer;
   outline: 0;
+}
+
+.about{
+  padding-right: 10rem;
 }
 
 .nav-link:hover {
