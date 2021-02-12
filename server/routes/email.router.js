@@ -9,21 +9,23 @@ require('dotenv').config();
 // NODEMAILER && POST ROUTE to send an email
 router.post('/', rejectUnauthenticatedGeneral, (req, res) => {
     console.log('email', req.body);
-    const vet_email = 'req.body';
-    const org_email = 'req.body';
-    const detailText = 'req.body';
-    const orgName = 'req.body';
-    const vetFirstName = 'req.body';
-    const vetLastName = 'req.body';
+    const vet_email = req.body.vetEmail;
+    const org_email = req.body.org_email;
+    const detailText = req.body.text;
+    const orgName = req.body.orgName;
+    const vetFirstName = req.body.vetFirstName;
+    const vetLastName = req.body.vetLastName;
+    const sender_type = req.body.sender_type;
     // This will be the generic email body for a vet
-    const vetHtmlBody = '';
+    const vetHtmlBody = `<p>My name is ${vetFirstName} ${vetLastName}</p>
+                            <p>I need help with ${detailText} and can be reached at ${vet_email}</p>`;
     // This will be the generic email body for an org
     const orgHtmlBody = '';
     // This will be the generic email body for the admin
     const adminHtmlBody = '';
     // This is the type_id of who is the SENDER
     // This will make the conditional work
-    const sender_type = '';
+    
     const password = process.env.password;
 
     // Conditional to decide which email to send

@@ -27,6 +27,8 @@ import Malady from '../Question/Malady'
 import Compensation from '../Question/Compensation'
 import Hazard from '../Question/Hazard'
 import PurpleHeart from '../Question/PurpleHeart'
+//CATEGORIES
+import Category from '../Category/Category'
 
 const styles = (theme) => ({
   inputs: {

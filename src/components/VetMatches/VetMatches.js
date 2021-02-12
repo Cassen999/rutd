@@ -38,16 +38,23 @@ class VetMatches extends Component {
     vetId: this.props.store.vetReducer.id,
     vetFirstName: this.props.store.vetReducer.first_name,
     vetLastName: this.props.store.vetReducer.last_name,
-    textbox: this.props.store.emailReducer
+    vetEmail: this.props.store.vetReducer.email,
+    textbox: this.props.store.emailReducer,
+    sender_type: 1
   };
 
   contactOrg = (org_id, orgName, org_email) => {
-    let today = new Date();
-    let time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    const today = new Date();
+    const time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    const state = this.state
     console.log("Contacting Org and time, org_id, vet_id", time, org_id, this.state.vetId);
-    // this.props.dispatch({type: 'POST_NEW_MATCH', payload: {vet_id: this.state.vetId, org_id: org_id, time: time}});
-    this.props.dispatch({type: 'POST_EMAIL', payload: {org_id: org_id, orgName: orgName,  org_email: org_email,
-      text: this.state.textbox}})
+    this.props.dispatch({type: 'POST_NEW_MATCH', payload: {vet_id: this.state.vetId, 
+      org_id: org_id, time: time}});
+    this.props.dispatch({type: 'POST_EMAIL', payload: {org_id: org_id, 
+      orgName: orgName,  org_email: org_email,
+      text: state.textbox, vetFirstName: state.vetFirstName, 
+      vetLastName: state.vetLastName, vetEmail: state.vetEmail, 
+      sender_type: state.sender_type}})
   };
 
   componentDidMount() {
