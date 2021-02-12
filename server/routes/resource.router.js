@@ -70,7 +70,6 @@ router.put("/id", rejectUnauthenticatedAdmin, (req, res) => {
   const website = req.body.website;
   const pictures = req.body.pictures;
   const description = req.body.description;
-  const categories_id = req.body.categories_id;
   const approved = req.body.approved;
   const queryText = `UPDATE organization SET
     name=$1, number=$2, email=$3, city=$4, state_id=$5, pdf=$6,
@@ -86,23 +85,11 @@ router.put("/id", rejectUnauthenticatedAdmin, (req, res) => {
       website,
       pictures,
       description,
-      categories_id,
       approved,
     ])
-    .then((data) => {
-      console.log(data);
-      const queryText =
-        "SELECT * FROM organization LEFT JOIN (SELECT model.id, model.name as model, make.name as make from model left join make on model.make_id = make.id) as model ON vehicle.model_id = model.id;";
-      pool
-        .query(queryText)
-        .then((data) => res.json(data.rows))
-        .catch((err) => {
-          console.log("Get Vehicles failed: ", err);
-          res.sendStatus(500);
-        });
-    })
+    .then((result) => res.json(result.rows))
     .catch((err) => {
-      console.log("Update Vehicles failed: ", err);
+      console.log("POST Organization FAILED: ", err);
       res.sendStatus(500);
     });
 });
@@ -119,11 +106,9 @@ router.get("/:id", rejectUnauthenticatedAdmin, (req, res) => {
     organization.website,
     organization.pictures,
     organization.description,
-    state.description AS state,
-    categories.description AS categories
+    state.description AS state
     FROM "organization"
     LEFT JOIN state ON state.id = "organization".state_id
-    LEFT JOIN categories ON categories.id = "organization".categories_id
     WHERE organization.id = $1;`;
   pool
     .query(queryText, [id])
