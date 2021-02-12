@@ -2,10 +2,10 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 function* postEmail(action) {
-    console.log('In postEmail');
+    console.log('In postEmail action.payload', action.payload);
     try{
         const response = yield axios.post(`/api/email`);
-        yield put({type: 'SET_EMAIL', payload: response.data});
+        // yield put({type: 'SET_EMAIL', payload: response.data});
         console.log('response.data from POST email:', response.data);
     } catch(error){
         console.log('error with POST email', error);

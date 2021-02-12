@@ -181,7 +181,7 @@ router.get('/:id', rejectUnauthenticatedAdmin, (req, res) => {
 // Get a vet's id from vet table
 router.get("/vetid/:id", rejectUnauthenticatedVet, (req, res) => {
   const sqlText = `SELECT "veteran".id, "veteran".first_name, 
-                      "veteran".last_name FROM "veteran"
+                      "veteran".last_name, "veteran".email FROM "veteran"
                     JOIN "user" ON "user".id = "veteran".vet_id
                     WHERE "user".id = $1;`;
   const id = req.params.id
