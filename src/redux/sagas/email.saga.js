@@ -2,7 +2,7 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 function* postEmail(action) {
-    console.log('Fetch veteran matches is working');
+    console.log('In postEmail');
     try{
         const response = yield axios.post(`/api/email`);
         yield put({type: 'SET_EMAIL', payload: response.data});
