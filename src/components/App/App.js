@@ -30,6 +30,8 @@ import AdminVetView from "../AdminVetView/AdminVetView";
 import AdminOrgView from "../AdminOrgView/AdminOrgView";
 import AdminOrgEdit from "../AdminOrgEdit/AdminOrgEdit";
 import VetFindMatches from "../VetFindMatches/VetFindMatches";
+import Name from '../Question/Name'
+import Email from '../Question/Email'
 
 import "./App.css";
 
@@ -128,6 +130,19 @@ class App extends Component {
               path="/adminlanding"
               component={AdminLandingPage}
             />
+
+<ProtectedRoute
+              exact
+              path="/name"
+              component={Name}
+            />
+
+<ProtectedRoute
+              exact
+              path="/email"
+              component={Email}
+            />
+
 
             <ProtectedRoute
               exact
