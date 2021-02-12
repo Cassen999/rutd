@@ -80,7 +80,7 @@ class Category extends Component {
       <>
         MALADY REDUCER: {JSON.stringify(categories)}
 
-        <h1>Malady Entry</h1>
+        <h1>Category Entry</h1>
         <Grid container spacing={2} direction="column">
           <Paper elevation={10}>
             <FormControl>
