@@ -26,13 +26,11 @@ router.post("/", rejectUnauthenticatedAdmin, (req, res) => {
   const website = req.body.website;
   const pictures = req.body.pictures;
   const description = req.body.description;
-  const categories_id = req.body.categories_id;
   const approved = req.body.approved;
   const queryText = `INSERT INTO organization	
                       (name, number, email, city, state_id, pdf, website, 
-                      pictures, description, categories_id, approved)	
-                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, 
-                      $11)  RETURNING "id";`;
+                      pictures, description, approved)	
+                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)  RETURNING "id";`;
 
   pool
     .query(queryText, [
@@ -45,7 +43,6 @@ router.post("/", rejectUnauthenticatedAdmin, (req, res) => {
       website,
       pictures,
       description,
-      categories_id,
       approved,
     ])
     .then((result) => res.json(result.rows))
@@ -77,7 +74,7 @@ router.put("/id", rejectUnauthenticatedAdmin, (req, res) => {
   const approved = req.body.approved;
   const queryText = `UPDATE organization SET
     name=$1, number=$2, email=$3, city=$4, state_id=$5, pdf=$6,
-    website=$7, pictures=$8, description=$9, categories_id=$10, approved=$11 WHERE id= $12;`;
+    website=$7, pictures=$8, description=$9, approved=$11 WHERE id= $10;`;
   pool
     .query(queryText, [
       name,
