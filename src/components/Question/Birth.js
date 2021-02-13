@@ -82,10 +82,10 @@ class Birth extends Component {
                                 <TextField
                                     variant="outlined"
                                     label="Date of Birth"
-                                    name="date_of_birth"
+                                    name="birth"
                                     value={this.state.vet.dOB}
                                     onChange={(event) =>
-                                        this.handleInputChange(event, "dOB")
+                                        this.handleInputChange(event, "birth")
                                     }
                                 />
                                 <br />
