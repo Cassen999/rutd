@@ -15,7 +15,6 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import AboutPage from "../AboutPage/AboutPage";
 // import VetLandingPage from '../VetLandingPage/VetLandingPage';
-import InfoPage from "../InfoPage/InfoPage";
 import LandingPage from "../VetLandingPage/VetLandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
@@ -25,7 +24,7 @@ import AdminResourceList from "../AdminResourceList/AdminResourceList";
 import AdminVetList from "../AdminVetList/AdminVetList";
 import GenericLanding from "../GenericLanding/GenericLanding";
 import OrganizationLandingPage from "../OrganizationLandingPage/OrganizationLandingPage";
-import Demographic from "../Demographic/Demographic";
+import RegisterForm from "../RegisterForm/RegisterForm";
 import AdminVetView from "../AdminVetView/AdminVetView";
 import AdminOrgView from "../AdminOrgView/AdminOrgView";
 import AdminOrgEdit from "../AdminOrgEdit/AdminOrgEdit";
@@ -68,13 +67,6 @@ class App extends Component {
               exact
               path="/user"
               component={GenericLanding}
-            />
-
-            <ProtectedRoute
-              // logged in shows InfoPage else shows LoginPage
-              exact
-              path="/info"
-              component={InfoPage}
             />
 
             {/* When a value is supplied for the authRedirect prop the user will
@@ -120,8 +112,8 @@ class App extends Component {
 
             <ProtectedRoute
               exact
-              path="/demographic"
-              component={Demographic}
+              path="/register"
+              component={RegisterForm}
               // authRedirect="/user"
             />
 
