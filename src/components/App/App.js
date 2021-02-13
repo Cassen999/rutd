@@ -31,7 +31,7 @@ import AdminOrgEdit from "../AdminOrgEdit/AdminOrgEdit";
 import VetFindMatches from "../VetFindMatches/VetFindMatches";
 import Name from '../Question/Name'
 import Email from '../Question/Email'
-import DemographicQuestion from '../D'
+import DemographicQuestion from '../DemographicQuestions/DemographicQuestion'
 
 import "./App.css";
 
