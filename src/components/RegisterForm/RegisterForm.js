@@ -15,6 +15,7 @@ import { useTheme } from '@material-ui/core/styles';
 
 //CATEGORIES
 import Category from '../Category/Category'
+import DemographicQuestion from "../DemographicQuestions/DemographicQuestion";
 
 const styles = ({
   button: {
@@ -151,6 +152,7 @@ class RegisterForm extends Component {
           <TabContainer dir={theme.direction}>Item Two</TabContainer>
           <TabContainer dir={theme.direction}>Item Three</TabContainer>
         </SwipeableViews>
+        <DemographicQuestion/>
       </div>
     ); //END return
   } //END render
