@@ -6,6 +6,8 @@ const {
   } = require("../modules/authentication-middleware");
 require('dotenv').config();
 
+// put route for the email question component
+
 // NODEMAILER && POST ROUTE to send an email
 router.post('/', rejectUnauthenticatedGeneral, (req, res) => {
     console.log('email', req.body);
