@@ -139,8 +139,9 @@ class RegisterForm extends Component {
             textColor="primary"
             variant="fullWidth"
           >
-            <Tab label="Item One" />
+            <Tab label="Demo" />
             <Tab label="Item Two" />
+            <Tab label="Item Three" />
             <Tab label="Item Three" />
           </Tabs>
         </AppBar>
@@ -152,7 +153,6 @@ class RegisterForm extends Component {
           <TabContainer dir={theme.direction}>Item Two</TabContainer>
           <TabContainer dir={theme.direction}>Item Three</TabContainer>
         </SwipeableViews>
-        <DemographicQuestion/>
       </div>
     ); //END return
   } //END render
