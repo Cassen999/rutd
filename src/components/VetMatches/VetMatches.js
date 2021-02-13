@@ -7,6 +7,7 @@ import { withStyles } from "@material-ui/core/styles";
 import compose from 'recompose/compose';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 const styles = (theme) => ({
   root: {
@@ -105,10 +106,12 @@ class VetMatches extends Component {
               </Grid>
             </Grid>
           </div>
-        <ProgressBar value={30} />
-        <button onClick={(event) => this.props.history.push("/home")}>
+        {/* <ProgressBar value={30} /> */}
+        <Button onClick={(event) => this.props.history.push("/home")}
+        variant="contained"
+        color="primary">
           BACK TO HOME
-        </button>
+        </Button>
       </div>
     );
   }

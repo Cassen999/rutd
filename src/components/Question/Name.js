@@ -76,18 +76,18 @@ class Name extends Component {
         return (
             <>
                 <h1>Name Entry</h1>
-                <Grid
+                {/* <Grid
                     container
                     spacing={2}
                     direction="column"
-                >
+                > */}
 
                     <Paper elevation={10}>
 
                         <form>
                             <br />
 
-                            <Grid item xs={12.0} sm={12}>
+                            {/* <Grid item xs={12.0} sm={12}> */}
                                 <TextField
                                     variant="outlined"
                                     label="First Name"
@@ -111,10 +111,10 @@ class Name extends Component {
                                 <br />
                                 <Button onClick={(event) => { this.saveName(event) }}>SAVE</Button>
                                 <br />
-                            </Grid>
+                            {/* </Grid> */}
                         </form>
                     </Paper>
-                </Grid>
+                {/* </Grid> */}
             </>
         )//END return
     };//END render

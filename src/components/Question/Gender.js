@@ -56,7 +56,6 @@ class Gender extends Component {
       <h1>Gender Entry</h1>
         <Paper elevation={10}>
           <form>
-            <FormControl>
               <Select
                 value={this.state.gender}
                 onChange={this.handleChange}
@@ -70,7 +69,6 @@ class Gender extends Component {
                     )
                   })}
               </Select>
-            </FormControl>
             <br />
             <Button
               onClick={() => this.saveGender()}
