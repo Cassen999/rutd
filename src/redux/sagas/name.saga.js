@@ -2,7 +2,7 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 function* addNameSaga(action) {
-    console.log('In addNameSaga...')
+    console.log('In addNameSaga.')
     console.log('payload:', action.payload)
     try {
       const config = {
