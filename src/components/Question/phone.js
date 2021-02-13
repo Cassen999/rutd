@@ -73,19 +73,19 @@ class Phone extends Component {
         return (
             <>
                 <h1>Phone Entry</h1>
-                <Grid container spacing={2} direction="column">
+                {/* <Grid container spacing={2} direction="column"> */}
                     <Paper elevation={10}>
                         <form>
                             <br />
 
-                            <Grid item xs={12.0} sm={12}>
+                            {/* <Grid item xs={12.0} sm={12}> */}
                                 <TextField
                                     id="standard-textarea"
                                     variant="outlined"
                                     label="Phone Number"
                                     name="phone"
                                     value={this.state.vet.phone}
-                                    onChange={(event) => this.handleInputChange(event, "phone")}
+                                    // onChange={(event) => this.handleInputChange(event, "phone")}
                                 />
                                 <br />
                                 <Button
@@ -96,10 +96,10 @@ class Phone extends Component {
                                     SAVE
                 </Button>
                                 <br />
-                            </Grid>
+                            {/* </Grid> */}
                         </form>
                     </Paper>
-                </Grid>
+                {/* </Grid> */}
             </>
         ); //END return
     } //END render

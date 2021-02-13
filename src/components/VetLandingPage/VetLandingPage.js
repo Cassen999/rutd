@@ -90,7 +90,7 @@ class UserPage extends Component {
       case "allMatches":
         return this.props.history.push("/vetFindMatches");
       case "completeProfile":
-        return this.props.history.push("/demographic");
+        return this.props.history.push("/register");
       case "incrementComplete":
         return this.setState({ completeMatchIndex: +1 });
       case "incrementIncomplete":
@@ -233,9 +233,10 @@ class UserPage extends Component {
                           </Typography>
                         </Grid>
                       );
-                    } else {
-                      return <h3>No Matches to Show</h3>;
                     }
+                    // } else {
+                    //   return <h3></h3>;
+                    // }
                   })}
                 </Grid>
               </Grid>
@@ -274,7 +275,7 @@ class UserPage extends Component {
                 >
                   {incompleteMatches.map((match, index) => {
                     if (incompleteMatchIndex >= incompleteMatches.length) {
-                      return <h3>No In Progress Matches to Show</h3>;
+                      return <h3></h3>;
                     } else if (
                       index === incompleteMatchIndex ||
                       index === incompleteMatchIndex + 1
@@ -339,9 +340,10 @@ class UserPage extends Component {
                           </Typography>
                         </Grid>
                       );
-                    } else {
-                      return <h3>No In Progress Matches to Show</h3>;
                     }
+                    // } else {
+                    //   return <h3>No In Progress Matches to Show</h3>;
+                    // }
                   })}
                 </Grid>
               </Grid>
