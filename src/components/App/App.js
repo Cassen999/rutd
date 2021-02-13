@@ -15,7 +15,6 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import AboutPage from "../AboutPage/AboutPage";
 // import VetLandingPage from '../VetLandingPage/VetLandingPage';
-import InfoPage from "../InfoPage/InfoPage";
 import LandingPage from "../VetLandingPage/VetLandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
@@ -68,13 +67,6 @@ class App extends Component {
               exact
               path="/user"
               component={GenericLanding}
-            />
-
-            <ProtectedRoute
-              // logged in shows InfoPage else shows LoginPage
-              exact
-              path="/info"
-              component={InfoPage}
             />
 
             {/* When a value is supplied for the authRedirect prop the user will
