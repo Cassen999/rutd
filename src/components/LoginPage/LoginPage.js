@@ -27,6 +27,7 @@ class LoginPage extends Component {
       <div>
        
         <center>
+        <LoginForm />
           <Button
             // className="btn btn_asLink"
             className={classes.button}
@@ -38,7 +39,7 @@ class LoginPage extends Component {
             Register
           </Button>
           <br></br>
-          <Button
+          {/* <Button
             className={classes.button}
             variant="contained"
             onClick={() => {
@@ -48,8 +49,7 @@ class LoginPage extends Component {
           >
             Register for Organizations
 
-          </Button>
-          <LoginForm />
+          </Button> */}
         {/* <Demographic/> */}
         {/* <ServiceHistory/> */}
         {/* <Health/> */}

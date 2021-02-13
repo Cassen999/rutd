@@ -2,20 +2,25 @@
   font-size: 24px;
   font-weight: 700;
   display: inline-block;
-  color: #f2f2f2;
-  padding-left: 10px;
+  color: grey;
+  padding-left: 10rem;
+}
+
+.nav-logo{
+    width: 10rem;
+    height:5rem;
 }
 
 .nav {
   margin: 0 0 30px;
-  background-color: #adfa3b;
+  /* background-color: #79fb0e; */
   overflow: hidden;
 }
 
 .nav-link {
   float: left;
-  color: #444343;
-  background-color: #adfa3b;
+  color: grey;
+  /* background-color: #79fb0e; */
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
@@ -28,8 +33,12 @@
   outline: 0;
 }
 
+.about{
+  padding-right: 10rem;
+}
+
 .nav-link:hover {
-  background-color: #7aad2c;
+  background-color: #adafaa88;
 }
 
 .nav-right {
