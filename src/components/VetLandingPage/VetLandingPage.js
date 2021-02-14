@@ -13,6 +13,7 @@ import Modal from "@material-ui/core/Modal";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import IconButton from "@material-ui/core/IconButton";
+import RedCross from '../../Images/redcross.jpg'
 
 // STYLING: Material-UI
 import Card from '@material-ui/core/Card';
@@ -252,7 +253,7 @@ class UserPage extends Component {
                           <img
                             className="resource-icon"
                             alt={match.title}
-                            src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png"
+                            src={RedCross}
                           />
                           <Typography
                             className={classes.title}
@@ -355,12 +356,7 @@ class UserPage extends Component {
                       index === incompleteMatchIndex + 1
                     ) {
                       return (
-                        <Grid
-                          item
-                          xs={5}
-                          className={classes.gridListTile}
-                          key={index}
-                        >
+                        <div>
                         {/* MATERIAL UI CARD HERE */}
                         <Card className={classes.card}>
                             <CardActionArea>
@@ -377,7 +373,7 @@ class UserPage extends Component {
                                 className={classes.media}
                                   className="resource-icon"
                                   alt={match.title}
-                                  src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png"/>
+                                  src={RedCross}/>
                               <CardContent>
                                 <Typography gutterBottom variant="h5" component="h2">
                                   {match.name}
@@ -394,12 +390,12 @@ class UserPage extends Component {
                             <Button 
                               size="small" 
                               color="primary"
-                              onClick={() => this.visitResource(match.id)}
+                              // onClick={() => this.visitResource(match.id)}
                               >More Info
                             </Button>
                           </CardActions>
                         </Card>
-                        </Grid>
+                        </div>
                       );
                     }
                     // } else {
