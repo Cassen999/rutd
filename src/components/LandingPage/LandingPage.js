@@ -62,7 +62,13 @@ class LandingPage extends Component {
 
             <center>
               <h4>Already a Member?</h4>
-              <Button className="btn btn_sizeSm" onClick={this.onLogin}>
+              <Button 
+                style={{
+                  borderRadius: 35,
+                  backgroundColor: '#AFFA3D',
+                  fontFamily: 'orbitron',
+                }}
+                className="btn btn_sizeSm" onClick={this.onLogin}>
                 Login
               </Button>
             </center>

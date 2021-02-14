@@ -6,6 +6,9 @@ import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Fab from '@material-ui/core/Fab';
+import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
+import EditRoundedIcon from '@material-ui/icons/EditRounded';
 
 
 // TO DO LIST ON THIS PAGE:
@@ -101,17 +104,27 @@ class AdminResourceEdit extends Component {
                       <hr></hr>
                     </Paper>
                     <br></br>
-                    <Button  
+                    <Fab  
                       className="edit-org-btn" variant="contained" 
-                      onClick={() => this.editOrganization(resourceDetails.org_id)}>Edit</Button>
+                      style={{
+                        borderRadius: 35,
+                        backgroundColor: '#AFFA3D',
+                        fontFamily: 'orbitron',
+                      }}
+                      onClick={() => this.editOrganization(resourceDetails.org_id)}>
+                        <EditRoundedIcon />
+                    </Fab>
                   </div>
-                {/* );
-              })} */}
               <hr></hr>
                 <center>
-                  <Button  
-                    className="admin-landing-button" variant="contained" 
-                    onClick={this.goBackHome}>Admin Landing Page</Button>
+                  <Fab 
+                    className="admin-landing-button" variant="contained"
+                    style={{
+                      borderRadius: 35,
+                      backgroundColor: '#AFFA3D',
+                      fontFamily: 'orbitron',
+                    }}
+                    onClick={this.goBackHome}><HomeRoundedIcon /></Fab>
                     <span>&nbsp;&nbsp;</span>
                 </center>
             </div>
