@@ -1,124 +1,71 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
-import { withStyles } from '@material-ui/core/styles';
-import Radio from '@material-ui/core/Radio';
-import green from '@material-ui/core/colors/green';
-// import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-// import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
-
-
-const styles = {
-  root: {
-    color: green[600],
-    '&$checked': {
-      color: green[500],
-    },
-  },
-  checked: {},
-};
-
+import clsx from 'clsx';
+import {  
+  FormControl,
+  Radio,
+  Grid  
+} from "@material-ui/core";
 class PurpleHeart extends Component {
-  state = {
-    //username: '',
-    //password: '',
-    type: '0'
-  };
-
-  // registerUser = (event) => {
-  //   event.preventDefault();
-
-  //   if (this.state.type === '1') {
-  //     this.props.dispatch({
-  //       type: 'REGISTER',
-  //       payload: {
-  //         username: this.state.username,
-  //         password: this.state.password,
-  //         type: this.state.type
-  //       },
-  //     });
-  //   }
-  //   else {
-  //     alert('This app is intended for Veteran use')
-  //   }
-  // }; // end registerUser
-
-  handleInputChangeFor = (propertyName) => (event) => {
-    this.setState({
-      [propertyName]: event.target.value,
-    });
-  };
-
   render() {
-    const { classes } = this.props;
+    const classes = this.props.classes;
+    const purpleHeart = this.props.purpleHeart;
     return (
-      <form>
-        {/* {JSON.stringify(this.state)} */}
-        <div className="container">
-            {/* <h2>Register User</h2> */}
-            {/* {this.props.store.errors.registrationMessage && (
-              <h3 className="alert" role="alert">
-                {this.props.store.errors.registrationMessage}
-              </h3>
-            )} */}
-            {/* <div>
-              <label htmlFor="username">
-                Username:
-                <input
-                  type="text"
-                  name="username"
-                  value={this.state.username}
-                  required
-                  onChange={this.handleInputChangeFor('username')}
-                />
-              </label>
-            </div> */}
-            {/* <div>
-              <label htmlFor="password">
-                Password:
-                <input
-                  type="password"
-                  name="password"
-                  value={this.state.password}
-                  required
-                  onChange={this.handleInputChangeFor('password')}
-                />
-              </label>
-            </div> */}
-            
-            <h4>Are you a Purple Heart Recipient</h4>
-            <label>Yes</label>
+      <>     
+        <p>Are you a Purple Heart recipient?</p>
+        <Grid
+          container
+          spacing={1}
+          direction="row"
+          className={classes.gridContainer}
+        >
+          <Grid
+            container
+            item
+            xs={6}
+            sm={3}
+            spacing={2}
+            justify="flex-start"
+            alignItems="center"     
+          >
+            <Grid item xs={3}>
+              <label className={classes.label}>Yes</label>
               <Radio
-                checked={this.state.type === '1'}
-                onChange={this.handleInputChangeFor('type')}
-                value='1'
-                name="Yes"
-                aria-label="Yes"
-                classes={{
-                  root: classes.root,
-                  checked: classes.checked,
-              }}
+                className={classes.root}
+                disableRipple
+                color="default"
+                checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
+                icon={<span className={classes.icon} />}      
+                checked={purpleHeart === true}
+                value={true}
+                onClick={(event) => this.props.updateState(event, 'purpleHeart')}
               />
-              <label>No</label>
+            </Grid>
+            <Grid item xs={3}>
+              <label className={classes.label}>No</label>         
               <Radio
-                checked={this.state.type === '0'}
-                onChange={this.handleInputChangeFor('type')}
-                value='0'
-                name="No"
-                aria-label="No"
-                classes={{
-                  root: classes.root,
-                  checked: classes.checked,
-              }}
+                className={classes.root}
+                disableRipple
+                color="default"
+                checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
+                icon={<span className={classes.icon} />}
+                checked={purpleHeart === false} 
+                value={false}
+                onClick={(event) => this.props.updateState(event, 'purpleHeart')}
               />
-            <div>
-              <input className="btn" type="submit" name="submit" value="Register" />
-            </div>
-        </div>
-      </form>
+            </Grid>
+            <Grid item xs={3}>
+              {purpleHeart === true && (
+                <form className={classes.formControl} onSubmit={(event) => this.props.saveProgress(event)}>
+                  <input className="btn" type="submit" name="submit" value="Save Progress" />
+                </form>     
+              )}
+            </Grid>
+          </Grid>
+        </Grid>
+      </>
     );
   }
 }
 
-export default connect(mapStoreToProps)(withStyles(styles)(PurpleHeart));
+export default PurpleHeart;
 

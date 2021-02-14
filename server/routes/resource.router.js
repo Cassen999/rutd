@@ -9,7 +9,7 @@ router.get("/", rejectUnauthenticatedAdmin, (req, res) => {
   const queryText = "SELECT * FROM organization;";
   pool
     .query(queryText)
-    .then((data) => res.json(data.rows))
+    .then((data) => res.send(data.rows))
     .catch((err) => {
       console.log("GET Organization FAILED: ", err);
       res.sendStatus(500);

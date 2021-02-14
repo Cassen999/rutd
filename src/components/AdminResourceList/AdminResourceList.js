@@ -71,14 +71,14 @@ class AdminResourceList extends Component {
     return (
       <div className="container">
         <center>
-          <h2>All Resources</h2>
+          <h2 className="grey">Organizations</h2>
         </center>
         <div className={classes.searchContainer}>
           <center>
             <TextField
               id="outlined-search"
               onChange={this.handleInputChangeForSearch}
-              placeholder="Search for Resource by name"
+              placeholder="Search for Organization by name"
               type="search"
               className={classes.textField}
               margin="normal"
@@ -91,9 +91,9 @@ class AdminResourceList extends Component {
           <Table className={classes.table}>
             <TableHead className="table-head-color">
               <TableRow>
-                <TableCell>Resource Name</TableCell>
+                <TableCell>Organizations</TableCell>
                 <TableCell align="left">Contact</TableCell>
-                <TableCell align="left">Edit</TableCell>
+                {/* <TableCell align="left">Edit</TableCell> */}
                 <TableCell align="left">Delete</TableCell>
               </TableRow>
             </TableHead>
@@ -115,7 +115,7 @@ class AdminResourceList extends Component {
                         <EmailRoundedIcon />
                       </Fab>
                     </TableCell>
-                    <TableCell>
+                    {/* <TableCell>
                       <Fab
                         variant="contained"
                         style={{
@@ -127,7 +127,7 @@ class AdminResourceList extends Component {
                       >
                         <EditRoundedIcon />
                       </Fab>
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell>
                       <Fab
                         variant="contained"
