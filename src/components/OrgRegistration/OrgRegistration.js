@@ -132,7 +132,11 @@ class OrgRegistration extends Component {
               <Button
                 className={classes.button}
                 variant="contained"
-                color="primary"
+                style={{
+                  borderRadius: 35,
+                  backgroundColor: '#AFFA3D',
+                  fontFamily: 'orbitron',
+                }}
                 type="submit"
                 onClick={this.handleSubmit}
               >

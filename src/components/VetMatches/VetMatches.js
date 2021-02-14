@@ -8,6 +8,9 @@ import compose from 'recompose/compose';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
+import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
+import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
 
 const styles = (theme) => ({
   root: {
@@ -26,6 +29,9 @@ const styles = (theme) => ({
     margin: theme.spacing(1),
     minWidth: 120,
     maxWidth: 300,
+  },
+  fab: {
+    margin: theme.spacing.unit,
   },
 });
 
@@ -73,6 +79,17 @@ class VetMatches extends Component {
 
     return (
         <div>
+          <Button onClick={(event) => this.props.history.push("/home")}
+            variant="contained"
+            style={{
+              borderRadius: 35,
+              width: '25px',
+              height: '40px',
+              backgroundColor: '#AFFA3D',
+              fontFamily: 'orbitron',
+            }}>
+            <HomeRoundedIcon />
+          </Button>
           <div className={classes.root}>
             <Grid container spacing={1}>
               <Grid container item xs={9} spacing={3}>
@@ -96,9 +113,15 @@ class VetMatches extends Component {
                           {match.website}      
                       </Grid>
                       <Grid item key={m} xs={3}>
-                          <button onClick={(event) => this.contactOrg(match.org_id, match.name, match.email)}>
-                            Save Match and Contact
-                          </button>
+                          <Fab 
+                            style={{
+                              borderRadius: 35,
+                              backgroundColor: '#AFFA3D',
+                              fontFamily: 'orbitron',
+                            }}
+                            onClick={(event) => this.contactOrg(match.org_id, match.name, match.email)}>
+                            <SaveTwoToneIcon />
+                          </Fab>
                       </Grid>              
                     </Paper>        
                   </React.Fragment>            
@@ -107,11 +130,6 @@ class VetMatches extends Component {
             </Grid>
           </div>
         {/* <ProgressBar value={30} /> */}
-        <Button onClick={(event) => this.props.history.push("/home")}
-        variant="contained"
-        color="primary">
-          BACK TO HOME
-        </Button>
       </div>
     );
   }

@@ -23,4 +23,29 @@ router.put('/:id', (req,res) => {
     })
   })
 
+  // put route for the email question component
+router.put('/email',  (req, res) => {
+  console.log('In, PUT email.');
+  
+  let email = req.body.email; 
+  let id = req.body.user_id; // user id
+  
+console.log(`Updating email: ${email} for user id: ${id}`);
+
+let queryText = `UPDATE "veteran"
+                  SET "email" = $1
+                  WHERE "vet_id" = $2;
+                  `;
+
+  // TODO - REPLACE BELOW WITH YOUR CODE
+  pool.query(queryText, [email, id]).then( (result) => {
+            res.sendStatus(200);
+        })
+        .catch( (error) => {
+            console.log('Error from Updating email:', error);
+            res.sendStatus(500);
+        })
+});//END PUT
+
+
 module.exports = router;

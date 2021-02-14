@@ -5,24 +5,27 @@ const {
   rejectUnauthenticatedVet,
 } = require('../modules/authentication-middleware');
 
-router.post('/', rejectUnauthenticatedVet, (req, res) => {
+router.put('/', rejectUnauthenticatedVet, (req, res) => {
 
   let demographic = req.body;
-  console.log(`Adding demographic`, demographic);
+  let id = req.body.user_id; // user id
+
+  console.log(`Updating demographics for vet_id: ${id}.`);
 
   let queryText = `INSERT INTO "veteran" ("first_name", "last_name", 
-                    "email", "date_of_birth", "number", "gender_id", 
+                    "email", "date_of_birth", "gender_id", "number",  
                     "married_id", "children", "homeless", "current_address", 
                     "city", "state_id", "zipcode", "country_id", "mailing_address")
                     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, 
-                    $12, $13, $14, $15);`;
+                    $12, $13, $14, $15)
+                    WHERE "vet_id" = $16;`;
 
   pool.query(queryText, [demograhpic.first_name, demographic.last_name, 
     demograhpic.email, demograhpic.date_of_birth, demograhpic.number, 
     demograhpic.gender_id, demographic.married_id, demographic.chilren, 
     demographic.homeless, demographic.current_address,demographic.city, 
     demographic.state_id, demographic.zipcode, demographic.country_id,
-    demographic.mailing_address])
+    demographic.mailing_address, id])
     .then(result => {
       res.sendStatus(201);
     })

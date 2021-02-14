@@ -63,16 +63,20 @@ const styles = (theme) => ({
 });
 
 class UserPage extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
+  state = {
       completeMatchIndex: 0,
       incompleteMatchIndex: 0,
       modalOpen: false,
     };
-  }
 
   componentDidMount() {
+    // dispatch to see of they exist in vet table
+    // if false nothing happens
+    // if true dispatch 
+    this.props.dispatch({
+        type: 'FETCH_VET_EXIST', 
+        payload: this.props.store.user.id
+      });
     this.props.dispatch({
       type: "FETCH_COMPLETE_MATCH",
       payload: this.props.store.user.id,
@@ -104,9 +108,14 @@ class UserPage extends Component {
     }
   };
 
+  insertVet = (user_id) => {
+    console.log('inserting vet')
+    this.props.dispatch({type: 'POST_NEW_VET', payload: user_id})
+    this.props.history.push("/register")
+  }
+
   render() {
     const { classes } = this.props;
-
     const emergencyModal = (
       <div className={classes.paper}>
         <header id="modal-header">
@@ -125,6 +134,11 @@ class UserPage extends Component {
           </ul>
           <Button
             variant="contained"
+            style={{
+              borderRadius: 35,
+              backgroundColor: '#AFFA3D',
+              fontFamily: 'orbitron',
+            }}
             className={classes.closeModal}
             onClick={() => this.handleClick("closeModal")}
           >
@@ -140,15 +154,36 @@ class UserPage extends Component {
 
     return (
       <div id="pageBody">
+        {JSON.stringify(this.state)}
+        {JSON.stringify(this.props.store.user.id)}
+        {JSON.stringify(this.props.store.existReducer)}
         <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
-        <Button
-          id="completeProfileBtn"
-          size="large"
-          variant="contained"
-          onClick={() => this.handleClick("completeProfile")}
-        >
-          Complete Profile Information
-        </Button>
+        {this.props.store.existReducer.eists === true ? 
+          <Button
+            id="completeProfileBtn"
+            size="large"
+            variant="contained"
+            style={{
+              borderRadius: 35,
+              backgroundColor: '#AFFA3D',
+              fontFamily: 'orbitron',
+            }}
+            onClick={() => this.handleClick("completeProfile")}
+          >
+            Complete Profile Information
+          </Button> : 
+          <Button
+            id="completeProfileBtn"
+            size="large"
+            variant="contained"
+            style={{
+              borderRadius: 35,
+              backgroundColor: '#AFFA3D',
+              fontFamily: 'orbitron',
+            }}
+            onClick={() => this.insertVet(this.props.store.user.id)}>
+            Complete Profile Information
+          </Button>}
         <div id="cardContainer">
           <div id="completedMatches" className="matchDisplay">
             <h1 id="completeTitle">Complete Matches</h1>
@@ -234,14 +269,16 @@ class UserPage extends Component {
                         </Grid>
                       );
                     }
-                    // } else {
-                    //   return <h3></h3>;
-                    // }
                   })}
                 </Grid>
               </Grid>
               <IconButton
                 id="decrement-match-index"
+                style={{
+                  borderRadius: 35,
+                  backgroundColor: '#AFFA3D',
+                  fontFamily: 'orbitron',
+                }}
                 variant="contained"
                 onClick={() => this.handleClick("decrementComplete")}
               >
@@ -250,6 +287,11 @@ class UserPage extends Component {
               <IconButton
                 id="increment-match-index"
                 variant="contained"
+                style={{
+                  borderRadius: 35,
+                  backgroundColor: '#AFFA3D',
+                  fontFamily: 'orbitron',
+                }}
                 onClick={() => this.handleClick("incrementComplete")}
               >
                 <ArrowForwardIcon fontSize="large" />
@@ -350,6 +392,11 @@ class UserPage extends Component {
               <IconButton
                 id="decrement-incomplete-index"
                 variant="contained"
+                style={{
+                  borderRadius: 35,
+                  backgroundColor: '#AFFA3D',
+                  fontFamily: 'orbitron',
+                }}
                 onClick={() => this.handleClick("decrementIncomplete")}
               >
                 <ArrowBackIcon fontSize="large" />
@@ -357,6 +404,11 @@ class UserPage extends Component {
               <IconButton
                 id="increment-incomplete-index"
                 variant="contained"
+                style={{
+                  borderRadius: 35,
+                  backgroundColor: '#AFFA3D',
+                  fontFamily: 'orbitron',
+                }}
                 onClick={() => this.handleClick("incrementIncomplete")}
               >
                 <ArrowForwardIcon fontSize="large" />
@@ -366,18 +418,14 @@ class UserPage extends Component {
         </div>
         <div id="btnContainer">
           <Button
-            id="editBtn"
-            size="large"
-            variant="contained"
-            onClick={() => this.handleClick("profile")}
-          >
-            View/Edit Profile
-          </Button>
-          <Button
             id="emergencyBtn"
             size="large"
             variant="contained"
-            color="secondary"
+            style={{
+              borderRadius: 35,
+              backgroundColor: '#AFFA3D',
+              fontFamily: 'orbitron',
+            }}
             onClick={() => this.handleClick("emergency")}
           >
             Emergency Numbers
@@ -386,9 +434,14 @@ class UserPage extends Component {
             id="allMatchBtn"
             size="large"
             variant="contained"
+            style={{
+              borderRadius: 35,
+              backgroundColor: '#AFFA3D',
+              fontFamily: 'orbitron',
+            }}
             onClick={() => this.handleClick("allMatches")}
           >
-            View All Matches
+            View New Matches
           </Button>
         </div>
         <Modal

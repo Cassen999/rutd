@@ -89,7 +89,11 @@ class LoginForm extends Component {
               variant="contained" 
               type="submit" 
               name="submit" 
-              color="primary">Log In</Button>
+              style={{
+                borderRadius: 35,
+                backgroundColor: '#AFFA3D',
+                fontFamily: 'orbitron',
+              }}>Log In</Button>
           </div>
         </center>
         </div>

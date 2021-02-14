@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
+import LogOutButtonNav from '../LogOutButtonNav/LogOutButtonNav';
 import './Nav.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import NewLogo from '../../Images/new-logo.png';
@@ -42,13 +42,13 @@ const Nav = (props) => {
         {/* Show Nav Links for veterans */}
         {props.store.user.type_id === 1 && (
           <>
-            <Link className="nav-link" to="/vetmatches">
+            <Link  className="nav-link" to="/vetmatches">
               Resources
             </Link>
             <Link className="nav-link" to="/vetmatches">
               Chat
             </Link>
-            <LogOutButton className="nav-link" />
+            <LogOutButtonNav className="nav-link" />
           </>
         )}
         {/* Show Nav Links for admin */}
@@ -63,13 +63,13 @@ const Nav = (props) => {
             <Link className="nav-link" to="/vetmatches">
               Chat
             </Link>
-            <LogOutButton className="nav-link" />
+            <LogOutButtonNav className="nav-link" />
           </>
         )}
 
         {props.store.user.type_id === 3 && (
           <>
-            <LogOutButton className="nav-link" />
+            <LogOutButtonNav className="nav-link" />
           </>
         )}    
 

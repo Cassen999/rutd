@@ -1,23 +1,26 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
-import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import mapStoreToProps from "../../redux/mapStoreToProps";
+import { withStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+import Fab from "@material-ui/core/Fab";
+import EditRoundedIcon from "@material-ui/icons/EditRounded";
+import DeleteForeverRoundedIcon from "@material-ui/icons/DeleteForeverRounded";
+import EmailRoundedIcon from "@material-ui/icons/EmailRounded";
 
-const styles = theme => ({
+const styles = (theme) => ({
   textField: {
     width: "100%",
     height: "100%",
     background: "white",
-    borderRadius: "4px"
-  }, 
+    borderRadius: "4px",
+  },
   button: {
     margin: theme.spacing.unit,
   },
@@ -25,39 +28,43 @@ const styles = theme => ({
 
 class AdminResourceList extends Component {
   state = {
-    searchText: ''
+    searchText: "",
   };
 
   componentDidMount() {
-    this.props.dispatch({type: 'FETCH_RESOURCE'})
+    this.props.dispatch({ type: "FETCH_RESOURCE" });
+    this.props.dispatch({ type: "FETCH_CATEGORY" });
   }
 
   handleMailTo = (resourceEmail) => {
-    return(
-      window.open(`mailto:${resourceEmail}`)
-    )
-  }
+    return window.open(`mailto:${resourceEmail}`);
+  };
 
-  handleResource = (resourceID) =>{
+  handleResource = (resourceID) => {
     console.log("RESOURCE YOU SELECTED:", resourceID);
-    this.props.dispatch({type: 'GET_ONE_RESOURCE', payload: resourceID})
+    this.props.dispatch({ type: "GET_ONE_RESOURCE", payload: resourceID });
     this.props.history.push("/adminOrgEdit");
-  }
+  };
 
   handleInputChangeForSearch = (event) => {
-    event.preventDefault()
-    this.setState({
-      searchText: event.target.value
-    },
-    function() {
-      this.props.dispatch({type: `FETCH_SEARCH_RESOURCE`, payload: this.state.searchText})
-    })
-  }
+    event.preventDefault();
+    this.setState(
+      {
+        searchText: event.target.value,
+      },
+      function () {
+        this.props.dispatch({
+          type: `FETCH_SEARCH_RESOURCE`,
+          payload: this.state.searchText,
+        });
+      }
+    );
+  };
 
   handleDelete = (resource_id) => {
-    this.props.dispatch({type: 'DELETE_RESOURCE', payload: resource_id})
-    console.log('handle delete event, resource_id', resource_id)
-  }
+    this.props.dispatch({ type: "DELETE_RESOURCE", payload: resource_id });
+    console.log("handle delete event, resource_id", resource_id);
+  };
 
   render() {
     const { classes } = this.props;
@@ -81,84 +88,117 @@ class AdminResourceList extends Component {
           </center>
         </div>
         <Paper className={classes.root}>
-            <Table className={classes.table}>
-              <TableHead className="table-head-color">
-                <TableRow>
-                  <TableCell>Resource Name</TableCell>
-                  <TableCell align='left'>Contact</TableCell>
-                  <TableCell align='left'>Edit</TableCell>
-                  <TableCell align='left'>Delete</TableCell>
-                </TableRow>
-              </TableHead>
-              {this.state.searchText === '' ? 
+          <Table className={classes.table}>
+            <TableHead className="table-head-color">
+              <TableRow>
+                <TableCell>Resource Name</TableCell>
+                <TableCell align="left">Contact</TableCell>
+                {/* <TableCell align="left">Edit</TableCell> */}
+                <TableCell align="left">Delete</TableCell>
+              </TableRow>
+            </TableHead>
+            {this.state.searchText === "" ? (
               <TableBody>
-                {this.props.store.resourceReducer.map((resource, i) => 
+                {this.props.store.resourceReducer.map((resource, i) => (
                   <TableRow key={i}>
+                    <TableCell>{resource.name}</TableCell>
                     <TableCell>
-                      {resource.name}
-                    </TableCell>
-                    <TableCell >
-                      <Button
+                      <Fab
                         variant="contained"
-                        color="primary"
-                        onClick={() => this.handleMailTo(resource.email)}>
-                        Contact
-                      </Button>
+                        style={{
+                          borderRadius: 35,
+                          backgroundColor: "#AFFA3D",
+                          fontFamily: "orbitron",
+                        }}
+                        onClick={() => this.handleMailTo(resource.email)}
+                      >
+                        <EmailRoundedIcon />
+                      </Fab>
                     </TableCell>
+                    {/* <TableCell>
+                      <Fab
+                        variant="contained"
+                        style={{
+                          borderRadius: 35,
+                          backgroundColor: "#AFFA3D",
+                          fontFamily: "orbitron",
+                        }}
+                        onClick={() => this.handleResource(resource.id)}
+                      >
+                        <EditRoundedIcon />
+                      </Fab>
+                    </TableCell> */}
                     <TableCell>
-                      <Button
+                      <Fab
                         variant="contained"
-                        onClick={() => this.handleResource(resource.id)}>
-                        Edit
-                      </Button>
-                    </TableCell>
-                    <TableCell>
-                      <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={() => this.handleDelete(resource.id)}>
-                        Delete
-                      </Button>
+                        style={{
+                          borderRadius: 35,
+                          backgroundColor: "#AFFA3D",
+                          fontFamily: "orbitron",
+                        }}
+                        onClick={() => this.handleDelete(resource.id)}
+                      >
+                        <DeleteForeverRoundedIcon />
+                      </Fab>
                     </TableCell>
                   </TableRow>
-                )}
+                ))}
               </TableBody>
-              :
+            ) : (
               <TableBody>
-                {this.props.store.resourceSearch.map((resource, i) => 
+                {this.props.store.resourceSearch.map((resource, i) => (
                   <TableRow key={i}>
                     <TableCell onClick={() => this.handleResource(resource.id)}>
                       {resource.name}
                     </TableCell>
-                    <TableCell >
-                      <Button
+                    <TableCell>
+                      <Fab
                         variant="contained"
-                        color="primary">
-                        Contact
-                      </Button>
+                        style={{
+                          borderRadius: 35,
+                          backgroundColor: "#AFFA3D",
+                          fontFamily: "orbitron",
+                        }}
+                        onClick={() => this.handleMailTo(resource.email)}
+                      >
+                        <EmailRoundedIcon />
+                      </Fab>
                     </TableCell>
                     <TableCell>
-                      <Button
-                        variant="contained">
-                        Edit
-                      </Button>
+                      <Fab
+                        variant="contained"
+                        style={{
+                          borderRadius: 35,
+                          backgroundColor: "#AFFA3D",
+                          fontFamily: "orbitron",
+                        }}
+                        onClick={() => this.handleResource(resource.id)}
+                      >
+                        <EditRoundedIcon />
+                      </Fab>
                     </TableCell>
                     <TableCell>
-                      <Button
+                      <Fab
                         variant="contained"
-                        color="secondary">
-                        Delete
-                      </Button>
+                        style={{
+                          borderRadius: 35,
+                          backgroundColor: "#AFFA3D",
+                          fontFamily: "orbitron",
+                        }}
+                        onClick={() => this.handleDelete(resource.id)}
+                      >
+                        <DeleteForeverRoundedIcon />
+                      </Fab>
                     </TableCell>
                   </TableRow>
-                )}
+                ))}
               </TableBody>
-                }
-            </Table>
-          </Paper>
-        </div>
-    )}
+            )}
+          </Table>
+        </Paper>
+      </div>
+    );
+  }
 }
-     
 
 export default connect(mapStoreToProps)(withStyles(styles)(AdminResourceList));

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
-import { Button, withStyles, TextField } from "@material-ui/core";
+import { Button, withStyles, Select, MenuItem, TextField } from "@material-ui/core";
+import Fab from '@material-ui/core/Fab';
+import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
 
 const styles = {
     inputs: {
@@ -12,12 +14,36 @@ const styles = {
     },
 };
 
-class Name extends Component {
+class DemographicQuestion extends Component {
 
     state = {
-        first_name: "",
-        last_name: "",
+        vet: {
+                first_name: "",
+                last_name: "",
+                email: "",
+                birth: "",
+                gender: "",
+                phone: "",
+                marriage: "",
+                children: "",
+                homeless: "",
+                homeAddress: {
+                                address: '',
+                                city: '',
+                                state: '',
+                                zip: '', 
+                                country: '',
+                             },                  
+                mailAddress: {
+                                address: '',
+                                city: '',
+                                state: '',
+                                zip: '', 
+                                country: ''
+                            }
+        }
     }
+
 
     handleInputChange = (event, inputProperty) => {
         console.log("Handling input-change...");
@@ -32,18 +58,41 @@ class Name extends Component {
             });
     };
 
-    saveName = () => {
+    saveDemographic = () => {
         let vetVar = this.state.vet
         if (vetVar.first_name === '' || vetVar.last_name === '') {
             alert("A first and last name is required for registration.");
         } else {
             this.props.dispatch({
-                type: "ADD_NAME",
+                type: "ADD_DEMOGRAPHIC",
                 payload: this.state.vet,
             });
             this.setState({
-                first_name: "",
-                last_name: "",
+                vet: {
+                    first_name: "",
+                    last_name: "",
+                    email: "",
+                    birth: "",
+                    gender: "",
+                    phone: "",
+                    marriage: "",
+                    children: "",
+                    homeless: "",
+                    homeAddress: {
+                                    address: '',
+                                    city: '',
+                                    state: '',
+                                    zip: '', 
+                                    country: '',
+                                 },                  
+                    mailAddress: {
+                                    address: '',
+                                    city: '',
+                                    state: '',
+                                    zip: '', 
+                                    country: ''
+                                }
+            }
             });
         }
     };
@@ -57,9 +106,7 @@ class Name extends Component {
                     label="First Name"
                     name="first_name"
                     value={this.state.vet.first_name}
-                    onChange={(event) =>
-                        this.handleInputChange(event, "first_name")
-                    }
+                    onChange={(event) => this.handleInputChange(event, "first_name")}
                 />
                 <TextField
                     variant="outlined"
@@ -67,23 +114,202 @@ class Name extends Component {
                     name="last_name"
                     value={this.state.vet.last_name}
                     onChange={(event) =>
-                        this.handleInputChange(event, "last_name")
-                    }
+                        this.handleInputChange(event, "last_name")}
                 />
-                <Button onClick={(event) => { this.saveName(event) }}>SAVE</Button>
+               
+                <TextField
+                    variant="outlined"
+                    label="Email"
+                    name="email"
+                    value={this.state.vet.email}
+                    onChange={(event) => this.handleInputChange(event, "email")}
+                />
+                <Fab
+                    style={{
+                        borderRadius: 35,
+                        backgroundColor: '#AFFA3D',
+                        fontFamily: 'orbitron',
+                    }}
+                  onClick={(event) => { this.saveName(event) }}><SaveTwoToneIcon /></Fab>
                 <TextField
                     variant="outlined"
                     label="Date of Birth"
-                    name="date_of_birth"
+                    name="birth"
                     value={this.state.vet.dOB}
-                    onChange={(event) =>
-                        this.handleInputChange(event, "dOB")
-                    }
+                    onChange={(event) => this.handleInputChange(event, "birth")}
                 />
-                <Button onClick={(event) => { this.saveDOB(event) }}>SAVE</Button>
+               GENDER
+                <Select
+                value={this.state.vet.gender}
+                onChange={this.handleChange}
+                inputProps={{
+                  name: 'gender',
+                  id: 'gender-simple',
+                }}>
+                  {this.props.store.dropdownReducer.map((gender, i) => {
+                    return(
+                      <MenuItem key={i} value={gender.id}>{gender.description}</MenuItem>
+                    )
+                  })}
+                </Select> 
+
+                <TextField
+                    id="standard-textarea"
+                    variant="outlined"
+                    label="Phone Number"
+                    name="phone"
+                    value={this.state.vet.phone}
+                    onChange={(event) => this.handleInputChange(event, "phone")}
+                />
+
+                <TextField
+                    variant="outlined"
+                    label="Marriage"
+                    name="marriage"
+                    value={this.state.vet.marriage}
+                    onChange={(event) => this.handleInputChange(event, "marriage")}
+                />
+
+                <TextField
+                    variant="outlined"
+                    label="Children"
+                    name="children"
+                    value={this.state.vet.children}
+                    onChange={(event) => this.handleInputChange(event, "children")}
+                />  
+
+                <TextField
+                    variant="outlined"
+                    label="homeless"
+                    name="homeless"
+                    value={this.state.vet.homeless}
+                    onChange={(event) => this.handleInputChange(event, "homeless")}
+                />
+                <br/>
+                HOME ADDRESS
+                <TextField
+                    variant="outlined"
+                    label="Address"
+                    name="address"
+                    value={this.state.vet.homeAddress.address}
+                    onChange={(event) => this.handleInputChange(event, "address")}
+                />
+
+                <TextField
+                    id="standard-textarea"
+                    variant="outlined"
+                    label="Apt/PO Box/Bldg"
+                    name="apartment"
+                    value={this.state.vet.homeAddress.apt}
+                    onChange={(event) => this.handleInputChange(event, "apartment")}
+                />
+
+                <TextField
+                    id="standard-textarea"
+                    variant="outlined"
+                    label="City"
+                    name="city"
+                    value={this.state.vet.homeAddress.city}
+                    onChange={(event) => this.handleInputChange(event, "city")}
+                />
+
+                <TextField
+                    id="standard-textarea"
+                    variant="outlined"
+                    label="State"
+                    name="state"
+                    value={this.state.vet.homeAddress.state}
+                    onChange={(event) => this.handleInputChange(event, "state")}
+                />
+               
+               <TextField
+                    id="standard-textarea"
+                    variant="outlined"
+                    label="Zip Code"
+                    name="zip"
+                    value={this.state.vet.homeAddress.zip}
+                    onChange={(event) => this.handleInputChange(event, "zip")}
+                />
+
+                <TextField
+                    id="standard-textarea"
+                    variant="outlined"
+                    label="Country"
+                    name="country"
+                    value={this.state.vet.homeAddress.country}
+                    onChange={(event) => this.handleInputChange(event, "country")}
+                />
+                <br/>
+                MAIL ADDRESS
+
+                <TextField
+                    variant="outlined"
+                    label="Address"
+                    name="address"
+                    value={this.state.vet.mailAddress.address}
+                    onChange={(event) => this.handleInputChange(event, "address")}
+                />
+
+                <TextField
+                    id="standard-textarea"
+                    variant="outlined"
+                    label="Apt/PO Box/Bldg"
+                    name="apartment"
+                    value={this.state.vet.mailAddress.apt}
+                    onChange={(event) => this.handleInputChange(event, "apartment")}
+                />
+
+                <TextField
+                    id="standard-textarea"
+                    variant="outlined"
+                    label="City"
+                    name="city"
+                    value={this.state.vet.mailAddress.city}
+                    onChange={(event) => this.handleInputChange(event, "city")}
+                />
+
+                <TextField
+                    id="standard-textarea"
+                    variant="outlined"
+                    label="State"
+                    name="state"
+                    value={this.state.vet.mailAddress.state}
+                    onChange={(event) => this.handleInputChange(event, "state")}
+                />
+               
+               <TextField
+                    id="standard-textarea"
+                    variant="outlined"
+                    label="Zip Code"
+                    name="zip"
+                    value={this.state.vet.mailAddress.zip}
+                    onChange={(event) => this.handleInputChange(event, "zip")}
+                />
+
+                <TextField
+                    id="standard-textarea"
+                    variant="outlined"
+                    label="Country"
+                    name="country"
+                    value={this.state.vet.mailAddress.country}
+                    onChange={(event) => this.handleInputChange(event, "country")}
+                />
+
+               
+                <Button onClick={(event) =>this.saveDemographic(event)}>SAVE</Button>
+                
+                
+                
+                <Fab
+                    style={{
+                        borderRadius: 35,
+                        backgroundColor: '#AFFA3D',
+                        fontFamily: 'orbitron',
+                    }}
+                    onClick={(event) => { this.saveDOB(event) }}><SaveTwoToneIcon /></Fab>
             </form>
         )//END return
     };//END render
 };//END Name
 
-export default connect(mapStoreToProps)(withStyles(styles)(Name));
+export default connect(mapStoreToProps)(withStyles(styles)(DemographicQuestion));
