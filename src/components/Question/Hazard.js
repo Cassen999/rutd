@@ -1,27 +1,16 @@
 import React, { Component } from "react";
-//import { useDispatch } from 'react-redux';
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
-import {
-  FormControl,
-  FormLabel,
-  RadioGroup,
-  FormControlLabel,
-  Paper,
-} from "@material-ui/core";
-// AppBar InputLabel,Select, Input, MenuItem, FormHelperText, Button, Toolbar, Grid, Badge, CardMedia, IconButton, makeStyles, InputBase, Card, CardActionArea
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import Radio from "@material-ui/core/Radio";
-// import '../../../App/App.css';
+
 const styles = (theme) => ({
   inputs: {
     width: "",
     paddingTop: "0px",
-    // marginTop: '20px',
     verticalAlign: "middle",
     fontFamily: "Arial",
-    // height: '100%'
   },
   menu: {
     width: 200,
@@ -37,13 +26,7 @@ const styles = (theme) => ({
   },
   dense: {
     marginTop: 19,
-  },
-
-  //     paperContainer: {
-  //       backgroundImage: `url(${canvas})`
-  //   },
-  //   typography : {
-  //     fontFamily : 'Arial'
+  }
 });
 class Hazard extends Component {
   componentDidMount() {
@@ -84,7 +67,6 @@ class Hazard extends Component {
   
   handleClick = (event, percentId) => {
     console.log(percentId);
-    // console.log('Setting state...');
     this.setState(
       {
         percentage: percentId,
@@ -92,10 +74,6 @@ class Hazard extends Component {
       function () {
         console.log(`percentage ID: ${this.state.percentage}`);
       }
-
-      // }, function () {
-      //    console.log('state has been set:', this.state);
-      // })
     );
   };
   handleTextChange = (name) => (event) => {
@@ -128,8 +106,6 @@ class Hazard extends Component {
       console.log(
         `Saving ${this.state.newVet.first_name}'s demographics to Database...`
       );
-      //Clear message... should say Hello!
-      //console.log(`Sending ${this.state.newArt} to DB.`);
       this.props.dispatch({
         type: "UPDATE_COMPENSATION",
         payload: this.state.newVet,
@@ -150,13 +126,7 @@ class Hazard extends Component {
     return (
       <>
         <h1>Hazard Form</h1>
-        <Paper
-          className=""
-          elevation={10}
-                 >
-          
-            Have you been deployed to imminent danger areas
-            <br />
+            <p>Have you been deployed to imminent danger areas</p>
             <label>Yes</label>
             <Radio
               checked={this.state.typeTwo === "3"}
@@ -197,40 +167,6 @@ class Hazard extends Component {
                 />
               </form>
             )}
-            {/* <div>
-  {percentages.map((percent, i) => (
-    this.state.type === '1'
-      ? (              
-      <Radio
-      key={i}
-         checked={this.setstate({
-            percentage : percent.id
-         })
-      
-      
-      
-      }
-         onChange={this.handleInputChangeFor('type')}
-         value={percent.description}
-         name="No"
-         label={percent.description}
-         aria-label="No"
-         classes={{
-           root: classes.root,
-           checked: classes.checked,
-       }}
-      />)
-      : null
-  ))}
-</div> */}
-          <form></form>
-          {/* <Grid container
-               className=''
-               //alignItems="center"
-               spacing={2}
-               direction="column"> */}
-        </Paper>
-        {/* </Grid> */}
       </>
     ); //END return
   } //END render

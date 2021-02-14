@@ -16,6 +16,7 @@ import demographicReducer from './demographic.reducer';
 import addNewMatchReducer from './addNewMatch.reducer';
 import categoryReducer from './category.reducer';
 import dropdownReducer from './dropdown.reducer';
+import compensationReducer from './compensationReducer.js';
 
 const rootReducer = combineReducers({
   errors,
@@ -35,6 +36,7 @@ const rootReducer = combineReducers({
   addNewMatchReducer,
   categoryReducer,
   dropdownReducer,
+  compensationReducer,
 });
 
 export default rootReducer;
