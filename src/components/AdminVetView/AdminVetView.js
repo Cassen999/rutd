@@ -53,7 +53,6 @@ class AdminVetView extends Component {
             <h2>Admin Vet View</h2>
             </center>
               {details.map((vet, i) => {
-                // CONDITIONAL RENDER BOOLEAN VALUES TO YES OR NO 
                 return(
                   <div key={i}>
                     <Fab  
@@ -68,34 +67,43 @@ class AdminVetView extends Component {
                       </Fab>
                     <Paper className={classes.root} elevation={1}>
                       <hr></hr>
-                      <Typography component="p">Name: {vet.first_name} {vet.last_name}</Typography>
-                      <Typography component="p">Email: {vet.email}</Typography>
-                      <Typography component="p">Date of Birth:{vet.date_of_birth}</Typography>
-                      <Typography component="p">Number: {vet.number}</Typography>
-                      <Typography component="p">Gender: {vet.gender}</Typography>
-                      <Typography component="p">Marital Status: {vet.married}</Typography>
-                      <Typography component="p">Children: {vet.children}</Typography>
-                      <Typography component="p">Home Living Situation: {conversion(vet.homeless)}</Typography>
-                      <Typography component="p">Current Address: {vet.current_address}</Typography>
-                      <Typography component="p">City: {vet.city}</Typography>
-                      <Typography component="p">State: {vet.state}</Typography>
-                      <Typography component="p">Zipcode: {vet.zipcode}</Typography>
-                      <Typography component="p">Country: {vet.country}</Typography>
-                      <Typography component="p">Mailing Address: {vet.mailing_address}</Typography>
-                      <Typography component="p">City2: {vet.city2}</Typography>
-                      <Typography component="p">State2: {vet.state_id2}</Typography>
-                      <Typography component="p">Zipcode2: {vet.zipcode2}</Typography>
-                      <Typography component="p">Country2: {vet.country2}</Typography>
-                      <Typography component="p">Branch: {vet.branch}</Typography>
-                      <Typography component="p">Rank: {vet.rank}</Typography>
-                      <Typography component="p">Start Date: {vet.start_date}</Typography>
-                      <Typography component="p">End Date: {vet.end_date}</Typography>
-                      <Typography component="p">Discharge: {vet.discharge}</Typography>
-                      <Typography component="p">Malady: {vet.injury}</Typography>
-                      <Typography component="p">Compensation: {conversion(vet.compensation)}</Typography>
-                      <Typography component="p">Percentage: {vet.percentage}</Typography>
-                      <Typography component="p">Danger Areas: {conversion(vet.danger_areas)}</Typography>
-                      <Typography component="p">Purple Heart: {conversion(vet.purple_heart)}</Typography>
+                      <div className="flex-grid">
+                        <div className="col">
+                          <Typography variant="h5" component="h3">Demographics</Typography>
+                          <Typography component="p">Name: {vet.first_name} {vet.last_name}</Typography>
+                          <Typography component="p">Email: {vet.email}</Typography>
+                          <Typography component="p">Date of Birth:{vet.date_of_birth}</Typography>
+                          <Typography component="p">Number: {vet.number}</Typography>
+                          <Typography component="p">Gender: {vet.gender}</Typography>
+                          <Typography component="p">Marital Status: {vet.married}</Typography>
+                          <Typography component="p">Children: {vet.children}</Typography>
+                          <Typography component="p">Home Living Situation: {conversion(vet.homeless)}</Typography>
+                          <Typography component="p">Current Address: {vet.current_address}</Typography>
+                          <Typography component="p">City: {vet.city}</Typography>
+                          <Typography component="p">State: {vet.state}</Typography>
+                          <Typography component="p">Zipcode: {vet.zipcode}</Typography>
+                          <Typography component="p">Country: {vet.country}</Typography>
+                        </div>
+                        <div className="col">
+                          <Typography component="p">Mailing Address: {vet.mailing_address}</Typography>
+                          <Typography component="p">City2: {vet.city2}</Typography>
+                          <Typography component="p">State2: {vet.state_id2}</Typography>
+                          <Typography component="p">Zipcode2: {vet.zipcode2}</Typography>
+                          <Typography component="p">Country2: {vet.country2}</Typography>
+                          <br></br>
+                          <Typography variant="h5" component="h3">Military Information:</Typography>
+                          <Typography component="p">Branch: {vet.branch}</Typography>
+                          <Typography component="p">Rank: {vet.rank}</Typography>
+                          <Typography component="p">Start Date: {vet.start_date}</Typography>
+                          <Typography component="p">End Date: {vet.end_date}</Typography>
+                          <Typography component="p">Discharge: {vet.discharge}</Typography>
+                          <Typography component="p">Malady: {vet.injury}</Typography>
+                          <Typography component="p">Compensation: {conversion(vet.compensation)}</Typography>
+                          <Typography component="p">Percentage: {vet.percentage}</Typography>
+                          <Typography component="p">Danger Areas: {conversion(vet.danger_areas)}</Typography>
+                          <Typography component="p">Purple Heart: {conversion(vet.purple_heart)}</Typography>
+                        </div>
+                      </div>
                       <hr></hr>
                     </Paper>
                   <br></br>

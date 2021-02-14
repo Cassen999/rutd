@@ -60,11 +60,10 @@ class AdminResourceEdit extends Component {
           return (
             <div className="container">
               <center>
-                {/* {JSON.stringify(this.props.store.resourceDetails)} */}
+                {JSON.stringify(this.props.store.resourceDetails)}
                 <h2>{this.state.heading}</h2>
               </center>
-              {/* {resourceDetails.map((resource, i) => {
-                return ( */}
+
                   <div>
                     <Paper className={classes.root} elevation={1}>
                       <hr></hr>
