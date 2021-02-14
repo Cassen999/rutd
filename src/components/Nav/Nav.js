@@ -55,7 +55,7 @@ const Nav = (props) => {
         {props.store.user.type_id === 2 && (
           <>
             <Link className="nav-link" to="/resourcelist">
-              Resources
+              Organizations
             </Link>
             <Link className="nav-link" to="/vetlist">
               Veterans

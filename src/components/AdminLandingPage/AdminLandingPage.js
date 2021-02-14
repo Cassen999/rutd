@@ -59,8 +59,7 @@ class AdminLandingPage extends Component {
       return (
         <div className="container">
         <center>
-        <h2>Admin Landing Page</h2>
-        <h4><i>Connections In Progress (Track Time)</i></h4>
+        <h2 className="grey">Connections In Progress</h2>
         </center>
             <Paper className={classes.root}>
               <Table className={classes.table}>

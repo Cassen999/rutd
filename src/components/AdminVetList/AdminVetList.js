@@ -57,6 +57,9 @@ class AdminVetList extends Component {
     return (
       <div>
         <div className="container">
+          <center>
+            <h2 className="grey">Veterans</h2>
+          </center>
           <div className={classes.searchContainer}>
             <center>
               <TextField
@@ -76,7 +79,7 @@ class AdminVetList extends Component {
                 <TableHead className="table-head-color">
                   <TableRow>
                     <TableCell>Name</TableCell>
-                    <TableCell align='left'>Resource</TableCell>
+                    <TableCell align='left'>Organization</TableCell>
                     <TableCell align='left'>Time Stamp</TableCell>
                   </TableRow>
                 </TableHead>

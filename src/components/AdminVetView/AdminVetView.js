@@ -53,10 +53,13 @@ class AdminVetView extends Component {
                 return(
                   <div key={i}>
                     <Paper className={classes.root} elevation={1}>
+                      <center>
+                        <Typography variant="h5" className="font" component="h5">Demographics of {vet.first_name} {vet.last_name}</Typography>
+                      </center>
                       <hr></hr>
                       <div className="flex-grid">
                         <div className="col">
-                          <Typography variant="h5" className="font" component="h5">Demographics</Typography>
+                        <br></br>
                             <Typography className="font" component="p">Full Name: <br></br><i>{vet.first_name} {vet.last_name}</i></Typography>
                             <br></br>
                             <Typography className="font" component="p">Email: <br></br><i>{vet.email}</i></Typography>
@@ -80,13 +83,13 @@ class AdminVetView extends Component {
                             <Typography className="font" component="p"> <i>{vet.country}</i></Typography>
                         </div>
                         <div className="col">
+                        <br></br>
                         {/* COMMENTING THE BELOW OUT FOR NOW */}
                             {/* <Typography component="p">Mailing Address: {vet.mailing_address}</Typography>
                             <Typography component="p">City2: {vet.city2}</Typography>
                             <Typography component="p">State2: {vet.state_id2}</Typography>
                             <Typography component="p">Zipcode2: {vet.zipcode2}</Typography>
                             <Typography component="p">Country2: {vet.country2}</Typography> */}
-                          <Typography variant="h5" component="h4">Military Details</Typography>
                           <Typography component="p">Service Status: <br></br><i>{vet.discharge}</i></Typography>
                           <br></br>
                           <Typography component="p">Branch of Service: <br></br><i>{vet.branch}</i></Typography>
