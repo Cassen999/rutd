@@ -230,22 +230,75 @@ router.get("/exist/:id", rejectUnauthenticatedVet, (req, res) => {
     });
 });
 
-router.put("/:id", rejectUnauthenticatedAdmin, (req, res) => {
-  console.log("Updating Org ", req.body); // not coming through
+router.put("/:id", rejectUnauthenticatedVet, (req, res) => {
+  console.log("Updating Vet ", req.body);
   let orgID = req.params.id;
   // capture
-  const name = req.body.name;
-  const number = req.body.number;
+  const first_name = req.body.first_name;
+  const last_name = req.body.last_name;
   const email = req.body.email;
+  const date_of_birth = req.body.date_of_birth;
+  const number = req.body.number;
+  const gender_id = req.body.gender_id;
+  const married_id = req.body.married_id;
+  const children = req.body.children;
+  const homeless = req.body.homeless;
+  const current_address = req.body.current_address;
   const city = req.body.city;
   const state_id = req.body.state_id;
-  const pdf = req.body.pdf;
-  const website = req.body.website;
-  const pictures = req.body.pictures;
-  const description = req.body.description;
-  const approved = req.body.approved;
+  const zipcode = req.body.zipcode;
+  const country_id = req.body.country_id;
+  const mailing_address = req.body.mailing_address;
+  const city2 = req.body.city2;
+  const state_id2 = req.body.state_id2;
+  const zipcode2 = req.body.zipcode2;
+  const country_id2 = req.body.country_id2;
+  const branch_id = req.body.branch_id;
+  const rank_id = req.body.rank_id;
+  const start_date = req.body.start_date;
+  const end_date = req.body.end_date;
+  const status_id = req.body.status_id;
+  const discharge_id = req.body.discharge_id;
+  const injury_id = req.body.injury_id;
+  const compensation = req.body.compensation;
+  const percentage = req.body.percentage;
+  const danger_areas = req.body.danger_areas;
+  const purple_heart = req.body.purple_heart;
   const categories = req.body.categories;
-  const queryText = `UPDATE organization SET name=$1, number=$2, email=$3, city=$4, state_id=$5, pdf=$6, website=$7, pictures=$8, description=$9, approved=$11 WHERE id= $10;`;
+  const queryText = `
+  UPDATE veteran SET 
+  first_name = $1, 
+  last_name = $2, 
+  email = $3,
+  date_of_birth = $4, 
+  number = $5, 
+  gender_id = $6, 
+  married_id = $7, 
+  children = $8, 
+  homeless = $9, 
+  current_address = $10,
+  city = $11,
+  state_id = $12, 
+  zipcode = $13, 
+  country_id = $14,
+  mailing_address = $15,
+  city2 = $16,
+  state_id2 = $17,
+  zipcode2 = $18,
+  country_id2 = $19,
+  branch_id = $20,
+  rank_id = $21,
+  start_date = $22,
+  end_date = $23,
+  status_id = $24,
+  discharge_id = $25,
+  injury_id = $26,
+  compensation = $27,
+  percentage = $28,
+  danger_areas = $29,
+  purple_heart = $30,
+  categories = $31,
+  WHERE id= $32;`;
   pool
     .query(queryText, [
       first_name,
