@@ -2,7 +2,9 @@ const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
 const {
-  rejectUnauthenticatedAdmin, rejectUnauthenticatedVet, rejectUnauthenticatedVetAdmin
+  rejectUnauthenticatedAdmin,
+  rejectUnauthenticatedVet,
+  rejectUnauthenticatedVetAdmin,
 } = require("../modules/authentication-middleware");
 
 // GETs all vets by name
@@ -119,14 +121,12 @@ router.post("/", rejectUnauthenticatedVetAdmin, (req, res) => {
     });
 });
 
-
-// GET one specific veteran by ID 
+// GET one specific veteran by ID
 // TO DO - MAKE SURE joins are rendering correctly
-router.get('/:id', rejectUnauthenticatedAdmin, (req, res) => {
-    let id = req.params.id;
-  console.log('--- This is the ID of the veteran you clicked on: ',id);
-  const queryText =
-    `SELECT 
+router.get("/:id", rejectUnauthenticatedAdmin, (req, res) => {
+  let id = req.params.id;
+  console.log("--- This is the ID of the veteran you clicked on: ", id);
+  const queryText = `SELECT 
     veteran.first_name, 
     veteran.last_name, 
     veteran.email, 
@@ -167,15 +167,16 @@ router.get('/:id', rejectUnauthenticatedAdmin, (req, res) => {
     LEFT JOIN rank ON rank.id = veteran.rank_id
     LEFT JOIN percentage ON percentage.id = veteran.percentage
     WHERE veteran.id = $1;`;
-  pool.query(queryText, [id])
+  pool
+    .query(queryText, [id])
     .then((result) => {
-    console.log('GET This is the VETERAN you\'ve selected: ', result.rows); // WORKING
-    res.send(result.rows);
-  })
+      console.log("GET This is the VETERAN you've selected: ", result.rows); // WORKING
+      res.send(result.rows);
+    })
     .catch((error) => {
-    console.log('Error inside GET ID route:', error);
-    res.sendStatus(500);
-  });
+      console.log("Error inside GET ID route:", error);
+      res.sendStatus(500);
+    });
 });
 
 // Get a vet's id from vet table
@@ -184,7 +185,7 @@ router.get("/vetid/:id", rejectUnauthenticatedVet, (req, res) => {
                       "veteran".last_name, "veteran".email FROM "veteran"
                     JOIN "user" ON "user".id = "veteran".vet_id
                     WHERE "user".id = $1;`;
-  const id = req.params.id
+  const id = req.params.id;
   pool
     .query(sqlText, [id])
     .then((result) => {
@@ -204,7 +205,7 @@ router.post("/newVet/:id", rejectUnauthenticatedVetAdmin, (req, res) => {
   pool
     .query(queryText, [user_id])
     .then((result) => {
-      res.send(result.rows)
+      res.send(result.rows);
     })
     .catch((err) => {
       console.log("POST new Veteran FAILED: ", err);
@@ -213,19 +214,140 @@ router.post("/newVet/:id", rejectUnauthenticatedVetAdmin, (req, res) => {
 });
 
 router.get("/exist/:id", rejectUnauthenticatedVet, (req, res) => {
-  const user_id = req.params.id
-  console.log('exist router user_id', user_id)
+  const user_id = req.params.id;
+  console.log("exist router user_id", user_id);
   const queryText = `SELECT EXISTS
                     (SELECT 1 FROM "veteran" WHERE "veteran".vet_id = $1);`;
-  pool.query(queryText, [user_id])
-  .then((result) => {
-    console.log('exist result.rows', result.rows)
-    res.send(result.rows[0])
-  })
-  .catch((err) => {
-    console.log("GET exist FAILED: ", err);
-    res.sendStatus(500);
-  });
-})
+  pool
+    .query(queryText, [user_id])
+    .then((result) => {
+      console.log("exist result.rows", result.rows);
+      res.send(result.rows[0]);
+    })
+    .catch((err) => {
+      console.log("GET exist FAILED: ", err);
+      res.sendStatus(500);
+    });
+});
 
+router.put("/:id", rejectUnauthenticatedVet, (req, res) => {
+  console.log("Updating Vet ", req.body);
+  let orgID = req.params.id;
+  // capture
+  const first_name = req.body.first_name;
+  const last_name = req.body.last_name;
+  const email = req.body.email;
+  const date_of_birth = req.body.date_of_birth;
+  const number = req.body.number;
+  const gender_id = req.body.gender_id;
+  const married_id = req.body.married_id;
+  const children = req.body.children;
+  const homeless = req.body.homeless;
+  const current_address = req.body.current_address;
+  const city = req.body.city;
+  const state_id = req.body.state_id;
+  const zipcode = req.body.zipcode;
+  const country_id = req.body.country_id;
+  const mailing_address = req.body.mailing_address;
+  const city2 = req.body.city2;
+  const state_id2 = req.body.state_id2;
+  const zipcode2 = req.body.zipcode2;
+  const country_id2 = req.body.country_id2;
+  const branch_id = req.body.branch_id;
+  const rank_id = req.body.rank_id;
+  const start_date = req.body.start_date;
+  const end_date = req.body.end_date;
+  const status_id = req.body.status_id;
+  const discharge_id = req.body.discharge_id;
+  const injury_id = req.body.injury_id;
+  const compensation = req.body.compensation;
+  const percentage = req.body.percentage;
+  const danger_areas = req.body.danger_areas;
+  const purple_heart = req.body.purple_heart;
+  const categories = req.body.categories;
+  const queryText = `
+  UPDATE veteran SET 
+  first_name = $1, 
+  last_name = $2, 
+  email = $3,
+  date_of_birth = $4, 
+  number = $5, 
+  gender_id = $6, 
+  married_id = $7, 
+  children = $8, 
+  homeless = $9, 
+  current_address = $10,
+  city = $11,
+  state_id = $12, 
+  zipcode = $13, 
+  country_id = $14,
+  mailing_address = $15,
+  city2 = $16,
+  state_id2 = $17,
+  zipcode2 = $18,
+  country_id2 = $19,
+  branch_id = $20,
+  rank_id = $21,
+  start_date = $22,
+  end_date = $23,
+  status_id = $24,
+  discharge_id = $25,
+  injury_id = $26,
+  compensation = $27,
+  percentage = $28,
+  danger_areas = $29,
+  purple_heart = $30,
+  categories = $31,
+  WHERE id= $32;`;
+  pool
+    .query(queryText, [
+      first_name,
+      last_name,
+      email,
+      date_of_birth,
+      number,
+      gender_id,
+      married_id,
+      children,
+      homeless,
+      current_address,
+      city,
+      state_id,
+      zipcode,
+      country_id,
+      mailing_address,
+      city2,
+      state_id2,
+      zipcode2,
+      country_id2,
+      branch_id,
+      rank_id,
+      start_date,
+      end_date,
+      status_id,
+      discharge_id,
+      injury_id,
+      compensation,
+      percentage,
+      danger_areas,
+      purple_heart,
+      orgID,
+    ])
+    .then((result) => {
+      // Delete existing mapping records
+      const queryText = `DELETE FROM veteran_categories WHERE vet_id= $1;`;
+      pool.query(queryText, [orgID]).then(() => {
+        // Insert new category mapping
+        categories.forEach((cat_id) => {
+          const queryText = `INSERT INTO veteran_categories (vet_id, categories_id) values($1, $2);`;
+          pool.query(queryText, [orgID, cat_id]);
+        });
+        res.status(200).json({ result: "success" });
+      });
+    })
+    .catch((err) => {
+      console.log("POST Veteran FAILED: ", err);
+      res.sendStatus(500);
+    });
+});
 module.exports = router;
