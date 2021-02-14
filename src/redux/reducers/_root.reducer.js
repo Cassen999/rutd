@@ -15,7 +15,8 @@ import resourceSearch from './resourceSearch.reducer';
 import demographicReducer from './demographic.reducer';
 import addNewMatchReducer from './addNewMatch.reducer';
 import categoryReducer from './category.reducer';
-import dropdownReducer from './dropdown.reducer';
+import genderDropdownReducer from './genderDropdown.reducer';
+import marriageDropdownReducer from './marriageDropdown.reducer'
 import existReducer from './exist.reducer';
 
 const rootReducer = combineReducers({
@@ -35,7 +36,8 @@ const rootReducer = combineReducers({
   resourceSearch,
   addNewMatchReducer,
   categoryReducer,
-  dropdownReducer,
+  genderDropdownReducer,
+  marriageDropdownReducer,
   existReducer,
 });
 
