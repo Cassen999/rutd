@@ -66,7 +66,7 @@ class AdminLandingPage extends Component {
                 <TableHead className="table-head-color">
                   <TableRow>
                     <TableCell>Veterans</TableCell>
-                    <TableCell align="right">Organization</TableCell>
+                    <TableCell align="right">Organizations</TableCell>
                     <TableCell align="right">Time Stamp</TableCell>
                   </TableRow>
                 </TableHead>

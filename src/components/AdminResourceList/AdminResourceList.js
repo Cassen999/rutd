@@ -91,7 +91,7 @@ class AdminResourceList extends Component {
           <Table className={classes.table}>
             <TableHead className="table-head-color">
               <TableRow>
-                <TableCell>Organization</TableCell>
+                <TableCell>Organizations</TableCell>
                 <TableCell align="left">Contact</TableCell>
                 <TableCell align="left">Edit</TableCell>
                 <TableCell align="left">Delete</TableCell>
