@@ -130,7 +130,7 @@ class DemographicQuestion extends Component {
                     value={this.state.vet.dOB}
                     onChange={(event) => this.handleInputChange(event, "birth")}
                 />
-               
+               GENDER
                 <Select
                 value={this.state.vet.gender}
                 onChange={this.handleChange}
@@ -177,12 +177,13 @@ class DemographicQuestion extends Component {
                     value={this.state.vet.homeless}
                     onChange={(event) => this.handleInputChange(event, "homeless")}
                 />
+                <br/>
                 HOME ADDRESS
                 <TextField
                     variant="outlined"
                     label="Address"
                     name="address"
-                    value={this.state.vet.homeAddress}
+                    value={this.state.vet.homeAddress.address}
                     onChange={(event) => this.handleInputChange(event, "address")}
                 />
 
@@ -230,14 +231,14 @@ class DemographicQuestion extends Component {
                     value={this.state.vet.homeAddress.country}
                     onChange={(event) => this.handleInputChange(event, "country")}
                 />
-
+                <br/>
                 MAIL ADDRESS
 
                 <TextField
                     variant="outlined"
                     label="Address"
                     name="address"
-                    value={this.state.vet.mailAddress}
+                    value={this.state.vet.mailAddress.address}
                     onChange={(event) => this.handleInputChange(event, "address")}
                 />
 
@@ -287,11 +288,10 @@ class DemographicQuestion extends Component {
                 />
 
                
-                <Button onClick={(event) => { this.saveName(event) }}>SAVE</Button>
+                <Button onClick={(event) =>this.saveDemographic(event)}>SAVE</Button>
                 
                 
                 
-                <Button onClick={(event) => { this.saveDOB(event) }}>SAVE</Button>
             </form>
         )//END return
     };//END render
