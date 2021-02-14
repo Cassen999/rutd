@@ -18,4 +18,17 @@ router.get("/gender", rejectUnauthenticatedVet, (req, res) => {
       });
   });
 
+  router.get("/marriage", rejectUnauthenticatedVet, (req, res) => {
+    console.log("in dropdown GET marriage");
+    const queryText = `SELECT * FROM "married"`;
+    pool.query(queryText)
+      .then((result) => {
+        res.send(result.rows);
+      })
+      .catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+      });
+  });
+
   module.exports = router;
