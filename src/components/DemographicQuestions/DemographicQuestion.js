@@ -20,8 +20,8 @@ const styles = theme => ({
 
 class DemographicQuestion extends Component {
     componentDidMount(){
-        this.props.dispatch({type: 'FETCH_GENDER'})}   
-        // this.props.dispatch({type: 'FETCH_MARRIAGE'})}   
+        this.props.dispatch({type: 'FETCH_GENDER'})  
+         this.props.dispatch({type: 'FETCH_MARRIAGE'})}   
 
     state = {
         vet: {
@@ -29,10 +29,10 @@ class DemographicQuestion extends Component {
                 last_name: "",
                 email: "",
                 birth: "",
-                gender: "",
+                gender: 0,
                 phone: "",
-                marriage: "",
-                children: "",
+                marriage: 0,
+                children: 0,
                 homeless: "",
                 homeAddress: '',
                 homeApartment: '',
@@ -49,28 +49,28 @@ class DemographicQuestion extends Component {
         }
     }
 
-    handleChangeForGender = (event, genderId) => {
+    handleChangeForGender = (event ) => {
         event.preventDefault();
         console.log("Handling input-change...");
         console.log("Setting state...");
         this.setState({
           vet: {
             ...this.state.vet, 
-            gender: genderId
+            gender: event.target.value
             }
         }, function () {
           console.log("state has been set:", this.state.vet);
         });
       };
    
-      handleChangeForMarriage = (event, genderId) => {
+      handleChangeForMarriage = (event) => {
         event.preventDefault();
         console.log("Handling input-change...");
         console.log("Setting state...");
         this.setState({
           vet: {
             ...this.state.vet, 
-            gender: genderId
+            marriage: event.target.value
             }
         }, function () {
           console.log("state has been set:", this.state.vet);
@@ -191,18 +191,19 @@ class DemographicQuestion extends Component {
                {/* <InputLabel htmlFor="age-helper">Age</InputLabel> */}
                 <Select
                 // input={<Input name="vet" />}
+                onChange={(event) => this.handleChangeForGender(event, 'gender')}
+
                 value={this.state.vet.gender}
                 // onChange={this.handleChangeForGender}
                 inputProps={{
                   name: 'gender',
                   id: 'gender-simple',
                 }}>
-                  {this.props.store.dropdownReducer.map((gender, i) => {
+                  {this.props.store.genderDropdownReducer.map((gender, i) => {
                     return(
                       <MenuItem 
                         key={i} 
                         value={gender.id}
-                        onClick={(event) => this.handleChangeForGender(event, gender.id)}
                       >
                         
                             {gender.description}</MenuItem>
@@ -222,6 +223,8 @@ MARRIAGE
 <FormControl className={classes.formControl}>
                {/* <InputLabel htmlFor="age-helper">Age</InputLabel> */}
                 <Select
+                onChange={(event) => this.handleChangeForMarriage(event, 'marriage')}
+
                 // input={<Input name="vet" />}
                 value={this.state.vet.marriage}
                 // onChange={this.handleChangeForGender}
@@ -229,12 +232,11 @@ MARRIAGE
                   name: 'marriage',
                   id: 'marriage-simple',
                 }}>
-                  {this.props.store.dropdownReducer.map((marriage, i) => {
+                  {this.props.store.marriageDropdownReducer.map((marriage, i) => {
                     return(
                       <MenuItem 
                         key={i} 
                         value={marriage.id}
-                        onClick={(event) => this.handleChangeForMarriage(event, marriage.id)}
                       >
                         
                             {marriage.description}</MenuItem>
@@ -251,34 +253,34 @@ MARRIAGE
                     onChange={(event) => this.handleInputChange(event, "children")}
                 />  
 ARE YOU CURRENTLY HOMELESS?
-{/* <FormControl className={classes.formControl}> */}
+ <FormControl className={classes.formControl}> 
                {/* <InputLabel htmlFor="age-helper">Age</InputLabel> */}
-                {/* <Select
+                <Select
+                onClick={(event) => this.handleInputChange(event, 'homeless')}
+
                 // input={<Input name="vet" />}
                 value={this.state.vet.homeless}
                 // onChange={this.handleChangeForGender}
                 inputProps={{
                   name: 'homeless',
                   id: 'homeless-simple',
-                }}> */}
-                {/* {this.props.store.dropdownReducer.map((gender, i) => { */}
+                }}>
                 {/* return( */}
-                {/* <MenuItem 
+                <MenuItem 
                     value='false'
-                    onClick={(event) => this.handleInputChange(event, 'homeless')}
                 >
                         NO
                 </MenuItem>
                 <MenuItem
                     value='true'
-                    onClick={(event) => this.handleInputChange(event, 'homeless')}
+                    // onClick={(event) => this.handleInputChange(event, 'homeless')}
                 >
                         YES
-                </MenuItem> */}
+                </MenuItem>
                     {/* ) */}
                 {/*  })} */}
-                {/* </Select> 
-                </FormControl> */}
+                </Select> 
+                </FormControl>
                 <br/>
                 HOME ADDRESS
                 <TextField
