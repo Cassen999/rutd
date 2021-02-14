@@ -51,7 +51,8 @@ const styles = (theme) => ({
     }  
   });
 class MiscQuestions extends Component {
-    state = { 
+    state = {
+        userId: this.props.store.user.id, 
         compensationId: 0,
         registered: false,
         imminentDanger: false,
