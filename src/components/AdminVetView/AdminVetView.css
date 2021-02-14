@@ -22,3 +22,11 @@ hr{
 .float-right{
     float:right;
 }
+
+.admin-landing-button{
+    float: right;
+}
+
+.space-between-buttons{
+    margin: 0 2rem;
+}

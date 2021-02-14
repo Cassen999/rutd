@@ -4,6 +4,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import '../AdminVetView/AdminVetView.css';
 import Fab from '@material-ui/core/Fab';
 import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
+import HomeIcon from '@material-ui/icons/Home';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -48,50 +49,37 @@ class AdminVetView extends Component {
       const { classes } = this.props;
         return (
           <div className="container">
-            <center>
-              {/* {JSON.stringify(this.props.store.details)} */}
-            <h2>Admin Vet View</h2>
-            </center>
               {details.map((vet, i) => {
                 return(
                   <div key={i}>
-                    <Fab  
-                      className="admin-landing-button" variant="contained" 
-                      style={{
-                        borderRadius: 35,
-                        backgroundColor: '#AFFA3D',
-                        fontFamily: 'orbitron',
-                      }}
-                      onClick={this.goBackHome}>
-                        <SaveTwoToneIcon />
-                      </Fab>
                     <Paper className={classes.root} elevation={1}>
                       <hr></hr>
                       <div className="flex-grid">
                         <div className="col">
-                          <Typography variant="h5" component="h3">Demographics</Typography>
-                          <Typography component="p">Name: {vet.first_name} {vet.last_name}</Typography>
-                          <Typography component="p">Email: {vet.email}</Typography>
-                          <Typography component="p">Date of Birth:{vet.date_of_birth}</Typography>
-                          <Typography component="p">Number: {vet.number}</Typography>
-                          <Typography component="p">Gender: {vet.gender}</Typography>
-                          <Typography component="p">Marital Status: {vet.married}</Typography>
-                          <Typography component="p">Children: {vet.children}</Typography>
-                          <Typography component="p">Home Living Situation: {conversion(vet.homeless)}</Typography>
-                          <Typography component="p">Current Address: {vet.current_address}</Typography>
-                          <Typography component="p">City: {vet.city}</Typography>
-                          <Typography component="p">State: {vet.state}</Typography>
-                          <Typography component="p">Zipcode: {vet.zipcode}</Typography>
-                          <Typography component="p">Country: {vet.country}</Typography>
+                          <Typography variant="h5" className="font" component="h5">Demographics</Typography>
+                            <Typography className="font" component="p">Name: {vet.first_name} {vet.last_name}</Typography>
+                            <Typography className="font" component="p">Email: {vet.email}</Typography>
+                            <Typography className="font" component="p">Date of Birth: {vet.to_char}</Typography>
+                            <Typography className="font" component="p">Number: {vet.number}</Typography>
+                            <Typography className="font" component="p">Gender: {vet.gender}</Typography>
+                            <Typography className="font" component="p">Marital Status: {vet.married}</Typography>
+                            <Typography className="font" component="p">Children: {vet.children}</Typography>
+                            <Typography className="font" component="p">Experiencing Homelessness? {conversion(vet.homeless)}</Typography>
+                            <br></br>
+                          <Typography variant="h5" className="font" component="h5">Address</Typography>
+                            <Typography className="font" component="p"> {vet.current_address}</Typography>
+                            <Typography className="font" component="p"> {vet.city}, {vet.state}</Typography>
+                            <Typography className="font" component="p"> {vet.zipcode}</Typography>
+                            <Typography className="font" component="p"> {vet.country}</Typography>
                         </div>
                         <div className="col">
-                          <Typography component="p">Mailing Address: {vet.mailing_address}</Typography>
+                          {/* COMMENTING THE BELOW OUT FOR NOW */}
+                          {/* <Typography component="p">Mailing Address: {vet.mailing_address}</Typography>
                           <Typography component="p">City2: {vet.city2}</Typography>
                           <Typography component="p">State2: {vet.state_id2}</Typography>
                           <Typography component="p">Zipcode2: {vet.zipcode2}</Typography>
-                          <Typography component="p">Country2: {vet.country2}</Typography>
-                          <br></br>
-                          <Typography variant="h5" component="h3">Military Information:</Typography>
+                        <Typography component="p">Country2: {vet.country2}</Typography> */}
+                          <Typography variant="h5" component="h4">Military Demographic:</Typography>
                           <Typography component="p">Branch: {vet.branch}</Typography>
                           <Typography component="p">Rank: {vet.rank}</Typography>
                           <Typography component="p">Start Date: {vet.start_date}</Typography>
@@ -107,18 +95,32 @@ class AdminVetView extends Component {
                       <hr></hr>
                     </Paper>
                   <br></br>
-                </div>
-              )})}
-                <Fab  
-                  className="admin-landing-button" variant="contained" 
+                              <div>
+              {/* <Fab  
+                className="admin-landing-button" variant="contained" 
                   style={{
                     borderRadius: 35,
                     backgroundColor: '#AFFA3D',
                     fontFamily: 'orbitron',
                   }}
-                  onClick={this.goBackHome}><SaveTwoToneIcon /></Fab>
-          </div>
-        );
+                onClick={this.goBackHome}>
+                  <SaveTwoToneIcon />
+              </Fab> */}
+                <span className="space-between-buttons">&nbsp;&nbsp;</span>
+              <Fab  
+                className="admin-landing-button" variant="contained" 
+                  style={{
+                    borderRadius: 35,
+                    backgroundColor: '#AFFA3D',
+                    fontFamily: 'orbitron',
+                  }}
+                onClick={this.goBackHome}><HomeIcon />
+              </Fab>
+              </div>
+                </div>
+              )})}
+            </div>
+      );
   }
 }
 
