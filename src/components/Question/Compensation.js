@@ -1,63 +1,79 @@
 import React, { Component } from "react";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
-// import {
-//   FormControl,
-//   FormLabel,
-//   RadioGroup,
-//   FormControlLabel,
-// } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
-import Radio from "@material-ui/core/Radio";
-import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
-
-const useStyles = makeStyles((theme) => ({
-  button: {
-    display: 'block',
-    marginTop: theme.spacing(2),
-  },
+import compose from 'recompose/compose';
+import clsx from 'clsx';
+import {  withStyles,
+          InputLabel,
+          MenuItem,
+          FormControl,
+          Select,
+          Radio,
+          Grid  } from "@material-ui/core";  
+                
+const styles = (theme) => ({
   formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
+    minWidth: 185,
   },
-}));
-
-// const styles = (theme) => ({
-//   inputs: {
-//     width: "",
-//     paddingTop: "0px",
-//     verticalAlign: "middle",
-//     fontFamily: "Arial",
-//   },
-//   menu: {
-//     width: 200,
-//   },
-//   container: {
-//     display: "flex",
-//     flexWrap: "wrap",
-//   },
-//   textField: {
-//     marginLeft: theme.spacing.unit,
-//     marginRight: theme.spacing.unit,
-//     width: 200,
-//   },
-//   dense: {
-//     marginTop: 19,
-//   },
-// });
+  root: {
+    '&:hover': {
+      backgroundColor: 'transparent',
+    },
+  },
+  icon: {
+    borderRadius: '50%',
+    width: 16,
+    height: 16,
+    boxShadow: 'inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)',
+    backgroundColor: '#f5f8fa',
+    backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))',
+    '$root.Mui-focusVisible &': {
+      outline: '2px auto rgba(19,124,189,.6)',
+      outlineOffset: 2,
+    },
+    'input:hover ~ &': {
+      backgroundColor: '#ebf1f5',
+    },
+    'input:disabled ~ &': {
+      boxShadow: 'none',
+      background: 'rgba(206,217,224,.5)',
+    },
+  },
+  checkedIcon: {
+    backgroundColor: '#b2b5ae',
+    backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
+    '&:before': {
+      display: 'block',
+      width: 16,
+      height: 16,
+      backgroundImage: 'radial-gradient(#fff,#fff 28%,transparent 32%)',
+      content: '""',
+    },
+    'input:hover ~ &': {
+      backgroundColor: '#727372',
+    },
+  },
+  text: {
+    fontSize: '20px',
+    fontFamily: 'Roboto',
+  },
+  label: {
+    fontSize: '18px',
+    fontFamily: 'Roboto',
+  },
+  heading: {
+    fontFamily: 'Roboto',
+  },
+  gridContainer: {
+    marginLeft: theme.spacing(2),
+  }  
+});
 class Compensation extends Component {
 
   state = {
-    percentageId: "0",
-    type: "0",
-    typeTwo: "2",
-    value: "0",
+    compPercentId: 0,
     open: false,
+    registered: false,
   };
 
   componentDidMount() {
@@ -66,7 +82,7 @@ class Compensation extends Component {
 
   handleChange = (event) => {
     event.preventDefault();
-    this.setState({ compensation: event.target.value });
+    this.setState({ compPercentId: event.target.value });
   };
 
   handleClose = () => {
@@ -76,6 +92,26 @@ class Compensation extends Component {
   handleOpen = () => {
     this.setState({ open: true });
   };
+
+  handleRegistered = () => {
+    this.setState({ registered: true });
+  }
+
+  noCompensation = () => {
+    this.setState({
+      compPercentId: 0,
+      registered: false
+    });
+  }
+
+  handleSelect = (event, answer) => {
+    this.setState({ registered: answer });
+    if (answer === false) {
+      this.setState({ compPercentId: 0 });
+    }
+  }
+
+
 
   // handleChange = (event) => {
   //   this.setState({ value: event.target.value });
@@ -121,33 +157,85 @@ class Compensation extends Component {
     const { classes } = this.props;
     const percentages = this.props.store.percentageReducer;
     const open = this.state.open;
-    console.log(this.props.store.vetReducer);
+    const registered = this.state.registered;
     return (   
       <>
-        <Button className={classes.button} onClick={this.handleOpen}>
-          Open the select
-        </Button>
-        <FormControl className={classes.formControl}>
-          <InputLabel id="open-comp-label">Compensation Percentage</InputLabel>
-          <Select
-            labelId="open-comp-label"
-            id="open-comp"
-            open={open}
-            onClose={this.handleClose}
-            onOpen={this.handleOpen}
-            value={this.state.percentageId}
-            onChange={this.handleChange}
+        <h1 className={classes.heading}>Compensation Form</h1>
+        <p className={classes.text}>Are you currently registered with the VA?</p>
+          <Grid
+            container
+            spacing={1}
+            direction="row"
+            
+            className={classes.gridContainer}
           >
-            {percentages.map((percent) => (
-              <MenuItem
-                key={percent.description}
-                value={percent.id}
+            <Grid
+              container
+              item
+              xs={6}
+              sm={3}
+              spacing={2}      
+            >
+              <Grid
+                container
+                item
+                xs={12} 
+                spacing={1}
               >
-                {percent.description}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+                <Grid item xs={3}>
+                  <label className={classes.label}>Yes</label>
+                  <Radio
+                    className={classes.root}
+                    disableRipple
+                    color="default"
+                    checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
+                    icon={<span className={classes.icon} />}      
+                    checked={registered === true}
+                    value={true}
+                    onClick={(event) => this.handleSelect(event, true)}
+                  />
+                </Grid>
+                <Grid item xs={3}>
+                  <label className={classes.label}>No</label>         
+                  <Radio
+                    className={classes.root}
+                    disableRipple
+                    color="default"
+                    checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
+                    icon={<span className={classes.icon} />}
+                    checked={registered === false} 
+                    value={false}
+                    onClick={(event) => this.handleSelect(event, false)}
+                  />
+                </Grid>
+              </Grid>
+              <Grid item xs={3} justify="flex-start">
+                {registered === true && (
+                  <FormControl variant="filled" className={classes.formControl}>
+                    <InputLabel id="open-comp-label">Compensation Rate</InputLabel>
+                    <Select
+                      labelId="open-comp-label"
+                      id="open-comp"
+                      open={open}
+                      onClose={this.handleClose}
+                      onOpen={this.handleOpen}
+                      value={this.state.percentageId}
+                      onChange={this.handleChange}
+                    >
+                      {percentages.map((percent) => (
+                        <MenuItem
+                          key={percent.description}
+                          value={percent.id}
+                        >
+                          {percent.description}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>     
+                )}
+              </Grid>
+            </Grid>
+          </Grid>
       </>
 
       //   <>
@@ -212,4 +300,7 @@ class Compensation extends Component {
     ); //END return
   } //END render
 } //END DemographicsForm
-export default connect(mapStoreToProps)(withStyles()(Compensation));
+export default compose(
+  withStyles(styles, { withTheme: true }),
+  connect(mapStoreToProps)
+)(Compensation);
