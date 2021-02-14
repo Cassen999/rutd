@@ -93,7 +93,7 @@ class AdminResourceList extends Component {
               <TableRow>
                 <TableCell>Resource Name</TableCell>
                 <TableCell align="left">Contact</TableCell>
-                <TableCell align="left">Edit</TableCell>
+                {/* <TableCell align="left">Edit</TableCell> */}
                 <TableCell align="left">Delete</TableCell>
               </TableRow>
             </TableHead>
@@ -115,7 +115,7 @@ class AdminResourceList extends Component {
                         <EmailRoundedIcon />
                       </Fab>
                     </TableCell>
-                    <TableCell>
+                    {/* <TableCell>
                       <Fab
                         variant="contained"
                         style={{
@@ -127,7 +127,7 @@ class AdminResourceList extends Component {
                       >
                         <EditRoundedIcon />
                       </Fab>
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell>
                       <Fab
                         variant="contained"

@@ -418,19 +418,6 @@ class UserPage extends Component {
         </div>
         <div id="btnContainer">
           <Button
-            id="editBtn"
-            size="large"
-            variant="contained"
-            style={{
-              borderRadius: 35,
-              backgroundColor: '#AFFA3D',
-              fontFamily: 'orbitron',
-            }}
-            onClick={() => this.handleClick("profile")}
-          >
-            View/Edit Profile
-          </Button>
-          <Button
             id="emergencyBtn"
             size="large"
             variant="contained"
