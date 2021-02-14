@@ -125,6 +125,11 @@ class UserPage extends Component {
           </ul>
           <Button
             variant="contained"
+            style={{
+              borderRadius: 35,
+              backgroundColor: '#AFFA3D',
+              fontFamily: 'orbitron',
+            }}
             className={classes.closeModal}
             onClick={() => this.handleClick("closeModal")}
           >
@@ -145,6 +150,11 @@ class UserPage extends Component {
           id="completeProfileBtn"
           size="large"
           variant="contained"
+          style={{
+            borderRadius: 35,
+            backgroundColor: '#AFFA3D',
+            fontFamily: 'orbitron',
+          }}
           onClick={() => this.handleClick("completeProfile")}
         >
           Complete Profile Information
@@ -234,14 +244,16 @@ class UserPage extends Component {
                         </Grid>
                       );
                     }
-                    // } else {
-                    //   return <h3></h3>;
-                    // }
                   })}
                 </Grid>
               </Grid>
               <IconButton
                 id="decrement-match-index"
+                style={{
+                  borderRadius: 35,
+                  backgroundColor: '#AFFA3D',
+                  fontFamily: 'orbitron',
+                }}
                 variant="contained"
                 onClick={() => this.handleClick("decrementComplete")}
               >
@@ -250,6 +262,11 @@ class UserPage extends Component {
               <IconButton
                 id="increment-match-index"
                 variant="contained"
+                style={{
+                  borderRadius: 35,
+                  backgroundColor: '#AFFA3D',
+                  fontFamily: 'orbitron',
+                }}
                 onClick={() => this.handleClick("incrementComplete")}
               >
                 <ArrowForwardIcon fontSize="large" />
@@ -350,6 +367,11 @@ class UserPage extends Component {
               <IconButton
                 id="decrement-incomplete-index"
                 variant="contained"
+                style={{
+                  borderRadius: 35,
+                  backgroundColor: '#AFFA3D',
+                  fontFamily: 'orbitron',
+                }}
                 onClick={() => this.handleClick("decrementIncomplete")}
               >
                 <ArrowBackIcon fontSize="large" />
@@ -357,6 +379,11 @@ class UserPage extends Component {
               <IconButton
                 id="increment-incomplete-index"
                 variant="contained"
+                style={{
+                  borderRadius: 35,
+                  backgroundColor: '#AFFA3D',
+                  fontFamily: 'orbitron',
+                }}
                 onClick={() => this.handleClick("incrementIncomplete")}
               >
                 <ArrowForwardIcon fontSize="large" />
@@ -369,6 +396,11 @@ class UserPage extends Component {
             id="editBtn"
             size="large"
             variant="contained"
+            style={{
+              borderRadius: 35,
+              backgroundColor: '#AFFA3D',
+              fontFamily: 'orbitron',
+            }}
             onClick={() => this.handleClick("profile")}
           >
             View/Edit Profile
@@ -377,7 +409,11 @@ class UserPage extends Component {
             id="emergencyBtn"
             size="large"
             variant="contained"
-            color="secondary"
+            style={{
+              borderRadius: 35,
+              backgroundColor: '#AFFA3D',
+              fontFamily: 'orbitron',
+            }}
             onClick={() => this.handleClick("emergency")}
           >
             Emergency Numbers
@@ -386,9 +422,14 @@ class UserPage extends Component {
             id="allMatchBtn"
             size="large"
             variant="contained"
+            style={{
+              borderRadius: 35,
+              backgroundColor: '#AFFA3D',
+              fontFamily: 'orbitron',
+            }}
             onClick={() => this.handleClick("allMatches")}
           >
-            View All Matches
+            View New Matches
           </Button>
         </div>
         <Modal

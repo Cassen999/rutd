@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import '../AdminVetView/AdminVetView.css';
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
+import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -55,6 +56,16 @@ class AdminVetView extends Component {
                 // CONDITIONAL RENDER BOOLEAN VALUES TO YES OR NO 
                 return(
                   <div key={i}>
+                    <Fab  
+                      className="admin-landing-button" variant="contained" 
+                      style={{
+                        borderRadius: 35,
+                        backgroundColor: '#AFFA3D',
+                        fontFamily: 'orbitron',
+                      }}
+                      onClick={this.goBackHome}>
+                        <SaveTwoToneIcon />
+                      </Fab>
                     <Paper className={classes.root} elevation={1}>
                       <hr></hr>
                       <Typography component="p">Name: {vet.first_name} {vet.last_name}</Typography>
@@ -90,11 +101,14 @@ class AdminVetView extends Component {
                   <br></br>
                 </div>
               )})}
-              <center>
-                <Button  
+                <Fab  
                   className="admin-landing-button" variant="contained" 
-                  onClick={this.goBackHome}>Admin Landing Page</Button>
-              </center>
+                  style={{
+                    borderRadius: 35,
+                    backgroundColor: '#AFFA3D',
+                    fontFamily: 'orbitron',
+                  }}
+                  onClick={this.goBackHome}><SaveTwoToneIcon /></Fab>
           </div>
         );
   }

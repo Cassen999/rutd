@@ -120,11 +120,16 @@ class AccountRegisterForm extends Component {
               />
             <div>
               <Button className={classes.button} 
+                style={{
+                  borderRadius: 35,
+                  backgroundColor: '#AFFA3D',
+                  fontFamily: 'orbitron'
+                }}
                 variant="contained" 
                 value="Register" 
                 type="submit" 
                 name="submit" 
-                color="primary">Register</Button>
+                >Register</Button>
             </div>
         </center>
         </div>

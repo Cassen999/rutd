@@ -139,7 +139,11 @@ class VetFindMatches extends Component {
         <div className="match-btn">
           <Button 
             onClick={() => this.handleMatchClick(vetReducer)}
-            color="primary"
+            style={{
+              borderRadius: 35,
+              backgroundColor: '#AFFA3D',
+              fontFamily: 'orbitron',
+            }}
             variant="contained">
             See Matches
           </Button>

@@ -10,6 +10,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
+import EditRoundedIcon from '@material-ui/icons/EditRounded';
+import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
+import EmailRoundedIcon from '@material-ui/icons/EmailRounded';
 
 const styles = theme => ({
   textField: {
@@ -98,27 +102,40 @@ class AdminResourceList extends Component {
                       {resource.name}
                     </TableCell>
                     <TableCell >
-                      <Button
+                      <Fab
                         variant="contained"
-                        color="primary"
+                        style={{
+                          borderRadius: 35,
+                          backgroundColor: '#AFFA3D',
+                          fontFamily: 'orbitron',
+                        }}
                         onClick={() => this.handleMailTo(resource.email)}>
-                        Contact
-                      </Button>
+                        <EmailRoundedIcon />
+                      </Fab>
                     </TableCell>
                     <TableCell>
-                      <Button
+                      <Fab
                         variant="contained"
+                        style={{
+                          borderRadius: 35,
+                          backgroundColor: '#AFFA3D',
+                          fontFamily: 'orbitron',
+                        }}
                         onClick={() => this.handleResource(resource.id)}>
-                        Edit
-                      </Button>
+                        <EditRoundedIcon />
+                      </Fab>
                     </TableCell>
                     <TableCell>
-                      <Button
+                      <Fab
                         variant="contained"
-                        color="secondary"
+                        style={{
+                          borderRadius: 35,
+                          backgroundColor: '#AFFA3D',
+                          fontFamily: 'orbitron',
+                        }}
                         onClick={() => this.handleDelete(resource.id)}>
-                        Delete
-                      </Button>
+                        <DeleteForeverRoundedIcon />
+                      </Fab>
                     </TableCell>
                   </TableRow>
                 )}
@@ -131,24 +148,40 @@ class AdminResourceList extends Component {
                       {resource.name}
                     </TableCell>
                     <TableCell >
-                      <Button
+                      <Fab
                         variant="contained"
-                        color="primary">
-                        Contact
-                      </Button>
+                        style={{
+                          borderRadius: 35,
+                          backgroundColor: '#AFFA3D',
+                          fontFamily: 'orbitron',
+                        }}
+                        onClick={() => this.handleMailTo(resource.email)}>
+                        <EmailRoundedIcon />
+                      </Fab>
                     </TableCell>
                     <TableCell>
-                      <Button
-                        variant="contained">
-                        Edit
-                      </Button>
+                      <Fab
+                        variant="contained"
+                        style={{
+                          borderRadius: 35,
+                          backgroundColor: '#AFFA3D',
+                          fontFamily: 'orbitron',
+                        }}
+                        onClick={() => this.handleResource(resource.id)}>
+                        <EditRoundedIcon />
+                      </Fab>
                     </TableCell>
                     <TableCell>
-                      <Button
+                      <Fab
                         variant="contained"
-                        color="secondary">
-                        Delete
-                      </Button>
+                        style={{
+                          borderRadius: 35,
+                          backgroundColor: '#AFFA3D',
+                          fontFamily: 'orbitron',
+                        }}
+                        onClick={() => this.handleDelete(resource.id)}>
+                        <DeleteForeverRoundedIcon />
+                      </Fab>
                     </TableCell>
                   </TableRow>
                 )}

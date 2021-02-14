@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
-import { Button, withStyles, TextField } from "@material-ui/core";
+import { withStyles, TextField } from "@material-ui/core";
+import Fab from '@material-ui/core/Fab';
+import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
 
 const styles = {
     inputs: {
@@ -70,7 +72,13 @@ class Name extends Component {
                         this.handleInputChange(event, "last_name")
                     }
                 />
-                <Button onClick={(event) => { this.saveName(event) }}>SAVE</Button>
+                <Fab
+                    style={{
+                        borderRadius: 35,
+                        backgroundColor: '#AFFA3D',
+                        fontFamily: 'orbitron',
+                    }}
+                  onClick={(event) => { this.saveName(event) }}><SaveTwoToneIcon /></Fab>
                 <TextField
                     variant="outlined"
                     label="Date of Birth"
@@ -80,7 +88,13 @@ class Name extends Component {
                         this.handleInputChange(event, "dOB")
                     }
                 />
-                <Button onClick={(event) => { this.saveDOB(event) }}>SAVE</Button>
+                <Fab
+                    style={{
+                        borderRadius: 35,
+                        backgroundColor: '#AFFA3D',
+                        fontFamily: 'orbitron',
+                    }}
+                    onClick={(event) => { this.saveDOB(event) }}><SaveTwoToneIcon /></Fab>
             </form>
         )//END return
     };//END render

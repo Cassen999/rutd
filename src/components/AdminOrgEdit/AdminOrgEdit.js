@@ -4,13 +4,15 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withStyles } from '@material-ui/core/styles';
 // import Paper from '@material-ui/core/Paper';
 // import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import '../AdminOrgEdit/AdminOrgEdit.css';
 // import InputLabel from '@material-ui/core/InputLabel';
 // import Select from '@material-ui/core/Select';
 // import MenuItem from '@material-ui/core/MenuItem';
 import swal from 'sweetalert';
+import Fab from '@material-ui/core/Fab';
+import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
+import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
 
 // TO DO :
 // - save button
@@ -140,9 +142,9 @@ handleChange = (event, input) => {
     return (
       <div className="container">
         {/* {JSON.stringify(resourceDetails)} */}
-          <center>
+          {/* <center>
             <h2>Admin Organization Edit</h2>
-          </center>
+          </center> */}
           {/* {resourceDetails.map((resource, i) => {
             return( */}
                   <form className="white-background">
@@ -224,21 +226,30 @@ handleChange = (event, input) => {
                                   </MenuItem>)}
                             </Select> */}
                           <br></br>
-                          <Button 
-                            style={{marginTop:"1rem", marginLeft:"2rem"}}
+                          <Fab 
+                            style={{
+                              borderRadius: 35,
+                              backgroundColor: '#AFFA3D',
+                              fontFamily: 'orbitron',
+                              marginTop:"1rem",
+                            }}
                             className="float-right" 
                             variant="contained" 
-                            onClick={()=> this.updateOrg(resourceDetails.org_id)}>Update organization
-                          </Button>
-                          <Button 
-                            style={{marginTop:"1rem"}}
+                            onClick={()=>this.cancelSubmit(resourceDetails.org_id)}><HomeRoundedIcon />
+                          </Fab>
+                          <Fab 
+                            style={{
+                              borderRadius: 35,
+                              backgroundColor: '#AFFA3D',
+                              fontFamily: 'orbitron',
+                              marginTop:"1rem",
+                              marginLeft:"2rem"
+                            }}
                             className="float-right" 
                             variant="contained" 
-                            onClick={()=>this.cancelSubmit(resourceDetails.org_id)}>Cancel
-                          </Button>
+                            onClick={()=> this.updateOrg(resourceDetails.org_id)}><SaveTwoToneIcon />
+                          </Fab>
                   </form>
-            {/* )
-          })} */}
       </div>
     );
   }

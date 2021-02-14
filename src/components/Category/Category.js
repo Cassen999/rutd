@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
 import {
-  Button, Grid, Paper, withStyles, FormControl, InputLabel, Select,
+  Fab, Grid, Paper, withStyles, FormControl, InputLabel, Select,
   MenuItem, FormHelperText
 } from "@material-ui/core";
+import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
 
 const styles = {
   inputs: {
@@ -107,13 +108,18 @@ class Category extends Component {
               <FormHelperText>Some important helper text</FormHelperText>
             </FormControl>
             <br />
-            <Button
+            <Fab
+              style={{
+                borderRadius: 35,
+                backgroundColor: '#AFFA3D',
+                fontFamily: 'orbitron',
+              }}
               onClick={(event) => {
                 this.saveCategory(event);
               }}
             >
-              SAVE
-                </Button>
+              <SaveTwoToneIcon />
+                </Fab>
             <br />
           </Paper>
         </Grid>
