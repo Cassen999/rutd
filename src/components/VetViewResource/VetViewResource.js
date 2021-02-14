@@ -62,12 +62,6 @@ class VetViewResource extends Component{
                                 <Typography component="p">
                                     Categories: {vetMatch.categories}
                                 </Typography>
-                                {/* <Typography component="p">
-                                PLACEHOLDER FOR PDF
-                                </Typography>
-                                <Typography component="p">
-                                PLACEHOLDER FOR PICTURES
-                            </Typography> */}
                         <hr></hr>
                         </div>
                       )
