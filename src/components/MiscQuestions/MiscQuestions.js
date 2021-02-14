@@ -73,13 +73,16 @@ class MiscQuestions extends Component {
 
     saveProgress = (event) => {
         event.preventDefault();
-        console.log('Saving Progress');
+        console.log('Saving Progress', this.state);
+        this.props.dispatch({
+            type: 'UPDATE_MISC_QUESTIONS',
+            payload: this.state
+        })
     }
 
     render() {
         const { classes } = this.props;
         const { compensationId, registered, imminentDanger, dangerDescription, purpleHeart } = this.state;
-        console.log('current state is:', this.state); 
         return ( 
             <>
                 <Compensation
