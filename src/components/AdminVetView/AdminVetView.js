@@ -57,20 +57,27 @@ class AdminVetView extends Component {
                       <div className="flex-grid">
                         <div className="col">
                           <Typography variant="h5" className="font" component="h5">Demographics</Typography>
-                            <Typography className="font" component="p">Full Name: {vet.first_name} {vet.last_name}</Typography>
-                            <Typography className="font" component="p">Email: {vet.email}</Typography>
-                            <Typography className="font" component="p">Date of Birth: {vet.to_char}</Typography>
-                            <Typography className="font" component="p">Contact Number: {vet.number}</Typography>
-                            <Typography className="font" component="p">Gender: {vet.gender}</Typography>
-                            <Typography className="font" component="p">Marital Status: {vet.married}</Typography>
-                            <Typography className="font" component="p">Children: {vet.children}</Typography>
-                            <Typography className="font" component="p">Experiencing Homelessness? {conversion(vet.homeless)}</Typography>
+                            <Typography className="font" component="p">Full Name: <br></br><i>{vet.first_name} {vet.last_name}</i></Typography>
+                            <br></br>
+                            <Typography className="font" component="p">Email: <br></br><i>{vet.email}</i></Typography>
+                            <br></br>
+                            <Typography className="font" component="p">Date of Birth: <br></br><i>{vet.to_char}</i></Typography>
+                            <br></br>
+                            <Typography className="font" component="p">Contact Number: <br></br><i>{vet.number}</i></Typography>
+                            <br></br>
+                            <Typography className="font" component="p">Gender: <br></br><i>{vet.gender}</i></Typography>
+                            <br></br>
+                            <Typography className="font" component="p">Marital Status: <br></br><i>{vet.married}</i></Typography>
+                            <br></br>
+                            <Typography className="font" component="p">Children: <br></br><i>{vet.children}</i></Typography>
+                            <br></br>
+                            <Typography className="font" component="p">Experiencing Homelessness? <br></br><i>{conversion(vet.homeless)}</i></Typography>
                             <br></br>
                           <Typography variant="h5" className="font" component="h5">Address</Typography>
-                            <Typography className="font" component="p"> {vet.current_address}</Typography>
-                            <Typography className="font" component="p"> {vet.city}, {vet.state}</Typography>
-                            <Typography className="font" component="p"> {vet.zipcode}</Typography>
-                            <Typography className="font" component="p"> {vet.country}</Typography>
+                            <Typography className="font" component="p"> <i>{vet.current_address}</i></Typography>
+                            <Typography className="font" component="p"> <i>{vet.city}, {vet.state}</i></Typography>
+                            <Typography className="font" component="p"> <i>{vet.zipcode}</i></Typography>
+                            <Typography className="font" component="p"> <i>{vet.country}</i></Typography>
                         </div>
                         <div className="col">
                         {/* COMMENTING THE BELOW OUT FOR NOW */}
@@ -79,17 +86,25 @@ class AdminVetView extends Component {
                             <Typography component="p">State2: {vet.state_id2}</Typography>
                             <Typography component="p">Zipcode2: {vet.zipcode2}</Typography>
                             <Typography component="p">Country2: {vet.country2}</Typography> */}
-                          <Typography variant="h5" component="h4">Military Demographic:</Typography>
-                          <Typography component="p">Service Status: {vet.discharge}</Typography>
-                          <Typography component="p">Branch of Service: {vet.branch}</Typography>
-                          <Typography component="p">Highest Attained Rank: {vet.rank}</Typography>
-                          <Typography component="p">Start of Service: {vet.start_date}</Typography>
-                          <Typography component="p">End Service Date: {vet.end_date}</Typography>
-                          <Typography component="p">Maladies: {vet.injury}</Typography>
-                          <Typography component="p">Received compensation: {conversion(vet.compensation)}</Typography>
-                          <Typography component="p">Percentage of Department of Veterans Affairs compensation: {vet.percentage}</Typography>
-                          <Typography component="p">Served in imminent danger areas: {conversion(vet.danger_areas)}</Typography>
-                          <Typography component="p">Received purple heart: {conversion(vet.purple_heart)}</Typography>
+                          <Typography variant="h5" component="h4">Military Details</Typography>
+                          <Typography component="p">Service Status: <br></br><i>{vet.discharge}</i></Typography>
+                          <br></br>
+                          <Typography component="p">Branch of Service: <br></br><i>{vet.branch}</i></Typography>
+                          <br></br>
+                          <Typography component="p">Highest Attained Rank: <br></br><i>{vet.rank}</i></Typography>
+                          <br></br>
+                          <Typography component="p">Start of Service: <br></br><i>{vet.start_date}</i></Typography>
+                          <br></br>
+                          <Typography component="p">End Service Date: <br></br><i>{vet.end_date}</i></Typography>
+                          <br></br>
+                          <Typography component="p">Maladies: <br></br><i>{vet.injury}</i></Typography>
+                          <br></br>
+                          {/* <Typography component="p">Received compensation: {conversion(vet.compensation)}</Typography> */}
+                          <Typography component="p">Dept Veterans Affairs compensation: <br></br><i>{vet.percentage}</i></Typography>
+                          <br></br>
+                          <Typography component="p">Served in imminent danger areas: <br></br><i>{conversion(vet.danger_areas)}</i></Typography>
+                          <br></br>
+                          <Typography component="p">Received purple heart: <br></br><i>{conversion(vet.purple_heart)}</i></Typography>
                         </div>
                       </div>
                       <hr></hr>
