@@ -71,7 +71,6 @@ class AdminVetList extends Component {
               />
             </center>
           </div>
-            <h2>List of Veterans still waiting on their matched resource to respond</h2>
             <Paper className={classes.root}>
               <Table className={classes.table}>
                 <TableHead className="table-head-color">

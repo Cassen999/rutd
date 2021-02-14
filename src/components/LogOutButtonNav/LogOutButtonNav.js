@@ -1,34 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
-import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
 
-const styles = () => ({
-  input: {
-    display: 'none',
-  },
-});
-
-const LogOutButton = (props) => (
-  <Button
+const LogOutButtonNav = (props) => (
+  <button
     // This button shows up in multiple locations and is styled differently
     // because it's styled differently depending on where it is used, the className
     // is passed to it from it's parents through React props
     className={props.className}
-    style={{
-      borderRadius: 35,
-      backgroundColor: '#AFFA3D',
-      fontFamily: 'orbitron',
-    }}
     onClick={() => props.dispatch({ type: 'LOGOUT' })}
   >
     Log Out
-  </Button>
+  </button>
 );
 
 // This component doesn't need 'mapStateToProps'
 // because it doesn't care what the current state is.
 // No matter what the redux state is, this button will always be a log out button
 // this component still needs 'connect' though, because it is going to dispatch a redux action
-export default connect(mapStoreToProps)(withStyles(styles)(LogOutButton));
+export default connect()(LogOutButtonNav);
