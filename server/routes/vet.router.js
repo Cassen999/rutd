@@ -197,4 +197,35 @@ router.get("/vetid/:id", rejectUnauthenticatedVet, (req, res) => {
     });
 });
 
+router.post("/newVet/:id", rejectUnauthenticatedVetAdmin, (req, res) => {
+  const user_id = req.params.id;
+  const queryText = `INSERT INTO  "veteran" ("vet_id")
+                      VALUES ($1);`;
+  pool
+    .query(queryText, [user_id])
+    .then((result) => {
+      res.send(result.rows)
+    })
+    .catch((err) => {
+      console.log("POST new Veteran FAILED: ", err);
+      res.sendStatus(500);
+    });
+});
+
+router.get("/exist/:id", rejectUnauthenticatedVet, (req, res) => {
+  const user_id = req.params.id
+  console.log('exist router user_id', user_id)
+  const queryText = `SELECT EXISTS
+                    (SELECT 1 FROM "veteran" WHERE "veteran".vet_id = $1);`;
+  pool.query(queryText, [user_id])
+  .then((result) => {
+    console.log('exist result.rows', result.rows)
+    res.send(result.rows[0])
+  })
+  .catch((err) => {
+    console.log("GET exist FAILED: ", err);
+    res.sendStatus(500);
+  });
+})
+
 module.exports = router;
