@@ -45,19 +45,23 @@ class VetMatches extends Component {
     sender_type: 1
   };
 
-  contactOrg = (org_id, orgName, org_email) => {
-    const today = new Date();
-    const time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
-    const state = this.state
-    console.log("Contacting Org and time, org_id, vet_id", time, org_id, this.state.vetId);
-    this.props.dispatch({type: 'POST_NEW_MATCH', payload: {vet_id: this.state.vetId, 
-      org_id: org_id, time: time}});
-    this.props.dispatch({type: 'POST_EMAIL', payload: {org_id: org_id, 
-      orgName: orgName,  org_email: org_email,
-      text: state.textbox, vetFirstName: state.vetFirstName, 
-      vetLastName: state.vetLastName, vetEmail: state.vetEmail, 
-      sender_type: state.sender_type}})
-  };
+  // contactOrg = (org_id, orgName, org_email) => {
+  //   const today = new Date();
+  //   const time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+  //   const state = this.state
+  //   console.log("Contacting Org and time, org_id, vet_id", time, org_id, this.state.vetId);
+  //   this.props.dispatch({type: 'POST_NEW_MATCH', payload: {vet_id: this.state.vetId, 
+  //     org_id: org_id, time: time}});
+  //   this.props.dispatch({type: 'POST_EMAIL', payload: {org_id: org_id, 
+  //     orgName: orgName,  org_email: org_email,
+  //     text: state.textbox, vetFirstName: state.vetFirstName, 
+  //     vetLastName: state.vetLastName, vetEmail: state.vetEmail, 
+  //     sender_type: state.sender_type}})
+  // };
+
+  checkIfExists = (orgId) => {
+    this.props.dispatch({type: 'FETCH_MATCH_EXIST', payload: {vetId: this.props.store.user.id, orgId: orgId}})
+  }
 
   componentDidMount() {
     if(this.props.store.emailReducer !== []) {
@@ -69,6 +73,15 @@ class VetMatches extends Component {
       this.setState({
         textbox: ''
       })
+    }
+  }
+
+  switchSaveButton = () => {
+    if(this.props.store.vetLandingMatchReducer.org_id !== this.props.store.vetReducer.org_id) {
+      return <SaveTwoToneIcon />
+    }
+    else {
+      return null
     }
   }
 
@@ -119,8 +132,8 @@ class VetMatches extends Component {
                               backgroundColor: '#AFFA3D',
                               fontFamily: 'orbitron',
                             }}
-                            onClick={(event) => this.contactOrg(match.org_id, match.name, match.email)}>
-                            <SaveTwoToneIcon />
+                            onClick={(event) => this.checkIfExists(match.org_id)}>
+                             <SaveTwoToneIcon />
                           </Fab>
                       </Grid>              
                     </Paper>        

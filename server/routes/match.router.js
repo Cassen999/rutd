@@ -93,4 +93,23 @@ router.post('/postnew', rejectUnauthenticatedVet, (req, res) => {
   });
 });
 
+// FETCH existing matches
+router.get(`/existMatch`, rejectUnauthenticatedVet, (req, res) => {
+  const vetId = req.query.vet_id;
+  const orgId = req.query.org_id;
+  console.log('get existing matches req.query', req.query, vetId, orgId)
+  let queryText = `SELECT EXISTS
+                  (SELECT 1 FROM "match" WHERE "match".vet_id = $1 
+                  AND "match".org_id = $2);`;
+  pool
+    .query(queryText, [vetId, orgId])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;

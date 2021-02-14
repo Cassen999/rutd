@@ -40,13 +40,27 @@ function* postNewMatch(action) {
   }
   catch(error) {
     console.log('Error in postNewMatch saga error: ', error)
+  }
 }
+
+function* fetchMatchExist(action) {
+  const vet_id = action.payload.vetId
+  const org_id = action.payload.orgId
+  console.log('matchexists vet_id and org_id', vet_id, org_id)
+  try {
+    const response = yield axios.get(`/api/match/existMatch?vet_id=${vet_id}&org_id=${org_id}`);
+    const matchExist = response.data;
+    yield put({ type: "SET_MATCH_EXIST", payload: matchExist });
+  } catch (error) {
+    console.log("error with all vet matches fetch request", error);
+  }
 }
 
 function* vetMatchSaga() {
   yield takeLatest("FETCH_COMPLETE_MATCH", getCompleteMatch);
   yield takeLatest("FETCH_ALL_MATCHES", getNewMatches);
   yield takeLatest("POST_NEW_MATCH", postNewMatch);
+  yield takeLatest("FETCH_MATCH_EXIST", fetchMatchExist);
 }
 
 export default vetMatchSaga;

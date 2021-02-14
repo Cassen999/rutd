@@ -17,6 +17,7 @@ import addNewMatchReducer from './addNewMatch.reducer';
 import categoryReducer from './category.reducer';
 import dropdownReducer from './dropdown.reducer';
 import existReducer from './exist.reducer';
+import matchExistReducer from  './matchExist.reducer';
 
 const rootReducer = combineReducers({
   errors,
@@ -37,6 +38,7 @@ const rootReducer = combineReducers({
   categoryReducer,
   dropdownReducer,
   existReducer,
+  matchExistReducer,
 });
 
 export default rootReducer;
