@@ -14,6 +14,16 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import IconButton from "@material-ui/core/IconButton";
 
+// STYLING: Material-UI
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Avatar from '@material-ui/core/Avatar';
+import CardHeader from '@material-ui/core/CardHeader';
+
+
 const styles = (theme) => ({
   gridList: {
     width: 200,
@@ -59,6 +69,20 @@ const styles = (theme) => ({
   },
   matchContainer: {
     border: "5px solid #ADFA3B",
+  },
+    root: {
+    padding: '0px'
+  },
+  card: {
+    maxWidth: 320,
+    margin: 20,
+  },
+  media: {
+    height: 180,
+    width: 320
+  },
+  avatar: {
+  backgroundColor: 'red',
   },
 });
 
@@ -114,8 +138,18 @@ class UserPage extends Component {
     this.props.history.push("/register")
   }
 
+  visitResource = (id) =>{
+    console.log('visiting resource', id);
+    this.props.dispatch({type: 'VET_GET_RESOURCE', payload: id});
+    this.props.history.push('/vetViewResource', id);
+  }
+
+
+
   render() {
     const { classes } = this.props;
+        // const { spacing } = this.state;
+
     const emergencyModal = (
       <div className={classes.paper}>
         <header id="modal-header">
@@ -272,30 +306,28 @@ class UserPage extends Component {
                   })}
                 </Grid>
               </Grid>
-              <IconButton
-                id="decrement-match-index"
-                style={{
-                  borderRadius: 35,
-                  backgroundColor: '#AFFA3D',
-                  fontFamily: 'orbitron',
-                }}
-                variant="contained"
-                onClick={() => this.handleClick("decrementComplete")}
-              >
-                <ArrowBackIcon fontSize="large" />
-              </IconButton>
-              <IconButton
-                id="increment-match-index"
-                variant="contained"
-                style={{
-                  borderRadius: 35,
-                  backgroundColor: '#AFFA3D',
-                  fontFamily: 'orbitron',
-                }}
-                onClick={() => this.handleClick("incrementComplete")}
-              >
-                <ArrowForwardIcon fontSize="large" />
-              </IconButton>
+                <IconButton
+                  id="decrement-match-index"
+                  style={{
+                    borderRadius: 35,
+                    backgroundColor: '#AFFA3D',
+                    fontFamily: 'orbitron',
+                  }}
+                  variant="contained"
+                  onClick={() => this.handleClick("decrementComplete")}>
+                  <ArrowBackIcon fontSize="large" />
+                </IconButton>
+                <IconButton
+                  id="increment-match-index"
+                  variant="contained"
+                  style={{
+                    borderRadius: 35,
+                    backgroundColor: '#AFFA3D',
+                    fontFamily: 'orbitron',
+                  }}
+                  onClick={() => this.handleClick("incrementComplete")}>
+                  <ArrowForwardIcon fontSize="large" />
+                </IconButton>
             </Paper>
           </div>
           <div id="incompleteContainer" className="matchDisplay">
@@ -329,57 +361,44 @@ class UserPage extends Component {
                           className={classes.gridListTile}
                           key={index}
                         >
-                          <img
-                            className="resource-icon"
-                            alt={match.title}
-                            src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png"
-                          />
-                          <Typography
-                            className={classes.title}
-                            color="textSecondary"
-                            gutterBottom
-                          >
-                            {match.name}
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            variant="h7"
-                            component="h4"
-                          >
-                            Website
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            color="textSecondary"
-                          >
-                            {match.website}
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            variant="h7"
-                            component="h4"
-                          >
-                            Email
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            color="textSecondary"
-                          >
-                            {match.email}
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            variant="h7"
-                            component="h4"
-                          >
-                            Phone Number
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            color="textSecondary"
-                          >
-                            {match.number}
-                          </Typography>
+                        {/* MATERIAL UI CARD HERE */}
+                        <Card className={classes.card}>
+                            <CardActionArea>
+                                <CardHeader
+                                  avatar={
+                                    <Avatar aria-label={match.title}>
+                                      {match.title}
+                                    </Avatar>
+                                  }
+                                  title={match.title}
+                                  subheader={match.name}
+                                />
+                              <CardMedia
+                                className={classes.media}
+                                  className="resource-icon"
+                                  alt={match.title}
+                                  src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png"/>
+                              <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                  {match.name}
+                                </Typography>
+                                <Typography component="p">
+                                  {match.email}
+                                </Typography>
+                                <Typography component="p">
+                                  {match.number}
+                                </Typography>
+                              </CardContent>
+                            </CardActionArea>
+                          <CardActions>
+                            <Button 
+                              size="small" 
+                              color="primary"
+                              onClick={() => this.visitResource(match.id)}
+                              >More Info
+                            </Button>
+                          </CardActions>
+                        </Card>
                         </Grid>
                       );
                     }
