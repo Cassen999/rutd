@@ -66,8 +66,8 @@ class AdminLandingPage extends Component {
               <Table className={classes.table}>
                 <TableHead className="table-head-color">
                   <TableRow>
-                    <TableCell>Name</TableCell>
-                    <TableCell align="right">Resource</TableCell>
+                    <TableCell>Veterans</TableCell>
+                    <TableCell align="right">Organization</TableCell>
                     <TableCell align="right">Time Stamp</TableCell>
                   </TableRow>
                 </TableHead>
