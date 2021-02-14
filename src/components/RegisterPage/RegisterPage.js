@@ -29,7 +29,11 @@ class RegisterPage extends Component {
         <center>
           <Button
             variant="contained"
-            
+            style={{
+              borderRadius: 35,
+              backgroundColor: '#AFFA3D',
+              fontFamily: 'orbitron',
+            }}
             onClick={() => {
               this.props.history.push('/login');
             }}

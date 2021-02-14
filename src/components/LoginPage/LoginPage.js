@@ -32,28 +32,17 @@ class LoginPage extends Component {
             // className="btn btn_asLink"
             className={classes.button}
             variant="contained"
+            style={{
+              borderRadius: 35,
+              backgroundColor: '#AFFA3D',
+              fontFamily: 'orbitron',
+            }}
             onClick={() => {
               this.props.history.push('/registration');
             }}
           >
             Register
           </Button>
-          <br></br>
-          {/* <Button
-            className={classes.button}
-            variant="contained"
-            onClick={() => {
-              console.log('PLACEHOLDER FOR ORG REGISTRATION')
-              // this.props.history.push('/orgRegistration');
-            }}
-          >
-            Register for Organizations
-
-          </Button> */}
-        {/* <Demographic/> */}
-        {/* <ServiceHistory/> */}
-        {/* <Health/> */}
-        {/* <Compensation/> */}
         </center>
       </div>
     );

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
 import { Button, withStyles, Select, MenuItem, TextField } from "@material-ui/core";
+import Fab from '@material-ui/core/Fab';
+import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
 
 const styles = {
     inputs: {
@@ -122,7 +124,13 @@ class DemographicQuestion extends Component {
                     value={this.state.vet.email}
                     onChange={(event) => this.handleInputChange(event, "email")}
                 />
-                
+                <Fab
+                    style={{
+                        borderRadius: 35,
+                        backgroundColor: '#AFFA3D',
+                        fontFamily: 'orbitron',
+                    }}
+                  onClick={(event) => { this.saveName(event) }}><SaveTwoToneIcon /></Fab>
                 <TextField
                     variant="outlined"
                     label="Date of Birth"
@@ -292,6 +300,13 @@ class DemographicQuestion extends Component {
                 
                 
                 
+                <Fab
+                    style={{
+                        borderRadius: 35,
+                        backgroundColor: '#AFFA3D',
+                        fontFamily: 'orbitron',
+                    }}
+                    onClick={(event) => { this.saveDOB(event) }}><SaveTwoToneIcon /></Fab>
             </form>
         )//END return
     };//END render
