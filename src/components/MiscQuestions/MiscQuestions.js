@@ -8,32 +8,45 @@ import PurpleHeart from "../Question/PurpleHeart";
 class MiscQuestions extends Component {
     state = { 
         compensationId: 0,
-        
-
+        registered: false,
+        imminentDanger: false,
+        dangerDescription: '',
+        purpleHeart: false,
     }
 
-    saveProgress = (question) => {
-        this.props.dispatch({
-            type: "UPDATE_COMPENSATION",
-            payload: this.state.newVet,
-        });
-    }
-
-    updateCompState = (event, propertyName) => {
-        event.preventDefault();
+    updateState = (event, propertyName) => {
+        let value = event.target.value
+        if (value === 'false'){
+            value = false;
+        } else if (value === 'true'){
+            value = true;
+        }
         this.setState({
-            [propertyName]: event.target.value
-        })
+            [propertyName]: value
+        }) 
     }
 
     render() {
-        console.log('current state of compensationId:', this.state.compensationId); 
+        const { compensationId, registered, imminentDanger, dangerDescription, purpleHeart } = this.state;
+        console.log('current state of compensationId:', compensationId);
+        console.log('current state of registered:', registered); 
         return ( 
-            <div>
-                <Compensation updateCompState={this.updateCompState}/>
-                <Hazard />
-                <PurpleHeart />
-            </div>
+            <>
+                <Compensation
+                    registered={registered}
+                    compensationId={compensationId}
+                    updateState={this.updateState} 
+                />
+                <Hazard
+                    imminentDanger={imminentDanger}
+                    dangerDescription={dangerDescription}
+                    updateState={this.updateState} 
+                />
+                <PurpleHeart
+                    purpleHeart={purpleHeart}
+                    updateState={this.updateState}
+                />
+            </>
          );
     }
 }
