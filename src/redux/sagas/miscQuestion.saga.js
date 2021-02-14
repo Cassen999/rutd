@@ -7,7 +7,7 @@ function* updateMiscQuestions(action) {
   try {
     const id = action.payload.userId;
     yield axios.put(`/api/question/misc/${id}`, action.payload);
-    yield put({ type: 'FETCH_VET_ID', payload: id }); 
+    yield put({ type: 'FETCH_VET_INFO', payload: id }); 
   } catch (error) {
     console.log('Update Failed for miscQuestionSaga', error);
   }
