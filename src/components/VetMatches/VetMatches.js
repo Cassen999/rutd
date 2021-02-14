@@ -11,6 +11,8 @@ import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
+import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
+import swal from 'sweetalert';
 
 const styles = (theme) => ({
   root: {
@@ -45,19 +47,19 @@ class VetMatches extends Component {
     sender_type: 1
   };
 
-  // contactOrg = (org_id, orgName, org_email) => {
-  //   const today = new Date();
-  //   const time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
-  //   const state = this.state
-  //   console.log("Contacting Org and time, org_id, vet_id", time, org_id, this.state.vetId);
-  //   this.props.dispatch({type: 'POST_NEW_MATCH', payload: {vet_id: this.state.vetId, 
-  //     org_id: org_id, time: time}});
-  //   this.props.dispatch({type: 'POST_EMAIL', payload: {org_id: org_id, 
-  //     orgName: orgName,  org_email: org_email,
-  //     text: state.textbox, vetFirstName: state.vetFirstName, 
-  //     vetLastName: state.vetLastName, vetEmail: state.vetEmail, 
-  //     sender_type: state.sender_type}})
-  // };
+  contactOrg = (org_id, orgName, org_email) => {
+    const today = new Date();
+    const time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    const state = this.state
+    console.log("Contacting Org and time, org_id, vet_id", time, org_id, this.state.vetId);
+    this.props.dispatch({type: 'POST_NEW_MATCH', payload: {vet_id: this.state.vetId, 
+      org_id: org_id, time: time}});
+    this.props.dispatch({type: 'POST_EMAIL', payload: {org_id: org_id, 
+      orgName: orgName,  org_email: org_email,
+      text: state.textbox, vetFirstName: state.vetFirstName, 
+      vetLastName: state.vetLastName, vetEmail: state.vetEmail, 
+      sender_type: state.sender_type}})
+  };
 
   checkIfExists = (orgId) => {
     this.props.dispatch({type: 'FETCH_MATCH_EXIST', payload: {vetId: this.props.store.user.id, orgId: orgId}})
@@ -76,12 +78,65 @@ class VetMatches extends Component {
     }
   }
 
-  switchSaveButton = () => {
-    if(this.props.store.vetLandingMatchReducer.org_id !== this.props.store.vetReducer.org_id) {
-      return <SaveTwoToneIcon />
+  alreadySavedAlert = (org_id, orgName, org_email) => {
+    swal({
+      title: "You have already contacted this resource!",
+      icon: "info",
+      text: `If you have not heard back from them, click "Contact Again"`,
+      buttons: {
+        cancel: "Ok",
+        contact: "Contact Again",
+      },
+    })
+      .then((value) => {
+        switch(value) {
+          case "contact":
+            swal('We sent them another message!', this.props.dispatch({
+              type: 'POST_EMAIL',
+              payload: {org_id: org_id, 
+                orgName: orgName,  
+                org_email: org_email,
+                text: 'Reaching out again to get an application update or connect again', 
+                vetFirstName: this.state.vetFirstName, 
+                vetLastName: this.state.vetLastName, 
+                vetEmail: this.state.vetEmail, 
+                sender_type: this.state.sender_type}
+            }))
+            break;
+          default:
+            swal('Returning to matches')
+        }
+      })
+  }
+
+  switchSaveButton = (match, m) => {
+    if(this.props.store.matchExistReducer === false) {
+      return (
+        <Grid item key={m} xs={3}>
+          <Fab 
+            style={{
+              borderRadius: 35,
+              backgroundColor: '#AFFA3D',
+              fontFamily: 'orbitron',
+            }}
+            onClick={(event) => this.contactOrg(match.org_id, match.name, match.email)}>
+          </Fab>
+        </Grid> 
+      )
     }
     else {
-      return null
+      return (
+        <Grid item key={m} xs={3}>
+          <Fab 
+            style={{
+              borderRadius: 35,
+              backgroundColor: '#AFFA3D',
+              fontFamily: 'orbitron',
+            }}
+            onClick={this.alreadySavedAlert(match.org_id, match.name, match.email)}>
+          </Fab>
+        </Grid>
+      )
     }
   }
 
@@ -126,15 +181,15 @@ class VetMatches extends Component {
                           {match.website}      
                       </Grid>
                       <Grid item key={m} xs={3}>
-                          <Fab 
-                            style={{
-                              borderRadius: 35,
-                              backgroundColor: '#AFFA3D',
-                              fontFamily: 'orbitron',
-                            }}
-                            onClick={(event) => this.checkIfExists(match.org_id)}>
-                             <SaveTwoToneIcon />
-                          </Fab>
+                      <Fab
+                        style={{
+                            borderRadius: 35,
+                            backgroundColor: '#AFFA3D',
+                            fontFamily: 'orbitron',
+                          }}
+                        onClick={(event) =>this.switchSaveButton(match, m)}>
+                          <FavoriteRoundedIcon />
+                      </Fab>
                       </Grid>              
                     </Paper>        
                   </React.Fragment>            
