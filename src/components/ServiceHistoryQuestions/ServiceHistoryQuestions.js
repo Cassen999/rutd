@@ -22,7 +22,8 @@ class ServiceHistoryQuestions extends Component {
     state = { 
         status: '',
         discharge: '',
-        branch: ''
+        branch: '',
+        rank: ''
      }
 
 
@@ -160,24 +161,127 @@ class ServiceHistoryQuestions extends Component {
                     </MenuItem>
                     <MenuItem
                         value='true'>
-                        Honorable
+                        Coast Guard
                     </MenuItem>
                     <MenuItem
                         value='true'>
-                        Unknown
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        Uncharacterized
+                        National Guard
                     </MenuItem>
                     </Select> 
                 </FormControl>
                 {/* -------------------------------------------------- */}
                 <br></br>
                 <p>HIGHEST ATTAINED RANK DROPDOWN HERE: Enlisted/Officer, etc</p>
+                                <FormControl className={classes.formControl}> 
+                    <Select
+                        onClick={(event) => this.handleInputChange(event, 'rank')}
+                        value={this.state.rank}
+                        inputProps={{
+                        name: 'rank',
+                        id: 'rank-simple',
+                        }}>
+                    <MenuItem 
+                        value='false'>
+                        E1
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        E2
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        E3
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        E4
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        E5
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        E6
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        E7
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        E8
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        E9
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        O1
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        O2
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        O3
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        O4
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        O5
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        O6
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        O7
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        O8
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        O0
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        10
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        W1
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        W2
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        W3
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        W4
+                    </MenuItem>
+                    <MenuItem
+                        value='true'>
+                        W5
+                    </MenuItem>
+                    </Select> 
+                </FormControl>
                 {/* -------------------------------------------------- */}
                 <br></br>
                 <p>SERVICE END DATE: ADD A CALENDAR HERE?</p>
+                
                 {/* -------------------------------------------------- */}
                 <br></br>
                 <p>Are you currently serving or served in the military on or after September 11, 2001?</p>
