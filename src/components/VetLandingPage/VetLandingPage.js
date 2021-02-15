@@ -75,8 +75,8 @@ const styles = (theme) => ({
     padding: '0px'
   },
   card: {
-    maxWidth: 320,
-    margin: 20,
+    maxWidth: 400,
+    margin: 10,
   },
   media: {
     height: 180,
@@ -217,12 +217,7 @@ class UserPage extends Component {
                 onClick={() => this.insertVet(this.props.store.user.id)}>
                 Complete Profile Information
               </Button>}
-              
-              
               <div>
-                <center>
-
-                </center>
                   <div className="cardContainer">
                     {matches.map((match, index) => {
                         return (

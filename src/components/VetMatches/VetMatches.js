@@ -29,6 +29,10 @@ const styles = (theme) => ({
     width: '100%',
     flexWrap: 'wrap',
   },
+    card: {
+      maxWidth: 400,
+      margin: 10
+    },
   paper: {
     padding: theme.spacing(1),
     textAlign: 'center',
@@ -89,20 +93,25 @@ class VetMatches extends Component {
 
     return (
         <div>
+          <center>
+            <h1 class="grey">Below are your saved matches</h1>
+          </center>
           <Button onClick={(event) => this.props.history.push("/home")}
-              variant="contained"
+            variant="contained"
             style={{
-              borderRadius: 35,
-              width: '25px',
-              height: '40px',
-              backgroundColor: '#AFFA3D',
-              fontFamily: 'orbitron',
+            borderRadius: 35,
+            width: '25px',
+            height: '40px',
+            backgroundColor: '#AFFA3D',
+            fontFamily: 'orbitron',
             }}>
             <HomeRoundedIcon />
           </Button>
+            <div>
+              <div className="cardContainer">
                 {matches.map((match, i) => {
                   return ( 
-                      <div key={i} className="cardContainer">
+                      <div key={i} className="container">
                             <Card className={classes.card}>
                               <CardActionArea>
                                   <CardHeader
@@ -128,6 +137,9 @@ class VetMatches extends Component {
                                   <Typography component="p">
                                     {match.number}
                                   </Typography>
+                                  <Typography>
+                                    {match.description}
+                                  </Typography>
                                 </CardContent>
                               </CardActionArea>
                             <CardActions>
@@ -144,7 +156,9 @@ class VetMatches extends Component {
                           </Card>
                         </div>
                 )})}
-        {/* <ProgressBar value={30} /> */}
+              {/* <ProgressBar value={30} /> */}
+           </div>
+        </div>
       </div>
     );
   }
