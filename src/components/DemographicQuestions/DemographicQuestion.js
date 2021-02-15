@@ -178,7 +178,9 @@ class DemographicQuestion extends Component {
                             onChange={(event) => this.handleInputChange(event, "birth")}
                             />
                             <span>&nbsp;&nbsp;&nbsp;</span>
+                            <br></br>
                         <TextField
+                            style={{marginTop:"1rem", marginBottom:"1rem"}}
                             id="standard-textarea"
                             variant="outlined"
                             label="Phone Number"
@@ -188,6 +190,7 @@ class DemographicQuestion extends Component {
                         />
                             <span>&nbsp;&nbsp;&nbsp;</span>
                         <TextField
+                            style={{marginTop:"1rem", marginBottom:"1rem"}}
                             variant="outlined"
                             label="Email"
                             name="email"
