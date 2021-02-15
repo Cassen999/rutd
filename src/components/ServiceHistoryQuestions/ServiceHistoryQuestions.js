@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import {withStyles, Select, MenuItem, FormControl } from "@material-ui/core";
+import green from '@material-ui/core/colors/green';
+import Radio from '@material-ui/core/Radio';
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 
 
 const styles = theme => ({
@@ -15,6 +19,13 @@ const styles = theme => ({
         margin: theme.spacing.unit,
         minWidth: 120,
     },
+    root: {
+        color: green[600],
+        '&$checked': {
+        color: green[500],
+    },
+  },
+  checked: {},
 });
 
 
@@ -23,14 +34,20 @@ class ServiceHistoryQuestions extends Component {
         status: '',
         discharge: '',
         branch: '',
-        rank: ''
+        rank: '',
+        selectedValue: 'yes',
      }
 
 
 
      handleInputChange = () =>{
          console.log('Handling input for drop down status')
+         
      }
+
+    handleRadioButtons = event => {
+        this.setState({ selectedValue: event.target.value });
+  };
 
     render() { 
         const {classes} = this.props;
@@ -286,6 +303,20 @@ class ServiceHistoryQuestions extends Component {
                 <br></br>
                 <p>Are you currently serving or served in the military on or after September 11, 2001?</p>
                 <p>RADIO BUTTONS HERE</p>
+                <Radio
+                    checked={this.state.selectedValue === 'yes'}
+                    onChange={this.handleChange}
+                    value="a"
+                    name="radio-button-demo"
+                    aria-label="A"
+                />
+                <Radio
+                    checked={this.state.selectedValue === 'no'}
+                    onChange={this.handleChange}
+                    value="b"
+                    name="radio-button-demo"
+                    aria-label="B"
+                />
                 {/* -------------------------------------------------- */}
 
             </div>
