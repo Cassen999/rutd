@@ -44,10 +44,18 @@ class VetMatches extends Component {
     vetLastName: this.props.store.vetReducer.last_name,
     vetEmail: this.props.store.vetReducer.email,
     textbox: this.props.store.emailReducer,
-    sender_type: 1
+    sender_type: 1,
+    existArray: [],
+    doUpdate: true,
+    vetExists: {
+      orgIdState: 0,
+      orgNameState: '',
+      orgEmailState: ''
+    }
   };
   
   componentDidMount() {
+    this.props.dispatch({type: 'FETCH_MATCH_EXIST', payload: {vetId: this.props.store.user.id, orgId: this.state.vetExists.orgIdState}})
     if(this.props.store.emailReducer !== []) {
       this.setState({
         textbox: this.props.store.emailReducer
@@ -60,7 +68,20 @@ class VetMatches extends Component {
     }
   }
 
-  contactOrg = (org_id, orgName, org_email, id) => {
+  componentDidUpdate(prevProps, prevState) {
+    const state = this.state.vetExists
+    console.log('state of doUpdate', this.state.doUpdate)
+    if (prevState.existArray !== this.state.existArray) {
+      console.log('existArray state has changed.', state)
+      this.props.dispatch({type: 'FETCH_MATCH_EXIST', payload: {vetId: this.props.store.user.id, orgId: state.orgIdState}})
+      this.checkIfExists(state.orgIdState, state.orgNameState, state.orgEmailState)
+    }
+  }
+
+  contactOrg = (org_id, orgName, org_email) => {
+    this.setState({
+      doUpdate: false
+    })
     const today = new Date();
     const time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
     const state = this.state
@@ -74,23 +95,30 @@ class VetMatches extends Component {
       sender_type: state.sender_type}})
   };
 
-  // dispatchFunction = (org_id, orgName, org_email) => {
-  //   this.props.dispatch({type: 'FETCH_MATCH_EXIST', payload: {vetId: this.props.store.user.id, orgId: org_id}}) 
-  // }
-
   checkIfExists = (org_id, orgName, org_email, event) => {
-    const matchArray = []
-    console.log('vetMatch check if exists event.id', event.currentTarget.id, matchArray.includes(event.currentTarget.id))
-    // this.props.dispatch({type: 'FETCH_MATCH_EXIST', payload: {vetId: this.props.store.user.id, orgId: org_id}}) 
-    if(matchArray.includes(event.currentTarget.id) === false) {
-      matchArray.push(event.currentTarget.id)
-      this.contactOrg(org_id, orgName, org_email)
-    }
-    else if( matchArray.includes(event.currentTarget.id) === true) {
-      this.alreadySavedAlert(org_id, orgName, org_email)
+    if(event) {
+      this.setState({
+        existArray: [...this.state.existArray, event.currentTarget.id],
+        vetExists:{
+          orgIdState: org_id,
+          orgNameState: orgName,
+          orgEmailState: org_email
+        }
+      })
+      console.log('vetMatch check if exists event.currentTarget.id', event.currentTarget.id)
+    } 
+    else if(!this.state.existArray.includes(org_id)) {
+      console.log('In else statement')
+      if(this.props.store.matchExistReducer.exists === false) {
+        this.contactOrg(org_id, orgName, org_email)
+      }
+      else if(this.state.existArray.includes(org_id)) {
+        this.alreadySavedAlert(org_id, orgName, org_email)
+      }
+    console.log('existArray includes', this.state.existArray.includes(toString(org_id)), this.state.existArray)
     }
   }
-  
+
   alreadySavedAlert = (org_id, orgName, org_email) => {
     swal({
       title: "You have already contacted this resource!",
@@ -160,7 +188,7 @@ class VetMatches extends Component {
 
     return (
         <div>
-          {JSON.stringify(this.props.store.matchExistReducer)}
+          {/* {JSON.stringify(this.props.store.matchExistReducer)} */}
           <Button onClick={(event) => this.props.history.push("/home")}
             variant="contained"
             style={{
@@ -173,30 +201,28 @@ class VetMatches extends Component {
             <HomeRoundedIcon />
           </Button>
           <div className={classes.root}>
-            <Grid container spacing={1}>
-              <Grid container item xs={9} spacing={3}>
-                {matches.map((match, i, j, k, l, m) => (
-                  <React.Fragment>
+            {matches.map((match, i) => (
+            <Grid key={i} container spacing={1}>
                     <Paper className={classes.paper}> 
-                      <Grid item key={i} xs={2}>
+                      <Grid item xs={2}>
                           <img
                             className="resource-icon"
                             alt={match.pictures}
                             // src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png"
                           />        
                       </Grid>
-                      <Grid item key={j} xs={3}>
+                      <Grid item xs={3}>
                           {match.name}       
                       </Grid>
-                      <Grid item key={k} xs={3}>
+                      <Grid item xs={3}>
                           {match.description}       
                       </Grid>
-                      <Grid item key={l} xs={3}>
+                      <Grid item xs={3}>
                           {match.website}      
                       </Grid>
-                      <Grid item key={m} xs={3}>
+                      <Grid item xs={3}>
                         <Fab
-                          id={uuidv4()}
+                          id={match.org_id}
                           style={{
                               borderRadius: 35,
                               backgroundColor: '#AFFA3D',
@@ -206,13 +232,10 @@ class VetMatches extends Component {
                             <FavoriteRoundedIcon />
                       </Fab>
                       </Grid>              
-                    </Paper>        
-                  </React.Fragment>            
+                    </Paper>                 
+                  </Grid>
                 ))}
-              </Grid>
-            </Grid>
           </div>
-        {/* <ProgressBar value={30} /> */}
       </div>
     );
   }
