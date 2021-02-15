@@ -106,6 +106,6 @@
 .hr-width{
     width: 50rem;
     height: 1px;
-    color: grey;
-    box-shadow: 5px 5px 5px rgba(65, 64, 64, 0.623);
+    color: black;
+    box-shadow: 1px 1px 1px rgba(65, 64, 64, 0.623);
 }
