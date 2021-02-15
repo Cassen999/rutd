@@ -15,17 +15,18 @@ router.put('/', rejectUnauthenticatedVet, (req, res) => {
   let queryText = `INSERT INTO "veteran" ("first_name", "last_name", 
                     "email", "date_of_birth", "gender_id", "number",  
                     "married_id", "children", "homeless", "current_address", 
-                    "city", "state_id", "zipcode", "country_id", "mailing_address")
+                    "city", "state_id", "zipcode", "country_id", "mailing_address",
+                    "city2", "state_id2", "zipcode2", "country_id2")
                     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, 
-                    $12, $13, $14, $15)
-                    WHERE "vet_id" = $16;`;
+                    $12, $13, $14, $15, $16, $17, $18, $19)
+                    WHERE "vet_id" = $20;`;
 
-  pool.query(queryText, [demograhpic.first_name, demographic.last_name, 
-    demograhpic.email, demograhpic.date_of_birth, demograhpic.number, 
-    demograhpic.gender_id, demographic.married_id, demographic.chilren, 
-    demographic.homeless, demographic.current_address,demographic.city, 
-    demographic.state_id, demographic.zipcode, demographic.country_id,
-    demographic.mailing_address, id])
+  pool.query(queryText, [demographic.first_name, demographic.last_name, 
+    demographic.email, demographic.birth, demographic.gender,
+    demographic.phone, demographic.marriage, demographic.chilren, 
+    demographic.homeless, demographic.homeAddress,
+    demographic.homeCity, demographic.homeState, demographic.homeZip, demographic.homeCountry,
+    demographic.mailAddress, demographic.mailCity,demographic.mailState, demographic.mailZip, demographic.mailCountry, id])
     .then(result => {
       res.sendStatus(201);
     })
