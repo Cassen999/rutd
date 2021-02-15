@@ -336,9 +336,9 @@ class DemographicQuestion extends Component {
                     value={this.state.vet.homeState}
                     onChange={(event) => this.handleInputChange(event, "homeState")}
                 />
-               
+                <br></br>
                <TextField
-                    style={{marginTop:"1rem"}}
+                    style={{marginRight:"1rem"}}
                     id="standard-textarea"
                     variant="outlined"
                     label="Zip Code"
@@ -348,7 +348,6 @@ class DemographicQuestion extends Component {
                 />
 
                 <TextField
-                    style={{marginLeft:"1rem", marginTop:"1rem"}}
                     id="standard-textarea"
                     variant="outlined"
                     label="Country"
@@ -380,6 +379,7 @@ class DemographicQuestion extends Component {
                      value={this.state.vet.mailApartment}
                     onChange={(event) => this.handleInputChange(event, "mailApartment")}
                 /> */}
+
                 <TextField
                     style={{marginRight:"1rem", marginLeft:"1rem", marginTop:"1rem"}}
                     id="standard-textarea"
