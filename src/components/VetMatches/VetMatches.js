@@ -102,7 +102,7 @@ class VetMatches extends Component {
           </Button>
                 {matches.map((match, i) => {
                   return ( 
-                      <div key={i}>
+                      <div key={i} className="cardContainer">
                             <Card className={classes.card}>
                               <CardActionArea>
                                   <CardHeader
