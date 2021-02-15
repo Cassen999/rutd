@@ -1,5 +1,3 @@
-//import mapStoreToProps from '../../redux/mapStoreToProps';
-
 const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
@@ -7,11 +5,7 @@ const {
   rejectUnauthenticatedVet,
 } = require("../modules/authentication-middleware");
 
-/**
- * GET route template
- */
 router.get("/", rejectUnauthenticatedVet, (req, res) => {
-  // GET route code here
   console.log("in /match GET route");
   console.log("Is User logged in?", req.isAuthenticated());
   console.log("req.user:", req.user);
@@ -93,26 +87,6 @@ router.post('/postnew', rejectUnauthenticatedVet, (req, res) => {
     console.log(`Error from match post router ${error}`);
     res.sendStatus(500);
   });
-});
-
-// FETCH existing matches
-router.get(`/existMatch`, rejectUnauthenticatedVet, (req, res) => {
-  const vetId = req.query.vet_id;
-  const orgId = req.query.org_id;
-  console.log('get existing matches req.query', req.query, vetId, orgId)
-  let queryText = `SELECT EXISTS
-                  (SELECT 1 FROM "match" WHERE "match".vet_id = $1 
-                  AND "match".org_id = $2);`;
-  pool
-    .query(queryText, [vetId, orgId])
-    .then((result) => {
-      console.log('match exist result.rows', result.rows)
-      res.send(result.rows);
-    })
-    .catch((error) => {
-      console.log(error);
-      res.sendStatus(500);
-    });
 });
 
 module.exports = router;
