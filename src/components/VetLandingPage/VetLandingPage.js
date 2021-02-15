@@ -186,53 +186,45 @@ class UserPage extends Component {
       const { completeMatchIndex, incompleteMatchIndex, modalOpen } = this.state;
 
       return (
-        <div>
-          {/* {JSON.stringify(this.state)}
-          {JSON.stringify(this.props.store.user.id)}
-          {JSON.stringify(this.props.store.existReducer)} */}
+        <div >
           <center>
-          <h1 class="grey">Thank you for your service {this.props.store.user.username}</h1>
+            {/* <h1 class="grey">Thank you for your service {this.props.store.user.username}</h1> */}
+            <h1 class="grey">Saved Resources</h1>
           </center>
-          {this.props.store.existReducer.eists === true ? 
-            <Button
-              id="completeProfileBtn"
-              size="large"
-              variant="contained"
-              style={{
+            {this.props.store.existReducer.eists === true ? 
+              <Button
+                className="completeProfileBtn"
+                size="large"
+                variant="contained"
+                style={{
                 borderRadius: 35,
                 backgroundColor: '#AFFA3D',
                 fontFamily: 'orbitron',
-              }}
-              onClick={() => this.handleClick("completeProfile")}
-            >
-              Complete Profile Information
-            </Button> : 
-            <Button
-              id="completeProfileBtn"
-              size="large"
-              variant="contained"
-              style={{
+                }}
+                onClick={() => this.handleClick("completeProfile")}
+              >
+                Complete Profile Information
+              </Button> : 
+              <Button
+                className="completeProfileBtn"
+                size="large"
+                variant="contained"
+                style={{
                 borderRadius: 35,
                 backgroundColor: '#AFFA3D',
                 fontFamily: 'orbitron',
-              }}
-              onClick={() => this.insertVet(this.props.store.user.id)}>
-              Complete Profile Information
-            </Button>}
-          <div className="cardContainer">
-              <h1 class="grey">Saved Resource Matches</h1>
+                }}
+                onClick={() => this.insertVet(this.props.store.user.id)}>
+                Complete Profile Information
+              </Button>}
+              
+              
               <div>
-                {/* <Paper
-                  // id="completedPaper"
-                  className="col"
-                  elevation={3}
-                > */}
+                <center>
+
+                </center>
+                  <div className="cardContainer">
                     {matches.map((match, index) => {
-                      // if (
-                      //   match.approved !== null &&
-                      //   (index === completeMatchIndex ||
-                      //     index === completeMatchIndex + 1)
-                      // ) {
                         return (
                           <div key={index}>
                             <Card className={classes.card}>
@@ -275,117 +267,8 @@ class UserPage extends Component {
                         );
                       }
                     )}
-                  {/* <IconButton
-                    id="decrement-match-index"
-                    style={{
-                      borderRadius: 35,
-                      backgroundColor: '#AFFA3D',
-                      fontFamily: 'orbitron',
-                    }}
-                    variant="contained"
-                    onClick={() => this.handleClick("decrementComplete")}>
-                    <ArrowBackIcon fontSize="large" />
-                  </IconButton>
-                  <IconButton
-                    id="increment-match-index"
-                    variant="contained"
-                    style={{
-                      borderRadius: 35,
-                      backgroundColor: '#AFFA3D',
-                      fontFamily: 'orbitron',
-                    }}
-                    onClick={() => this.handleClick("incrementComplete")}>
-                    <ArrowForwardIcon fontSize="large" />
-                  </IconButton>  */}
-              {/* </Paper> */}
-            {/* </div> */}
-              {/* <h1 class="grey">Matches in Progress</h1>
-            <div id="incompleteContainer" className="flex-grid"> */}
-              {/* <Paper
-                // id="incompletePaper"
-                className="col"
-                elevation={3}
-              > */}
-                    {/* {incompleteMatches.map((match, index) => {
-                      if (incompleteMatchIndex >= incompleteMatches.length) {
-                        return <h3></h3>;
-                      } else if (
-                        index === incompleteMatchIndex ||
-                        index === incompleteMatchIndex + 1
-                      ) {
-                        return (
-                          <div key={index}>
-                          {/* MATERIAL UI CARD HERE */}
-                          {/* <Card className={classes.card}>
-                              <CardActionArea>
-                                  <CardHeader
-                                    avatar={
-                                      <Avatar aria-label={match.title}>
-                                        {match.title}
-                                      </Avatar>
-                                    }
-                                    title={match.title}
-                                    subheader={match.name}
-                                  />
-                                <CardMedia
-                                    className={classes.media}
-                                    alt={match.title}
-                                    image={RedCross}/>
-                                <CardContent>
-                                  <Typography gutterBottom variant="h5" component="h2">
-                                    {match.name}
-                                  </Typography>
-                                  <Typography component="p">
-                                    {match.email}
-                                  </Typography>
-                                  <Typography component="p">
-                                    {match.number}
-                                  </Typography>
-                                </CardContent>
-                              </CardActionArea>
-                            <CardActions>
-                              <Button 
-                                size="small" 
-                                color="primary"
-                                onClick={() => this.visitResource(match.id)}
-                                >More Info
-                              </Button>
-                            </CardActions>
-                          </Card>
-                          </div>
-                        );
-                      }
-                      } else {
-                        return <h3>No In Progress Matches to Show</h3>;
-                      } */}
-                    {/* })} */}
-                {/* <IconButton
-                  id="decrement-incomplete-index"
-                  variant="contained"
-                  style={{
-                    borderRadius: 35,
-                    backgroundColor: '#AFFA3D',
-                    fontFamily: 'orbitron',
-                  }}
-                  onClick={() => this.handleClick("decrementIncomplete")}
-                >
-                  <ArrowBackIcon fontSize="large" />
-                </IconButton>
-                <IconButton
-                  id="increment-incomplete-index"
-                  variant="contained"
-                  style={{
-                    borderRadius: 35,
-                    backgroundColor: '#AFFA3D',
-                    fontFamily: 'orbitron',
-                  }}
-                  onClick={() => this.handleClick("incrementIncomplete")}
-                >
-                  <ArrowForwardIcon fontSize="large" />
-                </IconButton> */}
-              {/* </Paper> */}
-            {/* </div>*/}
             <br></br>
+          </div>
             <div className="buttons">
             <center>
               <Button
@@ -414,14 +297,13 @@ class UserPage extends Component {
                 >
                 View New Matches
               </Button>
-          </center>
+              </center>
             </div>
-          </div>
-          <Modal
-            open={modalOpen}
-            aria-labelledby="modal-title"
-            aria-describedby="emergency-contacts"
-          >
+            <Modal
+              open={modalOpen}
+              aria-labelledby="modal-title"
+              aria-describedby="emergency-contacts"
+            >
             {emergencyModal}
           </Modal>
         </div>
