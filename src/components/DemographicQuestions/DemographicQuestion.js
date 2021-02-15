@@ -197,17 +197,10 @@ class DemographicQuestion extends Component {
                             value={this.state.vet.email}
                             onChange={(event) => this.handleInputChange(event, "email")}
                             />
-                {/* <Fab
-                    style={{
-                        borderRadius: 35,
-                        backgroundColor: '#AFFA3D',
-                        fontFamily: 'orbitron',
-                    }}
-                onClick={(event) => { this.saveName(event) }}><SaveTwoToneIcon /></Fab> */}
-                    </div>
-                    <div>
-               <br></br>
-               <br></br>
+                        </div>
+                        <div>
+                        <br></br>
+                        <br></br>
                GENDER
                     <span>&nbsp;&nbsp;&nbsp;</span>
 
@@ -265,6 +258,8 @@ class DemographicQuestion extends Component {
                 </FormControl>
                 <span>&nbsp;&nbsp;&nbsp;</span>
                 <span>&nbsp;&nbsp;&nbsp;</span>
+                <br></br>
+                <br></br>
                 ARE YOU CURRENTLY HOMELESS?
                 <span>&nbsp;&nbsp;&nbsp;</span>
                 <span>&nbsp;&nbsp;&nbsp;</span>
@@ -320,8 +315,9 @@ class DemographicQuestion extends Component {
                     onChange={(event) => this.handleInputChange(event, "homeApartment")}
                 /> */}
 
+                <br></br>
                 <TextField
-                    style={{marginTop:"1rem", marginBottom:"1rem", marginLeft:"1rem"}}
+                    style={{marginBottom:"1rem", marginRight:"1rem"}}
                     id="standard-textarea"
                     variant="outlined"
                     label="City"
@@ -329,9 +325,8 @@ class DemographicQuestion extends Component {
                      value={this.state.vet.homeCity}
                     onChange={(event) => this.handleInputChange(event, "homeCity")}
                 />
-
                 <TextField
-                    style={{marginTop:"1rem", marginBottom:"1rem", marginLeft:"1rem"}}
+                    style={{marginBottom:"1rem"}}
                     id="standard-textarea"
                     variant="outlined"
                     label="State"
@@ -359,12 +354,12 @@ class DemographicQuestion extends Component {
                     onChange={(event) => this.handleInputChange(event, "homeCountry")}
                 />
                 </div>
-                <br></br>
-                <br></br>
-                <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
                 <div>
                 MAIL ADDRESS
-                <br></br>
+                    <br></br>
                 <TextField
                     style={{marginTop:"1rem", marginBottom:"1rem", width:'30rem'}}
                     variant="outlined"
@@ -382,9 +377,9 @@ class DemographicQuestion extends Component {
                      value={this.state.vet.mailApartment}
                     onChange={(event) => this.handleInputChange(event, "mailApartment")}
                 /> */}
-
+                <br></br>
                 <TextField
-                    style={{marginRight:"1rem", marginLeft:"1rem", marginTop:"1rem"}}
+                    style={{marginRight:"1rem"}}
                     id="standard-textarea"
                     variant="outlined"
                     label="City"
@@ -394,7 +389,7 @@ class DemographicQuestion extends Component {
                 />
 
                 <TextField
-                    style={{marginRight:"1rem", marginTop:"1rem"}}
+                    style={{marginRight:"1rem"}}
                     id="standard-textarea"
                     variant="outlined"
                     label="State"
@@ -402,9 +397,9 @@ class DemographicQuestion extends Component {
                     value={this.state.vet.mailState}
                     onChange={(event) => this.handleInputChange(event, "mailState")}
                 />
-               
+               <br></br>
                <TextField
-                    style={{marginRight:"1rem"}}
+                    style={{marginRight:"1rem", marginTop:"1rem"}}
                     id="standard-textarea"
                     variant="outlined"
                     label="Zip Code"
@@ -413,7 +408,7 @@ class DemographicQuestion extends Component {
                     onChange={(event) => this.handleInputChange(event, "mailZip")}
                 />
                 <TextField
-                    style={{marginRight:"1rem"}}
+                    style={{marginRight:"1rem", marginTop:"1rem"}}
                     id="standard-textarea"
                     variant="outlined"
                     label="Country"
