@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import mapStoreToProps from "../../redux/mapStoreToProps";
+import mapStoreToProps from "../../../redux/mapStoreToProps";
 import { connect } from "react-redux";
 import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
 
@@ -12,11 +12,11 @@ const styles = {
     },
 };
 
-class Branch extends Component {
+class Rank extends Component {
 
     state = {
         vet: {
-            branch: ""
+            rank: ""
         },
     }
 
@@ -38,28 +38,29 @@ class Branch extends Component {
         );
     };
 
-    saveBranch = () => {
+    saveRank = () => {
         let vetVar = this.state.vet
 
-        if (vetVar.branch === '') {
-            alert("Please indicate your branch of service.");
+        if (vetVar.rank === '') {
+            alert("Please indicate your highest attained rank.");
         } else {
             console.log(
-                `Saving ${vetVar.branch} to Database...`
+                `Saving ${vetVar.rank} to Database...`
             );
 
             this.props.dispatch({
-                type: "UPDATE_BRANCH",
+                type: "UPDATE_RANK",
                 payload: this.state.vet
             });
 
             this.setState(
                 {
                     vet: {
-                        branch: "",
+                        rank: "",
                     },
                 },
                 function () {
+                    // {this.props.history.push('/servicehistory')}
                     console.log("state has been reset");
                 }
             );
@@ -71,7 +72,7 @@ class Branch extends Component {
 
         return (
             <>
-                <h1>Branch Entry</h1>
+                <h1>Rank Entry</h1>
                 <Grid
                     container
                     spacing={2}
@@ -87,13 +88,13 @@ class Branch extends Component {
 
                                 <TextField
                                     variant="outlined"
-                                    label="Branch"
-                                    name="branch"
-                                    value={this.state.vet.branch}
-                                    onChange={(event) => this.handleInputChange(event, "branch")}
+                                    label="Rank"
+                                    name="rank"
+                                    value={this.state.vet.rank}
+                                    onChange={(event) => this.handleInputChange(event, "rank")}
                                 />
                                 <br />
-                                <Button onClick={(event) => { this.saveBranch(event) }}>SAVE</Button>
+                                <Button onClick={(event) => { this.saveRank(event) }}>SAVE</Button>
                                 <br />
                             </Grid>
                         </form>
@@ -104,4 +105,4 @@ class Branch extends Component {
     };//END render
 };//END Name
 
-export default connect(mapStoreToProps)(withStyles(styles)(Branch));
+export default connect(mapStoreToProps)(withStyles(styles)(Rank));

@@ -3,7 +3,8 @@ import clsx from 'clsx';
 import {  
   FormControl,
   Radio,
-  Grid  
+  Grid,
+  Typography  
 } from "@material-ui/core";
 class PurpleHeart extends Component {
   render() {
@@ -11,7 +12,7 @@ class PurpleHeart extends Component {
     const purpleHeart = this.props.purpleHeart;
     return (
       <>     
-        <p>Are you a Purple Heart recipient?</p>
+        <Typography >Are you currently registered with the VA?</Typography>
         <Grid
           container
           spacing={1}

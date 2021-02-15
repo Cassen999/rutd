@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import clsx from 'clsx';
-import { FormControl, Radio, Grid } from "@material-ui/core";  
+import { FormControl, Radio, Grid, Typography } from "@material-ui/core";  
 class Hazard extends Component {
   render() {
     const classes = this.props.classes;
@@ -9,7 +9,7 @@ class Hazard extends Component {
     const dangerDescription = this.props.dangerDescription;
     return (
       <>
-        <p>Have you been deployed to imminent danger areas?</p>
+        <Typography >Are you currently registered with the VA?</Typography>
         <Grid
           container
           spacing={1}

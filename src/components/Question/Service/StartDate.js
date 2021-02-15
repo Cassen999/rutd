@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import mapStoreToProps from "../../redux/mapStoreToProps";
+import mapStoreToProps from "../../../redux/mapStoreToProps";
 import { connect } from "react-redux";
 import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
 
@@ -12,11 +12,11 @@ const styles = {
     },
 };
 
-class Discharge extends Component {
+class StartDate extends Component {
 
     state = {
         vet: {
-            discharge: ""
+            startDate: ""
         },
     }
 
@@ -38,28 +38,29 @@ class Discharge extends Component {
         );
     };
 
-    saveDischarge = () => {
+    saveStartDate = () => {
         let vetVar = this.state.vet
 
-        if (vetVar.discharge === '') {
-            alert("An discharge type is required for registration.");
+        if (vetVar.startDate === '') {
+            alert("Please indidate the start date of your military service.");
         } else {
             console.log(
-                `Saving ${vetVar.discharge} to Database...`
+                `Saving ${vetVar.startDate} to Database...`
             );
 
             this.props.dispatch({
-                type: "UPDATE_DISCHARGE",
+                type: "UPDATE_START_DATE",
                 payload: this.state.vet
             });
 
             this.setState(
                 {
                     vet: {
-                        discharge: "",
+                        startDate: "",
                     },
                 },
                 function () {
+                    // {this.props.history.push('/servicehistory')}
                     console.log("state has been reset");
                 }
             );
@@ -71,7 +72,7 @@ class Discharge extends Component {
 
         return (
             <>
-                <h1>Discharge Type Entry</h1>
+                <h1>Start Date Entry</h1>
                 <Grid
                     container
                     spacing={2}
@@ -87,13 +88,13 @@ class Discharge extends Component {
 
                                 <TextField
                                     variant="outlined"
-                                    label="Discharge Type"
-                                    name="discharge"
-                                    value={this.state.vet.discharge}
-                                    onChange={(event) => this.handleInputChange(event, "discharge")}
+                                    label="Start Date"
+                                    name="startDate"
+                                    value={this.state.vet.startDate}
+                                    onChange={(event) => this.handleInputChange(event, "startDate")}
                                 />
                                 <br />
-                                <Button onClick={(event) => { this.saveDischarge(event) }}>SAVE</Button>
+                                <Button onClick={(event) => { this.saveStartDate(event) }}>SAVE</Button>
                                 <br />
                             </Grid>
                         </form>
@@ -104,4 +105,4 @@ class Discharge extends Component {
     };//END render
 };//END Name
 
-export default connect(mapStoreToProps)(withStyles(styles)(Discharge));
+export default connect(mapStoreToProps)(withStyles(styles)(StartDate));
