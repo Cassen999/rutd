@@ -60,7 +60,7 @@ class VetMatches extends Component {
     }
   }
 
-  contactOrg = (org_id, orgName, org_email) => {
+  contactOrg = (org_id, orgName, org_email, id) => {
     const today = new Date();
     const time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
     const state = this.state

@@ -155,7 +155,7 @@ class UserPage extends Component {
         {JSON.stringify(this.props.store.user.id)}
         {JSON.stringify(this.props.store.existReducer)}
         <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
-        {this.props.store.existReducer.eists === true ? 
+        {this.props.store.existReducer.exists === true ? 
           <Button
             id="completeProfileBtn"
             size="large"
