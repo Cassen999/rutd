@@ -244,64 +244,44 @@ class UserPage extends Component {
                         index === completeMatchIndex + 1)
                     ) {
                       return (
-                        <Grid
-                          item
-                          xs={5}
-                          className={classes.gridListTile}
-                          key={index}
-                        >
-                          <img
-                            className="resource-icon"
-                            alt={match.title}
-                            src={RedCross}
-                          />
-                          <Typography
-                            className={classes.title}
-                            color="textSecondary"
-                            gutterBottom
-                          >
-                            {match.name}
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            variant="h7"
-                            component="h4"
-                          >
-                            Website
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            color="textSecondary"
-                          >
-                            {match.website}
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            variant="h7"
-                            component="h4"
-                          >
-                            Email
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            color="textSecondary"
-                          >
-                            {match.email}
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            variant="h7"
-                            component="h4"
-                          >
-                            Phone Number
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            color="textSecondary"
-                          >
-                            {match.number}
-                          </Typography>
-                        </Grid>
+                        <div>
+                          <Card className={classes.card}>
+                            <CardActionArea>
+                                <CardHeader
+                                  avatar={
+                                    <Avatar aria-label={match.title}>
+                                      {match.title}
+                                    </Avatar>
+                                  }
+                                  title={match.title}
+                                  subheader={match.name}
+                                />
+                              <CardMedia
+                                  className={classes.media}
+                                  alt={match.title}
+                                  image={RedCross}/>
+                              <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                  {match.name}
+                                </Typography>
+                                <Typography component="p">
+                                  {match.email}
+                                </Typography>
+                                <Typography component="p">
+                                  {match.number}
+                                </Typography>
+                              </CardContent>
+                            </CardActionArea>
+                          <CardActions>
+                            <Button 
+                              size="small" 
+                              color="primary"
+                              // onClick={() => this.visitResource(match.id)}
+                              >More Info
+                            </Button>
+                          </CardActions>
+                        </Card>
+                        </div>
                       );
                     }
                   })}
