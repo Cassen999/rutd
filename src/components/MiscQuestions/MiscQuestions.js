@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Compensation from "../Question/Compensation";
-import Hazard from "../Question/Hazard";
-import PurpleHeart from "../Question/PurpleHeart";
+import Compensation from "../Question/Miscellaneous/Compensation";
+import Hazard from "../Question/Miscellaneous/Hazard";
+import PurpleHeart from "../Question/Miscellaneous/PurpleHeart";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
 import compose from 'recompose/compose';
