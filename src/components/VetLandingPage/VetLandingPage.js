@@ -370,10 +370,9 @@ class UserPage extends Component {
                                   subheader={match.name}
                                 />
                               <CardMedia
-                                className={classes.media}
-                                  className="resource-icon"
+                                  className={classes.media}
                                   alt={match.title}
-                                  src={RedCross}/>
+                                  image={RedCross}/>
                               <CardContent>
                                 <Typography gutterBottom variant="h5" component="h2">
                                   {match.name}
