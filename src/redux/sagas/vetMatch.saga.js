@@ -22,8 +22,9 @@ function findIncompleteMatch(match) {
 
 // GETs all matches for certain vet, not from match table using algorithm
 function* getNewMatches(action) {
+  console.log('get new matches saga action.payload.id', action.payload)
   try {
-    const response = yield axios.get(`/api/match/newMatches/${action.payload.id}`);
+    const response = yield axios.get(`/api/match/newMatches/${action.payload}`);
     const newMatches = response.data;
     yield put({ type: "SET_VET_MATCHES", payload: newMatches });
   } catch (error) {

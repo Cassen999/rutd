@@ -151,9 +151,6 @@ class UserPage extends Component {
 
     return (
       <div id="pageBody">
-        {JSON.stringify(this.state)}
-        {JSON.stringify(this.props.store.user.id)}
-        {JSON.stringify(this.props.store.existReducer)}
         <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
         {this.props.store.existReducer.exists === true ? 
           <Button
@@ -380,9 +377,6 @@ class UserPage extends Component {
                         </Grid>
                       );
                     }
-                    // } else {
-                    //   return <h3>No In Progress Matches to Show</h3>;
-                    // }
                   })}
                 </Grid>
               </Grid>
@@ -438,7 +432,7 @@ class UserPage extends Component {
             }}
             onClick={() => this.handleClick("allMatches")}
           >
-            View New Matches
+            View All Matches
           </Button>
         </div>
         <Modal

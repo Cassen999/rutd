@@ -46,6 +46,7 @@ class VetMatches extends Component {
   };
   
   componentDidMount() {
+    this.props.dispatch({ type: "FETCH_ALL_MATCHES", payload: this.props.store.vetReducer.id});
     if(this.props.store.emailReducer !== []) {
       this.setState({
         textbox: this.props.store.emailReducer
@@ -118,7 +119,6 @@ class VetMatches extends Component {
 
     return (
         <div>
-          {JSON.stringify(this.state.vetId)}
           <Fab onClick={(event) => this.props.history.push("/home")}
             variant="contained"
             style={{
@@ -153,16 +153,16 @@ class VetMatches extends Component {
                       <Grid item xs={3}>
                         {match.exist ?
                         <Button
-                        style={{
-                          borderRadius: 35,
-                          backgroundColor: '#AFFA3D',
-                          fontFamily: 'orbitron',
-                        }}
+                          style={{
+                            borderRadius: 35,
+                            backgroundColor: '#AFFA3D',
+                            fontFamily: 'orbitron',
+                          }}
                           onClick={(event) => this.alreadySavedAlert(match.org_id, match.name, match.email)}>
                           Already matched! Email again?
                         </Button>  : 
                         <Button
-                        style={{
+                          style={{
                             borderRadius: 35,
                             backgroundColor: '#AFFA3D',
                             fontFamily: 'orbitron',
