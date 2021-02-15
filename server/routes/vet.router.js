@@ -123,7 +123,7 @@ router.post("/", rejectUnauthenticatedVetAdmin, (req, res) => {
 
 // GET one specific veteran by ID
 // TO DO - MAKE SURE joins are rendering correctly
-router.get("/:id", rejectUnauthenticatedAdmin, (req, res) => {
+router.get("/:id", rejectUnauthenticatedVetAdmin, (req, res) => {
   let id = req.params.id;
   console.log("--- This is the ID of the veteran you clicked on: ", id);
   const queryText = `SELECT 

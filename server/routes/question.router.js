@@ -5,6 +5,28 @@ const {
   rejectUnauthenticatedVetAdmin
 } = require("../modules/authentication-middleware");
 
+
+
+router.put('/misc/:id', (req,res) => {
+  console.log('In PUT router for miscQuestions');
+  const id = req.params.id;
+  const { compensationId, registered, imminentDanger, purpleHeart } = req.body;
+  const sqlText = `UPDATE "veteran" SET compensation=$1, percentage=$2,
+                   danger_areas=$3, purple_heart=$4 WHERE vet_id=$5;`;
+  pool.query(sqlText, [registered, compensationId, imminentDanger, purpleHeart, id])
+  .then((result) => {
+    res.sendStatus(200);
+  })
+  .catch((error) => {
+    console.log('Error in PUT for miscQuestions', error);
+    res.sendStatus(500);
+  })
+})
+
+
+
+
+
 // Make a put for each resgistration category
 router.put('/:id', (req,res) => {
     console.log('In router.put')
