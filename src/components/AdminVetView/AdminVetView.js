@@ -4,6 +4,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import '../AdminVetView/AdminVetView.css';
 import Fab from '@material-ui/core/Fab';
 import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
+import HomeIcon from '@material-ui/icons/Home';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -48,69 +49,96 @@ class AdminVetView extends Component {
       const { classes } = this.props;
         return (
           <div className="container">
-            <center>
-              {/* {JSON.stringify(this.props.store.details)} */}
-            <h2>Admin Vet View</h2>
-            </center>
               {details.map((vet, i) => {
-                // CONDITIONAL RENDER BOOLEAN VALUES TO YES OR NO 
                 return(
                   <div key={i}>
-                    <Fab  
-                      className="admin-landing-button" variant="contained" 
-                      style={{
-                        borderRadius: 35,
-                        backgroundColor: '#AFFA3D',
-                        fontFamily: 'orbitron',
-                      }}
-                      onClick={this.goBackHome}>
-                        <SaveTwoToneIcon />
-                      </Fab>
                     <Paper className={classes.root} elevation={1}>
+                      <center>
+                        <Typography variant="h5" className="font" component="h5">Demographics of {vet.first_name} {vet.last_name}</Typography>
+                      </center>
                       <hr></hr>
-                      <Typography component="p">Name: {vet.first_name} {vet.last_name}</Typography>
-                      <Typography component="p">Email: {vet.email}</Typography>
-                      <Typography component="p">Date of Birth:{vet.date_of_birth}</Typography>
-                      <Typography component="p">Number: {vet.number}</Typography>
-                      <Typography component="p">Gender: {vet.gender}</Typography>
-                      <Typography component="p">Marital Status: {vet.married}</Typography>
-                      <Typography component="p">Children: {vet.children}</Typography>
-                      <Typography component="p">Home Living Situation: {conversion(vet.homeless)}</Typography>
-                      <Typography component="p">Current Address: {vet.current_address}</Typography>
-                      <Typography component="p">City: {vet.city}</Typography>
-                      <Typography component="p">State: {vet.state}</Typography>
-                      <Typography component="p">Zipcode: {vet.zipcode}</Typography>
-                      <Typography component="p">Country: {vet.country}</Typography>
-                      <Typography component="p">Mailing Address: {vet.mailing_address}</Typography>
-                      <Typography component="p">City2: {vet.city2}</Typography>
-                      <Typography component="p">State2: {vet.state_id2}</Typography>
-                      <Typography component="p">Zipcode2: {vet.zipcode2}</Typography>
-                      <Typography component="p">Country2: {vet.country2}</Typography>
-                      <Typography component="p">Branch: {vet.branch}</Typography>
-                      <Typography component="p">Rank: {vet.rank}</Typography>
-                      <Typography component="p">Start Date: {vet.start_date}</Typography>
-                      <Typography component="p">End Date: {vet.end_date}</Typography>
-                      <Typography component="p">Discharge: {vet.discharge}</Typography>
-                      <Typography component="p">Malady: {vet.injury}</Typography>
-                      <Typography component="p">Compensation: {conversion(vet.compensation)}</Typography>
-                      <Typography component="p">Percentage: {vet.percentage}</Typography>
-                      <Typography component="p">Danger Areas: {conversion(vet.danger_areas)}</Typography>
-                      <Typography component="p">Purple Heart: {conversion(vet.purple_heart)}</Typography>
+                      <div className="flex-grid">
+                        <div className="col">
+                        <br></br>
+                            <Typography className="font" component="p">Full Name: <br></br><i>{vet.first_name} {vet.last_name}</i></Typography>
+                            <br></br>
+                            <Typography className="font" component="p">Email: <br></br><i>{vet.email}</i></Typography>
+                            <br></br>
+                            <Typography className="font" component="p">Date of Birth: <br></br><i>{vet.to_char}</i></Typography>
+                            <br></br>
+                            <Typography className="font" component="p">Contact Number: <br></br><i>{vet.number}</i></Typography>
+                            <br></br>
+                            <Typography className="font" component="p">Gender: <br></br><i>{vet.gender}</i></Typography>
+                            <br></br>
+                            <Typography className="font" component="p">Marital Status: <br></br><i>{vet.married}</i></Typography>
+                            <br></br>
+                            <Typography className="font" component="p">Children: <br></br><i>{vet.children}</i></Typography>
+                            <br></br>
+                            <Typography className="font" component="p">Experiencing Homelessness? <br></br><i>{conversion(vet.homeless)}</i></Typography>
+                            <br></br>
+                          <Typography variant="h5" className="font" component="h5">Address</Typography>
+                            <Typography className="font" component="p"> <i>{vet.current_address}</i></Typography>
+                            <Typography className="font" component="p"> <i>{vet.city}, {vet.state}</i></Typography>
+                            <Typography className="font" component="p"> <i>{vet.zipcode}</i></Typography>
+                            <Typography className="font" component="p"> <i>{vet.country}</i></Typography>
+                        </div>
+                        <div className="col">
+                        <br></br>
+                        {/* COMMENTING THE BELOW OUT FOR NOW */}
+                            {/* <Typography component="p">Mailing Address: {vet.mailing_address}</Typography>
+                            <Typography component="p">City2: {vet.city2}</Typography>
+                            <Typography component="p">State2: {vet.state_id2}</Typography>
+                            <Typography component="p">Zipcode2: {vet.zipcode2}</Typography>
+                            <Typography component="p">Country2: {vet.country2}</Typography> */}
+                          <Typography component="p">Service Status: <br></br><i>{vet.discharge}</i></Typography>
+                          <br></br>
+                          <Typography component="p">Branch of Service: <br></br><i>{vet.branch}</i></Typography>
+                          <br></br>
+                          <Typography component="p">Highest Attained Rank: <br></br><i>{vet.rank}</i></Typography>
+                          <br></br>
+                          <Typography component="p">Start of Service: <br></br><i>{vet.start_date}</i></Typography>
+                          <br></br>
+                          <Typography component="p">End Service Date: <br></br><i>{vet.end_date}</i></Typography>
+                          <br></br>
+                          <Typography component="p">Maladies: <br></br><i>{vet.injury}</i></Typography>
+                          <br></br>
+                          {/* <Typography component="p">Received compensation: {conversion(vet.compensation)}</Typography> */}
+                          <Typography component="p">Dept Veterans Affairs compensation: <br></br><i>{vet.percentage}</i></Typography>
+                          <br></br>
+                          <Typography component="p">Served in imminent danger areas: <br></br><i>{conversion(vet.danger_areas)}</i></Typography>
+                          <br></br>
+                          <Typography component="p">Received purple heart: <br></br><i>{conversion(vet.purple_heart)}</i></Typography>
+                        </div>
+                      </div>
                       <hr></hr>
                     </Paper>
                   <br></br>
-                </div>
-              )})}
-                <Fab  
-                  className="admin-landing-button" variant="contained" 
+                              <div>
+              {/* <Fab  
+                className="admin-landing-button" variant="contained" 
                   style={{
                     borderRadius: 35,
                     backgroundColor: '#AFFA3D',
                     fontFamily: 'orbitron',
                   }}
-                  onClick={this.goBackHome}><SaveTwoToneIcon /></Fab>
-          </div>
-        );
+                onClick={this.goBackHome}>
+                  <SaveTwoToneIcon />
+              </Fab> */}
+                <span className="space-between-buttons">&nbsp;&nbsp;</span>
+              <Fab  
+                className="admin-landing-button" variant="contained" 
+                  style={{
+                    borderRadius: 35,
+                    backgroundColor: '#AFFA3D',
+                    fontFamily: 'orbitron',
+                  }}
+                onClick={this.goBackHome}><HomeIcon />
+              </Fab>
+              </div>
+                </div>
+              )})}
+            </div>
+      );
   }
 }
 

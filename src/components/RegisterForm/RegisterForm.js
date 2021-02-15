@@ -16,6 +16,9 @@ import { useTheme } from '@material-ui/core/styles';
 //CATEGORIES
 import Category from '../Category/Category'
 import DemographicQuestion from "../DemographicQuestions/DemographicQuestion";
+import MiscQuestions from "../MiscQuestions/MiscQuestions";
+import ServiceHistoryQuestions from "../ServiceHistoryQuestions/ServiceHistoryQuestions";
+import MaladyQuestions from "../MaladyQuestions/MaladyQuestions";
 
 const styles = ({
   button: {
@@ -91,10 +94,10 @@ class RegisterForm extends Component {
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={this.state.value}
           onChangeIndex={this.handleChangeIndex}>
-          <TabContainer dir={theme.direction}>Personal Info</TabContainer>
-          <TabContainer dir={theme.direction}>Service History</TabContainer>
-          <TabContainer dir={theme.direction}>Health</TabContainer>
-          <TabContainer dir={theme.direction}>Miscellaneous</TabContainer>
+          <TabContainer dir={theme.direction}><DemographicQuestion/></TabContainer>
+          <TabContainer dir={theme.direction}><ServiceHistoryQuestions /></TabContainer>
+          <TabContainer dir={theme.direction}><MaladyQuestions /></TabContainer>
+          <TabContainer dir={theme.direction}><MiscQuestions /></TabContainer>
         </SwipeableViews>
       </div>
     );

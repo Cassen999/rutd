@@ -33,6 +33,7 @@ import Name from '../Question/Name'
 import Email from '../Question/Email'
 import DemographicQuestion from '../DemographicQuestions/DemographicQuestion'
 import "./App.css";
+import VetViewResource from "../VetViewResource/VetViewResource";
 
 class App extends Component {
   componentDidMount() {
@@ -172,6 +173,12 @@ class App extends Component {
               exact
               path="/vetFindMatches"
               component={VetFindMatches}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/vetViewResource"
+              component={VetViewResource}
             />
 
 <ProtectedRoute

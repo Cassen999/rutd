@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import "../AdminVetView/AdminVetView.css";
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -60,11 +60,10 @@ class AdminResourceEdit extends Component {
           return (
             <div className="container">
               <center>
-                {/* {JSON.stringify(this.props.store.resourceDetails)} */}
+                {JSON.stringify(this.props.store.resourceDetails)}
                 <h2>{this.state.heading}</h2>
               </center>
-              {/* {resourceDetails.map((resource, i) => {
-                return ( */}
+
                   <div>
                     <Paper className={classes.root} elevation={1}>
                       <hr></hr>

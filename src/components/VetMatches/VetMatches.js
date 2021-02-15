@@ -5,12 +5,23 @@ import ProgressBar from "../ProgressBar/ProgressBar";
 import { withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import compose from 'recompose/compose';
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import Fab from '@material-ui/core/Fab';
 import swal from 'sweetalert';
+import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
+import RedCross from '../../Images/redcross.jpg';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Avatar from '@material-ui/core/Avatar';
+import CardHeader from '@material-ui/core/CardHeader';
+import Typography from "@material-ui/core/Typography";
+
 
 const styles = (theme) => ({
   root: {
@@ -19,6 +30,10 @@ const styles = (theme) => ({
     width: '100%',
     flexWrap: 'wrap',
   },
+    card: {
+      maxWidth: 400,
+      margin: 10
+    },
   paper: {
     padding: theme.spacing(1),
     textAlign: 'center',
@@ -119,39 +134,57 @@ class VetMatches extends Component {
 
     return (
         <div>
-          <Fab onClick={(event) => this.props.history.push("/home")}
+          <center>
+            <h1 class="grey">Below are your saved matches</h1>
+          </center>
+          <Button onClick={(event) => this.props.history.push("/home")}
             variant="contained"
             style={{
-              borderRadius: 35,
-              width: '25px',
-              height: '40px',
-              backgroundColor: '#AFFA3D',
-              fontFamily: 'orbitron',
+            borderRadius: 35,
+            width: '25px',
+            height: '40px',
+            backgroundColor: '#AFFA3D',
+            fontFamily: 'orbitron',
             }}>
             <HomeRoundedIcon />
-          </Fab>
-          <div className={classes.root}>
-            {matches.map((match, i) => (
-            <Grid key={i} container spacing={1}>
-                    <Paper className={classes.paper}> 
-                      <Grid item xs={2}>
-                          <img
-                            className="resource-icon"
-                            alt={match.pictures}
-                            // src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png"
-                          />        
-                      </Grid>
-                      <Grid item xs={3}>
-                          {match.name}       
-                      </Grid>
-                      <Grid item xs={3}>
-                          {match.description}       
-                      </Grid>
-                      <Grid item xs={3}>
-                          {match.website}      
-                      </Grid>
-                      <Grid item xs={3}>
-                        {match.exist ?
+          </Button>
+            <div>
+              <div className="cardContainer">
+                {matches.map((match, i) => {
+                  return ( 
+                      <div key={i} className="container">
+                            <Card className={classes.card}>
+                              <CardActionArea>
+                                  <CardHeader
+                                    avatar={
+                                      <Avatar aria-label={match.title}>
+                                        {match.title}
+                                      </Avatar>
+                                    }
+                                    title={match.title}
+                                    subheader={match.name}
+                                    />
+                                <CardMedia
+                                    className={classes.media}
+                                    alt={match.title}
+                                    image={RedCross}/>
+                                <CardContent>
+                                  <Typography gutterBottom variant="h5" component="h2">
+                                    {match.name}
+                                  </Typography>
+                                  <Typography component="p">
+                                    {match.email}
+                                  </Typography>
+                                  <Typography component="p">
+                                    {match.number}
+                                  </Typography>
+                                  <Typography>
+                                    {match.description}
+                                  </Typography>
+                                </CardContent>
+                              </CardActionArea>
+                            <CardActions>
+                            {match.exist ?
                         <Button
                           style={{
                             borderRadius: 35,
@@ -171,11 +204,13 @@ class VetMatches extends Component {
                           Save and Contact
                       </Button>
                         }
-                      </Grid>              
-                    </Paper>                 
-                  </Grid>
-                ))}
-          </div>
+                            </CardActions>
+                          </Card>
+                        </div>
+                )})}
+              {/* <ProgressBar value={30} /> */}
+           </div>
+        </div>
       </div>
     );
   }
