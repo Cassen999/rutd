@@ -104,6 +104,7 @@ router.get(`/existMatch`, rejectUnauthenticatedVet, (req, res) => {
   pool
     .query(queryText, [vetId, orgId])
     .then((result) => {
+      console.log('match exist result.rows', result.rows)
       res.send(result.rows);
     })
     .catch((error) => {

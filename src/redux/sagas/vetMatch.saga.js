@@ -49,8 +49,8 @@ function* fetchMatchExist(action) {
   console.log('matchexists vet_id and org_id', vet_id, org_id)
   try {
     const response = yield axios.get(`/api/match/existMatch?vet_id=${vet_id}&org_id=${org_id}`);
-    const matchExist = response.data;
-    yield put({ type: "SET_MATCH_EXIST", payload: matchExist });
+    
+    yield put({ type: "SET_MATCH_EXIST", payload: response.data });
   } catch (error) {
     console.log("error with all vet matches fetch request", error);
   }

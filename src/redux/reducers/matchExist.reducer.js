@@ -1,4 +1,4 @@
-const vetLandingMatchReducer = (state = {}, action) => {
+const matchExistReducer = (state = [], action) => {
     switch (action.type) {
       case "SET_MATCH_EXIST":
         return action.payload;
@@ -9,4 +9,4 @@ const vetLandingMatchReducer = (state = {}, action) => {
     }
   };
   
-  export default vetLandingMatchReducer;
+  export default matchExistReducer;

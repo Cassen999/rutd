@@ -10,9 +10,9 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
-import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import swal from 'sweetalert';
+import { v4 as uuidv4 } from 'uuid';
 
 const styles = (theme) => ({
   root: {
@@ -46,6 +46,19 @@ class VetMatches extends Component {
     textbox: this.props.store.emailReducer,
     sender_type: 1
   };
+  
+  componentDidMount() {
+    if(this.props.store.emailReducer !== []) {
+      this.setState({
+        textbox: this.props.store.emailReducer
+      })
+    }
+    else if(this.props.store.emailReducer === []) {
+      this.setState({
+        textbox: ''
+      })
+    }
+  }
 
   contactOrg = (org_id, orgName, org_email) => {
     const today = new Date();
@@ -61,23 +74,23 @@ class VetMatches extends Component {
       sender_type: state.sender_type}})
   };
 
-  checkIfExists = (orgId) => {
-    this.props.dispatch({type: 'FETCH_MATCH_EXIST', payload: {vetId: this.props.store.user.id, orgId: orgId}})
-  }
+  // dispatchFunction = (org_id, orgName, org_email) => {
+  //   this.props.dispatch({type: 'FETCH_MATCH_EXIST', payload: {vetId: this.props.store.user.id, orgId: org_id}}) 
+  // }
 
-  componentDidMount() {
-    if(this.props.store.emailReducer !== []) {
-      this.setState({
-        textbox: this.props.store.emailReducer
-      })
+  checkIfExists = (org_id, orgName, org_email, event) => {
+    const matchArray = []
+    console.log('vetMatch check if exists event.id', event.currentTarget.id, matchArray.includes(event.currentTarget.id))
+    // this.props.dispatch({type: 'FETCH_MATCH_EXIST', payload: {vetId: this.props.store.user.id, orgId: org_id}}) 
+    if(matchArray.includes(event.currentTarget.id) === false) {
+      matchArray.push(event.currentTarget.id)
+      this.contactOrg(org_id, orgName, org_email)
     }
-    else if(this.props.store.emailReducer === []) {
-      this.setState({
-        textbox: ''
-      })
+    else if( matchArray.includes(event.currentTarget.id) === true) {
+      this.alreadySavedAlert(org_id, orgName, org_email)
     }
   }
-
+  
   alreadySavedAlert = (org_id, orgName, org_email) => {
     swal({
       title: "You have already contacted this resource!",
@@ -109,36 +122,36 @@ class VetMatches extends Component {
       })
   }
 
-  switchSaveButton = (match, m) => {
-    if(this.props.store.matchExistReducer === false) {
-      return (
-        <Grid item key={m} xs={3}>
-          <Fab 
-            style={{
-              borderRadius: 35,
-              backgroundColor: '#AFFA3D',
-              fontFamily: 'orbitron',
-            }}
-            onClick={(event) => this.contactOrg(match.org_id, match.name, match.email)}>
-          </Fab>
-        </Grid> 
-      )
-    }
-    else {
-      return (
-        <Grid item key={m} xs={3}>
-          <Fab 
-            style={{
-              borderRadius: 35,
-              backgroundColor: '#AFFA3D',
-              fontFamily: 'orbitron',
-            }}
-            onClick={this.alreadySavedAlert(match.org_id, match.name, match.email)}>
-          </Fab>
-        </Grid>
-      )
-    }
-  }
+  // switchSaveButton = (match, m) => {
+  //   if(this.props.store.matchExistReducer === false) {
+  //     return (
+  //       <Grid item key={m} xs={3}>
+  //         <Fab 
+  //           style={{
+  //             borderRadius: 35,
+  //             backgroundColor: '#AFFA3D',
+  //             fontFamily: 'orbitron',
+  //           }}
+  //           onClick={(event) => this.contactOrg(match.org_id, match.name, match.email)}>
+  //         </Fab>
+  //       </Grid> 
+  //     )
+  //   }
+  //   else {
+  //     return (
+  //       <Grid item key={m} xs={3}>
+  //         <Fab 
+  //           style={{
+  //             borderRadius: 35,
+  //             backgroundColor: '#AFFA3D',
+  //             fontFamily: 'orbitron',
+  //           }}
+  //           onClick={this.alreadySavedAlert(match.org_id, match.name, match.email)}>
+  //         </Fab>
+  //       </Grid>
+  //     )
+  //   }
+  // }
 
   render() {
 
@@ -147,6 +160,7 @@ class VetMatches extends Component {
 
     return (
         <div>
+          {JSON.stringify(this.props.store.matchExistReducer)}
           <Button onClick={(event) => this.props.history.push("/home")}
             variant="contained"
             style={{
@@ -181,14 +195,15 @@ class VetMatches extends Component {
                           {match.website}      
                       </Grid>
                       <Grid item key={m} xs={3}>
-                      <Fab
-                        style={{
-                            borderRadius: 35,
-                            backgroundColor: '#AFFA3D',
-                            fontFamily: 'orbitron',
-                          }}
-                        onClick={(event) =>this.switchSaveButton(match, m)}>
-                          <FavoriteRoundedIcon />
+                        <Fab
+                          id={uuidv4()}
+                          style={{
+                              borderRadius: 35,
+                              backgroundColor: '#AFFA3D',
+                              fontFamily: 'orbitron',
+                            }}
+                          onClick={(event) => this.checkIfExists(match.org_id, match.name, match.email, event)}>
+                            <FavoriteRoundedIcon />
                       </Fab>
                       </Grid>              
                     </Paper>        
