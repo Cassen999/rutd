@@ -8,11 +8,9 @@ import compose from 'recompose/compose';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import Fab from '@material-ui/core/Fab';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
-import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
+import Fab from '@material-ui/core/Fab';
 import swal from 'sweetalert';
-import { v4 as uuidv4 } from 'uuid';
 
 const styles = (theme) => ({
   root: {
@@ -45,79 +43,42 @@ class VetMatches extends Component {
     vetEmail: this.props.store.vetReducer.email,
     textbox: this.props.store.emailReducer,
     sender_type: 1,
-    existArray: [],
-    doUpdate: true,
-    vetExists: {
-      orgIdState: 0,
-      orgNameState: '',
-      orgEmailState: ''
-    }
   };
   
   componentDidMount() {
-    this.props.dispatch({type: 'FETCH_MATCH_EXIST', payload: {vetId: this.props.store.user.id, orgId: this.state.vetExists.orgIdState}})
     if(this.props.store.emailReducer !== []) {
       this.setState({
         textbox: this.props.store.emailReducer
       })
     }
-    else if(this.props.store.emailReducer === []) {
+    else {
       this.setState({
         textbox: ''
       })
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const state = this.state.vetExists
-    console.log('state of doUpdate', this.state.doUpdate)
-    if (prevState.existArray !== this.state.existArray) {
-      console.log('existArray state has changed.', state)
-      this.props.dispatch({type: 'FETCH_MATCH_EXIST', payload: {vetId: this.props.store.user.id, orgId: state.orgIdState}})
-      this.checkIfExists(state.orgIdState, state.orgNameState, state.orgEmailState)
-    }
-  }
-
   contactOrg = (org_id, orgName, org_email) => {
-    this.setState({
-      doUpdate: false
-    })
     const today = new Date();
     const time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
     const state = this.state
-    console.log("Contacting Org and time, org_id, vet_id", time, org_id, this.state.vetId);
-    this.props.dispatch({type: 'POST_NEW_MATCH', payload: {vet_id: this.state.vetId, 
+    console.log("Contacting Org and time, org_id, vet_id", time, org_id, state.vetId);
+    this.props.dispatch({type: 'POST_NEW_MATCH', payload: {vet_id: state.vetId, 
       org_id: org_id, time: time}});
     this.props.dispatch({type: 'POST_EMAIL', payload: {org_id: org_id, 
       orgName: orgName,  org_email: org_email,
       text: state.textbox, vetFirstName: state.vetFirstName, 
       vetLastName: state.vetLastName, vetEmail: state.vetEmail, 
-      sender_type: state.sender_type}})
-  };
-
-  checkIfExists = (org_id, orgName, org_email, event) => {
-    if(event) {
-      this.setState({
-        existArray: [...this.state.existArray, event.currentTarget.id],
-        vetExists:{
-          orgIdState: org_id,
-          orgNameState: orgName,
-          orgEmailState: org_email
-        }
+      sender_type: state.sender_type}
       })
-      console.log('vetMatch check if exists event.currentTarget.id', event.currentTarget.id)
-    } 
-    else if(!this.state.existArray.includes(org_id)) {
-      console.log('In else statement')
-      if(this.props.store.matchExistReducer.exists === false) {
-        this.contactOrg(org_id, orgName, org_email)
-      }
-      else if(this.state.existArray.includes(org_id)) {
-        this.alreadySavedAlert(org_id, orgName, org_email)
-      }
-    console.log('existArray includes', this.state.existArray.includes(toString(org_id)), this.state.existArray)
-    }
-  }
+    swal({
+      title: `Thank you for selecting ${orgName}!`,
+      icon: "success",
+      text: `${orgName} has been notified of your request and will get in touch with you via email`
+    })
+    this.props.dispatch({ type: "FETCH_ALL_MATCHES", payload: this.props.store.vetReducer.id});
+    console.log('states vet id', this.props.store.vetReducer.id)
+  };
 
   alreadySavedAlert = (org_id, orgName, org_email) => {
     swal({
@@ -150,37 +111,6 @@ class VetMatches extends Component {
       })
   }
 
-  // switchSaveButton = (match, m) => {
-  //   if(this.props.store.matchExistReducer === false) {
-  //     return (
-  //       <Grid item key={m} xs={3}>
-  //         <Fab 
-  //           style={{
-  //             borderRadius: 35,
-  //             backgroundColor: '#AFFA3D',
-  //             fontFamily: 'orbitron',
-  //           }}
-  //           onClick={(event) => this.contactOrg(match.org_id, match.name, match.email)}>
-  //         </Fab>
-  //       </Grid> 
-  //     )
-  //   }
-  //   else {
-  //     return (
-  //       <Grid item key={m} xs={3}>
-  //         <Fab 
-  //           style={{
-  //             borderRadius: 35,
-  //             backgroundColor: '#AFFA3D',
-  //             fontFamily: 'orbitron',
-  //           }}
-  //           onClick={this.alreadySavedAlert(match.org_id, match.name, match.email)}>
-  //         </Fab>
-  //       </Grid>
-  //     )
-  //   }
-  // }
-
   render() {
 
     const { classes } = this.props;
@@ -188,8 +118,8 @@ class VetMatches extends Component {
 
     return (
         <div>
-          {/* {JSON.stringify(this.props.store.matchExistReducer)} */}
-          <Button onClick={(event) => this.props.history.push("/home")}
+          {JSON.stringify(this.state.vetId)}
+          <Fab onClick={(event) => this.props.history.push("/home")}
             variant="contained"
             style={{
               borderRadius: 35,
@@ -199,7 +129,7 @@ class VetMatches extends Component {
               fontFamily: 'orbitron',
             }}>
             <HomeRoundedIcon />
-          </Button>
+          </Fab>
           <div className={classes.root}>
             {matches.map((match, i) => (
             <Grid key={i} container spacing={1}>
@@ -221,16 +151,26 @@ class VetMatches extends Component {
                           {match.website}      
                       </Grid>
                       <Grid item xs={3}>
-                        <Fab
-                          id={match.org_id}
-                          style={{
-                              borderRadius: 35,
-                              backgroundColor: '#AFFA3D',
-                              fontFamily: 'orbitron',
-                            }}
-                          onClick={(event) => this.checkIfExists(match.org_id, match.name, match.email, event)}>
-                            <FavoriteRoundedIcon />
-                      </Fab>
+                        {match.exist ?
+                        <Button
+                        style={{
+                          borderRadius: 35,
+                          backgroundColor: '#AFFA3D',
+                          fontFamily: 'orbitron',
+                        }}
+                          onClick={(event) => this.alreadySavedAlert(match.org_id, match.name, match.email)}>
+                          Already matched! Email again?
+                        </Button>  : 
+                        <Button
+                        style={{
+                            borderRadius: 35,
+                            backgroundColor: '#AFFA3D',
+                            fontFamily: 'orbitron',
+                          }}
+                          onClick={(event) => this.contactOrg(match.org_id, match.name, match.email)}>
+                          Save and Contact
+                      </Button>
+                        }
                       </Grid>              
                     </Paper>                 
                   </Grid>
