@@ -8,7 +8,8 @@ import {
   FormControl,
   Select,
   Radio,
-  Grid  
+  Grid,
+  Typography 
 } from "@material-ui/core";                
 class Compensation extends Component {
 
@@ -36,7 +37,8 @@ class Compensation extends Component {
     const compensationId = this.props.compensationId;
     return (   
       <>
-        <p className={classes.text}>Are you currently registered with the VA?</p>
+        
+        <Typography >Are you currently registered with the VA?</Typography>
           <Grid
             container
             spacing={1}
