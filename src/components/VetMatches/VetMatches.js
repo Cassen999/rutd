@@ -5,12 +5,22 @@ import ProgressBar from "../ProgressBar/ProgressBar";
 import { withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import compose from 'recompose/compose';
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
+import RedCross from '../../Images/redcross.jpg';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Avatar from '@material-ui/core/Avatar';
+import CardHeader from '@material-ui/core/CardHeader';
+import Typography from "@material-ui/core/Typography";
+
 
 const styles = (theme) => ({
   root: {
@@ -80,7 +90,7 @@ class VetMatches extends Component {
     return (
         <div>
           <Button onClick={(event) => this.props.history.push("/home")}
-            variant="contained"
+              variant="contained"
             style={{
               borderRadius: 35,
               width: '25px',
@@ -90,45 +100,50 @@ class VetMatches extends Component {
             }}>
             <HomeRoundedIcon />
           </Button>
-          <div className={classes.root}>
-            <Grid container spacing={1}>
-              <Grid container item xs={9} spacing={3}>
-                {matches.map((match, i, j, k, l, m) => (
-                  <React.Fragment>
-                    <Paper className={classes.paper}> 
-                      <Grid item key={i} xs={2}>
-                          <img
-                            className="resource-icon"
-                            alt={match.pictures}
-                            // src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png"
-                          />        
-                      </Grid>
-                      <Grid item key={j} xs={3}>
-                          {match.name}       
-                      </Grid>
-                      <Grid item key={k} xs={3}>
-                          {match.description}       
-                      </Grid>
-                      <Grid item key={l} xs={3}>
-                          {match.website}      
-                      </Grid>
-                      <Grid item key={m} xs={3}>
-                          <Fab 
-                            style={{
-                              borderRadius: 35,
-                              backgroundColor: '#AFFA3D',
-                              fontFamily: 'orbitron',
-                            }}
-                            onClick={(event) => this.contactOrg(match.org_id, match.name, match.email)}>
-                            <SaveTwoToneIcon />
-                          </Fab>
-                      </Grid>              
-                    </Paper>        
-                  </React.Fragment>            
-                ))}
-              </Grid>
-            </Grid>
-          </div>
+                {matches.map((match, i) => {
+                  return ( 
+                      <div key={i}>
+                            <Card className={classes.card}>
+                              <CardActionArea>
+                                  <CardHeader
+                                    avatar={
+                                      <Avatar aria-label={match.title}>
+                                        {match.title}
+                                      </Avatar>
+                                    }
+                                    title={match.title}
+                                    subheader={match.name}
+                                    />
+                                <CardMedia
+                                    className={classes.media}
+                                    alt={match.title}
+                                    image={RedCross}/>
+                                <CardContent>
+                                  <Typography gutterBottom variant="h5" component="h2">
+                                    {match.name}
+                                  </Typography>
+                                  <Typography component="p">
+                                    {match.email}
+                                  </Typography>
+                                  <Typography component="p">
+                                    {match.number}
+                                  </Typography>
+                                </CardContent>
+                              </CardActionArea>
+                            <CardActions>
+                              <Fab 
+                                style={{
+                                  borderRadius: 35,
+                                  backgroundColor: '#AFFA3D',
+                                  fontFamily: 'orbitron',
+                                }}
+                                onClick={(event) => this.contactOrg(match.org_id, match.name, match.email)}>
+                                <SaveTwoToneIcon />
+                              </Fab>
+                            </CardActions>
+                          </Card>
+                        </div>
+                )})}
         {/* <ProgressBar value={30} /> */}
       </div>
     );
