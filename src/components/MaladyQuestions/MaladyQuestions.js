@@ -1,23 +1,21 @@
 import React, { Component } from "react";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
-import {
-    Button,
-    Grid,
-    Paper,
-    withStyles,
-    FormControl,
-    InputLabel,
-    Select,
-    MenuItem, 
-    FormHelperText
-} from "@material-ui/core";
 import compose from 'recompose/compose';
-
+import {    withStyles,
+            FormControl,
+            InputLabel,
+            Select,
+            MenuItem, 
+            Typography,
+            Button      } from "@material-ui/core";
+                        
+             
+                        
 const styles = (theme) => ({
     formControl: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
+        marginTop: theme.spacing(3),
+        padding: theme.spacing(2),
         minWidth: 185, 
     },
 })
@@ -42,19 +40,32 @@ class MaladyQuestions extends Component {
   }
 
   handleChange = (event) => {
-      event.preventDefault();
-      console.log('selected:', event.target.value);
+    event.preventDefault();
+    this.setState({
+        selectedMalady: [...this.state.selectedMalady, event.target.value]
+    })
+  }
+
+  saveMalady = () => {
+    console.log('save malady');
+    this.props.dispatch({
+        type: "UPDATE_MALADY",
+        payload: this.state.selectedMalady
+    })
   }
 
   render() {
     const { classes } = this.props;
     const maladyList = this.props.store.maladyReducer;
     const { selectedMalady, malady, open } = this.state;
-    console.log('list of maladies from db', maladyList); 
+    console.log('selected maladies are:', selectedMalady); 
     return (
         <> 
             <FormControl variant="filled" className={classes.formControl}>
-                <InputLabel id="open-malady-label">Compensation Rate</InputLabel>
+                <Typography variant="h4" component="h2">
+                    Please Select Any Health Concerns Which May Apply.
+                </Typography>
+                <InputLabel id="open-malady-label">Health Concerns</InputLabel>
                 <Select
                     labelId="open-malady-label"
                     id="open-malady"
@@ -64,6 +75,9 @@ class MaladyQuestions extends Component {
                     value={selectedMalady}
                     onChange={this.handleChange}
                 >
+                    <MenuItem value="">
+                        <em>None</em>
+                    </MenuItem>
                     {maladyList.map((injury) => (
                     <MenuItem
                         key={injury.description}
@@ -73,39 +87,12 @@ class MaladyQuestions extends Component {
                     </MenuItem>
                     ))}
                 </Select>
-            </FormControl>          
-            
-            
-            {/* <FormControl>
-              <InputLabel>
-                SELECT
-              </InputLabel>
-              <Select
-               value={age}
-              //onChange={(event)=>this.handleChange(event)}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                {malady.map((each) => (
-                  <MenuItem
-                    key={each}
-                    value={each.id}
-                  >
-                    {each.description}</MenuItem>
-                ))}
-
-              </Select>
-              <FormHelperText>Some important helper text</FormHelperText>
-            </FormControl>
-  
             <Button
-              onClick={(event) => {
-                this.saveMalady(event);
-              }}
+              onClick={this.saveMalady}
             >
               SAVE
-            </Button> */}
+            </Button> 
+        </FormControl>          
       </>
     ); //END return
   } //END render
