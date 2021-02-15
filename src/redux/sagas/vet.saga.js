@@ -13,6 +13,17 @@ function* fetchVet() {
     }        
 }
 
+function* fetchVetInfo(action) {
+    console.log('In fetchVetInfo saga');
+    try{
+        const response = yield axios.get(`/api/vet/${action.payload}`);
+        yield put({type: 'SET_VET', payload: response.data});
+        console.log('response.data from vet GET request:', response.data);
+    } catch(error) {
+        console.log('error with vet GET request', error);
+    }
+}
+
 function* fetchVetId(action) {
     try{
         const vetId = action.payload
@@ -48,6 +59,7 @@ function* vet() {
     yield takeLatest('FETCH_VET_ID', fetchVetId);
     yield takeLatest('POST_NEW_VET', postNewVet);
     yield takeLatest('FETCH_VET_EXIST', fetchExist);
+    yield takeLatest('FETCH_VET_INFO', fetchVetInfo);
 }
 
 

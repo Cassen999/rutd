@@ -17,6 +17,7 @@ import resourceSearchSaga from './resourceSearch.saga';
 import deleteResourceSaga from './deleteResource.saga';
 import categorySaga from './category.saga';
 import dropdownSaga from './dropdown.saga';
+import miscQuestionSaga from './miscQuestion.saga';
 
 export default function* rootSaga() {
   yield all([
@@ -39,5 +40,6 @@ export default function* rootSaga() {
     deleteResourceSaga(),
     categorySaga(),
     dropdownSaga(),
+    miscQuestionSaga(),
   ]);
 }
