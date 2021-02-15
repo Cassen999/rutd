@@ -4,6 +4,9 @@ import mapStoreToProps from "../../redux/mapStoreToProps";
 import {withStyles, Select, MenuItem, FormControl, TextField} from "@material-ui/core";
 import green from '@material-ui/core/colors/green';
 import Radio from '@material-ui/core/Radio';
+import Fab from '@material-ui/core/Fab';
+import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
+
 // import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 // import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 
@@ -37,7 +40,11 @@ class ServiceHistoryQuestions extends Component {
         rank: '',
         selectedValue: 'yes',
      }
-
+    
+    
+     saveServiceHistory = () => {
+         console.log('Saving serviceHistory');
+    };
 
 
      handleInputChange = () =>{
@@ -340,7 +347,15 @@ class ServiceHistoryQuestions extends Component {
                     aria-label="No"
                 />No
                 {/* -------------------------------------------------- */}
-
+                <Fab
+                    className="float-right"
+                    style={{
+                        borderRadius: 35,
+                        backgroundColor: '#AFFA3D',
+                        fontFamily: 'orbitron',
+                    }}
+                        onClick={(event) => { this.saveServiceHistory(event) }}><SaveTwoToneIcon />
+                </Fab>
             </div>
          );
     }
