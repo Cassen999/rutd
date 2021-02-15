@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
-import {withStyles, Select, MenuItem, FormControl } from "@material-ui/core";
+import {withStyles, Select, MenuItem, FormControl, TextField} from "@material-ui/core";
 import green from '@material-ui/core/colors/green';
 import Radio from '@material-ui/core/Radio';
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
+// import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+// import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 
 
 const styles = theme => ({
@@ -49,7 +49,7 @@ class ServiceHistoryQuestions extends Component {
         this.setState({ selectedValue: event.target.value });
   };
 
-    render() { 
+    render(props) { 
         const {classes} = this.props;
         return ( 
             <div className="container">
@@ -297,19 +297,34 @@ class ServiceHistoryQuestions extends Component {
                 </FormControl>
                 {/* -------------------------------------------------- */}
                 <br></br>
+                <p>Service Start Date</p>
+                 <form className={classes.container} noValidate>
+                    <TextField
+                        id="date"
+                        label="Service Start Date"
+                        type="date"
+                        defaultValue="2017-05-24"
+                        className={classes.textField}
+                        InputLabelProps={{
+                        shrink: true,
+                        }}
+                    />
+                </form>
+                {/* -------------------------------------------------- */}
+                <br></br>
                 <p>Service End Date</p>
-
-
-
-
-
-
-
-
-
-
-
-                
+                 <form className={classes.container} noValidate>
+                    <TextField
+                        id="date"
+                        label="Service End Date"
+                        type="date"
+                        defaultValue="2017-05-24"
+                        className={classes.textField}
+                        InputLabelProps={{
+                        shrink: true,
+                        }}
+                    />
+                </form>
                 {/* -------------------------------------------------- */}
                 <br></br>
                 <p>Are you currently serving or have served in the military on or after September 11, 2001?</p>
