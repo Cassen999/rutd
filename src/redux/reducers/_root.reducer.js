@@ -18,6 +18,10 @@ import categoryReducer from './category.reducer';
 import genderDropdownReducer from './genderDropdown.reducer';
 import marriageDropdownReducer from './marriageDropdown.reducer'
 import existReducer from './exist.reducer';
+import branchReducer from './branch.reducer'
+import statusReducer from './status.reducer'; 
+import dischargeReducer from './discharge.reducer';
+import rankReducer from './rank.reducer';
 
 const rootReducer = combineReducers({
   errors,
@@ -39,6 +43,10 @@ const rootReducer = combineReducers({
   genderDropdownReducer,
   marriageDropdownReducer,
   existReducer,
+  branchReducer,
+  statusReducer,
+  dischargeReducer,
+  rankReducer,
 });
 
 export default rootReducer;

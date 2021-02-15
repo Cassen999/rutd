@@ -39,11 +39,19 @@ class ServiceHistoryQuestions extends Component {
         branch: '',
         rank: '',
         selectedValue: 'yes',
-     }
-    
+     };
+
+
+  componentDidMount() {
+    this.props.dispatch({type: 'FETCH_BRANCH'});
+    this.props.dispatch({type: 'FETCH_STATUS'});
+    this.props.dispatch({type: 'FETCH_DISCHARGE'});
+    this.props.dispatch({type: 'FETCH_RANK'});
+  }
     
      saveServiceHistory = () => {
          console.log('Saving serviceHistory');
+         // need to dispatch state to saga here
     };
 
 
