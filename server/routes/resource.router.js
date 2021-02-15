@@ -9,7 +9,7 @@ router.get("/", rejectUnauthenticatedAdmin, (req, res) => {
   const queryText = "SELECT * FROM organization;";
   pool
     .query(queryText)
-    .then((data) => res.json(data.rows))
+    .then((data) => res.send(data.rows))
     .catch((err) => {
       console.log("GET Organization FAILED: ", err);
       res.sendStatus(500);
@@ -54,12 +54,9 @@ router.post("/", rejectUnauthenticatedAdmin, (req, res) => {
 
 // PUT route for org
 
-router.put("/id", rejectUnauthenticatedAdmin, (req, res) => {
+router.put("/:id", rejectUnauthenticatedAdmin, (req, res) => {
   console.log("Updating Org ", req.body); // not coming through
   let orgID = req.params.id;
-  // let userID = req.user.id;
-  console.log("ROUTER PUT: ID of the dream you are updating: ", orgID);
-  console.log("ROUTER PUT: user ID:", userID);
   // capture
   const name = req.body.name;
   const number = req.body.number;
@@ -71,9 +68,8 @@ router.put("/id", rejectUnauthenticatedAdmin, (req, res) => {
   const pictures = req.body.pictures;
   const description = req.body.description;
   const approved = req.body.approved;
-  const queryText = `UPDATE organization SET
-    name=$1, number=$2, email=$3, city=$4, state_id=$5, pdf=$6,
-    website=$7, pictures=$8, description=$9, approved=$11 WHERE id= $10;`;
+  const categories = req.body.categories;
+  const queryText = `UPDATE organization SET name=$1, number=$2, email=$3, city=$4, state_id=$5, pdf=$6, website=$7, pictures=$8, description=$9, approved=$11 WHERE id= $10;`;
   pool
     .query(queryText, [
       name,
@@ -85,9 +81,21 @@ router.put("/id", rejectUnauthenticatedAdmin, (req, res) => {
       website,
       pictures,
       description,
+      orgID,
       approved,
     ])
-    .then((result) => res.json(result.rows))
+    .then((result) => {
+      // Delete existing mapping records
+      const queryText = `DELETE FROM organization_categories WHERE org_id= $1;`;
+      pool.query(queryText, [orgID]).then(() => {
+        // Insert new category mapping
+        categories.forEach((cat_id) => {
+          const queryText = `INSERT INTO organization_categories (org_id, categories_id) values($1, $2);`;
+          pool.query(queryText, [orgID, cat_id]);
+        });
+        res.status(200).json({ result: "success" });
+      });
+    })
     .catch((err) => {
       console.log("POST Organization FAILED: ", err);
       res.sendStatus(500);
@@ -97,7 +105,11 @@ router.put("/id", rejectUnauthenticatedAdmin, (req, res) => {
 router.get("/:id", rejectUnauthenticatedAdmin, (req, res) => {
   let id = req.params.id;
   console.log("--- This is the ID of the RESOURCE you clicked on: ", id);
-  const queryText = `SELECT organization.org_id,
+  //   SELECT id_field, array_agg(value_field1), array_agg(value_field2)
+  // FROM data_table
+  // GROUP BY id_field
+  const queryText = `SELECT 
+  organization.id as org_id,
     organization.name,
     organization.number,
     organization.email,
@@ -106,10 +118,24 @@ router.get("/:id", rejectUnauthenticatedAdmin, (req, res) => {
     organization.website,
     organization.pictures,
     organization.description,
-    state.description AS state
+    state.description AS state,
+    array_agg(categories_id) as categories
     FROM "organization"
     LEFT JOIN state ON state.id = "organization".state_id
-    WHERE organization.id = $1;`;
+    LEFT JOIN organization_categories ON organization.id = organization_categories.org_id
+    WHERE organization.id = $1
+    GROUP BY 
+    organization.id,
+    organization.name,
+    organization.number,
+    organization.email,
+    organization.city,
+    organization.pdf,
+    organization.website,
+    organization.pictures,
+    organization.description,
+    state.description
+    ;`;
   pool
     .query(queryText, [id])
     .then((result) => {

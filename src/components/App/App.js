@@ -31,7 +31,7 @@ import AdminOrgEdit from "../AdminOrgEdit/AdminOrgEdit";
 import VetFindMatches from "../VetFindMatches/VetFindMatches";
 import Name from '../Question/Name'
 import Email from '../Question/Email'
-
+import DemographicQuestion from '../DemographicQuestions/DemographicQuestion'
 import "./App.css";
 
 class App extends Component {
@@ -173,6 +173,13 @@ class App extends Component {
               path="/vetFindMatches"
               component={VetFindMatches}
             />
+
+<ProtectedRoute
+              exact
+              path="/demographicquestion"
+              component={DemographicQuestion}
+            />
+
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

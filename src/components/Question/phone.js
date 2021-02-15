@@ -85,7 +85,6 @@ class Phone extends Component {
                                     label="Phone Number"
                                     name="phone"
                                     value={this.state.vet.phone}
-                                    // onChange={(event) => this.handleInputChange(event, "phone")}
                                 />
                                 <br />
                                 <Button

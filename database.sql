@@ -1,6 +1,7 @@
 -- Enter in all commands in order they are written from top to bottom
 -- Tables
 -- HIGHLIGHT TO THE THE END COMMENT AND EXECUTE!
+
 CREATE TABLE "gender" (
     "id" SERIAL PRIMARY KEY,
     "description" VARCHAR(255) NOT NULL
@@ -56,7 +57,24 @@ CREATE TABLE "categories" (
     "description" VARCHAR(255) NOT NULL
 );
 
--- STOP HERE! AFTER CREATING THE TABLES, RESTART THE TABLES TO 1 BY HIGHLIGHTING THEM! 
+CREATE TABLE "type" (
+    "id" SERIAL PRIMARY KEY,
+    "description" VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE "user" (
+    "id" SERIAL PRIMARY KEY,
+    "username" VARCHAR (80),
+    "password" VARCHAR (1000),
+    "type_id" INT REFERENCES "type" ON DELETE CASCADE
+);
+
+-- STOP HERE! AFTER CREATING THE TABLES, RESTART THE TABLES TO 1 BY HIGHLIGHTING THEM!
+
+ALTER SEQUENCE user_id_seq RESTART WITH 1;
+
+ALTER SEQUENCE type_id_seq RESTART WITH 1;
+
 ALTER SEQUENCE gender_id_seq RESTART WITH 1;
 
 ALTER SEQUENCE married_id_seq RESTART WITH 1;
@@ -80,13 +98,11 @@ ALTER SEQUENCE percentage_id_seq RESTART WITH 1;
 ALTER SEQUENCE categories_id_seq RESTART WITH 1;
 
 -- Start inserts for dropdowns
---INSERT INTO
---    type (description)
---VALUES
---    ('veteran'),
---    ('admin'),
---    ('organization');
 -- DO THE INSERTS FOR ALL OF THE DROPDOWN TABLES
+
+INSERT INTO "type" (description)
+VALUES ('Veteran'), ('Admin'), ('Organization');
+
 INSERT INTO
     gender (description)
 VALUES
@@ -221,8 +237,8 @@ INSERT INTO
     country (description)
 VALUES
     ('United States of America');
-
 -- End inserts for dropdowns
+
 -- USING THE BROWSER ENTER 6 DIFFERENT USERS THAT ARE VETS
 -- IN POSTGRESS, CHANGE 3 OF THOSE USER TYPES FROM TYPE 1 TO TYPE 2
 -- NOW THERE SHOULD BE 3 VETS AND 3 ADMIN IN THE USER TABLE
@@ -232,47 +248,47 @@ VALUES
 -- NOW ADD THE VETERAN AND ORGANIZATION TABLES
 CREATE TABLE "veteran" (
     "id" SERIAL PRIMARY KEY,
-    "vet_id" INT REFERENCES "user",
+    "vet_id" INT REFERENCES "user" ON DELETE CASCADE,
     "first_name" VARCHAR (255),
     "last_name" VARCHAR (255),
     "email" VARCHAR (255),
     "date_of_birth" DATE,
     "number" VARCHAR (10),
-    "gender_id" INT REFERENCES "gender",
-    "married_id" INT REFERENCES "married",
+    "gender_id" INT REFERENCES "gender" ON DELETE CASCADE,
+    "married_id" INT REFERENCES "married" ON DELETE CASCADE,
     "children" INT,
     "homeless" BOOLEAN,
     "current_address" varchar(255),
     "city" VARCHAR(255),
-    "state_id" INT REFERENCES "state",
+    "state_id" INT REFERENCES "state" ON DELETE CASCADE,
     "zipcode" VARCHAR (5),
-    "country_id" INT REFERENCES "country",
+    "country_id" INT REFERENCES "country" ON DELETE CASCADE,
     "mailing_address" VARCHAR(255),
     "city2" VARCHAR(255),
-    "state_id2" INT REFERENCES "state",
+    "state_id2" INT REFERENCES "state" ON DELETE CASCADE,
     "zipcode2" VARCHAR (5),
-    "country_id2" INT REFERENCES "country",
-    "branch_id" INT REFERENCES "branch",
-    "rank_id" INT REFERENCES "rank",
+    "country_id2" INT REFERENCES "country" ON DELETE CASCADE,
+    "branch_id" INT REFERENCES "branch" ON DELETE CASCADE,
+    "rank_id" INT REFERENCES "rank" ON DELETE CASCADE,
     "start_date" DATE,
     "end_date" DATE,
-    "status_id" INT REFERENCES "status",
-    "discharge_id" INT REFERENCES "discharge",
-    "injury_id" INT REFERENCES "injury",
+    "status_id" INT REFERENCES "status" ON DELETE CASCADE,
+    "discharge_id" INT REFERENCES "discharge" ON DELETE CASCADE,
+    "injury_id" INT REFERENCES "injury" ON DELETE CASCADE,
     "compensation" BOOLEAN,
-    "percentage" INT REFERENCES "percentage",
+    "percentage" INT REFERENCES "percentage" ON DELETE CASCADE,
     "danger_areas" BOOLEAN,
     "purple_heart" BOOLEAN
 );
 
 CREATE TABLE "organization" (
     "id" SERIAL PRIMARY KEY UNIQUE,
-    "org_id" INT REFERENCES "user",
+    "org_id" INT REFERENCES "user" ON DELETE CASCADE,
     "name" VARCHAR(255),
     "number" bigint,
     "email" VARCHAR(255),
     "city" VARCHAR(255),
-    "state_id" INT REFERENCES "state",
+    "state_id" INT REFERENCES "state" ON DELETE CASCADE,
     "pdf" bytea,
     "website" VARCHAR(255),
     "pictures" bytea,
@@ -282,20 +298,20 @@ CREATE TABLE "organization" (
 
 CREATE TABLE "veteran_categories" (
     "id" SERIAL PRIMARY KEY,
-    "vet_id" INT REFERENCES "veteran",
-    "categories_id" INT REFERENCES "categories"
+    "vet_id" INT REFERENCES "veteran" ON DELETE CASCADE,
+    "categories_id" INT REFERENCES "categories" ON DELETE CASCADE
 );
 
 CREATE TABLE "organization_categories" (
     "id" SERIAL PRIMARY KEY,
-    "org_id" INT REFERENCES "organization",
-    "categories_id" INT REFERENCES "categories"
+    "org_id" INT REFERENCES "organization" ON DELETE CASCADE,
+    "categories_id" INT REFERENCES "categories" ON DELETE CASCADE
 );
 
 CREATE TABLE "match" (
     "id" SERIAL PRIMARY KEY,
-    "vet_id" INT REFERENCES "veteran",
-    "org_id" INT REFERENCES "organization",
+    "vet_id" INT REFERENCES "veteran" ON DELETE CASCADE,
+    "org_id" INT REFERENCES "organization" ON DELETE CASCADE,
     "received" TIME,
     "contacted" TIME,
     "approved" TIME
@@ -313,7 +329,7 @@ ALTER SEQUENCE organization_categories_id_seq RESTART WITH 1;
 
 ALTER SEQUENCE match_id_seq RESTART WITH 1;
 
--- HIGHLIGHT VETERAN AND ORGNAIZATION ONLY!!
+-- HIGHLIGHT VETERAN AND ORGANIZATION ONLY!!
 -- Inserts into veteran
 INSERT INTO
     "veteran" (
@@ -350,7 +366,7 @@ VALUES
         1,
         'Cassen',
         'Gerber',
-        'fakeemail@email.email',
+        'cassenpt@gmail.com',
         '1990-01-01',
         5555555555,
         1,
@@ -411,7 +427,7 @@ VALUES
         2,
         'Yer',
         'Thao',
-        'fakeemail@email.email',
+        'cassenpt@gmail.com',
         '1990-01-01',
         5555555555,
         2,
@@ -470,9 +486,9 @@ INSERT INTO
 VALUES
     (
         3,
-        'Joel',
+        'Joeleen',
         'Kado',
-        'fakeemail@email.email',
+        'cassenpt@gmail.com',
         '1990-01-01',
         5555555555,
         3,
@@ -497,8 +513,8 @@ VALUES
         false,
         false
     );
-
 -- End inserts into veteran
+
 -- Inserts into organization
 INSERT INTO
     "organization" (
@@ -519,7 +535,7 @@ VALUES
         7,
         'Wounded Warrior Project',
         5555555555,
-        'fakeemail@email.com',
+        'cassenpt@gmail.com',
         'Minneapolis',
         1,
         'none',
@@ -548,7 +564,7 @@ VALUES
         8,
         'Hives for Heroes',
         8323651183,
-        'support@hivesforheroes.com',
+        'cassenpt@gmail.com',
         'Houston',
         1,
         'none',
@@ -577,7 +593,7 @@ VALUES
         9,
         'American Red Cross',
         5555555555,
-        'fakeemail@email.com',
+        'cassenpt@gmail.com',
         'Minneapolis',
         1,
         'none',
@@ -586,8 +602,8 @@ VALUES
         'American Red Cross stuff',
         true
     );
-
 -- End inserts into organization
+
 -- HIGHLIGHT MATCH, VETERAN_CATEGORIES, ORG_CATAGORIES!
 -- Inserts into match
 INSERT INTO
@@ -622,8 +638,8 @@ INSERT INTO
     )
 VALUES
     (3, 3, '03:00:00', '04:00:00', '05:00:00');
-
 -- End inserts into match
+
 -- Inserts into veteran_categories 
 INSERT INTO
     veteran_categories(vet_id, categories_id)
@@ -639,7 +655,8 @@ VALUES
     (3, 9),
     (3, 10),
     (3, 3),
-(3, 4);
+	(3, 4);
+-- End inserts into match
 
 -- Inserts into organization_categories
 INSERT INTO
@@ -655,98 +672,24 @@ VALUES
     (3, 7),
     (3, 4),
     (2, 6);
+-- End inserts into organization_categories
 
-SELECT
-    *
-FROM
-    veteran;
-
-SELECT
-    *
-FROM
-    (
-        SELECT
-            oc.org_id,
-            count(oc.categories_id) AS org_needs,
-            count(vc.categories_id) AS vet_has,
-            (count(vc.categories_id) + 0.0) / (count(oc.categories_id) + 0.0) * 100 AS percent_match
-        FROM
-            organization_categories oc
-            LEFT JOIN veteran_categories vc ON vc.categories_id = oc.categories_id
-            AND vc.vet_id = 1
-        GROUP BY
-            oc.org_id
-        ORDER BY
-            percent_match desc,
-            vet_has desc
-    ) AS records
-WHERE
-    percent_match = 0;
-
-SELECT
-    veteran.first_name,
-    veteran.last_name,
-    veteran.email,
-    veteran.date_of_birth,
-    veteran.number,
-    veteran.children,
-    veteran.homeless,
-    veteran.current_address,
-    veteran.city,
-    veteran.city2,
-    veteran.zipcode,
-    veteran.mailing_address,
-    veteran.zipcode2,
-    veteran.start_date,
-    veteran.end_date,
-    veteran.compensation,
-    veteran.danger_areas,
-    veteran.purple_heart,
-    gender.description AS gender,
-    married.description AS married,
-    state.description AS state,
-    country.description AS country,
-    branch.description AS branch,
-    rank.description AS rank,
-    percentage.description AS percentage
-FROM
-    veteran
-    LEFT JOIN gender ON gender.id = veteran.gender_id
-    LEFT JOIN married ON married.id = veteran.married_id
-    LEFT JOIN state ON state.id = veteran.state_id
-    LEFT JOIN country ON country.id = veteran.country_id
-    LEFT JOIN branch ON branch.id = veteran.branch_id
-    LEFT JOIN rank ON rank.id = veteran.rank_id
-    LEFT JOIN percentage ON percentage.id = veteran.percentage
-WHERE
-    veteran.id = 1;
-
-DELETE FROM
-    organization
-WHERE
-    id = 1;
-
--- match org categories with veteran categories; and display org with most matches first
-SELECT
-    oc.org_id,
-    o.name,
-    o.number,
-    o.website,
-    o.pdf,
-    count(oc.categories_id) AS org_needs,
-    count(vc.categories_id) AS vet_has,
-    (count(vc.categories_id) + 0.0) / (count(oc.categories_id) + 0.0) * 100 AS percent_match
-FROM
-    organization_categories oc
-    INNER JOIN veteran_categories vc ON vc.categories_id = oc.categories_id
-    AND vc.vet_id = 1
-    INNER JOIN organization o ON o.id = oc.org_id
-GROUP BY
-    oc.org_id,
-    o.name,
-    o.number,
-    o.website,
-    o.pdf
-ORDER BY
-    percent_match DESC,
-    vet_has DESC;
+DROP TABLE 
+"user",
+"type",
+"rank",
+"gender",
+"married",
+"branch",
+"status",
+"country",
+"state",
+"discharge",
+"injury",
+"percentage",
+"categories",
+"veteran",
+"match",
+"organization",
+"veteran_categories",
+"organization_categories" CASCADE;

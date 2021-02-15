@@ -34,7 +34,7 @@ console.log(`Updating email: ${email} for user id: ${id}`);
 
 let queryText = `UPDATE "veteran"
                   SET "email" = $1
-                  WHERE "id" = $2;
+                  WHERE "vet_id" = $2;
                   `;
 
   // TODO - REPLACE BELOW WITH YOUR CODE

@@ -63,16 +63,20 @@ const styles = (theme) => ({
 });
 
 class UserPage extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
+  state = {
       completeMatchIndex: 0,
       incompleteMatchIndex: 0,
       modalOpen: false,
     };
-  }
 
   componentDidMount() {
+    // dispatch to see of they exist in vet table
+    // if false nothing happens
+    // if true dispatch 
+    this.props.dispatch({
+        type: 'FETCH_VET_EXIST', 
+        payload: this.props.store.user.id
+      });
     this.props.dispatch({
       type: "FETCH_COMPLETE_MATCH",
       payload: this.props.store.user.id,
@@ -104,9 +108,14 @@ class UserPage extends Component {
     }
   };
 
+  insertVet = (user_id) => {
+    console.log('inserting vet')
+    this.props.dispatch({type: 'POST_NEW_VET', payload: user_id})
+    this.props.history.push("/register")
+  }
+
   render() {
     const { classes } = this.props;
-
     const emergencyModal = (
       <div className={classes.paper}>
         <header id="modal-header">
@@ -145,20 +154,36 @@ class UserPage extends Component {
 
     return (
       <div id="pageBody">
+        {JSON.stringify(this.state)}
+        {JSON.stringify(this.props.store.user.id)}
+        {JSON.stringify(this.props.store.existReducer)}
         <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
-        <Button
-          id="completeProfileBtn"
-          size="large"
-          variant="contained"
-          style={{
-            borderRadius: 35,
-            backgroundColor: '#AFFA3D',
-            fontFamily: 'orbitron',
-          }}
-          onClick={() => this.handleClick("completeProfile")}
-        >
-          Complete Profile Information
-        </Button>
+        {this.props.store.existReducer.eists === true ? 
+          <Button
+            id="completeProfileBtn"
+            size="large"
+            variant="contained"
+            style={{
+              borderRadius: 35,
+              backgroundColor: '#AFFA3D',
+              fontFamily: 'orbitron',
+            }}
+            onClick={() => this.handleClick("completeProfile")}
+          >
+            Complete Profile Information
+          </Button> : 
+          <Button
+            id="completeProfileBtn"
+            size="large"
+            variant="contained"
+            style={{
+              borderRadius: 35,
+              backgroundColor: '#AFFA3D',
+              fontFamily: 'orbitron',
+            }}
+            onClick={() => this.insertVet(this.props.store.user.id)}>
+            Complete Profile Information
+          </Button>}
         <div id="cardContainer">
           <div id="completedMatches" className="matchDisplay">
             <h1 id="completeTitle">Complete Matches</h1>
@@ -392,19 +417,6 @@ class UserPage extends Component {
           </div>
         </div>
         <div id="btnContainer">
-          <Button
-            id="editBtn"
-            size="large"
-            variant="contained"
-            style={{
-              borderRadius: 35,
-              backgroundColor: '#AFFA3D',
-              fontFamily: 'orbitron',
-            }}
-            onClick={() => this.handleClick("profile")}
-          >
-            View/Edit Profile
-          </Button>
           <Button
             id="emergencyBtn"
             size="large"
