@@ -219,7 +219,7 @@ class DemographicQuestion extends Component {
                     value={this.state.vet.phone}
                     onChange={(event) => this.handleInputChange(event, "phone")}
                 />
-MARRIAGE
+                MARRIAGE
 <FormControl className={classes.formControl}>
                {/* <InputLabel htmlFor="age-helper">Age</InputLabel> */}
                 <Select

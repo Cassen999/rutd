@@ -76,3 +76,24 @@
     padding: 0px;
     margin: 0px;
 }
+
+.flex-grid{
+    display: inline-flex;
+    flex-wrap: wrap;
+    margin: auto 4rem;
+    box-shadow: 1rem 1rem 1rem rgba(34, 34, 33, 0.233);
+    border-radius: 2rem;
+}
+
+.col{
+    flex: 1;
+}
+
+.vet-landing-page{
+    margin: auto 8rem;
+}
+
+
+#completeProfileBtn{
+    float: right;
+}

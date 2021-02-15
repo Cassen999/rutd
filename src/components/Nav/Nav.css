@@ -3,7 +3,7 @@
   font-weight: 700;
   display: inline-block;
   color: grey;
-  padding-left: 10rem;
+  padding-left: 10px;
 }
 
 .nav-logo{
@@ -34,7 +34,7 @@
 }
 
 .about{
-  padding-right: 10rem;
+  padding-right: 40px;
 }
 
 .nav-link:hover {
