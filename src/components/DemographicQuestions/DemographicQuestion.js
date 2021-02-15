@@ -417,17 +417,18 @@ class DemographicQuestion extends Component {
                     onChange={(event) => this.handleInputChange(event, "mailCountry")}
                 />
                
-                <Button onClick={(event) =>this.saveDemographic(event)}>SAVE</Button>
+                {/* <Button onClick={(event) =>this.saveDemographic(event)}>SAVE</Button> */}
                     <br></br>
                     <br></br>
                     <br></br>
                 <Fab
+                    className="float-right"
                     style={{
                         borderRadius: 35,
                         backgroundColor: '#AFFA3D',
                         fontFamily: 'orbitron',
                     }}
-                    onClick={(event) => { this.saveDOB(event) }}><SaveTwoToneIcon /></Fab>
+                    onClick={(event) => { this.saveDemographic(event) }}><SaveTwoToneIcon /></Fab>
                     </div>
                 </div>
             </form>
