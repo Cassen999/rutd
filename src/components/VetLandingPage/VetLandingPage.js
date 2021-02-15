@@ -219,20 +219,20 @@ class UserPage extends Component {
               onClick={() => this.insertVet(this.props.store.user.id)}>
               Complete Profile Information
             </Button>}
-          <div id="cardContainer">
-              <div id="completedMatches" className="matchDisplay flex-grid">
-                <Paper
+          <div className="cardContainer">
+              <h1 class="grey">Saved Resource Matches</h1>
+              <div>
+                {/* <Paper
                   // id="completedPaper"
                   className="col"
                   elevation={3}
-                >
-                  <h1 class="grey">Complete Matches</h1>
+                > */}
                     {matches.map((match, index) => {
-                      if (
-                        match.approved !== null &&
-                        (index === completeMatchIndex ||
-                          index === completeMatchIndex + 1)
-                      ) {
+                      // if (
+                      //   match.approved !== null &&
+                      //   (index === completeMatchIndex ||
+                      //     index === completeMatchIndex + 1)
+                      // ) {
                         return (
                           <div key={index}>
                             <Card className={classes.card}>
@@ -271,10 +271,10 @@ class UserPage extends Component {
                               </Button>
                             </CardActions>
                           </Card>
-                          </div>
+                        </div>
                         );
                       }
-                    })}
+                    )}
                   {/* <IconButton
                     id="decrement-match-index"
                     style={{
@@ -296,17 +296,17 @@ class UserPage extends Component {
                     }}
                     onClick={() => this.handleClick("incrementComplete")}>
                     <ArrowForwardIcon fontSize="large" />
-                  </IconButton> */}
-              </Paper>
-            </div>
-            <div id="incompleteContainer" className="flex-grid">
-              <Paper
+                  </IconButton>  */}
+              {/* </Paper> */}
+            {/* </div> */}
+              {/* <h1 class="grey">Matches in Progress</h1>
+            <div id="incompleteContainer" className="flex-grid"> */}
+              {/* <Paper
                 // id="incompletePaper"
                 className="col"
                 elevation={3}
-              >
-                    <h1 class="grey">Matches in Progress</h1>
-                    {incompleteMatches.map((match, index) => {
+              > */}
+                    {/* {incompleteMatches.map((match, index) => {
                       if (incompleteMatchIndex >= incompleteMatches.length) {
                         return <h3></h3>;
                       } else if (
@@ -316,7 +316,7 @@ class UserPage extends Component {
                         return (
                           <div key={index}>
                           {/* MATERIAL UI CARD HERE */}
-                          <Card className={classes.card}>
+                          {/* <Card className={classes.card}>
                               <CardActionArea>
                                   <CardHeader
                                     avatar={
@@ -355,10 +355,10 @@ class UserPage extends Component {
                           </div>
                         );
                       }
-                      // } else {
-                      //   return <h3>No In Progress Matches to Show</h3>;
-                      // }
-                    })}
+                      } else {
+                        return <h3>No In Progress Matches to Show</h3>;
+                      } */}
+                    {/* })} */}
                 {/* <IconButton
                   id="decrement-incomplete-index"
                   variant="contained"
@@ -383,36 +383,39 @@ class UserPage extends Component {
                 >
                   <ArrowForwardIcon fontSize="large" />
                 </IconButton> */}
-              </Paper>
+              {/* </Paper> */}
+            {/* </div>*/}
+            <br></br>
+            <div className="buttons">
+            <center>
+              <Button
+                id="emergencyBtn"
+                size="large"
+                variant="contained"
+                style={{
+                borderRadius: 35,
+                backgroundColor: '#AFFA3D',
+                fontFamily: 'orbitron',
+                }}
+                onClick={() => this.handleClick("emergency")}
+                >
+                Emergency Numbers
+              </Button>
+              <Button
+                id="allMatchBtn"
+                size="large"
+                variant="contained"
+                style={{
+                borderRadius: 35,
+                backgroundColor: '#AFFA3D',
+                fontFamily: 'orbitron',
+                }}
+                onClick={() => this.handleClick("allMatches")}
+                >
+                View New Matches
+              </Button>
+          </center>
             </div>
-          </div>
-          <div id="btnContainer">
-            <Button
-              id="emergencyBtn"
-              size="large"
-              variant="contained"
-              style={{
-                borderRadius: 35,
-                backgroundColor: '#AFFA3D',
-                fontFamily: 'orbitron',
-              }}
-              onClick={() => this.handleClick("emergency")}
-            >
-              Emergency Numbers
-            </Button>
-            <Button
-              id="allMatchBtn"
-              size="large"
-              variant="contained"
-              style={{
-                borderRadius: 35,
-                backgroundColor: '#AFFA3D',
-                fontFamily: 'orbitron',
-              }}
-              onClick={() => this.handleClick("allMatches")}
-            >
-              View New Matches
-            </Button>
           </div>
           <Modal
             open={modalOpen}
@@ -421,6 +424,7 @@ class UserPage extends Component {
           >
             {emergencyModal}
           </Modal>
+        </div>
       </div>
     );
   }

@@ -5,10 +5,9 @@
     height: 250px;
 }
 
-#btnContainer {
-    margin-left: 50px;
-    padding-top: 50px;
-    text-align: center;
+.buttons {
+    justify-items: center;
+    width: 100%
 }
 
 #completeTitle {
@@ -51,12 +50,12 @@
     text-align: center;
 }
 
-#cardContainer {
+/* .cardContainer {
     width: 100%;
     overflow: auto;
-   text-align: center;
-   padding: 25px;
-}
+    margin: 0 auto;
+    padding: 25px;
+} */
 
 .matchDisplay {
     width: 50%;
@@ -77,21 +76,24 @@
     margin: 0px;
 }
 
-.flex-grid{
+
+
+/* ------------------- */
+/* .flex-grid{
     display: inline-flex;
     flex-wrap: wrap;
     margin: auto 4rem;
     box-shadow: 1rem 1rem 1rem rgba(34, 34, 33, 0.233);
     border-radius: 2rem;
-}
+}  */
 
-.col{
+/* .col{
     flex: 1;
-}
+}  */
 
-.vet-landing-page{
+/* .vet-landing-page{
     margin: auto 8rem;
-}
+} */
 
 
 #completeProfileBtn{
