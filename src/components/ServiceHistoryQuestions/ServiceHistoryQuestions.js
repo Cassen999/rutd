@@ -298,26 +298,35 @@ class ServiceHistoryQuestions extends Component {
                 {/* -------------------------------------------------- */}
                 <br></br>
                 <p>Service End Date</p>
+
+
+
+
+
+
+
+
+
+
+
                 
                 {/* -------------------------------------------------- */}
                 <br></br>
-                <p>Are you currently serving or served in the military on or after September 11, 2001?</p>
-                <br></br>
-                <p>RADIO BUTTONS HERE</p>
+                <p>Are you currently serving or have served in the military on or after September 11, 2001?</p>
                 <Radio
                     checked={this.state.selectedValue === 'yes'}
-                    onChange={this.handleChange}
-                    value="a"
+                    onChange={this.handleRadioButtons}
+                    value="yes"
                     name="radio-button-demo"
-                    aria-label="A"
-                />
+                    aria-label="Yes"
+                />Yes
                 <Radio
                     checked={this.state.selectedValue === 'no'}
-                    onChange={this.handleChange}
-                    value="b"
+                    onChange={this.handleRadioButtons}
+                    value="no"
                     name="radio-button-demo"
-                    aria-label="B"
-                />
+                    aria-label="No"
+                />No
                 {/* -------------------------------------------------- */}
 
             </div>
