@@ -7,7 +7,7 @@ import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
 
 const styles = theme => ({
     inputs: {
-        width: "",
+        width: "400",
         paddingTop: "",
         verticalAlign: "",
         fontFamily: "",
@@ -149,44 +149,65 @@ class DemographicQuestion extends Component {
         const { classes } = this.props;
         return (
             <form>
-                <TextField
-                    variant="outlined"
-                    label="First Name"
-                    name="first_name"
-                    value={this.state.vet.first_name}
-                    onChange={(event) => this.handleInputChange(event, "first_name")}
-                />
-                <TextField
-                    variant="outlined"
-                    label="Last Name"
-                    name="last_name"
-                    value={this.state.vet.last_name}
-                    onChange={(event) =>
-                        this.handleInputChange(event, "last_name")}
-                />
-               
-                <TextField
-                    variant="outlined"
-                    label="Email"
-                    name="email"
-                    value={this.state.vet.email}
-                    onChange={(event) => this.handleInputChange(event, "email")}
-                />
+                <div className="container">
+                    <p className="grey">Please fill out your information below</p>
+                    <br></br>
+                    <div>
+                        <TextField
+                            variant="outlined"
+                            label="First Name"
+                            name="first_name"
+                            value={this.state.vet.first_name}
+                            onChange={(event) => this.handleInputChange(event, "first_name")}
+                            />
+                            <span>&nbsp;&nbsp;&nbsp;</span>
+                        <TextField
+                            variant="outlined"
+                            label="Last Name"
+                            name="last_name"
+                            value={this.state.vet.last_name}
+                            onChange={(event) =>
+                                this.handleInputChange(event, "last_name")}
+                                />
+                            <span>&nbsp;&nbsp;&nbsp;</span>
+                        <TextField
+                            variant="outlined"
+                            label="Date of Birth"
+                            name="birth"
+                            value={this.state.vet.dOB}
+                            onChange={(event) => this.handleInputChange(event, "birth")}
+                            />
+                            <span>&nbsp;&nbsp;&nbsp;</span>
+                        <TextField
+                            id="standard-textarea"
+                            variant="outlined"
+                            label="Phone Number"
+                            name="phone"
+                            value={this.state.vet.phone}
+                            onChange={(event) => this.handleInputChange(event, "phone")}
+                        />
+                            <span>&nbsp;&nbsp;&nbsp;</span>
+                        <TextField
+                            variant="outlined"
+                            label="Email"
+                            name="email"
+                            value={this.state.vet.email}
+                            onChange={(event) => this.handleInputChange(event, "email")}
+                            />
                 {/* <Fab
                     style={{
                         borderRadius: 35,
                         backgroundColor: '#AFFA3D',
                         fontFamily: 'orbitron',
                     }}
-                  onClick={(event) => { this.saveName(event) }}><SaveTwoToneIcon /></Fab> */}
-                <TextField
-                    variant="outlined"
-                    label="Date of Birth"
-                    name="birth"
-                    value={this.state.vet.dOB}
-                    onChange={(event) => this.handleInputChange(event, "birth")}
-                />
+                onClick={(event) => { this.saveName(event) }}><SaveTwoToneIcon /></Fab> */}
+                    </div>
+                    <div>
+               <br></br>
+               <br></br>
                GENDER
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+
                <FormControl className={classes.formControl}>
                {/* <InputLabel htmlFor="age-helper">Age</InputLabel> */}
                 <Select
@@ -211,16 +232,11 @@ class DemographicQuestion extends Component {
                   })}
                 </Select> 
                 </FormControl>
-                <TextField
-                    id="standard-textarea"
-                    variant="outlined"
-                    label="Phone Number"
-                    name="phone"
-                    value={this.state.vet.phone}
-                    onChange={(event) => this.handleInputChange(event, "phone")}
-                />
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;</span>
                 MARRIAGE
-<FormControl className={classes.formControl}>
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                <FormControl className={classes.formControl}>
                {/* <InputLabel htmlFor="age-helper">Age</InputLabel> */}
                 <Select
                 onChange={(event) => this.handleChangeForMarriage(event, 'marriage')}
@@ -238,22 +254,18 @@ class DemographicQuestion extends Component {
                         key={i} 
                         value={marriage.id}
                       >
-                        
-                            {marriage.description}</MenuItem>
+                        {marriage.description}
+                    </MenuItem>
                     )
                   })}
                 </Select> 
                 </FormControl>
-
-                <TextField
-                    variant="outlined"
-                    label="Children"
-                    name="children"
-                    value={this.state.vet.children}
-                    onChange={(event) => this.handleInputChange(event, "children")}
-                />  
-ARE YOU CURRENTLY HOMELESS?
- <FormControl className={classes.formControl}> 
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                ARE YOU CURRENTLY HOMELESS?
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                <FormControl className={classes.formControl}> 
                {/* <InputLabel htmlFor="age-helper">Age</InputLabel> */}
                 <Select
                 onClick={(event) => this.handleInputChange(event, 'homeless')}
@@ -281,9 +293,13 @@ ARE YOU CURRENTLY HOMELESS?
                 {/*  })} */}
                 </Select> 
                 </FormControl>
-                <br/>
+                <br></br>
+                <br></br>
+                <br></br>
                 HOME ADDRESS
+                <br></br>
                 <TextField
+                    style={{marginTop:"1rem", marginBottom:"1rem", width:'30rem'}}
                     id="standard-textarea"
                     variant="outlined"
                     label="Address"
@@ -292,16 +308,17 @@ ARE YOU CURRENTLY HOMELESS?
                     onChange={(event) => this.handleInputChange(event, "homeAddress")}
                 />
 
-                <TextField
+                {/* <TextField
                     id="standard-textarea"
                     variant="outlined"
                     label="Apt/PO Box/Bldg"
                     name="homeApartment"
                      value={this.state.vet.homeApartment}
                     onChange={(event) => this.handleInputChange(event, "homeApartment")}
-                />
+                /> */}
 
                 <TextField
+                    style={{marginTop:"1rem", marginBottom:"1rem", marginLeft:"1rem"}}
                     id="standard-textarea"
                     variant="outlined"
                     label="City"
@@ -311,6 +328,7 @@ ARE YOU CURRENTLY HOMELESS?
                 />
 
                 <TextField
+                    style={{marginTop:"1rem", marginBottom:"1rem", marginLeft:"1rem"}}
                     id="standard-textarea"
                     variant="outlined"
                     label="State"
@@ -318,8 +336,9 @@ ARE YOU CURRENTLY HOMELESS?
                     value={this.state.vet.homeState}
                     onChange={(event) => this.handleInputChange(event, "homeState")}
                 />
-               
+                <br></br>
                <TextField
+                    style={{marginRight:"1rem"}}
                     id="standard-textarea"
                     variant="outlined"
                     label="Zip Code"
@@ -336,10 +355,15 @@ ARE YOU CURRENTLY HOMELESS?
                      value={this.state.vet.homeCountry}
                     onChange={(event) => this.handleInputChange(event, "homeCountry")}
                 />
-                <br/>
+                </div>
+                <br></br>
+                <br></br>
+                <br></br>
+                <div>
                 MAIL ADDRESS
-
+                <br></br>
                 <TextField
+                    style={{marginTop:"1rem", marginBottom:"1rem", width:'30rem'}}
                     variant="outlined"
                     label="Address"
                     name="mailAddress"
@@ -347,16 +371,17 @@ ARE YOU CURRENTLY HOMELESS?
                     onChange={(event) => this.handleInputChange(event, "mailAddress")}
                 />
 
-                <TextField
+                {/* <TextField
                     id="standard-textarea"
                     variant="outlined"
                     label="Apt/PO Box/Bldg"
                     name="mailApartment"
                      value={this.state.vet.mailApartment}
                     onChange={(event) => this.handleInputChange(event, "mailApartment")}
-                />
+                /> */}
 
                 <TextField
+                    style={{marginRight:"1rem", marginLeft:"1rem", marginTop:"1rem"}}
                     id="standard-textarea"
                     variant="outlined"
                     label="City"
@@ -366,6 +391,7 @@ ARE YOU CURRENTLY HOMELESS?
                 />
 
                 <TextField
+                    style={{marginRight:"1rem", marginTop:"1rem"}}
                     id="standard-textarea"
                     variant="outlined"
                     label="State"
@@ -375,6 +401,7 @@ ARE YOU CURRENTLY HOMELESS?
                 />
                
                <TextField
+                    style={{marginRight:"1rem"}}
                     id="standard-textarea"
                     variant="outlined"
                     label="Zip Code"
@@ -382,8 +409,8 @@ ARE YOU CURRENTLY HOMELESS?
                     value={this.state.vet.mailZip}
                     onChange={(event) => this.handleInputChange(event, "mailZip")}
                 />
-
                 <TextField
+                    style={{marginRight:"1rem"}}
                     id="standard-textarea"
                     variant="outlined"
                     label="Country"
@@ -391,19 +418,21 @@ ARE YOU CURRENTLY HOMELESS?
                     value={this.state.vet.mailCountry}
                     onChange={(event) => this.handleInputChange(event, "mailCountry")}
                 />
-
                
-                <Button onClick={(event) =>this.saveDemographic(event)}>SAVE</Button>
-                
-                
-                
+                {/* <Button onClick={(event) =>this.saveDemographic(event)}>SAVE</Button> */}
+                    <br></br>
+                    <br></br>
+                    <br></br>
                 <Fab
+                    className="float-right"
                     style={{
                         borderRadius: 35,
                         backgroundColor: '#AFFA3D',
                         fontFamily: 'orbitron',
                     }}
-                    onClick={(event) => { this.saveDOB(event) }}><SaveTwoToneIcon /></Fab>
+                    onClick={(event) => { this.saveDemographic(event) }}><SaveTwoToneIcon /></Fab>
+                    </div>
+                </div>
             </form>
         )//END return
     };//END render

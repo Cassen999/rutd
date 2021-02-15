@@ -102,3 +102,10 @@
     margin: 0 20rem;
 }
 
+
+.hr-width{
+    width: 50rem;
+    height: 1px;
+    color: grey;
+    box-shadow: 5px 5px 5px rgba(65, 64, 64, 0.623);
+}
