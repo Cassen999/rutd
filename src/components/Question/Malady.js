@@ -78,8 +78,6 @@ class Malady extends Component {
 
     return (
       <>
-        MALADY REDUCER: {JSON.stringify(this.props.store.maladyReducer)}
-
         <h1>Malady Entry</h1>
         <Grid container spacing={2} direction="column">
           <Paper elevation={10}>
