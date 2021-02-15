@@ -8,11 +8,22 @@ import { withRouter } from "react-router-dom";
 import compose from 'recompose/compose';
 import "./VetLandingPage.css";
 import { withStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
+// import Grid from "@material-ui/core/Grid";
 import Modal from "@material-ui/core/Modal";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import IconButton from "@material-ui/core/IconButton";
+// import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+// import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+// import IconButton from "@material-ui/core/IconButton";
+import RedCross from '../../Images/redcross.jpg'
+
+// STYLING: Material-UI
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Avatar from '@material-ui/core/Avatar';
+import CardHeader from '@material-ui/core/CardHeader';
+
 
 const styles = (theme) => ({
   gridList: {
@@ -59,6 +70,20 @@ const styles = (theme) => ({
   },
   matchContainer: {
     border: "5px solid #ADFA3B",
+  },
+    root: {
+    padding: '0px'
+  },
+  card: {
+    maxWidth: 400,
+    margin: 10,
+  },
+  media: {
+    height: 180,
+    width: 320
+  },
+  avatar: {
+  backgroundColor: 'red',
   },
 });
 
@@ -114,340 +139,169 @@ class UserPage extends Component {
     this.props.history.push("/register")
   }
 
+  visitResource = (id) =>{
+    console.log('visiting resource', id);
+    this.props.dispatch({type: 'VET_GET_RESOURCE', payload: id});
+    this.props.history.push('/vetViewResource', id);
+  }
+
+
+
   render() {
     const { classes } = this.props;
-    const emergencyModal = (
-      <div className={classes.paper}>
-        <header id="modal-header">
-          <h2 id="modal-title">Emergency Contact Numbers</h2>
-        </header>
-        <div className={classes.contacts}>
-          <ul id="emergency-contacts">
-            <li>Veteran’s Crisis Line</li>
-            <li>1-800-273-8255</li>
-            <br />
-            <li>National Suicide Prevention Lifeline</li>
-            <li>800-273-8255</li>
-            <br />
-            <li>The STARRY Counseling Program Crisis Hotline</li>
-            <li>800-440-9789</li>
-          </ul>
-          <Button
-            variant="contained"
-            style={{
-              borderRadius: 35,
-              backgroundColor: '#AFFA3D',
-              fontFamily: 'orbitron',
-            }}
-            className={classes.closeModal}
-            onClick={() => this.handleClick("closeModal")}
-          >
-            Close
-          </Button>
-        </div>
-      </div>
-    );
-
-    const matches = this.props.store.vetMatchReducer;
-    const incompleteMatches = this.props.store.incompleteMatchReducer;
-    const { completeMatchIndex, incompleteMatchIndex, modalOpen } = this.state;
-
-    return (
-      <div id="pageBody">
-        <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
-        {this.props.store.existReducer.exists === true ? 
-          <Button
-            id="completeProfileBtn"
-            size="large"
-            variant="contained"
-            style={{
-              borderRadius: 35,
-              backgroundColor: '#AFFA3D',
-              fontFamily: 'orbitron',
-            }}
-            onClick={() => this.handleClick("completeProfile")}
-          >
-            Complete Profile Information
-          </Button> : 
-          <Button
-            id="completeProfileBtn"
-            size="large"
-            variant="contained"
-            style={{
-              borderRadius: 35,
-              backgroundColor: '#AFFA3D',
-              fontFamily: 'orbitron',
-            }}
-            onClick={() => this.insertVet(this.props.store.user.id)}>
-            Complete Profile Information
-          </Button>}
-        <div id="cardContainer">
-          <div id="completedMatches" className="matchDisplay">
-            <h1 id="completeTitle">Complete Matches</h1>
-            <Paper
-              id="completedPaper"
-              className={classes.matchContainer}
-              elevation={3}
+      const emergencyModal = (
+        <div className={classes.paper}>
+          <header id="modal-header">
+            <h2 id="modal-title">Emergency Contact Numbers</h2>
+          </header>
+          <div className={classes.contacts}>
+            <ul id="emergency-contacts">
+              <li>Veteran’s Crisis Line</li>
+              <li>1-800-273-8255</li>
+              <br />
+              <li>National Suicide Prevention Lifeline</li>
+              <li>800-273-8255</li>
+              <br />
+              <li>The STARRY Counseling Program Crisis Hotline</li>
+              <li>800-440-9789</li>
+            </ul>
+            <Button
+              variant="contained"
+              style={{
+                borderRadius: 35,
+                backgroundColor: '#AFFA3D',
+                fontFamily: 'orbitron',
+              }}
+              className={classes.closeModal}
+              onClick={() => this.handleClick("closeModal")}
             >
-              <Grid container spacing={1} direction="row">
-                <Grid
-                  container
-                  item
-                  xs={12}
-                  spacing={3}
-                  justify="space-evenly"
-                  alignItems="stretch"
-                  className={classes.gridList}
-                >
-                  {matches.map((match, index) => {
-                    if (
-                      match.approved !== null &&
-                      (index === completeMatchIndex ||
-                        index === completeMatchIndex + 1)
-                    ) {
-                      return (
-                        <Grid
-                          item
-                          xs={5}
-                          className={classes.gridListTile}
-                          key={index}
-                        >
-                          <img
-                            className="resource-icon"
-                            alt={match.title}
-                            src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png"
-                          />
-                          <Typography
-                            className={classes.title}
-                            color="textSecondary"
-                            gutterBottom
-                          >
-                            {match.name}
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            variant="h7"
-                            component="h4"
-                          >
-                            Website
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            color="textSecondary"
-                          >
-                            {match.website}
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            variant="h7"
-                            component="h4"
-                          >
-                            Email
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            color="textSecondary"
-                          >
-                            {match.email}
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            variant="h7"
-                            component="h4"
-                          >
-                            Phone Number
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            color="textSecondary"
-                          >
-                            {match.number}
-                          </Typography>
-                        </Grid>
-                      );
-                    }
-                  })}
-                </Grid>
-              </Grid>
-              <IconButton
-                id="decrement-match-index"
-                style={{
-                  borderRadius: 35,
-                  backgroundColor: '#AFFA3D',
-                  fontFamily: 'orbitron',
-                }}
-                variant="contained"
-                onClick={() => this.handleClick("decrementComplete")}
-              >
-                <ArrowBackIcon fontSize="large" />
-              </IconButton>
-              <IconButton
-                id="increment-match-index"
-                variant="contained"
-                style={{
-                  borderRadius: 35,
-                  backgroundColor: '#AFFA3D',
-                  fontFamily: 'orbitron',
-                }}
-                onClick={() => this.handleClick("incrementComplete")}
-              >
-                <ArrowForwardIcon fontSize="large" />
-              </IconButton>
-            </Paper>
-          </div>
-          <div id="incompleteContainer" className="matchDisplay">
-            <h1 id="incompleteTitle">Matches in Progress</h1>
-            <Paper
-              id="incompletePaper"
-              className={classes.matchContainer}
-              elevation={3}
-            >
-              <Grid container spacing={1} direction="row">
-                <Grid
-                  container
-                  item
-                  xs={12}
-                  spacing={3}
-                  justify="space-evenly"
-                  alignItems="stretch"
-                  className={classes.gridList}
-                >
-                  {incompleteMatches.map((match, index) => {
-                    if (incompleteMatchIndex >= incompleteMatches.length) {
-                      return <h3></h3>;
-                    } else if (
-                      index === incompleteMatchIndex ||
-                      index === incompleteMatchIndex + 1
-                    ) {
-                      return (
-                        <Grid
-                          item
-                          xs={5}
-                          className={classes.gridListTile}
-                          key={index}
-                        >
-                          <img
-                            className="resource-icon"
-                            alt={match.title}
-                            src="https://www.redcross.org/content/dam/redcross/imported-images/redcross-logo.png.img.png"
-                          />
-                          <Typography
-                            className={classes.title}
-                            color="textSecondary"
-                            gutterBottom
-                          >
-                            {match.name}
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            variant="h7"
-                            component="h4"
-                          >
-                            Website
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            color="textSecondary"
-                          >
-                            {match.website}
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            variant="h7"
-                            component="h4"
-                          >
-                            Email
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            color="textSecondary"
-                          >
-                            {match.email}
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            variant="h7"
-                            component="h4"
-                          >
-                            Phone Number
-                          </Typography>
-                          <Typography
-                            className={classes.pos}
-                            color="textSecondary"
-                          >
-                            {match.number}
-                          </Typography>
-                        </Grid>
-                      );
-                    }
-                    // } else {
-                    //   return <h3>No In Progress Matches to Show</h3>;
-                    // }
-                  })}
-                </Grid>
-              </Grid>
-              <IconButton
-                id="decrement-incomplete-index"
-                variant="contained"
-                style={{
-                  borderRadius: 35,
-                  backgroundColor: '#AFFA3D',
-                  fontFamily: 'orbitron',
-                }}
-                onClick={() => this.handleClick("decrementIncomplete")}
-              >
-                <ArrowBackIcon fontSize="large" />
-              </IconButton>
-              <IconButton
-                id="increment-incomplete-index"
-                variant="contained"
-                style={{
-                  borderRadius: 35,
-                  backgroundColor: '#AFFA3D',
-                  fontFamily: 'orbitron',
-                }}
-                onClick={() => this.handleClick("incrementIncomplete")}
-              >
-                <ArrowForwardIcon fontSize="large" />
-              </IconButton>
-            </Paper>
+              Close
+            </Button>
           </div>
         </div>
-        <div id="btnContainer">
-          <Button
-            id="emergencyBtn"
-            size="large"
-            variant="contained"
-            style={{
-              borderRadius: 35,
-              backgroundColor: '#AFFA3D',
-              fontFamily: 'orbitron',
-            }}
-            onClick={() => this.handleClick("emergency")}
-          >
-            Emergency Numbers
-          </Button>
-          <Button
-            id="allMatchBtn"
-            size="large"
-            variant="contained"
-            style={{
-              borderRadius: 35,
-              backgroundColor: '#AFFA3D',
-              fontFamily: 'orbitron',
-            }}
-            onClick={() => this.handleClick("allMatches")}
-          >
-            View New Matches
-          </Button>
+      );
+
+      const matches = this.props.store.vetMatchReducer;
+      const incompleteMatches = this.props.store.incompleteMatchReducer;
+      const { completeMatchIndex, incompleteMatchIndex, modalOpen } = this.state;
+
+      return (
+        <div >
+          <center>
+            {/* <h1 class="grey">Thank you for your service {this.props.store.user.username}</h1> */}
+            <h1 class="grey">Saved Resources</h1>
+          </center>
+            {this.props.store.existReducer.eists === true ? 
+              <Button
+                className="completeProfileBtn"
+                size="large"
+                variant="contained"
+                style={{
+                borderRadius: 35,
+                backgroundColor: '#AFFA3D',
+                fontFamily: 'orbitron',
+                }}
+                onClick={() => this.handleClick("completeProfile")}
+              >
+                Complete Profile Information
+              </Button> : 
+              <Button
+                className="completeProfileBtn"
+                size="large"
+                variant="contained"
+                style={{
+                borderRadius: 35,
+                backgroundColor: '#AFFA3D',
+                fontFamily: 'orbitron',
+                }}
+                onClick={() => this.insertVet(this.props.store.user.id)}>
+                Complete Profile Information
+              </Button>}
+              <div>
+                  <div className="cardContainer">
+                    {matches.map((match, index) => {
+                        return (
+                          <div key={index}>
+                            <Card className={classes.card}>
+                              <CardActionArea>
+                                  <CardHeader
+                                    avatar={
+                                      <Avatar aria-label={match.title}>
+                                        {match.title}
+                                      </Avatar>
+                                    }
+                                    title={match.title}
+                                    subheader={match.name}
+                                  />
+                                <CardMedia
+                                    className={classes.media}
+                                    alt={match.title}
+                                    image={RedCross}/>
+                                <CardContent>
+                                  <Typography gutterBottom variant="h5" component="h2">
+                                    {match.name}
+                                  </Typography>
+                                  <Typography component="p">
+                                    {match.email}
+                                  </Typography>
+                                  <Typography component="p">
+                                    {match.number}
+                                  </Typography>
+                                </CardContent>
+                              </CardActionArea>
+                            <CardActions>
+                              <Button 
+                                size="small" 
+                                color="primary"
+                                onClick={() => this.visitResource(match.id)}
+                                >More Info
+                              </Button>
+                            </CardActions>
+                          </Card>
+                        </div>
+                        );
+                      }
+                    )}
+            <br></br>
+          </div>
+            <div className="buttons">
+            <center>
+              <Button
+                id="emergencyBtn"
+                size="large"
+                variant="contained"
+                style={{
+                borderRadius: 35,
+                backgroundColor: '#AFFA3D',
+                fontFamily: 'orbitron',
+                }}
+                onClick={() => this.handleClick("emergency")}
+                >
+                Emergency Numbers
+              </Button>
+              <Button
+                id="allMatchBtn"
+                size="large"
+                variant="contained"
+                style={{
+                borderRadius: 35,
+                backgroundColor: '#AFFA3D',
+                fontFamily: 'orbitron',
+                }}
+                onClick={() => this.handleClick("allMatches")}
+                >
+                View New Matches
+              </Button>
+              </center>
+            </div>
+            <Modal
+              open={modalOpen}
+              aria-labelledby="modal-title"
+              aria-describedby="emergency-contacts"
+            >
+            {emergencyModal}
+          </Modal>
         </div>
-        <Modal
-          open={modalOpen}
-          aria-labelledby="modal-title"
-          aria-describedby="emergency-contacts"
-        >
-          {emergencyModal}
-        </Modal>
       </div>
     );
   }
