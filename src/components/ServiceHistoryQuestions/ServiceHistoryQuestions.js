@@ -303,22 +303,19 @@ class ServiceHistoryQuestions extends Component {
                         id="date"
                         label="Service Start Date"
                         type="date"
-                        defaultValue="2017-05-24"
+                        defaultValue="2021-01-01"
                         className={classes.textField}
                         InputLabelProps={{
                         shrink: true,
                         }}
                     />
-                </form>
                 {/* -------------------------------------------------- */}
-                <br></br>
                 <p>Service End Date</p>
-                 <form className={classes.container} noValidate>
                     <TextField
                         id="date"
                         label="Service End Date"
                         type="date"
-                        defaultValue="2017-05-24"
+                        defaultValue="2021-01-01"
                         className={classes.textField}
                         InputLabelProps={{
                         shrink: true,
