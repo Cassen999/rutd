@@ -54,11 +54,11 @@ class ServiceHistoryQuestions extends Component {
         return ( 
             <div className="container">
                 <h1 className="grey">Service History</h1>
-                <hr className="float-left no-margin"></hr>
+                <hr className="float-left no-margin hr-width"></hr>
                 <br></br>
                 <br></br>
                 <FormControl className={classes.formControl}> 
-                <p>Service Status:</p>
+                <p>Service Status</p>
                     <Select
                         onClick={(event) => this.handleInputChange(event, 'status')}
                         value={this.state.status}
@@ -102,7 +102,7 @@ class ServiceHistoryQuestions extends Component {
                 </FormControl>
                 {/* -------------------------------------------------- */}
                 <br></br>
-                <p>TYPE OF DISCHARGE DROPDOWN HERE:</p>
+                <p>Type of Discharge</p>
                  <FormControl className={classes.formControl}> 
                     <Select
                         onClick={(event) => this.handleInputChange(event, 'discharge')}
@@ -147,7 +147,7 @@ class ServiceHistoryQuestions extends Component {
                 </FormControl>
                 {/* -------------------------------------------------- */}
                 <br></br>
-                <p>BRANCH OF SERVICE DROPDOWN HERE: Army/Marines, etc.</p>
+                <p>Branch of Service</p>
                 <FormControl className={classes.formControl}> 
                     <Select
                         onClick={(event) => this.handleInputChange(event, 'branch')}
@@ -188,7 +188,7 @@ class ServiceHistoryQuestions extends Component {
                 </FormControl>
                 {/* -------------------------------------------------- */}
                 <br></br>
-                <p>HIGHEST ATTAINED RANK DROPDOWN HERE: Enlisted/Officer, etc</p>
+                <p>Highest Attained Rank</p>
                                 <FormControl className={classes.formControl}> 
                     <Select
                         onClick={(event) => this.handleInputChange(event, 'rank')}
@@ -297,11 +297,12 @@ class ServiceHistoryQuestions extends Component {
                 </FormControl>
                 {/* -------------------------------------------------- */}
                 <br></br>
-                <p>SERVICE END DATE: ADD A CALENDAR HERE?</p>
+                <p>Service End Date</p>
                 
                 {/* -------------------------------------------------- */}
                 <br></br>
                 <p>Are you currently serving or served in the military on or after September 11, 2001?</p>
+                <br></br>
                 <p>RADIO BUTTONS HERE</p>
                 <Radio
                     checked={this.state.selectedValue === 'yes'}

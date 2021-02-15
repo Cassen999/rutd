@@ -150,7 +150,8 @@ class DemographicQuestion extends Component {
         return (
             <form>
                 <div className="container">
-                    <p className="grey">Please fill out your information below</p>
+                    <h1 className="grey">Personal Information</h1>
+                    <hr className="float-left no-margin hr-width"></hr>
                     <br></br>
                     <div>
                         <TextField
