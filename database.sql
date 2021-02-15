@@ -1,7 +1,6 @@
 -- Enter in all commands in order they are written from top to bottom
 -- Tables
 -- HIGHLIGHT TO THE THE END COMMENT AND EXECUTE!
-
 CREATE TABLE "gender" (
     "id" SERIAL PRIMARY KEY,
     "description" VARCHAR(255) NOT NULL
@@ -70,7 +69,6 @@ CREATE TABLE "user" (
 );
 
 -- STOP HERE! AFTER CREATING THE TABLES, RESTART THE TABLES TO 1 BY HIGHLIGHTING THEM!
-
 ALTER SEQUENCE user_id_seq RESTART WITH 1;
 
 ALTER SEQUENCE type_id_seq RESTART WITH 1;
@@ -99,9 +97,12 @@ ALTER SEQUENCE categories_id_seq RESTART WITH 1;
 
 -- Start inserts for dropdowns
 -- DO THE INSERTS FOR ALL OF THE DROPDOWN TABLES
-
-INSERT INTO "type" (description)
-VALUES ('Veteran'), ('Admin'), ('Organization');
+INSERT INTO
+    "type" (description)
+VALUES
+    ('Veteran'),
+    ('Admin'),
+    ('Organization');
 
 INSERT INTO
     gender (description)
@@ -230,15 +231,65 @@ VALUES
 INSERT INTO
     state (description)
 VALUES
+    ('Alaska'),
+    ('Alabama'),
+    ('Arizona'),
+    ('Arkansas'),
+    ('California'),
+    ('Colorado'),
+    ('Connecticut'),
+    ('Delaware'),
+    ('District of Columbia'),
+    ('Florida'),
+    ('Georgia'),
+    ('Hawaii'),
+    ('Idaho'),
+    ('Illinois'),
+    ('Indiana'),
+    ('Iowa'),
+    ('Kansas'),
+    ('Kentucky'),
+    ('Louisiana'),
+    ('Maine'),
+    ('Maryland'),
+    ('Massachusetts'),
+    ('Michigan'),
+    ('Minnesota'),
+    ('Mississippi'),
+    ('Missouri'),
+    ('Montana'),
+    ('Nebraska'),
+    ('Nevada'),
+    ('New Hampshire'),
+    ('New Jersey'),
+    ('New Mexico'),
+    ('New York'),
+    ('North Carolina'),
+    ('North Dakota'),
+    ('Ohio'),
+    ('Oklahoma'),
+    ('Oregon'),
+    ('Pennsylvania'),
+    ('Puerto Rico'),
+    ('Rhode Island'),
+    ('South Carolina'),
+    ('South Dakota'),
+    ('Tennessee'),
     ('Texas'),
-    ('Minnesota');
+    ('Utah'),
+    ('Vermont'),
+    ('Virginia'),
+    ('Washington'),
+    ('West Virginia'),
+    ('Wisconsin'),
+    ('Wyoming');
 
 INSERT INTO
     country (description)
 VALUES
     ('United States of America');
--- End inserts for dropdowns
 
+-- End inserts for dropdowns
 -- USING THE BROWSER ENTER 6 DIFFERENT USERS THAT ARE VETS
 -- IN POSTGRESS, CHANGE 3 OF THOSE USER TYPES FROM TYPE 1 TO TYPE 2
 -- NOW THERE SHOULD BE 3 VETS AND 3 ADMIN IN THE USER TABLE
@@ -513,8 +564,8 @@ VALUES
         false,
         false
     );
--- End inserts into veteran
 
+-- End inserts into veteran
 -- Inserts into organization
 INSERT INTO
     "organization" (
@@ -602,8 +653,8 @@ VALUES
         'American Red Cross stuff',
         true
     );
--- End inserts into organization
 
+-- End inserts into organization
 -- HIGHLIGHT MATCH, VETERAN_CATEGORIES, ORG_CATAGORIES!
 -- Inserts into match
 INSERT INTO
@@ -638,8 +689,8 @@ INSERT INTO
     )
 VALUES
     (3, 3, '03:00:00', '04:00:00', '05:00:00');
--- End inserts into match
 
+-- End inserts into match
 -- Inserts into veteran_categories 
 INSERT INTO
     veteran_categories(vet_id, categories_id)
@@ -655,9 +706,9 @@ VALUES
     (3, 9),
     (3, 10),
     (3, 3),
-	(3, 4);
--- End inserts into match
+    (3, 4);
 
+-- End inserts into match
 -- Inserts into organization_categories
 INSERT INTO
     organization_categories(org_id, categories_id)
@@ -672,10 +723,9 @@ VALUES
     (3, 7),
     (3, 4),
     (2, 6);
--- End inserts into organization_categories
 
-DROP TABLE 
-"user",
+-- End inserts into organization_categories
+DROP TABLE "user",
 "type",
 "rank",
 "gender",
