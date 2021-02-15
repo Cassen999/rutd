@@ -95,9 +95,6 @@ class UserPage extends Component {
     };
 
   componentDidMount() {
-    // dispatch to see of they exist in vet table
-    // if false nothing happens
-    // if true dispatch 
     this.props.dispatch({
         type: 'FETCH_VET_EXIST', 
         payload: this.props.store.user.id

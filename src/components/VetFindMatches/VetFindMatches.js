@@ -56,11 +56,9 @@ class VetFindMatches extends Component {
         text: "Please call one of these numbers for emergency help: Veteran’s Crisis Line - 1-800-273-8255, National Suicide Prevention Lifeline - 800-273-8255, The STARRY Counseling Program Crisis Hotline - 800-440-9789",
       })
         .then(() => {
-          this.props.dispatch({ type: "FETCH_ALL_MATCHES", payload: vetId });
           this.props.history.push("/vetmatches");
         })
     } else if (this.state.safe === 'yes') {
-      this.props.dispatch({ type: "FETCH_ALL_MATCHES", payload: vetId });
       this.props.history.push("/vetmatches");
     }
   };
@@ -91,7 +89,6 @@ class VetFindMatches extends Component {
         <center>
           <p>Use this section to give your resources more information</p>
           <p>You can write anything from specifics of a problem you may be having, to thanking them for their help!</p>
-          <p>Anything you write will be sent to the resource(s) you choose to contact on the next page</p>
         </center>
         <form className="text-container" noValidate autoComplete="off">
           <TextField
