@@ -3,8 +3,11 @@ import clsx from 'clsx';
 import {  
   FormControl,
   Radio,
-  Typography  
+  Typography,
+  Fab   
 } from "@material-ui/core";
+import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
+
 class PurpleHeart extends Component {
   render() {
     const classes = this.props.classes;
@@ -12,12 +15,12 @@ class PurpleHeart extends Component {
     return (
       <div
         //className="container"
-        display="inline-block"
+        display="inline-flex"
       >     
         <Typography className={classes.textControl}>Have you been awarded a Purple Heart?</Typography>
         <div 
           className={classes.selectContainer}
-          display="block"  
+          display="flex"  
         >
           <label className={classes.label}>Yes</label>
           <Radio
@@ -42,9 +45,19 @@ class PurpleHeart extends Component {
             onClick={(event) => this.props.updateState(event, 'purpleHeart')}
           />
           {purpleHeart === true && (
-            <form className={classes.formControl} onSubmit={(event) => this.props.saveProgress(event)}>
-              <input className="btn" type="submit" name="submit" value="Save Progress" />
-            </form>     
+            // <form className={classes.formControl} onSubmit={(event) => this.props.saveProgress(event)}>
+            //   <input className="btn" type="submit" name="submit" value="Save Progress" />
+            // </form> 
+          <Fab
+            className="float-right"
+            style={{
+                borderRadius: 35,
+                backgroundColor: '#AFFA3D',
+                fontFamily: 'orbitron',
+                marginBottom: '10%',
+                marginRight: '10px',
+            }}
+            onClick={(event) => { this.saveDemographic(event) }}><SaveTwoToneIcon /></Fab>    
           )}
         </div>  
       </div>

@@ -10,12 +10,12 @@ class Hazard extends Component {
     return (
       <div
         //className="container"
-        display="flex" 
+        display="inline-flex" 
       >
         <Typography className={classes.textControl}>Have you served in any imminent danger areas?</Typography>
           <div 
               className={classes.selectContainer}
-              display="inline-flex"  
+              display="flex"  
           >
             <label className={classes.label}>Yes</label>
             <Radio

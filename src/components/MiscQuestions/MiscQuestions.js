@@ -15,10 +15,11 @@ const styles = (theme) => ({
       minWidth: 185, 
     },
     formColor: {
-        backgroundColor: '#EFEFEF',
-        borderLeft: '2px solid grey',
-        borderRight: '2px solid grey',
+        //backgroundColor: '#EFEFEF',
+        //borderLeft: '3px solid grey',
+        //borderRight: '3px solid grey',
         textAlign: 'center',
+        marginBottom: '10px'
     },
     selectContainer: {
         textAlign: 'center',
@@ -51,7 +52,7 @@ const styles = (theme) => ({
         backgroundColor: 'white',
         height: 6,
         marginTop: 0,
-        marginBottom: 0
+        marginBottom: 2
     },
     root: {
       '&:hover': {
@@ -129,7 +130,7 @@ class MiscQuestions extends Component {
                 display="inline-flex"
             >
                 <form className={classes.formColor}>
-                    <Typography className={classes.formTitle} variant="h3" gutterBottom>Miscellaneous Questions</Typography>
+                    {/* <Typography className={classes.formTitle} variant="h3" gutterBottom>Miscellaneous Questions</Typography> */}
                         <Compensation
                             registered={registered}
                             compensationId={compensationId}
@@ -149,16 +150,8 @@ class MiscQuestions extends Component {
                             updateState={this.updateState}
                             classes={classes}
                             saveProgress={this.saveProgress}
-                        /></form>
-                        <Fab
-                        className="float-right"
-                        style={{
-                            borderRadius: 35,
-                            backgroundColor: '#AFFA3D',
-                            fontFamily: 'orbitron',
-                        }}
-                        onClick={(event) => { this.saveDemographic(event) }}><SaveTwoToneIcon /></Fab>
-                
+                        />
+                    </form>
             </div>
          );
     }
