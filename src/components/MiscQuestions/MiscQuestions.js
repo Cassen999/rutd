@@ -18,11 +18,11 @@ const styles = (theme) => ({
         //backgroundColor: '#EFEFEF',
         //borderLeft: '3px solid grey',
         //borderRight: '3px solid grey',
-        textAlign: 'center',
+        textAlign: 'left',
         marginBottom: '10px'
     },
     selectContainer: {
-        textAlign: 'center',
+        textAlign: 'left',
         padding: theme.spacing(1)
     },
     formTitle: {
@@ -129,6 +129,9 @@ class MiscQuestions extends Component {
                 className="container"
                 display="inline-flex"
             >
+            <h1 className="grey">Miscellaneous</h1>
+            <hr className="float-left no-margin hr-width"></hr>
+            <br></br>
                 <form className={classes.formColor}>
                     {/* <Typography className={classes.formTitle} variant="h3" gutterBottom>Miscellaneous Questions</Typography> */}
                         <Compensation
@@ -137,20 +140,32 @@ class MiscQuestions extends Component {
                             updateState={this.updateState}
                             classes={classes} 
                         />
-                        <hr className={classes.lineStyle} /> 
+                        {/* <hr className={classes.lineStyle} />  */}
                         <Hazard
                             imminentDanger={imminentDanger}
                             dangerDescription={dangerDescription}
                             updateState={this.updateState}
                             classes={classes} 
                         />
-                        <hr className={classes.lineStyle} /> 
+                        {/* <hr className={classes.lineStyle} />  */}
                         <PurpleHeart
                             purpleHeart={purpleHeart}
                             updateState={this.updateState}
                             classes={classes}
                             saveProgress={this.saveProgress}
                         />
+
+            <Fab
+            className="float-right"
+            style={{
+                borderRadius: 35,
+                backgroundColor: '#AFFA3D',
+                fontFamily: 'orbitron',
+                marginBottom: '10%',
+                marginRight: '10px',
+            }}
+            onClick={(event) => { this.saveDemographic(event) }}><SaveTwoToneIcon /></Fab>
+                        
                     </form>
             </div>
          );

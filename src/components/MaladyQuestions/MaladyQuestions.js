@@ -14,6 +14,8 @@ import {
     Typography,
     Button      
 } from "@material-ui/core";
+import Fab from '@material-ui/core/Fab';
+import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
                         
              
                         
@@ -100,11 +102,17 @@ handleChangeMultiple = (event) => {
     const { selectedMalady, malady, open } = this.state;
     console.log('selected maladies are:', selectedMalady); 
     return (
-        <div className="container"> 
-            <FormControl className={classes.formControl}>
-                <Typography variant="h5" component="h2">
+        <div className="container">
+            <h1 className="grey">Health</h1>
+            <hr className="float-left no-margin hr-width"></hr>
+            <br></br>
+            <Typography variant="h5" component="h2">
                     Please Select Any Health Concerns Which May Apply.
-                </Typography>
+            </Typography>
+            <FormControl className={classes.formControl}>
+                {/* <Typography variant="h5" component="h2">
+                    Please Select Any Health Concerns Which May Apply.
+                </Typography> */}
                 {/* <InputLabel id="malady-multiple-select-label">Health Concerns</InputLabel> */}
                 <Select
                     // labelId="malady-multiple-select-label"
@@ -126,6 +134,17 @@ handleChangeMultiple = (event) => {
                     ))}
                 </Select>
             </FormControl>
+            <Fab
+            className="float-right"
+            style={{
+                borderRadius: 35,
+                backgroundColor: '#AFFA3D',
+                fontFamily: 'orbitron',
+                // marginBottom: '10%',
+                // marginRight: '10px',
+                marginTop: '20px'
+            }}
+            onClick={(event) => { this.saveDemographic(event) }}><SaveTwoToneIcon /></Fab>
 
             {/* <FormControl variant="filled" className={classes.formControl}>
                 <Typography variant="h4" component="h2">
