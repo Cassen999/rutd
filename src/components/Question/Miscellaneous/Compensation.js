@@ -36,25 +36,15 @@ class Compensation extends Component {
     const registered = this.props.registered;
     const compensationId = this.props.compensationId;
     return (   
-      <>
-        
-        <Typography >Are you currently registered with the VA?</Typography>
-          <Grid
-            container
-            spacing={1}
-            direction="row"
-            className={classes.gridContainer}
-          >
-            <Grid
-              container
-              item
-              xs={6}
-              sm={3}
-              spacing={2}
-              justify="flex-start"
-              alignItems="center"     
-            >
-              <Grid item xs={3}>
+      <div 
+        //className="container"
+        display="inline-flex"
+      >
+        <Typography className={classes.textControl}>Are you currently registered with the VA?</Typography>
+              <div 
+                className={classes.selectContainer}
+                display="flex"  
+              >
                 <label className={classes.label}>Yes</label>
                 <Radio
                   className={classes.root}
@@ -66,8 +56,6 @@ class Compensation extends Component {
                   value={true}
                   onClick={(event) => this.props.updateState(event, 'registered')}
                 />
-              </Grid>
-              <Grid item xs={3}>
                 <label className={classes.label}>No</label>         
                 <Radio
                   className={classes.root}
@@ -79,8 +67,6 @@ class Compensation extends Component {
                   value={false}
                   onClick={(event) => this.props.updateState(event, 'registered')}
                 />
-              </Grid>
-              <Grid item xs={3}>
                 {registered === true && (
                   <FormControl variant="filled" className={classes.formControl}>
                     <InputLabel id="open-comp-label">Compensation Rate</InputLabel>
@@ -104,10 +90,8 @@ class Compensation extends Component {
                     </Select>
                   </FormControl>     
                 )}
-              </Grid>
-            </Grid>
-          </Grid>
-      </>
+          </div>
+      </div>
     ); 
   }
 } 

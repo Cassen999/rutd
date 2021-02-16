@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import mapStoreToProps from "../../redux/mapStoreToProps";
+import mapStoreToProps from "../../../redux/mapStoreToProps";
 import { connect } from "react-redux";
 import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
 
@@ -10,16 +10,12 @@ const styles = {
         verticalAlign: "",
         fontFamily: "",
     },
-    gridItem: {
-        width: "100%",
-        minHeight: 200,
-    }
 };
 
-class Email extends Component {
+class Phone extends Component {
     state = {
         vet: {
-            email: "",
+            phone: "",
         },
     };
 
@@ -41,67 +37,71 @@ class Email extends Component {
         );
     };
 
-    saveEmail = () => {
-        let vetVar = this.state.vet;
+    savePhone = () => {
+        let vetVar = this.state.vet
 
-        if (vetVar.email === "") {
-            alert("An email address is required for registration.");
+        if (vetVar.phone === '') {
+            alert("An phone number is required for registration.");
         } else {
-            console.log(`Saving ${vetVar.email} to Database...`);
+            console.log(
+                `Saving ${vetVar.phone} to Database...`
+            );
 
             this.props.dispatch({
-                type: "UPDATE_EMAIL",
-                payload: this.state.vet,
+                type: "UPDATE_PHONE",
+                payload: this.state.vet
             });
 
             this.setState(
                 {
                     vet: {
-                        email: "",
+                        phone: "",
                     },
                 },
                 function () {
+                    // {this.props.history.push('/servicehistory')}
                     console.log("state has been reset");
                 }
             );
         }
-    };
+
+    }
 
     render() {
         const { classes } = this.props;
 
         return (
-            <React.Fragment>
-                <h1>Email Entry</h1>
-                <Grid container spacing={2} direction="column" display="inline-flex">
+            <>
+                <h1>Phone Entry</h1>
+                {/* <Grid container spacing={2} direction="column"> */}
                     <Paper elevation={10}>
                         <form>
                             <br />
 
-                            <Grid item xs={12.0} sm={12} display="flex" >
+                            {/* <Grid item xs={12.0} sm={12}> */}
                                 <TextField
+                                    id="standard-textarea"
                                     variant="outlined"
-                                    label="Email"
-                                    name="email"
-                                    value={this.state.vet.email}
-                                    onChange={(event) => this.handleInputChange(event, "email")}
+                                    label="Phone Number"
+                                    name="phone"
+                                    value={this.state.vet.phone}
                                 />
                                 <br />
                                 <Button
                                     onClick={(event) => {
-                                        this.saveEmail(event);
+                                        this.savePhone(event);
                                     }}
                                 >
                                     SAVE
                 </Button>
                                 <br />
-                            </Grid>
+                            {/* </Grid> */}
                         </form>
                     </Paper>
-                </Grid>
-            </React.Fragment>
+                {/* </Grid> */}
+            </>
         ); //END return
     } //END render
 } //END Name
 
-export default connect(mapStoreToProps)(withStyles(styles)(Email));
+export default connect(mapStoreToProps)(withStyles(styles)(Phone));

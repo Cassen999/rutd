@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import mapStoreToProps from "../../redux/mapStoreToProps";
+import mapStoreToProps from "../../../redux/mapStoreToProps";
 import { connect } from "react-redux";
 import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
 

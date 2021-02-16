@@ -100,33 +100,32 @@ handleChangeMultiple = (event) => {
     const { selectedMalady, malady, open } = this.state;
     console.log('selected maladies are:', selectedMalady); 
     return (
-        <> 
-
-    <FormControl className={classes.formControl}>
-        <Typography variant="h5" component="h2">
-            Please Select Any Health Concerns Which May Apply.
-        </Typography>
-        {/* <InputLabel id="malady-multiple-select-label">Health Concerns</InputLabel> */}
-        <Select
-            // labelId="malady-multiple-select-label"
-            id="malady-multiple-select-label"
-            label="Health Concerns"
-            multiple
-            value={selectedMalady}
-            onChange={this.handleChange}
-            input={<Input />}
-            MenuProps={MenuProps} 
-        >
-            <MenuItem value="">
-                <em>None</em>
-            </MenuItem>
-          {maladyList.map((malady) => (
-            <MenuItem key={malady.description} value={malady.id} style={getStyles(malady, selectedMalady, theme)} >
-                {malady.description}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+        <div className="container"> 
+            <FormControl className={classes.formControl}>
+                <Typography variant="h5" component="h2">
+                    Please Select Any Health Concerns Which May Apply.
+                </Typography>
+                {/* <InputLabel id="malady-multiple-select-label">Health Concerns</InputLabel> */}
+                <Select
+                    // labelId="malady-multiple-select-label"
+                    id="malady-multiple-select-label"
+                    label="Health Concerns"
+                    multiple
+                    value={selectedMalady}
+                    onChange={this.handleChange}
+                    input={<Input />}
+                    MenuProps={MenuProps} 
+                >
+                    <MenuItem value="">
+                        <em>None</em>
+                    </MenuItem>
+                    {maladyList.map((malady) => (
+                        <MenuItem key={malady.description} value={malady.id} style={getStyles(malady, selectedMalady, theme)} >
+                            {malady.description}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
 
             {/* <FormControl variant="filled" className={classes.formControl}>
                 <Typography variant="h4" component="h2">
@@ -159,7 +158,7 @@ s
               SAVE
             </Button> 
         </FormControl>           */}
-      </>
+      </div>
     ); //END return
   } //END render
 } //END Name

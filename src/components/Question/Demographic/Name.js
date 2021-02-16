@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import mapStoreToProps from "../../redux/mapStoreToProps";
+import mapStoreToProps from "../../../redux/mapStoreToProps";
 import { connect } from "react-redux";
 import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
 
@@ -12,12 +12,15 @@ const styles = {
     },
 };
 
-class Phone extends Component {
+class Name extends Component {
+
     state = {
         vet: {
-            phone: "",
+            first_name: "",
+            last_name: "",
+
         },
-    };
+    }
 
     handleInputChange = (event, inputProperty) => {
         console.log("Handling input-change...");
@@ -37,25 +40,26 @@ class Phone extends Component {
         );
     };
 
-    savePhone = () => {
+    saveName = () => {
         let vetVar = this.state.vet
 
-        if (vetVar.phone === '') {
-            alert("An phone number is required for registration.");
+        if (vetVar.first_name === '' || vetVar.last_name === '') {
+            alert("A first and last name is required for registration.");
         } else {
             console.log(
-                `Saving ${vetVar.phone} to Database...`
+                `Saving ${vetVar.first_name} to Database...`
             );
 
             this.props.dispatch({
-                type: "UPDATE_PHONE",
-                payload: this.state.vet
+                type: "ADD_NAME",
+                payload: this.state.vet,
             });
 
             this.setState(
                 {
                     vet: {
-                        phone: "",
+                        first_name: "",
+                        last_name: "",
                     },
                 },
                 function () {
@@ -64,44 +68,56 @@ class Phone extends Component {
                 }
             );
         }
-
-    }
+    };
 
     render() {
         const { classes } = this.props;
 
         return (
             <>
-                <h1>Phone Entry</h1>
-                {/* <Grid container spacing={2} direction="column"> */}
+                <h1>Name Entry</h1>
+                {/* <Grid
+                    container
+                    spacing={2}
+                    direction="column"
+                > */}
+
                     <Paper elevation={10}>
+
                         <form>
                             <br />
 
                             {/* <Grid item xs={12.0} sm={12}> */}
                                 <TextField
-                                    id="standard-textarea"
                                     variant="outlined"
-                                    label="Phone Number"
-                                    name="phone"
-                                    value={this.state.vet.phone}
+                                    label="First Name"
+                                    name="first_name"
+                                    value={this.state.vet.first_name}
+                                    onChange={(event) =>
+                                        this.handleInputChange(event, "first_name")
+                                    }
                                 />
                                 <br />
-                                <Button
-                                    onClick={(event) => {
-                                        this.savePhone(event);
-                                    }}
-                                >
-                                    SAVE
-                </Button>
+
+                                <TextField
+                                    variant="outlined"
+                                    label="Last Name"
+                                    name="last_name"
+                                    value={this.state.vet.last_name}
+                                    onChange={(event) =>
+                                        this.handleInputChange(event, "last_name")
+                                    }
+                                />
+                                <br />
+                                <Button onClick={(event) => { this.saveName(event) }}>SAVE</Button>
                                 <br />
                             {/* </Grid> */}
                         </form>
                     </Paper>
                 {/* </Grid> */}
             </>
-        ); //END return
-    } //END render
-} //END Name
+        )//END return
+    };//END render
+};//END Name
 
-export default connect(mapStoreToProps)(withStyles(styles)(Phone));
+export default connect(mapStoreToProps)(withStyles(styles)(Name));
