@@ -130,7 +130,7 @@ router.get("/:id", rejectUnauthenticatedVetAdmin, (req, res) => {
     veteran.first_name, 
     veteran.last_name, 
     veteran.email, 
-    TO_CHAR(veteran.date_of_birth, 'mm-dd-yyyy'),
+    veteran.date_of_birth,
     veteran.number,
     veteran.children, 
     veteran.homeless, 

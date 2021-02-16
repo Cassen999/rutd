@@ -65,7 +65,7 @@ class AdminVetView extends Component {
                             <br></br>
                             <Typography className="font" component="p">Email: <br></br><i>{vet.email}</i></Typography>
                             <br></br>
-                            <Typography className="font" component="p">Date of Birth: <br></br><i>{vet.to_char}</i></Typography>
+                            <Typography className="font" component="p">Date of Birth: <br></br><i>{moment(vet.date_of_birth).format('LL')}</i></Typography>
                             <br></br>
                             <Typography className="font" component="p">Contact Number: <br></br><i>{vet.number}</i></Typography>
                             <br></br>
@@ -97,9 +97,9 @@ class AdminVetView extends Component {
                           <br></br>
                           <Typography component="p">Highest Attained Rank: <br></br><i>{vet.rank}</i></Typography>
                           <br></br>
-                          <Typography component="p">Start of Service: <br></br><i>{moment(vet.start_date).format('LLL')}</i></Typography>
+                          <Typography component="p">Start of Service: <br></br><i>{moment(vet.start_date).format('LL')}</i></Typography>
                           <br></br>
-                          <Typography component="p">End Service Date: <br></br><i>{moment(vet.end_date).format('MMMM Do YYYY, h:mm:ss a')}</i></Typography>
+                          <Typography component="p">End Service Date: <br></br><i>{moment(vet.end_date).format('LL')}</i></Typography>
                           <br></br>
                           <Typography component="p">Maladies: <br></br><i>{vet.injury}</i></Typography>
                           <br></br>
