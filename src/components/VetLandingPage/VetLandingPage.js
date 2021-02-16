@@ -95,9 +95,6 @@ class UserPage extends Component {
     };
 
   componentDidMount() {
-    // dispatch to see of they exist in vet table
-    // if false nothing happens
-    // if true dispatch 
     this.props.dispatch({
         type: 'FETCH_VET_EXIST', 
         payload: this.props.store.user.id
@@ -190,7 +187,7 @@ class UserPage extends Component {
           <center>
             {/* <h1 class="grey">Thank you for your service {this.props.store.user.username}</h1> */}
             {/* <h1 class="grey">Your Saved Connections</h1> */}
-            <p class="grey"> Below are your matched resources</p>
+            <h1 class="grey"> Below are your matched resources</h1>
             <hr className="hr-width"></hr>
           </center>
             {this.props.store.existReducer.eists === true ? 

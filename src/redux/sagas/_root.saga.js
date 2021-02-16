@@ -3,7 +3,6 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import demographicSaga from './demographic.saga'
-import serviceSaga from './service.saga'
 import compensationSaga from './compensation.saga'
 import maladySaga from './malady.saga'
 import emailSaga from './email.saga';
@@ -25,7 +24,6 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     demographicSaga(),
-    serviceSaga(),
     compensationSaga(),
     maladySaga(),
     vetSaga(),

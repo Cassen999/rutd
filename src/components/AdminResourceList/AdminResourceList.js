@@ -71,7 +71,7 @@ class AdminResourceList extends Component {
     return (
       <div className="container">
         <center>
-          <h2 className="grey">Organizations</h2>
+          <h1 className="grey">Organizations</h1>
         </center>
         <div className={classes.searchContainer}>
           <center>

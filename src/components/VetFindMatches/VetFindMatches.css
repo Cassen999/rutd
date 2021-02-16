@@ -16,3 +16,8 @@
     justify-content: center;
     margin-top: 2em;
 }
+
+.justified{
+    text-align: justify;
+    margin-left: 3rem;
+}

@@ -165,3 +165,11 @@ Image Styles
 .float-right{
   float: right;
 }
+
+.float-left{
+  float: left;
+}
+
+.no-margin{
+  margin: 0;
+}

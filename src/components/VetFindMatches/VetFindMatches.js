@@ -56,11 +56,9 @@ class VetFindMatches extends Component {
         text: "Please call one of these numbers for emergency help: Veteran’s Crisis Line - 1-800-273-8255, National Suicide Prevention Lifeline - 800-273-8255, The STARRY Counseling Program Crisis Hotline - 800-440-9789",
       })
         .then(() => {
-          this.props.dispatch({ type: "FETCH_ALL_MATCHES", payload: vetId });
           this.props.history.push("/vetmatches");
         })
     } else if (this.state.safe === 'yes') {
-      this.props.dispatch({ type: "FETCH_ALL_MATCHES", payload: vetId });
       this.props.history.push("/vetmatches");
     }
   };
@@ -84,17 +82,18 @@ class VetFindMatches extends Component {
     const { classes } = this.props;
     const {vetReducer} = this.props.store;
     return (
-      <div>
+      <div className="container">
         <center>
-          <h2>Before we find your resource matches...</h2>
+          <h1 className="grey">Before we find your resource matches...</h1>
+          <hr className="hr-width"></hr>
         </center>
-        <center>
+        <div className="justified">
           <p>Use this section to give your resources more information</p>
           <p>You can write anything from specifics of a problem you may be having, to thanking them for their help!</p>
-          <p>Anything you write will be sent to the resource(s) you choose to contact on the next page</p>
-        </center>
+        </div>
         <form className="text-container" noValidate autoComplete="off">
           <TextField
+            style = {{width: 800}}
             id="outlined-multiline-flexible"
             label="Start typing here"
             multiline
@@ -107,10 +106,10 @@ class VetFindMatches extends Component {
           />
         </form>
         <center>
-          <h4>Although RUTD would love to help everyone, it is not an emergency service</h4>
-          <p>Please indicate here whether or not you are safe</p>
+          <h4 className="grey justified">Although RUTD would love to help everyone, it is not an emergency service</h4>
+          <p className="justified">Please indicate here whether or not you are safe</p>
         </center>
-        <div className="radio-container">
+        <div className="justified">
           <label>I am safe</label>
           <Radio
             checked={this.state.safe === 'yes'}

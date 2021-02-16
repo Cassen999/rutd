@@ -27,6 +27,7 @@ function* fetchVetInfo(action) {
 function* fetchVetId(action) {
     try{
         const vetId = action.payload
+        console.log('fetch vet id vetId', vetId)
         const response = yield axios.get(`/api/vet/vetid/${vetId}`)
         yield put({type: 'SET_VET', payload: response.data});
     } catch(error){

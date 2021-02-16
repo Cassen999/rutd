@@ -1,5 +1,3 @@
-//import mapStoreToProps from '../../redux/mapStoreToProps';
-
 const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
@@ -7,11 +5,7 @@ const {
   rejectUnauthenticatedVet,
 } = require("../modules/authentication-middleware");
 
-/**
- * GET route template
- */
 router.get("/", rejectUnauthenticatedVet, (req, res) => {
-  // GET route code here
   console.log("in /match GET route");
   console.log("Is User logged in?", req.isAuthenticated());
   console.log("req.user:", req.user);
@@ -52,16 +46,18 @@ router.get("/complete/:id", rejectUnauthenticatedVet, (req, res) => {
 
 router.get(`/newMatches/:id`, rejectUnauthenticatedVet, (req, res) => {
   const vetId = req.params.id;
-  let queryText = `SELECT oc.org_id, o.name, o.pictures, o.email, o.website, o.pdf,  o.pictures,
-          count(oc.categories_id) AS org_needs, count(vc.categories_id) 
-          AS vet_has, (count(vc.categories_id) + 0.0) / 
-          (count(oc.categories_id) + 0.0) * 100 AS percent_match
-          FROM organization_categories oc
-          INNER JOIN veteran_categories vc ON vc.categories_id = oc.categories_id
-          AND vc.vet_id = $1 
-          INNER JOIN organization o ON o.id = oc.org_id
-          GROUP BY oc.org_id, o.name,  o.pictures, o.website, o.pdf, o.email
-          ORDER BY percent_match DESC, vet_has DESC;`;
+  let queryText = `SELECT oc.org_id, o.name, o.email, o.website, o.pdf,  o.pictures,
+                    count(oc.categories_id) AS org_needs, count(vc.categories_id) 
+                    AS vet_has, (count(vc.categories_id) + 0.0) / 
+                    (count(oc.categories_id) + 0.0) * 100 AS percent_match,
+                    (SELECT EXISTS
+                    (SELECT 1 FROM match WHERE match.vet_id = vc.vet_id AND match.org_id = oc.org_id)) AS exist
+                    FROM organization_categories oc
+                    JOIN veteran_categories vc ON vc.categories_id = oc.categories_id
+                    JOIN organization o ON o.id = oc.org_id
+                    WHERE vc.vet_id = $1
+                    GROUP BY oc.org_id, o.name, vc.vet_id,  o.pictures, o.email, o.website, o.pdf       
+                    ORDER BY percent_match DESC, vet_has DESC;`;
 
   pool
     .query(queryText, [vetId])
