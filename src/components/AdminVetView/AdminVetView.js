@@ -8,6 +8,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import moment from 'moment';
 
 
 const styles = theme => ({
@@ -96,9 +97,9 @@ class AdminVetView extends Component {
                           <br></br>
                           <Typography component="p">Highest Attained Rank: <br></br><i>{vet.rank}</i></Typography>
                           <br></br>
-                          <Typography component="p">Start of Service: <br></br><i>{vet.start_date}</i></Typography>
+                          <Typography component="p">Start of Service: <br></br><i>{moment(vet.start_date).format('LLL')}</i></Typography>
                           <br></br>
-                          <Typography component="p">End Service Date: <br></br><i>{vet.end_date}</i></Typography>
+                          <Typography component="p">End Service Date: <br></br><i>{moment(vet.end_date).format('MMMM Do YYYY, h:mm:ss a')}</i></Typography>
                           <br></br>
                           <Typography component="p">Maladies: <br></br><i>{vet.injury}</i></Typography>
                           <br></br>

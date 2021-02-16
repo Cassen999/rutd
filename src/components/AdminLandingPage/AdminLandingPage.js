@@ -11,6 +11,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 // import Typography from "@material-ui/core/Typography";
+import moment from 'moment';
 
 /*
 ----------------------------- TO DO LIST ON THIS PAGE: -----------------------------
@@ -32,7 +33,7 @@ const styles = theme => ({
 
 class AdminLandingPage extends Component {
   state = {
-    heading: "Admin Landing Page",
+    timestamp: ''
   };
 
   componentDidMount() {
@@ -51,6 +52,9 @@ class AdminLandingPage extends Component {
     this.props.dispatch({type: 'GET_ONE_RESOURCE', payload: resourceID})
     this.props.history.push("/adminOrgView", resourceID);
   };
+
+
+
 
 
   render(){
