@@ -187,7 +187,7 @@ class UserPage extends Component {
           <center>
             {/* <h1 class="grey">Thank you for your service {this.props.store.user.username}</h1> */}
             {/* <h1 class="grey">Your Saved Connections</h1> */}
-            <h2 class="grey"> Below are your matched resources</h2>
+            <h1 class="grey"> Below are your matched resources</h1>
             <hr className="hr-width"></hr>
           </center>
             {this.props.store.existReducer.eists === true ? 

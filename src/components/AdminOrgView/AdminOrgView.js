@@ -88,7 +88,7 @@ class AdminResourceEdit extends Component {
                         State: {resourceDetails.state}
                       </Typography>
                       <Typography component="p">
-                        Website:{ resourceDetails.website}
+                        <a href>Website:{ resourceDetails.website}</a>
                       </Typography>
                       <Typography component="p">
                         Description: {resourceDetails.description}

@@ -136,6 +136,7 @@ class VetMatches extends Component {
         <div>
           <center>
             <h1 class="grey">Below are your saved matches</h1>
+            <hr className="hr-width"></hr>
           </center>
           <Button onClick={(event) => this.props.history.push("/home")}
             variant="contained"
@@ -174,6 +175,9 @@ class VetMatches extends Component {
                                   </Typography>
                                   <Typography component="p">
                                     {match.email}
+                                  </Typography>
+                                  <Typography component="p">
+                                    {match.website}
                                   </Typography>
                                   <Typography component="p">
                                     {match.number}
