@@ -82,16 +82,18 @@ class VetFindMatches extends Component {
     const { classes } = this.props;
     const {vetReducer} = this.props.store;
     return (
-      <div>
+      <div className="container">
         <center>
-          <h2>Before we find your resource matches...</h2>
+          <h1 className="grey">Before we find your resource matches...</h1>
+          <hr className="hr-width"></hr>
         </center>
-        <center>
+        <div className="justified">
           <p>Use this section to give your resources more information</p>
           <p>You can write anything from specifics of a problem you may be having, to thanking them for their help!</p>
-        </center>
+        </div>
         <form className="text-container" noValidate autoComplete="off">
           <TextField
+            style = {{width: 800}}
             id="outlined-multiline-flexible"
             label="Start typing here"
             multiline
@@ -104,10 +106,10 @@ class VetFindMatches extends Component {
           />
         </form>
         <center>
-          <h4>Although RUTD would love to help everyone, it is not an emergency service</h4>
-          <p>Please indicate here whether or not you are safe</p>
+          <h4 className="grey justified">Although RUTD would love to help everyone, it is not an emergency service</h4>
+          <p className="justified">Please indicate here whether or not you are safe</p>
         </center>
-        <div className="radio-container">
+        <div className="justified">
           <label>I am safe</label>
           <Radio
             checked={this.state.safe === 'yes'}
