@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import mapStoreToProps from "../../redux/mapStoreToProps";
+import mapStoreToProps from "../../../redux/mapStoreToProps";
 import { connect } from "react-redux";
 import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
 
@@ -10,12 +10,16 @@ const styles = {
         verticalAlign: "",
         fontFamily: "",
     },
+    gridItem: {
+        width: "100%",
+        minHeight: 200,
+    }
 };
 
-class Marriage extends Component {
+class Email extends Component {
     state = {
         vet: {
-            marriage: "",
+            email: "",
         },
     };
 
@@ -37,29 +41,26 @@ class Marriage extends Component {
         );
     };
 
-    saveMarriage = () => {
-        let vetVar = this.state.vet
+    saveEmail = () => {
+        let vetVar = this.state.vet;
 
-        if (vetVar.marriage === '') {
-            alert("Please indicate your marital status.");
+        if (vetVar.email === "") {
+            alert("An email address is required for registration.");
         } else {
-            console.log(
-                `Saving ${vetVar.marriage} to Database...`
-            );
+            console.log(`Saving ${vetVar.email} to Database...`);
 
             this.props.dispatch({
-                type: "UPDATE_MARRIAGE",
+                type: "UPDATE_EMAIL",
                 payload: this.state.vet,
             });
 
             this.setState(
                 {
                     vet: {
-                        marriage: "",
+                        email: "",
                     },
                 },
                 function () {
-                    // {this.props.history.push('/servicehistory')}
                     console.log("state has been reset");
                 }
             );
@@ -70,31 +71,37 @@ class Marriage extends Component {
         const { classes } = this.props;
 
         return (
-            <>
-                <h1>Marriage Entry</h1>
-                <Grid container spacing={2} direction="column">
+            <React.Fragment>
+                <h1>Email Entry</h1>
+                <Grid container spacing={2} direction="column" display="inline-flex">
                     <Paper elevation={10}>
                         <form>
                             <br />
 
-                            <Grid item xs={12.0} sm={12}>
+                            <Grid item xs={12.0} sm={12} display="flex" >
                                 <TextField
                                     variant="outlined"
-                                    label="Marriage"
-                                    name="marriage"
-                                    value={this.state.vet.marriage}
-                                    onChange={(event) => this.handleInputChange(event, "marriage")}
+                                    label="Email"
+                                    name="email"
+                                    value={this.state.vet.email}
+                                    onChange={(event) => this.handleInputChange(event, "email")}
                                 />
                                 <br />
-                                <Button onClick={(event) => { this.saveMarriage(event) }}>SAVE</Button>
+                                <Button
+                                    onClick={(event) => {
+                                        this.saveEmail(event);
+                                    }}
+                                >
+                                    SAVE
+                </Button>
                                 <br />
                             </Grid>
                         </form>
                     </Paper>
                 </Grid>
-            </>
-        )//END return
-    };//END render
-};//END Name
+            </React.Fragment>
+        ); //END return
+    } //END render
+} //END Name
 
-export default connect(mapStoreToProps)(withStyles(styles)(Marriage));
+export default connect(mapStoreToProps)(withStyles(styles)(Email));

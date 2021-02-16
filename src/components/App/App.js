@@ -29,8 +29,6 @@ import AdminVetView from "../AdminVetView/AdminVetView";
 import AdminOrgView from "../AdminOrgView/AdminOrgView";
 import AdminOrgEdit from "../AdminOrgEdit/AdminOrgEdit";
 import VetFindMatches from "../VetFindMatches/VetFindMatches";
-import Name from '../Question/Name'
-import Email from '../Question/Email'
 import DemographicQuestion from '../DemographicQuestions/DemographicQuestion'
 import "./App.css";
 import VetViewResource from "../VetViewResource/VetViewResource";
@@ -124,19 +122,6 @@ class App extends Component {
               component={AdminLandingPage}
             />
 
-<ProtectedRoute
-              exact
-              path="/name"
-              component={Name}
-            />
-
-<ProtectedRoute
-              exact
-              path="/email"
-              component={Email}
-            />
-
-
             <ProtectedRoute
               exact
               path="/resourcelist"
@@ -181,7 +166,7 @@ class App extends Component {
               component={VetViewResource}
             />
 
-<ProtectedRoute
+            <ProtectedRoute
               exact
               path="/demographicquestion"
               component={DemographicQuestion}

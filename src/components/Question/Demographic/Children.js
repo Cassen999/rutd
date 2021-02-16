@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import mapStoreToProps from "../../redux/mapStoreToProps";
+import mapStoreToProps from "../../../redux/mapStoreToProps";
 import { connect } from "react-redux";
 import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
 
@@ -12,10 +12,10 @@ const styles = {
     },
 };
 
-class Birth extends Component {
+class Children extends Component {
     state = {
         vet: {
-            dOB: "",
+            children: "",
         },
     };
 
@@ -37,25 +37,25 @@ class Birth extends Component {
         );
     };
 
-    saveDOB = () => {
+    saveChildren = () => {
         let vetVar = this.state.vet
 
-        if (vetVar.dOB === '') {
-            alert("Your date of birth is required for registration.");
+        if (vetVar.children === '') {
+            alert("Please disclose your number of children.");
         } else {
             console.log(
-                `Saving ${vetVar.dOB} to Database...`
+                `Saving ${vetVar.children} to Database...`
             );
 
             this.props.dispatch({
-                type: "UPDATE_BIRTH",
+                type: "UPDATE_CHILDREN",
                 payload: this.state.vet
             });
 
             this.setState(
                 {
                     vet: {
-                        dOB: "",
+                        children: "",
                     },
                 },
                 function () {
@@ -63,33 +63,29 @@ class Birth extends Component {
                 }
             );
         }
-
-    }
+    };
 
     render() {
-        // const { classes } = this.props;
+        const { classes } = this.props;
 
         return (
             <>
-                <h1>Date of Birth Entry</h1>
+                <h1>Children Entry</h1>
                 <Grid container spacing={2} direction="column">
                     <Paper elevation={10}>
                         <form>
                             <br />
 
                             <Grid item xs={12.0} sm={12}>
-
                                 <TextField
                                     variant="outlined"
-                                    label="Date of Birth"
-                                    name="birth"
-                                    value={this.state.vet.dOB}
-                                    onChange={(event) =>
-                                        this.handleInputChange(event, "birth")
-                                    }
+                                    label="Children"
+                                    name="children"
+                                    value={this.state.vet.children}
+                                    onChange={(event) => this.handleInputChange(event, "children")}
                                 />
                                 <br />
-                                <Button onClick={(event) => { this.saveDOB(event) }}>SAVE</Button>
+                                <Button onClick={(event) => { this.saveChildren(event) }}>SAVE</Button>
                                 <br />
                             </Grid>
                         </form>
@@ -100,4 +96,4 @@ class Birth extends Component {
     };//END render
 };//END Name
 
-export default connect(mapStoreToProps)(withStyles(styles)(Birth));
+export default connect(mapStoreToProps)(withStyles(styles)(Children));
