@@ -11,7 +11,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 // import Typography from "@material-ui/core/Typography";
-import moment from 'moment';
 
 /*
 ----------------------------- TO DO LIST ON THIS PAGE: -----------------------------
@@ -54,16 +53,13 @@ class AdminLandingPage extends Component {
   };
 
 
-
-
-
   render(){
     const {classes} = this.props;
     const {vetReducer} = this.props.store;
       return (
         <div className="container">
         <center>
-        <h2 className="grey">Connections In Progress</h2>
+        <h1 className="grey">Connections In Progress</h1>
         </center>
             <Paper className={classes.root}>
               <Table className={classes.table}>

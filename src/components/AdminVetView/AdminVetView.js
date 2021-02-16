@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
+import { AddBoxOutlined } from '@material-ui/icons';
 
 
 const styles = theme => ({
@@ -22,6 +23,7 @@ const styles = theme => ({
     ...theme.mixins.gutters(),
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
+    backgroundColor: '#F5F5F5'
   },
 });
 
@@ -55,9 +57,9 @@ class AdminVetView extends Component {
                   <div key={i}>
                     <Paper className={classes.root} elevation={1}>
                       <center>
-                        <Typography variant="h5" className="font" component="h5">Demographics of {vet.first_name} {vet.last_name}</Typography>
+                        <Typography variant="h5" className="font grey" component="h5">Demographics of {vet.first_name} {vet.last_name}</Typography>
                       </center>
-                      <hr></hr>
+                      <hr className="hr-width"></hr>
                       <div className="flex-grid">
                         <div className="col">
                         <br></br>
@@ -111,7 +113,7 @@ class AdminVetView extends Component {
                           <Typography component="p">Received purple heart: <br></br><i>{conversion(vet.purple_heart)}</i></Typography>
                         </div>
                       </div>
-                      <hr></hr>
+                      <hr className="hr-width"></hr>
                     </Paper>
                   <br></br>
                               <div>
