@@ -58,7 +58,7 @@ class AdminVetList extends Component {
       <div>
         <div className="container">
           <center>
-            <h2 className="grey">Veterans</h2>
+            <h1 className="grey">Veterans</h1>
           </center>
           <div className={classes.searchContainer}>
             <center>
