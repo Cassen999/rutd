@@ -36,7 +36,7 @@ const styles = theme => ({
 
 class AdminResourceEdit extends Component {
   state = {
-    heading: "Admin Resource Edit",
+    heading: "Admin Organization View",
     name: "",
   };
 
