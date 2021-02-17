@@ -68,6 +68,18 @@ function* fetchExist(action) {
     }        
 }
 
+// GET for vet search bar
+function* fetchSearchVet(action) {
+    console.log('Fetch vetSearch from DB action.payload', action.payload);
+    try{
+        const response = yield axios.get(`/api/vetSearch?searchText=${action.payload}`)
+        yield put({type: 'SET_VET_SEARCH', payload: response.data});
+        console.log('response.data from db get vetSearch:', response.data);
+    } catch(error){
+        console.log('error with vetSearch fetch request', error);
+    } 
+}
+
 function* vet() {
     yield takeLatest('FETCH_VET', fetchVet);
     yield takeLatest('FETCH_VET_ID', fetchVetId);
@@ -75,6 +87,7 @@ function* vet() {
     yield takeLatest('FETCH_VET_EXIST', fetchExist);
     yield takeLatest('FETCH_VET_INFO', fetchVetInfo);
     yield takeLatest('GET_ONE_VET', fetchOneVet);
+    yield takeLatest('FETCH_SEARCH_VET', fetchSearchVet);
 }
 
 

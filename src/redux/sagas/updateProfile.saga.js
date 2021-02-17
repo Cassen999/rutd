@@ -1,17 +1,6 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-// Changes compensation percentage in vet's profile
-function* updateCompensationSaga(action) {
-    console.log("In updateCompensationSaga...");
-    console.log("payload:", action.payload);
-    try {
-        const response = yield axios.put("api/question/compensation", action.payload);
-    } catch (error) {
-        console.log("Error in updateCompensationSaga", error);
-    }
-}
-
 // Updates vet's service history
 function* updateServiceHistorySaga(action) {
     console.log("service history payload:", action.payload);
@@ -22,98 +11,52 @@ function* updateServiceHistorySaga(action) {
     }
 }
 
-// Updates vet's email address
-function* updateEmailSaga(action) {
-    console.log("In updateEmailSaga...");
-    console.log("payload:", action.payload);
-try {
-    const config = {
-    headers: { "Content-Type": "application/json" },
-    withCredentials: true,
-    };
-    const response = yield axios.put("/api/question/email", action.payload, config);
-} catch (error) {
-    console.log('Error in updateEmailSaga', error);
-}
-}
-
   // Changes vet's name in profile
 function* addDemographicSaga(action) {
 try {
-    const response = yield axios.post(
-    "api/demographic",
-    action.payload,
+    yield axios.put(
+        "api/demographic",
+        action.payload,
     );
     } catch (error) {
-    console.log("Art get request failed", error);
+        console.log("Art get request failed", error);
     }
 }
 
-function* updateGenderSaga(action) {
-    console.log("In updateGenderSaga...");
+// Updates injuries in vet's profile
+function* updateMaladySaga(action) {
+    console.log("In updateMaladySaga...");
     console.log("payload:", action.payload);
     try {
       const config = {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       };
-      const response = yield axios.put("api/question/gender", action.payload, config);
+      const id = action.payload.userId;
+      yield axios.put(`api/question/malady/${id}`, action.payload, config);
+      yield put({ type: 'FETCH_VET_INFO', payload: id });
     } catch (error) {
-      console.log('Error in updateGenderSaga', error);
+      console.log('Error in updateMaladySaga', error);
     }
 }
 
-function* updateHazardSaga(action) {
-    console.log("In updateHazardSaga...");
+function* updateMiscQuestions(action) {
+    console.log("In updateMiscQuestionSaga...");
     console.log("payload:", action.payload);
     try {
-      const config = {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      };
-      const response = yield axios.put("api/question/hazard", action.payload, config);
+      const id = action.payload.userId;
+      yield axios.put(`/api/question/misc/${id}`, action.payload);
+      yield put({ type: 'FETCH_VET_INFO', payload: id }); 
     } catch (error) {
-      console.log('Error in updateHazardSaga', error);
+      console.log('Update Failed for miscQuestionSaga', error);
     }
-}
-
-function* updateHomeAddressSaga(action) {
-    console.log("In updateHomeAddressSaga...");
-    console.log("payload:", action.payload);
-    try {
-      const config = {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      };
-      const response = yield axios.put("api/question/homeaddress", action.payload, config);
-    } catch (error) {
-      console.log('Error in updateHomeAddressSaga', error);
-    }
-}
-
-function* updateMailAddressSaga(action) {
-    console.log("In updateMailAddressSaga...");
-    console.log("payload:", action.payload);
-    try {
-      const config = {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true,
-      };
-      const response = yield axios.put("api/question/mailaddress", action.payload, config);
-    } catch (error) {
-      console.log('Error in updateMailAddressSaga', error);
-    }
-}
+  }
 
 function* updateProfileSaga() {
-    yield takeLatest("UPDATE_COMPENSATION", updateCompensationSaga);
     yield takeLatest('UPDATE_SERVICE_HISTORY',updateServiceHistorySaga);
     yield takeLatest("ADD_DEMOGRAPHIC", addDemographicSaga);
-    yield takeLatest('UPDATE_EMAIL', updateEmailSaga);
-    yield takeLatest('UPDATE_GENDER', updateGenderSaga);
-    yield takeLatest('UPDATE_HAZARD', updateHazardSaga);
-    yield takeLatest('UPDATE_HOME_ADDRESS', updateHomeAddressSaga);
-    yield takeLatest('UPDATE_MAIL_ADDRESS', updateMailAddressSaga);
+    yield takeLatest("UPDATE_MALADY", updateMaladySaga);
+    yield takeLatest('UPDATE_MISC_QUESTIONS', updateMiscQuestions);
 }
 
 export default updateProfileSaga;
