@@ -21,7 +21,7 @@ const styles = theme => ({
 class DemographicQuestion extends Component {
     componentDidMount(){
         this.props.dispatch({type: 'FETCH_GENDER'})  
-         this.props.dispatch({type: 'FETCH_MARRIAGE'})}   
+        this.props.dispatch({type: 'FETCH_MARRIAGE'})}   
 
     state = {
         vet: {

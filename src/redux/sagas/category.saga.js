@@ -1,10 +1,6 @@
 import axios from "axios";
 import { put, takeLatest } from "redux-saga/effects";
 
-function* categorySaga() {
-  yield takeLatest("FETCH_CATEGORY", fetchCategorySaga);
-}
-
 function* fetchCategorySaga(action) {
   console.log("In fetchCategorySaga...");
   try {
@@ -17,6 +13,9 @@ function* fetchCategorySaga(action) {
   } catch (error) {
     console.log("Error in fetchCategorySaga", error);
   }
+
+}function* categorySaga() {
+  yield takeLatest("FETCH_CATEGORY", fetchCategorySaga);
 }
 
 export default categorySaga;
