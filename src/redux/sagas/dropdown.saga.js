@@ -21,6 +21,16 @@ function* getMarriageSaga(action) {
   }
 }
 
+function* fetchPercentageSaga(action) {
+  console.log("In fetchPercentageSaga...");
+  try {
+    const response = yield axios.get(`/api/compensation/percentage`);
+    yield put({ type: "SET_PERCENTAGE", payload: response.data });
+  } catch (error) {
+    console.log("Error in fetchPercentage", error);
+  }
+}
+
 function* getBranchSaga(action) {
   try {
     const response = yield axios.get("api/dropdown/branch");
@@ -51,7 +61,6 @@ function* getStatusSaga(action) {
   }
 }
 
-
 function* getDischargeSaga(action) {
   try {
     const response = yield axios.get("api/dropdown/discharge");
@@ -69,6 +78,7 @@ function* dropdownSaga() {
     yield takeLatest("FETCH_RANK", getRankSaga);
     yield takeLatest("FETCH_DISCHARGE", getDischargeSaga);
     yield takeLatest("FETCH_BRANCH", getBranchSaga);
+    yield takeLatest("FETCH_PERCENTAGE", fetchPercentageSaga);
   }
 
 export default dropdownSaga;

@@ -28,11 +28,12 @@ router.get("/complete/:id", rejectUnauthenticatedVet, (req, res) => {
   console.log("in /match/complete GET route");
   console.log("match router get all matches req.user:", req.user);
   let vetId = req.params.id;
-  let queryText = `SELECT match.*, veteran.first_name, organization.name, organization.number, organization.email, organization.website, organization.pictures, organization.description FROM match
+  let queryText = `SELECT match.*, veteran.first_name, organization.name, 
+                  organization.number, organization.email, organization.website, 
+                  organization.pictures, organization.description FROM match
                   INNER JOIN veteran ON veteran.id = match.vet_id
                   INNER JOIN organization ON organization.id = match.org_id
                   WHERE veteran.id = $1;`;
-
   pool
     .query(queryText, [vetId])
     .then((result) => {

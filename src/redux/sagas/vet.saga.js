@@ -13,6 +13,20 @@ function* fetchVet() {
     }        
 }
 
+function* fetchOneVet(action) {
+    try {
+        console.log('You\'ve chosen a dream with ID #:', action.payload);
+
+        const response = yield axios.get(`/api/vet/${action.payload}`) // 
+        yield put({
+            type: 'SET_ONE_VET',
+            payload: response.data
+        })
+    } catch (error) {
+        console.log('GET ROUTE error from DB when attempting to get specific VET ID', error);
+    }
+}
+
 function* fetchVetInfo(action) {
     console.log('In fetchVetInfo saga');
     try{
@@ -46,7 +60,6 @@ function* postNewVet(action) {
 function* fetchExist(action) {
     console.log('fetchExist action.payload', action.payload)
     try{
-        // const userId = action.payload
         const response = yield axios.get(`/api/vet/exist/${action.payload}`)
         yield put({type: 'SET_VET_EXIST', payload: response.data});
         console.log('fetchExist', response.data)
@@ -61,6 +74,7 @@ function* vet() {
     yield takeLatest('POST_NEW_VET', postNewVet);
     yield takeLatest('FETCH_VET_EXIST', fetchExist);
     yield takeLatest('FETCH_VET_INFO', fetchVetInfo);
+    yield takeLatest('GET_ONE_VET', fetchOneVet);
 }
 
 

@@ -72,7 +72,6 @@ class ServiceHistoryQuestions extends Component {
         const {classes} = this.props;
         return ( 
             <div className="container">
-                {JSON.stringify(this.state)}
                 <h1 className="grey">Service History</h1>
                 <hr className="float-left no-margin hr-width"></hr>
                 <br></br>
