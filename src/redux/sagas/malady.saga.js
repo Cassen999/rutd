@@ -14,7 +14,9 @@ function* updateMaladySaga(action) {
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     };
-    const response = yield axios.put("api/question/malady", action.payload, config);
+    const id = action.payload.userId;
+    yield axios.put(`api/question/malady/${id}`, action.payload, config);
+    yield put({ type: 'FETCH_VET_INFO', payload: id });
   } catch (error) {
     console.log('Error in updateMaladySaga', error);
   }

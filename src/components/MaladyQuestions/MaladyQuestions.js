@@ -9,28 +9,34 @@ import {
     Select,
     MenuItem,
     Input,
-    Checkbox,
-    ListItemText, 
     Typography,
-    Button      
+    Chip,
+    Checkbox,
+    ListItemText      
 } from "@material-ui/core";
 import Fab from '@material-ui/core/Fab';
 import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
-                        
-             
-                        
+                                               
 const styles = (theme) => ({
     formControl: {
         marginTop: theme.spacing(3),
         padding: theme.spacing(2),
         minWidth: 185, 
     },
+    chips: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    chip: {
+    margin: 2,
+    },
+    title: {
+        marginBottom: theme.spacing(3)
+    },
 })
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 12;
-const ITEM_PADDING_LEFT = 16;
-const ITEM_MARGIN_LEFT = 10;
 const MenuProps = {
   PaperProps: {
     style: {
@@ -55,6 +61,7 @@ class MaladyQuestions extends Component {
   }
 
   state = {
+    userId: this.props.store.user.id,
     selectedMalady: [],
     open: false,
     malady: false
@@ -72,29 +79,16 @@ class MaladyQuestions extends Component {
     console.log('save malady');
     this.props.dispatch({
         type: "UPDATE_MALADY",
-        payload: this.state.selectedMalady
+        payload: this.state
     })
   }
 
 handleChange = (event) => {
     event.preventDefault();
     this.setState({
-        selectedMalady: [event.target.value]
+        selectedMalady: event.target.value
     })
 }
-
-handleChangeMultiple = (event) => {
-    const { options } = event.target;
-    const value = [];
-    for (let i = 0, l = options.length; i < l; i += 1) {
-      if (options[i].selected) {
-        value.push(options[i].value);
-      }
-    }
-    this.setState({
-        selectedMalady: [...this.state.selectedMalady, event.target.value]
-    });
-  };
 
   render() {
     const { classes, theme } = this.props;
@@ -106,22 +100,24 @@ handleChangeMultiple = (event) => {
             <h1 className="grey">Health</h1>
             <hr className="float-left no-margin hr-width"></hr>
             <br></br>
-            <Typography variant="h5" component="h2">
+            <Typography variant="h5" component="h2" className={classes.title}>
                     Please Select Any Health Concerns Which May Apply.
             </Typography>
             <FormControl className={classes.formControl}>
-                {/* <Typography variant="h5" component="h2">
-                    Please Select Any Health Concerns Which May Apply.
-                </Typography> */}
-                {/* <InputLabel id="malady-multiple-select-label">Health Concerns</InputLabel> */}
                 <Select
-                    // labelId="malady-multiple-select-label"
-                    id="malady-multiple-select-label"
+                    id="malady-multiple-select"
                     label="Health Concerns"
                     multiple
                     value={selectedMalady}
                     onChange={this.handleChange}
                     input={<Input />}
+                    renderValue={(selected) => (
+                        <div className={classes.chips}>
+                          {selected.map((value) => (
+                            <Chip key={value} label={value} className={classes.chip} />
+                          ))}
+                        </div>
+                      )}
                     MenuProps={MenuProps} 
                 >
                     <MenuItem value="">
@@ -129,54 +125,21 @@ handleChangeMultiple = (event) => {
                     </MenuItem>
                     {maladyList.map((malady) => (
                         <MenuItem key={malady.description} value={malady.id} style={getStyles(malady, selectedMalady, theme)} >
-                            {malady.description}
+                            <Checkbox checked={selectedMalady.indexOf(malady.id) > -1} />
+                            <ListItemText primary={malady.description} />
                         </MenuItem>
                     ))}
                 </Select>
             </FormControl>
             <Fab
-            className="float-right"
-            style={{
-                borderRadius: 35,
-                backgroundColor: '#AFFA3D',
-                fontFamily: 'orbitron',
-                // marginBottom: '10%',
-                // marginRight: '10px',
-                marginTop: '20px'
-            }}
-            onClick={(event) => { this.saveDemographic(event) }}><SaveTwoToneIcon /></Fab>
-
-            {/* <FormControl variant="filled" className={classes.formControl}>
-                <Typography variant="h4" component="h2">
-                    Please Select Any Health Concerns Which May Apply.
-                </Typography>
-                <InputLabel id="open-malady-label">Health Concerns</InputLabel>
-                <Select
-                    labelId="open-malady-label"
-                    id="open-malady"
-                    multiple
-                    open={open}
-                    onClose={this.handleClose}
-                    onOpen={this.handleOpen}
-                    value={selectedMalady}
-                    onChange={this.handleChange}
-                >
-s           
-                    {maladyList.map((injury) => (
-                    <MenuItem
-                        key={injury.description}
-                        value={injury.id}
-                    >
-                        {injury.description}
-                    </MenuItem>
-                    ))}
-                </Select>
-            <Button
-              onClick={this.saveMalady}
-            >
-              SAVE
-            </Button> 
-        </FormControl>           */}
+                className="float-right"
+                style={{
+                    borderRadius: 35,
+                    backgroundColor: '#AFFA3D',
+                    fontFamily: 'orbitron',
+                }}
+                onClick={(event) => { this.saveMalady(event) }}><SaveTwoToneIcon />
+            </Fab>
       </div>
     ); //END return
   } //END render

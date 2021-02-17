@@ -6,7 +6,7 @@ const {
 } = require("../modules/authentication-middleware");
 
 
-
+// PUT route to update Veteran table on values from the Misc Question form
 router.put('/misc/:id', (req,res) => {
   console.log('In PUT router for miscQuestions');
   const id = req.params.id;
@@ -23,9 +23,23 @@ router.put('/misc/:id', (req,res) => {
   })
 })
 
-
-
-
+// PUT route to update Veteran table on values from the Malady/Health Question form
+router.put('/malady/:id', (req,res) => {
+  console.log('In PUT router for miscQuestions');
+  const id = req.params.id;
+  const malady = req.body.selectedMalady[0]; //this only targets the first value selected by the user
+                                             //because the db isn't set up to hold more than one injury value per user
+  console.log('updating malady to be:', malady);
+  const sqlText = `UPDATE "veteran" SET injury_id=$1 WHERE vet_id=$2;`;
+  pool.query(sqlText, [malady, id])
+  .then((result) => {
+    res.sendStatus(200);
+  })
+  .catch((error) => {
+    console.log('Error in PUT for miscQuestions', error);
+    res.sendStatus(500);
+  })
+})
 
 // Make a put for each resgistration category
 router.put('/:id', (req,res) => {
