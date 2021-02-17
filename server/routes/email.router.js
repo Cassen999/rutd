@@ -19,8 +19,9 @@ router.post('/', rejectUnauthenticatedGeneral, (req, res) => {
     const vetLastName = req.body.vetLastName;
     const sender_type = req.body.sender_type;
     // This will be the generic email body for a vet
-    const vetHtmlBody = `<p>My name is ${vetFirstName} ${vetLastName}</p>
-                            <p>I need help with ${detailText} and can be reached at ${vet_email}</p>`;
+    const vetHtmlBody = `<p>Veteran's name is ${vetFirstName} ${vetLastName}</p>
+                            <p>Veteran's message ${detailText} </p>
+                            <p>and can be reached at ${vet_email}</p>`;
     // This will be the generic email body for an org
     const orgHtmlBody = '';
     // This will be the generic email body for the admin

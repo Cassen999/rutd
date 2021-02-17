@@ -30,12 +30,13 @@ const styles = theme => ({
     ...theme.mixins.gutters(),
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
+    backgroundColor: '#F5F5F5'
   },
 });
 
 class AdminResourceEdit extends Component {
   state = {
-    heading: "Admin Resource Edit",
+    heading: "Admin Organization View",
     name: "",
   };
 
@@ -60,13 +61,14 @@ class AdminResourceEdit extends Component {
           return (
             <div className="container">
               <center>
-                {JSON.stringify(this.props.store.resourceDetails)}
-                <h2>{this.state.heading}</h2>
+                {/* {JSON.stringify(this.props.store.resourceDetails)} */}
+                <h1 className="grey">{this.state.heading}</h1>
               </center>
 
                   <div>
                     <Paper className={classes.root} elevation={1}>
-                      <hr></hr>
+                      <hr className="hr-width"></hr>
+                      <br></br>
                       <Typography variant="h5" component="h3">
                         Organization Details
                       </Typography>
@@ -86,7 +88,7 @@ class AdminResourceEdit extends Component {
                         State: {resourceDetails.state}
                       </Typography>
                       <Typography component="p">
-                        Website:{ resourceDetails.website}
+                        <a href>Website:{ resourceDetails.website}</a>
                       </Typography>
                       <Typography component="p">
                         Description: {resourceDetails.description}
@@ -100,7 +102,7 @@ class AdminResourceEdit extends Component {
                       <Typography component="p">
                         PLACEHOLDER FOR PICTURES
                       </Typography> */}
-                      <hr></hr>
+                      <hr className="hr-width"></hr>
                     </Paper>
                     <br></br>
                     <Fab  
@@ -114,7 +116,6 @@ class AdminResourceEdit extends Component {
                         <EditRoundedIcon />
                     </Fab>
                   </div>
-              <hr></hr>
                 <center>
                   <Fab 
                     className="admin-landing-button" variant="contained"

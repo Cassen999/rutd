@@ -32,7 +32,7 @@ const styles = theme => ({
 
 class AdminLandingPage extends Component {
   state = {
-    heading: "Admin Landing Page",
+    timestamp: ''
   };
 
   componentDidMount() {
@@ -59,7 +59,7 @@ class AdminLandingPage extends Component {
       return (
         <div className="container">
         <center>
-        <h2 className="grey">Connections In Progress</h2>
+        <h1 className="grey">Connections In Progress</h1>
         </center>
             <Paper className={classes.root}>
               <Table className={classes.table}>

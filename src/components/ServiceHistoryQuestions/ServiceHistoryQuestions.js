@@ -39,22 +39,34 @@ class ServiceHistoryQuestions extends Component {
         branch: '',
         rank: '',
         selectedValue: 'yes',
-     }
-    
+        startDate: '',
+        endDate: ''
+     };
+
+
+  componentDidMount() {
+    this.props.dispatch({type: 'FETCH_BRANCH'});
+    this.props.dispatch({type: 'FETCH_STATUS'});
+    this.props.dispatch({type: 'FETCH_DISCHARGE'});
+    this.props.dispatch({type: 'FETCH_RANK'});
+  }
     
      saveServiceHistory = () => {
-         console.log('Saving serviceHistory');
+        console.log('Saving serviceHistory');
+        this.props.dispatch({type: 'UPDATE_SERVICE_HISTORY', payload: this.state})
     };
 
 
-     handleInputChange = () =>{
-         console.log('Handling input for drop down status')
-         
-     }
+    handleInputChange = (propertyName, event) =>{
+        console.log('drop down status', this.state)
+        this.setState({
+            [propertyName]: event.target.value
+        })
+    }
 
     handleRadioButtons = event => {
         this.setState({ selectedValue: event.target.value });
-  };
+    };
 
     render(props) { 
         const {classes} = this.props;
@@ -63,48 +75,44 @@ class ServiceHistoryQuestions extends Component {
                 <h1 className="grey">Service History</h1>
                 <hr className="float-left no-margin hr-width"></hr>
                 <br></br>
-                <br></br>
+                <p>Branch of Service</p>
                 <FormControl className={classes.formControl}> 
-                <p>Service Status</p>
                     <Select
-                        onClick={(event) => this.handleInputChange(event, 'status')}
+                        onClick={(event) => this.handleInputChange('branch', event)}
+                        value={this.state.branch}
+                        inputProps={{
+                        name: 'branch',
+                        id: 'branch-simple',
+                        }}>
+                        {this.props.store.branchReducer.map((branch, i) => {
+                            return(
+                                <MenuItem key={i}
+                                    value={branch.id}>
+                                    {branch.description}
+                                </MenuItem>
+                            )
+                        })}
+                    </Select> 
+                </FormControl>
+                {/* -------------------------------------------------- */}
+                <p>Service Status</p>
+                <FormControl className={classes.formControl}> 
+                    <Select
+                        onClick={(event) => this.handleInputChange('status', event)}
                         value={this.state.status}
                         inputProps={{
                         name: 'status',
                         id: 'status-simple',
                         }}>
-                    <MenuItem 
-                        value='false'>
-                        Active/Return to Active
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        Discharged
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        National Guard
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        Pending Med Board
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        Permanent Disability Retired List
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        Reserved
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        Retired
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        Temporary Disability Retired List
-                    </MenuItem>
+                        {this.props.store.statusReducer.map((status, i) => {
+                            return(
+                                <MenuItem key={i}
+                                    value={status.id}>
+                                    {status.description}
+                                </MenuItem>
+                            )
+                        })}
+                    
                     </Select> 
                 </FormControl>
                 {/* -------------------------------------------------- */}
@@ -112,194 +120,41 @@ class ServiceHistoryQuestions extends Component {
                 <p>Type of Discharge</p>
                  <FormControl className={classes.formControl}> 
                     <Select
-                        onClick={(event) => this.handleInputChange(event, 'discharge')}
+                        onClick={(event) => this.handleInputChange('discharge', event)}
                         value={this.state.discharge}
                         inputProps={{
                         name: 'discharge',
                         id: 'discharge-simple',
                         }}>
-                    <MenuItem 
-                        value='false'>
-                        Active
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        Administrative
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        Bad Conduct Discharge
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        General Under Honorable Conditions
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        General Under Other than Honorable Conditions
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        Honorable
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        Unknown
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        Uncharacterized
-                    </MenuItem>
-                    </Select> 
-                </FormControl>
-                {/* -------------------------------------------------- */}
-                <br></br>
-                <p>Branch of Service</p>
-                <FormControl className={classes.formControl}> 
-                    <Select
-                        onClick={(event) => this.handleInputChange(event, 'branch')}
-                        value={this.state.branch}
-                        inputProps={{
-                        name: 'branch',
-                        id: 'branch-simple',
-                        }}>
-                    <MenuItem 
-                        value='false'>
-                        Army
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        Marine Corps
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        Navy
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        Air Force
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        Space Force
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        Coast Guard
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        National Guard
-                    </MenuItem>
+                        {this.props.store.dischargeReducer.map((discharge, i) => {
+                            return(
+                                <MenuItem key={i}
+                                    value={discharge.id}>
+                                    {discharge.description}
+                                </MenuItem>
+                            )
+                        })}
                     </Select> 
                 </FormControl>
                 {/* -------------------------------------------------- */}
                 <br></br>
                 <p>Highest Attained Rank</p>
-                                <FormControl className={classes.formControl}> 
+                <FormControl className={classes.formControl}> 
                     <Select
-                        onClick={(event) => this.handleInputChange(event, 'rank')}
+                        onClick={(event) => this.handleInputChange('rank', event)}
                         value={this.state.rank}
                         inputProps={{
                         name: 'rank',
                         id: 'rank-simple',
                         }}>
-                    <MenuItem 
-                        value='false'>
-                        E1
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        E2
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        E3
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        E4
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        E5
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        E6
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        E7
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        E8
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        E9
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        O1
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        O2
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        O3
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        O4
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        O5
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        O6
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        O7
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        O8
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        O0
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        10
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        W1
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        W2
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        W3
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        W4
-                    </MenuItem>
-                    <MenuItem
-                        value='true'>
-                        W5
-                    </MenuItem>
+                        {this.props.store.rankReducer.map((rank, i) => {
+                            return(
+                                <MenuItem key={i}
+                                    value={rank.id}>
+                                    {rank.description}
+                                </MenuItem>
+                            )
+                        })}
                     </Select> 
                 </FormControl>
                 {/* -------------------------------------------------- */}
@@ -310,6 +165,7 @@ class ServiceHistoryQuestions extends Component {
                         id="date"
                         label="Service Start Date"
                         type="date"
+                        onChange={(event) => this.handleInputChange('startDate', event)}
                         defaultValue="2021-01-01"
                         className={classes.textField}
                         InputLabelProps={{
@@ -323,6 +179,7 @@ class ServiceHistoryQuestions extends Component {
                         label="Service End Date"
                         type="date"
                         defaultValue="2021-01-01"
+                        onChange={(event) => this.handleInputChange('endDate', event)}
                         className={classes.textField}
                         InputLabelProps={{
                         shrink: true,

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import mapStoreToProps from "../../redux/mapStoreToProps";
+import mapStoreToProps from "../../../redux/mapStoreToProps";
 import { connect } from "react-redux";
 import { Button, Grid, Paper, withStyles, TextField } from "@material-ui/core";
 
@@ -12,15 +12,12 @@ const styles = {
     },
 };
 
-class Name extends Component {
-
+class Marriage extends Component {
     state = {
         vet: {
-            first_name: "",
-            last_name: "",
-
+            marriage: "",
         },
-    }
+    };
 
     handleInputChange = (event, inputProperty) => {
         console.log("Handling input-change...");
@@ -40,26 +37,25 @@ class Name extends Component {
         );
     };
 
-    saveName = () => {
+    saveMarriage = () => {
         let vetVar = this.state.vet
 
-        if (vetVar.first_name === '' || vetVar.last_name === '') {
-            alert("A first and last name is required for registration.");
+        if (vetVar.marriage === '') {
+            alert("Please indicate your marital status.");
         } else {
             console.log(
-                `Saving ${vetVar.first_name} to Database...`
+                `Saving ${vetVar.marriage} to Database...`
             );
 
             this.props.dispatch({
-                type: "ADD_NAME",
+                type: "UPDATE_MARRIAGE",
                 payload: this.state.vet,
             });
 
             this.setState(
                 {
                     vet: {
-                        first_name: "",
-                        last_name: "",
+                        marriage: "",
                     },
                 },
                 function () {
@@ -75,49 +71,30 @@ class Name extends Component {
 
         return (
             <>
-                <h1>Name Entry</h1>
-                {/* <Grid
-                    container
-                    spacing={2}
-                    direction="column"
-                > */}
-
+                <h1>Marriage Entry</h1>
+                <Grid container spacing={2} direction="column">
                     <Paper elevation={10}>
-
                         <form>
                             <br />
 
-                            {/* <Grid item xs={12.0} sm={12}> */}
+                            <Grid item xs={12.0} sm={12}>
                                 <TextField
                                     variant="outlined"
-                                    label="First Name"
-                                    name="first_name"
-                                    value={this.state.vet.first_name}
-                                    onChange={(event) =>
-                                        this.handleInputChange(event, "first_name")
-                                    }
+                                    label="Marriage"
+                                    name="marriage"
+                                    value={this.state.vet.marriage}
+                                    onChange={(event) => this.handleInputChange(event, "marriage")}
                                 />
                                 <br />
-
-                                <TextField
-                                    variant="outlined"
-                                    label="Last Name"
-                                    name="last_name"
-                                    value={this.state.vet.last_name}
-                                    onChange={(event) =>
-                                        this.handleInputChange(event, "last_name")
-                                    }
-                                />
+                                <Button onClick={(event) => { this.saveMarriage(event) }}>SAVE</Button>
                                 <br />
-                                <Button onClick={(event) => { this.saveName(event) }}>SAVE</Button>
-                                <br />
-                            {/* </Grid> */}
+                            </Grid>
                         </form>
                     </Paper>
-                {/* </Grid> */}
+                </Grid>
             </>
         )//END return
     };//END render
 };//END Name
 
-export default connect(mapStoreToProps)(withStyles(styles)(Name));
+export default connect(mapStoreToProps)(withStyles(styles)(Marriage));

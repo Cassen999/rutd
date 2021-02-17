@@ -5,13 +5,54 @@ import PurpleHeart from "../Question/Miscellaneous/PurpleHeart";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
 import compose from 'recompose/compose';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, Typography, Fab } from '@material-ui/core';
+import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
 
 const styles = (theme) => ({
     formControl: {
       marginLeft: theme.spacing(1),
       marginRight: theme.spacing(1),
       minWidth: 185, 
+    },
+    formColor: {
+        //backgroundColor: '#EFEFEF',
+        //borderLeft: '3px solid grey',
+        //borderRight: '3px solid grey',
+        textAlign: 'left',
+        marginBottom: '10px'
+    },
+    selectContainer: {
+        textAlign: 'left',
+        padding: theme.spacing(1)
+    },
+    formTitle: {
+        color: 'black',
+        textAlign: 'center',
+        borderBottom: '2px solid grey',
+        borderTop: '2px solid grey',
+        padding: theme.spacing(1),
+        marginBottom: theme.spacing(4),
+        marginTop: theme.spacing(2),
+        backgroundColor: '#AFFA3D'
+    },
+    textControl: {
+        color: 'grey',
+        textAlign: 'center',
+        borderBottom: '2px solid grey',
+        borderTop: '2px solid grey',
+        padding: theme.spacing(1),
+        marginBottom: theme.spacing(3),
+        marginTop: theme.spacing(2),
+        width: "80%",
+        display: 'inline-flex',
+    },
+    lineStyle: { 
+        width: "90%",
+        color: 'grey',
+        backgroundColor: 'white',
+        height: 6,
+        marginTop: 0,
+        marginBottom: 2
     },
     root: {
       '&:hover': {
@@ -46,18 +87,17 @@ const styles = (theme) => ({
         backgroundColor: '#727372',
       },
     },
-    gridContainer: {
-      marginLeft: theme.spacing(2),
-    }  
   });
+
+    
 class MiscQuestions extends Component {
     state = {
         userId: this.props.store.user.id, 
         compensationId: 0,
-        registered: false,
-        imminentDanger: false,
+        registered: '',
+        imminentDanger: '',
         dangerDescription: '',
-        purpleHeart: false,
+        purpleHeart: '',
     }
 
     updateState = (event, propertyName) => {
@@ -85,26 +125,49 @@ class MiscQuestions extends Component {
         const { classes } = this.props;
         const { compensationId, registered, imminentDanger, dangerDescription, purpleHeart } = this.state;
         return ( 
-            <>
-                <Compensation
-                    registered={registered}
-                    compensationId={compensationId}
-                    updateState={this.updateState}
-                    classes={classes} 
-                />
-                <Hazard
-                    imminentDanger={imminentDanger}
-                    dangerDescription={dangerDescription}
-                    updateState={this.updateState}
-                    classes={classes} 
-                />
-                <PurpleHeart
-                    purpleHeart={purpleHeart}
-                    updateState={this.updateState}
-                    classes={classes}
-                    saveProgress={this.saveProgress}
-                />
-            </>
+            <div 
+                className="container"
+                display="inline-flex"
+            >
+            <h1 className="grey">Miscellaneous</h1>
+            <hr className="float-left no-margin hr-width"></hr>
+            <br></br>
+                <form className={classes.formColor}>
+                    {/* <Typography className={classes.formTitle} variant="h3" gutterBottom>Miscellaneous Questions</Typography> */}
+                        <Compensation
+                            registered={registered}
+                            compensationId={compensationId}
+                            updateState={this.updateState}
+                            classes={classes} 
+                        />
+                        {/* <hr className={classes.lineStyle} />  */}
+                        <Hazard
+                            imminentDanger={imminentDanger}
+                            dangerDescription={dangerDescription}
+                            updateState={this.updateState}
+                            classes={classes} 
+                        />
+                        {/* <hr className={classes.lineStyle} />  */}
+                        <PurpleHeart
+                            purpleHeart={purpleHeart}
+                            updateState={this.updateState}
+                            classes={classes}
+                            saveProgress={this.saveProgress}
+                        />
+
+            <Fab
+            className="float-right"
+            style={{
+                borderRadius: 35,
+                backgroundColor: '#AFFA3D',
+                fontFamily: 'orbitron',
+                marginBottom: '10%',
+                marginRight: '10px',
+            }}
+            onClick={(event) => { this.saveDemographic(event) }}><SaveTwoToneIcon /></Fab>
+                        
+                    </form>
+            </div>
          );
     }
 }
