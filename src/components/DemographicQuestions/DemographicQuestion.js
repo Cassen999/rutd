@@ -19,6 +19,8 @@ const styles = theme => ({
 });
 
 class DemographicQuestion extends Component {
+
+    // Get all of the Gender and Marraiage values for selection
     componentDidMount(){
         this.props.dispatch({type: 'FETCH_GENDER'})  
         this.props.dispatch({type: 'FETCH_MARRIAGE'})}   
@@ -51,29 +53,22 @@ class DemographicQuestion extends Component {
 
     handleChangeForGender = (event ) => {
         event.preventDefault();
-        console.log("Handling input-change...");
-        console.log("Setting state...");
         this.setState({
           vet: {
             ...this.state.vet, 
             gender: event.target.value
             }
-        }, function () {
-          console.log("state has been set:", this.state.vet);
         });
       };
    
       handleChangeForMarriage = (event) => {
         event.preventDefault();
-        console.log("Handling input-change...");
-        console.log("Setting state...");
         this.setState({
           vet: {
             ...this.state.vet, 
             marriage: event.target.value
             }
         }, function () {
-          console.log("state has been set:", this.state.vet);
         });
       };
 
@@ -212,7 +207,6 @@ class DemographicQuestion extends Component {
                 onChange={(event) => this.handleChangeForGender(event, 'gender')}
 
                 value={this.state.vet.gender}
-                // onChange={this.handleChangeForGender}
                 inputProps={{
                   name: 'gender',
                   id: 'gender-simple',

@@ -16,9 +16,9 @@ const styles = {
   },
 };
 
+// Get all of the catagories  
 class Category extends Component {
   componentDidMount() {
-    console.log("Mounted");
     this.props.dispatch({ type: "FETCH_CATEGORY" });
   }
   state = {
@@ -28,9 +28,6 @@ class Category extends Component {
   };
 
   handleClick = (event) => {
-    console.log("Handling input-change...");
-    console.log("Setting state...");
-
     this.setState(
       {
         vet: {
@@ -79,7 +76,6 @@ class Category extends Component {
 
     return (
       <>
-        MALADY REDUCER: {JSON.stringify(categories)}
 
         <h1>Category Entry</h1>
         <Grid container spacing={2} direction="column">

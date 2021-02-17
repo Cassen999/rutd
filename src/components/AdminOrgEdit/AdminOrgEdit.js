@@ -2,19 +2,20 @@ import Fab from "@material-ui/core/Fab";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import { withStyles } from "@material-ui/core/styles";
-// import Paper from '@material-ui/core/Paper';
-// import MenuItem from '@material-ui/core/MenuItem';
 import TextField from "@material-ui/core/TextField";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import SaveTwoToneIcon from "@material-ui/icons/SaveTwoTone";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import InputLabel from '@material-ui/core/InputLabel';
-// import Select from '@material-ui/core/Select';
-// import MenuItem from '@material-ui/core/MenuItem';
 import swal from "sweetalert";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import "../AdminOrgEdit/AdminOrgEdit.css";
+
+// Material ui styles for the catagory selections
+
+// import InputLabel from '@material-ui/core/InputLabel';
+// import Select from '@material-ui/core/Select';
+// import MenuItem from '@material-ui/core/MenuItem';
 
 // TO DO :
 // - save button
@@ -70,9 +71,8 @@ class AdminOrgEdit extends Component {
       categories: this.props.store.resourceDetails.categories,
     });
   }
-
+// "ID of the org edit cancelled on: "
   cancelSubmit = (orgID) => {
-    console.log("ID of the org edit cancelled on: ", orgID);
     swal({
       title: "Are you sure?",
       text: "Once cancelled, your edit will not be made!",
@@ -90,9 +90,8 @@ class AdminOrgEdit extends Component {
       }
     });
   };
-
+//"Updating organization with ID:"
   updateOrg = (orgID) => {
-    console.log("Updating organization with ID:", orgID);
     // this dispatch below will send the id of the dream to update, with the payload of the state
     this.props.dispatch({
       type: "UPDATE_RESOURCE",
@@ -140,7 +139,6 @@ class AdminOrgEdit extends Component {
     const { classes } = this.props;
     return (
       <div className="container">
-        {/* {JSON.stringify(resourceDetails)} */}
         {/* <center>
             <h2>Admin Organization Edit</h2>
           </center> */}

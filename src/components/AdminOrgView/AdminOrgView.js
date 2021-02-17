@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import "../AdminVetView/AdminVetView.css";
-// import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -10,6 +9,7 @@ import Fab from '@material-ui/core/Fab';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 
+// import Button from '@material-ui/core/Button';
 
 // TO DO LIST ON THIS PAGE:
 // - Rename this component to AdminResourceView

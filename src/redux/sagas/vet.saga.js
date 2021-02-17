@@ -1,47 +1,30 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
-// gets all account types for users
+// GETs all vets by name and their matches
 function* fetchVet() {
-    console.log('Fetch vets from DB');
     try{
         const response = yield axios.get('/api/vet')
         yield put({type: 'SET_VET', payload: response.data});
-        console.log('response.data from db get vet:', response.data);
     } catch(error){
         console.log('error with vet fetch request', error);
     }        
 }
 
-function* fetchOneVet(action) {
-    try {
-        console.log('You\'ve chosen a dream with ID #:', action.payload);
-
-        const response = yield axios.get(`/api/vet/${action.payload}`) // 
-        yield put({
-            type: 'SET_ONE_VET',
-            payload: response.data
-        })
-    } catch (error) {
-        console.log('GET ROUTE error from DB when attempting to get specific VET ID', error);
-    }
-}
-
+// GET one specific veteran's info by ID
 function* fetchVetInfo(action) {
-    console.log('In fetchVetInfo saga');
     try{
         const response = yield axios.get(`/api/vet/${action.payload}`);
         yield put({type: 'SET_VET', payload: response.data});
-        console.log('response.data from vet GET request:', response.data);
     } catch(error) {
         console.log('error with vet GET request', error);
     }
 }
 
+// GET a vet's id from vet table
 function* fetchVetId(action) {
     try{
         const vetId = action.payload
-        console.log('fetch vet id vetId', vetId)
         const response = yield axios.get(`/api/vet/vetid/${vetId}`)
         yield put({type: 'SET_VET', payload: response.data});
     } catch(error){
@@ -49,6 +32,8 @@ function* fetchVetId(action) {
     }        
 }
 
+// POST new vet into vet table 
+// Only vet_id so that they can use PUT route to update profile info
 function* postNewVet(action) {
     try{
         yield axios.post(`/api/vet/newVet/${action.payload}`)
@@ -57,12 +42,11 @@ function* postNewVet(action) {
     }        
 }
 
+// GET to see if a vet exists on the vet table
 function* fetchExist(action) {
-    console.log('fetchExist action.payload', action.payload)
     try{
         const response = yield axios.get(`/api/vet/exist/${action.payload}`)
         yield put({type: 'SET_VET_EXIST', payload: response.data});
-        console.log('fetchExist', response.data)
     } catch(error){
         console.log('error with set vet exist request', error);
     }        
@@ -70,11 +54,9 @@ function* fetchExist(action) {
 
 // GET for vet search bar
 function* fetchSearchVet(action) {
-    console.log('Fetch vetSearch from DB action.payload', action.payload);
     try{
-        const response = yield axios.get(`/api/vetSearch?searchText=${action.payload}`)
+        const response = yield axios.get(`/api/vet/vetSearch?searchText=${action.payload}`)
         yield put({type: 'SET_VET_SEARCH', payload: response.data});
-        console.log('response.data from db get vetSearch:', response.data);
     } catch(error){
         console.log('error with vetSearch fetch request', error);
     } 
@@ -86,7 +68,6 @@ function* vet() {
     yield takeLatest('POST_NEW_VET', postNewVet);
     yield takeLatest('FETCH_VET_EXIST', fetchExist);
     yield takeLatest('FETCH_VET_INFO', fetchVetInfo);
-    yield takeLatest('GET_ONE_VET', fetchOneVet);
     yield takeLatest('FETCH_SEARCH_VET', fetchSearchVet);
 }
 

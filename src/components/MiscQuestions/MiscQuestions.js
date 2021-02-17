@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Compensation from "../Question/Miscellaneous/Compensation";
-import Hazard from "../Question/Miscellaneous/Hazard";
-import PurpleHeart from "../Question/Miscellaneous/PurpleHeart";
+import Compensation from "./Miscellaneous/Compensation";
+import Hazard from "./Miscellaneous/Hazard";
+import PurpleHeart from "./Miscellaneous/PurpleHeart";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
 import compose from 'recompose/compose';
@@ -15,9 +15,6 @@ const styles = (theme) => ({
       minWidth: 185, 
     },
     formColor: {
-        //backgroundColor: '#EFEFEF',
-        //borderLeft: '3px solid grey',
-        //borderRight: '3px solid grey',
         textAlign: 'left',
         marginBottom: '10px'
     },
