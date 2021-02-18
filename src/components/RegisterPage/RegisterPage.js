@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-
-// CUSTOM COMPONENTS
 import AccountRegisterForm from '../AccountRegisterForm/AccountRegisterForm';
 
 

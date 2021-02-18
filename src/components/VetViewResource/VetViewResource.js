@@ -7,6 +7,7 @@ import { Typography } from '@material-ui/core';
 import Fab from '@material-ui/core/Fab';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 
+// This page 
 
 const styles = theme => ({
     button: {
@@ -22,14 +23,19 @@ const styles = theme => ({
     },
 });
 
+
 class VetViewResource extends Component{
+    
+    goBackHome = () => {
+        this.props.history.push('/user')
+    }
+
     render(){
     const {classes} = this.props;
         const {vetMatchReducer} = this.props.store;
         return(
             <div className="container">
                 <center>
-                    {JSON.stringify(this.props.store.vetMatchReducer)}
                     <h2 className="grey">Resource Details</h2>
                 </center>
                   <div>
@@ -77,7 +83,7 @@ class VetViewResource extends Component{
                       backgroundColor: '#AFFA3D',
                       fontFamily: 'orbitron',
                     }}
-                    onClick={this.goBackHome}><HomeRoundedIcon /></Fab>
+                    onClick={this.goBackHome()}><HomeRoundedIcon /></Fab>
                     <span>&nbsp;&nbsp;</span>
                 </center>
             </div>

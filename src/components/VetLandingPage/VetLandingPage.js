@@ -8,12 +8,7 @@ import { withRouter } from "react-router-dom";
 import compose from 'recompose/compose';
 import "./VetLandingPage.css";
 import { withStyles } from "@material-ui/core/styles";
-// import Grid from "@material-ui/core/Grid";
 import Modal from "@material-ui/core/Modal";
-// import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-// import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-// import IconButton from "@material-ui/core/IconButton";
-import RedCross from '../../Images/redcross.jpg'
 
 // STYLING: Material-UI
 import Card from '@material-ui/core/Card';
@@ -105,6 +100,7 @@ class UserPage extends Component {
     });
   }
 
+  // universal click handler function for all click events on this page
   handleClick = (btnValue) => {
     switch (btnValue) {
       case "profile":
@@ -138,7 +134,7 @@ class UserPage extends Component {
 
   visitResource = (id) =>{
     console.log('visiting resource', id);
-    this.props.dispatch({type: 'VET_GET_RESOURCE', payload: id});
+    this.props.dispatch({type: 'GET_ONE_RESOURCE', payload: id});
     this.props.history.push('/vetViewResource', id);
   }
 
@@ -146,6 +142,7 @@ class UserPage extends Component {
 
   render() {
     const { classes } = this.props;
+      //code for popup modal
       const emergencyModal = (
         <div className={classes.paper}>
           <header id="modal-header">
@@ -177,7 +174,6 @@ class UserPage extends Component {
           </div>
         </div>
       );
-
       const matches = this.props.store.vetMatchReducer;
       const incompleteMatches = this.props.store.incompleteMatchReducer;
       const { completeMatchIndex, incompleteMatchIndex, modalOpen } = this.state;
@@ -185,8 +181,6 @@ class UserPage extends Component {
       return (
         <div >
           <center>
-            {/* <h1 class="grey">Thank you for your service {this.props.store.user.username}</h1> */}
-            {/* <h1 class="grey">Your Saved Connections</h1> */}
             <h1 class="grey"> Below are your saved resources</h1>
             <hr className="hr-width"></hr>
           </center>
@@ -235,7 +229,7 @@ class UserPage extends Component {
                                 <CardMedia
                                     className={classes.media}
                                     alt={match.title}
-                                    image={RedCross}/>
+                                    />
                                 <CardContent>
                                   <Typography gutterBottom variant="h5" component="h2">
                                     {match.name}
@@ -248,14 +242,14 @@ class UserPage extends Component {
                                   </Typography>
                                 </CardContent>
                               </CardActionArea>
-                            <CardActions>
+                            {/* <CardActions>
                               <Button 
                                 size="small" 
                                 color="primary"
                                 onClick={() => this.visitResource(match.id)}
                                 >More Info
                               </Button>
-                            </CardActions>
+                            </CardActions> */}
                           </Card>
                         </div>
                         );
@@ -289,7 +283,7 @@ class UserPage extends Component {
                 }}
                 onClick={() => this.handleClick("allMatches")}
                 >
-                View New Matches
+                View All Matches
               </Button>
               </center>
             </div>

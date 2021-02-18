@@ -40,11 +40,16 @@ class AdminResourceList extends Component {
     return window.open(`mailto:${resourceEmail}`);
   };
 
+// "RESOURCE YOU SELECTED:"
   handleResource = (resourceID) => {
-    console.log("RESOURCE YOU SELECTED:", resourceID);
     this.props.dispatch({ type: "GET_ONE_RESOURCE", payload: resourceID });
-    this.props.history.push("/adminOrgEdit");
+    this.props.history.push("/adminOrgView");
   };
+
+  handleAddResource = ( resourceID ) => {
+     this.props.dispatch({ type: "ADD_RESOURCE", payload: resourceID });
+      this.props.history.push("/adminOrgAdd")
+  }
 
   handleInputChangeForSearch = (event) => {
     event.preventDefault();
@@ -55,16 +60,24 @@ class AdminResourceList extends Component {
       function () {
         this.props.dispatch({
           type: `FETCH_SEARCH_RESOURCE`,
-          payload: this.state.searchText,
+          payload: this.state.searchText
         });
       }
     );
   };
 
+  routeToEdit = (event) => {
+    this.history.push('/adminOrgEdit')
+  }
+
+  // handle delete event, resource_id
   handleDelete = (resource_id) => {
     this.props.dispatch({ type: "DELETE_RESOURCE", payload: resource_id });
-    console.log("handle delete event, resource_id", resource_id);
   };
+
+  handleAdd = (resource_id) => {
+    this.props.dispatch({ type: "ADD_RESOURCE", payload: resource_id });
+  }
 
   render() {
     const { classes } = this.props;
@@ -94,6 +107,7 @@ class AdminResourceList extends Component {
                 <TableCell>Organizations</TableCell>
                 <TableCell align="left">Contact</TableCell>
                 {/* <TableCell align="left">Edit</TableCell> */}
+                <TableCell align="left">Edit</TableCell>
                 <TableCell align="left">Delete</TableCell>
               </TableRow>
             </TableHead>
@@ -115,7 +129,7 @@ class AdminResourceList extends Component {
                         <EmailRoundedIcon />
                       </Fab>
                     </TableCell>
-                    {/* <TableCell>
+                    <TableCell>
                       <Fab
                         variant="contained"
                         style={{
@@ -123,11 +137,11 @@ class AdminResourceList extends Component {
                           backgroundColor: "#AFFA3D",
                           fontFamily: "orbitron",
                         }}
-                        onClick={() => this.handleResource(resource.id)}
+                        onClick={() => this.routeToEdit()}
                       >
                         <EditRoundedIcon />
                       </Fab>
-                    </TableCell> */}
+                    </TableCell>
                     <TableCell>
                       <Fab
                         variant="contained"
@@ -172,7 +186,7 @@ class AdminResourceList extends Component {
                           backgroundColor: "#AFFA3D",
                           fontFamily: "orbitron",
                         }}
-                        onClick={() => this.handleResource(resource.id)}
+                        onClick={() => this.routeToEdit()}
                       >
                         <EditRoundedIcon />
                       </Fab>

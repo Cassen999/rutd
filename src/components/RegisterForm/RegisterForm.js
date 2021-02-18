@@ -14,7 +14,7 @@ import { useTheme } from '@material-ui/core/styles';
 //REGISTRATION QUESTIONS
 
 //CATEGORIES
-import Category from '../Category/Category'
+import Category from '../Category/Category';
 import DemographicQuestion from "../DemographicQuestions/DemographicQuestion";
 import MiscQuestions from "../MiscQuestions/MiscQuestions";
 import ServiceHistoryQuestions from "../ServiceHistoryQuestions/ServiceHistoryQuestions";

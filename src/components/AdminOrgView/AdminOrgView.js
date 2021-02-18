@@ -2,21 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import "../AdminVetView/AdminVetView.css";
-// import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
+import AddIcon from '@material-ui/icons/Add';
 
-
-// TO DO LIST ON THIS PAGE:
-// - Rename this component to AdminResourceView
-// - Edit button to allow admins to edit organization profile
-// - create saga with PUT route to update organization
-// - create reducer to accept updated organization details
-// - this.props.history.push('/adminResourceEdit')
 
 
 const styles = theme => ({
@@ -54,6 +47,10 @@ class AdminResourceEdit extends Component {
     this.props.history.push("/adminOrgEdit", id)
   }
 
+  addOrganization = (id) => {
+    this.props.history.push ("/adminOrgAdd", id);
+  }
+
   render() {
     // line below is equivalent to this.props.store.details
     const { resourceDetails } = this.props.store;
@@ -61,10 +58,8 @@ class AdminResourceEdit extends Component {
           return (
             <div className="container">
               <center>
-                {/* {JSON.stringify(this.props.store.resourceDetails)} */}
                 <h1 className="grey">{this.state.heading}</h1>
               </center>
-
                   <div>
                     <Paper className={classes.root} elevation={1}>
                       <hr className="hr-width"></hr>
@@ -88,7 +83,7 @@ class AdminResourceEdit extends Component {
                         State: {resourceDetails.state}
                       </Typography>
                       <Typography component="p">
-                        <a href>Website:{ resourceDetails.website}</a>
+                        Website: <a href ={resourceDetails.website}>{resourceDetails.website}</a>
                       </Typography>
                       <Typography component="p">
                         Description: {resourceDetails.description}
@@ -96,12 +91,6 @@ class AdminResourceEdit extends Component {
                       <Typography component="p">
                         Categories: {resourceDetails.categories}
                       </Typography>
-                      {/* <Typography component="p">
-                        PLACEHOLDER FOR PDF
-                      </Typography>
-                      <Typography component="p">
-                        PLACEHOLDER FOR PICTURES
-                      </Typography> */}
                       <hr className="hr-width"></hr>
                     </Paper>
                     <br></br>
@@ -114,6 +103,17 @@ class AdminResourceEdit extends Component {
                       }}
                       onClick={() => this.editOrganization(resourceDetails.org_id)}>
                         <EditRoundedIcon />
+                    </Fab>
+                    <br></br>
+                    <Fab  
+                      className="edit-org-btn" variant="contained" 
+                      style={{
+                        borderRadius: 35,
+                        backgroundColor: '#AFFA3D',
+                        fontFamily: 'orbitron',
+                      }}
+                      onClick={() => this.addOrganization(resourceDetails.org_id)}>
+                        <AddIcon />
                     </Fab>
                   </div>
                 <center>

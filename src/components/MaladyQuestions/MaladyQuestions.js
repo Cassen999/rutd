@@ -54,7 +54,9 @@ function getStyles(malady, selectedMalady, theme) {
           ? theme.typography.fontWeightRegular
           : theme.typography.fontWeightMedium,
     };
-  }
+}
+
+// This component displays the intake questionaire for the 'Health' tab \\
 class MaladyQuestions extends Component {
   componentDidMount() {
     this.props.dispatch({ type: "FETCH_MALADY" });
@@ -124,7 +126,7 @@ handleChange = (event) => {
                         <em>None</em>
                     </MenuItem>
                     {maladyList.map((malady) => (
-                        <MenuItem key={malady.description} value={malady.id} style={getStyles(malady, selectedMalady, theme)} >
+                        <MenuItem key={malady.id} value={malady.id} style={getStyles(malady, selectedMalady, theme)} >
                             <Checkbox checked={selectedMalady.indexOf(malady.id) > -1} />
                             <ListItemText primary={malady.description} />
                         </MenuItem>

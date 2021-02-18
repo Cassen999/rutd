@@ -10,6 +10,19 @@ import React, { Component } from "react";
 import swal from "sweetalert";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import "../AdminOrgEdit/AdminOrgEdit.css";
+import compose from 'recompose/compose';
+import {    
+    withStyles,
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
+    Input,
+    Typography,
+    Chip,
+    Checkbox,
+    ListItemText      
+} from "@material-ui/core";
 
 const styles = (theme) => ({
   button: {
@@ -35,7 +48,28 @@ const styles = (theme) => ({
   },
 });
 
-class AdminOrgEdit extends Component {
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 12;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: '30%',
+    },
+  },
+};
+
+
+function getStyles(malady, selectedMalady, theme) {
+    return {
+      fontWeight:
+        selectedMalady.indexOf(malady) === -1
+          ? theme.typography.fontWeightRegular
+          : theme.typography.fontWeightMedium,
+    };
+  }
+
+class AdminAddOrg extends Component {
   state = {
     name: "",
     number: "",
@@ -44,7 +78,9 @@ class AdminOrgEdit extends Component {
     website: "",
     description: "",
     state: "",
-    categories: [],
+    selectedCategories: [],
+    open: false,
+    categories: false
   };
 
   componentDidMount() {
@@ -64,7 +100,7 @@ class AdminOrgEdit extends Component {
   cancelSubmit = (orgID) => {
     swal({
       title: "Are you sure?",
-      text: "Once cancelled, your edit will not be made!",
+      text: "Once cancelled, the organization will not be added",
       icon: "warning",
       buttons: true,
       dangerMode: true,
@@ -73,17 +109,17 @@ class AdminOrgEdit extends Component {
         swal("Your edit has not been saved!", {
           icon: "success",
         });
-        this.props.history.push("/adminOrgView", orgID);
+        this.props.history.push("/adminAddOrg", );
       } else {
         swal("You can keep working on the edits");
       }
     });
   };
 
-  updateOrg = (orgID) => {
+  addOrg = () => {
     this.props.dispatch({
-      type: "UPDATE_RESOURCE",
-      payload: { id: orgID, resourceDetails: this.state },
+      type: "ADD_RESOURCE",
+      payload: this.state
     });
     this.setState({
       name: "",
@@ -93,29 +129,29 @@ class AdminOrgEdit extends Component {
       website: "",
       description: "",
       state: "",
-      categories: [],
+      categories: event.target.value,
     });
     swal({
-      title: "Update Organization details?",
-      text: "Once cancelled, your edit will not be saved!",
+      title: "Add Organization?",
+      text: "Once cancelled, your add will not be saved!",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        swal("You've updated the details!", {
+        swal("You've added the organization!", {
           icon: "success",
         });
         this.props.history.push("/adminOrgView", orgID);
       } else {
-        swal("You can keep working on the edits");
+        swal("You can keep working on the details");
       }
     });
   };
 
   // this will handle the change of the textfields
   handleChange = (event, input) => {
-    console.log("Details of org details:", this.state);
+    console.log("Add of orgs:", this.state);
     this.setState({
       ...this.state,
       [input]: event.target.value,
@@ -124,14 +160,11 @@ class AdminOrgEdit extends Component {
 
   render() {
     const { resourceDetails } = this.props.store;
-    const { classes } = this.props;
+    const { classes, theme } = this.props;
+    const categorieList = this.props.store.categoryReducer;
+    const { selectedCategories, categories, open } = this.state;
     return (
       <div className="container">
-        {/* <center>
-            <h2>Admin Organization Edit</h2>
-          </center> */}
-        {/* {resourceDetails.map((resource, i) => {
-            return( */}
         <form className="white-background">
           <TextField
             id="standard-name"
@@ -189,6 +222,34 @@ class AdminOrgEdit extends Component {
             onChange={(event) => this.handleChange(event, "state")}
             margin="normal"
           />
+          <FormControl className={classes.formControl}>
+                <Select
+                    id="malady-multiple-select"
+                    label="Health Concerns"
+                    multiple
+                    value={selectedCategories}
+                    onChange={this.handleChange}
+                    input={<Input />}
+                    renderValue={(selected) => (
+                        <div className={classes.chips}>
+                          {selected.map((value) => (
+                            <Chip key={value} label={value} className={classes.chip} />
+                          ))}
+                        </div>
+                      )}
+                    MenuProps={MenuProps} 
+                >
+                    <MenuItem value="">
+                        <em>None</em>
+                    </MenuItem>
+                    {categorieList.map((category) => (
+                        <MenuItem key={category.id} value={category.id} style={getStyles(categories, selectedCategories, theme)} >
+                            <Checkbox checked={selectedCategories.indexOf(categories.id) > -1} />
+                            <ListItemText primary={categories.description} />
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
 
           <Select
             id="standard-categories"
@@ -196,7 +257,7 @@ class AdminOrgEdit extends Component {
             value={this.state.categories ? this.state.categories : []}
             onChange={(event) => this.handleChange(event, "categories")}
           >
-            {this.props.store.categoryReducer.map((category) => (
+            {categorieList.map((category) => (
               <MenuItem key={category.id} value={category.id}>
                 {category.description}
               </MenuItem>
@@ -227,7 +288,7 @@ class AdminOrgEdit extends Component {
             }}
             className="float-right"
             variant="contained"
-            onClick={() => this.updateOrg(resourceDetails.org_id)}
+            onClick={() => this.addOrg(resourceDetails.org_id)}
           >
             <SaveTwoToneIcon />
           </Fab>
@@ -238,4 +299,7 @@ class AdminOrgEdit extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(withStyles(styles)(AdminOrgEdit));
+export default compose(
+    withStyles(styles, { withTheme: true }),
+    connect(mapStoreToProps)
+)(AdminAddOrg);

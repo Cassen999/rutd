@@ -1,20 +1,19 @@
 import axios from "axios";
 import { put, takeLatest } from "redux-saga/effects";
 
-// gets all account types for users
+// GET all organizations from database
 function* fetchResource() {
   console.log("Fetch orgs from DB");
   try {
     const response = yield axios.get("/api/resource");
     yield put({ type: "SET_RESOURCE", payload: response.data });
-    console.log("response.data from db get resource:", response.data);
   } catch (error) {
     console.log("error with resource fetch request", error);
   }
 }
 
+// PUT to update a resource
 function* updateResource(action) {
-  console.log("Updating orgs in DB", action);
   try {
     const config = {
       headers: { "Content-Type": "application/json" },
@@ -25,17 +24,16 @@ function* updateResource(action) {
       action.payload.resourceDetails,
       config
     );
-    console.log("response.data from db get resource:", response.data);
+    yield put({ type: 'FETCH_RESOURCE' });
   } catch (error) {
     console.log("error with resource fetch request", error);
   }
 }
 
+// GET for one resource
 function* getOneResource(action) {
   try {
-      // sending id of dream selected
-      console.log('You\'ve chosen a resource with ID #:', action.payload);
-      const response = yield axios.get(`/api/resource/${action.payload}`); 
+      const response = yield axios.get(`/api/resource/oneResource/${action.payload}`); 
       yield put({
           type: 'SET_ONE_RESOURCE',
           payload: response.data
@@ -45,10 +43,9 @@ function* getOneResource(action) {
   }
 }
 
+// GET for all resources for individual Vet
 function* vetGetResource(action) {
   try {
-      // sending id of dream selected
-      console.log('You\'ve chosen a resource with ID #:', action.payload);
       const response = yield axios.get(`/api/resource/${action.payload}`); 
       yield put({
           type: 'SET_VET_RESOURCE',
@@ -61,14 +58,35 @@ function* vetGetResource(action) {
 
 // GET for resource search bar
 function* fetchSearchResource(action) {
-  console.log('Fetch resourceSearch from DB action.payload', action.payload);
   try{
-      const response = yield axios.get(`/api/resourceSearch?searchText=${action.payload}`)
+      const response = yield axios.get(`/api/resource/resourceSearch/resourceSearch?searchText=${action.payload}`)
       yield put({type: 'SET_RESOURCE_SEARCH', payload: response.data});
-      console.log('response.data from db get resourceSearch:', response.data);
   } catch(error){
       console.log('error with resourceSearch fetch request', error);
   } 
+}
+
+function* addResource(action) {
+  console.log("Fetch orgs from DB");
+  try {
+    const response = yield axios.post("/api/resource");
+    yield put({ type: "SET_RESOURCE", payload: response.data });
+  } catch (error) {
+    console.log("error with adding resource request", error);
+  }
+}
+
+
+function* deleteResource(action) {
+  console.log('action.payload', action.payload)
+  try {
+      yield axios.delete(`/api/resource/delete/${action.payload}`)
+      console.log('delete saga id', action.payload)
+      console.log('action.payload from delete resource saga', action.payload)
+      yield put({type: 'FETCH_RESOURCE'})
+  }catch(error){
+      console.log('error in delete resource saga', error); 
+  }
 }
 
 function* resource() {
@@ -77,6 +95,9 @@ function* resource() {
   yield takeLatest('GET_ONE_RESOURCE', getOneResource);
   yield takeLatest('VET_GET_RESOURCE', vetGetResource);
   yield takeLatest('FETCH_SEARCH_RESOURCE', fetchSearchResource);
+  yield takeLatest('DELETE_RESOURCE', deleteResource);
+  yield takeLatest('ADD_RESOURCE', addResource);
+
 }
 
 export default resource;

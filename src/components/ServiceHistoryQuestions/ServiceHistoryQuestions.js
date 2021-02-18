@@ -7,10 +7,6 @@ import Radio from '@material-ui/core/Radio';
 import Fab from '@material-ui/core/Fab';
 import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
 
-// import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-// import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
-
-
 const styles = theme => ({
     inputs: {
         width: "400",
@@ -32,6 +28,7 @@ const styles = theme => ({
 });
 
 
+// This component displays the intake questionaire for the 'Service History' tab \\
 class ServiceHistoryQuestions extends Component {
     state = { 
         status: '',
