@@ -49,13 +49,15 @@ class PurpleHeart extends Component {
             <Fab
               className="float-right"
               style={{
-                borderRadius: 35,
-                backgroundColor: '#AFFA3D',
-                fontFamily: 'orbitron',
-                marginBottom: '10%',
-                marginRight: '10px',
+                  borderRadius: 35,
+                  backgroundColor: '#AFFA3D',
+                  fontFamily: 'orbitron',
+                  marginBottom: '10%',
+                  marginRight: '10px',
               }}
-            onClick={(event) => { this.saveDemographic(event) }}><SaveTwoToneIcon /></Fab>    
+              onClick={(event) => { this.saveDemographic(event) }}>
+              <SaveTwoToneIcon />
+            </Fab>    
           )}
         </div>  
       </div>
