@@ -4,7 +4,6 @@ import mapStoreToProps from "../../redux/mapStoreToProps";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
-import compose from 'recompose/compose';
 // import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
@@ -220,7 +219,4 @@ class VetMatches extends Component {
   }
 }
 
-export default compose(
-  withStyles(styles, { withTheme: true }),
-  connect(mapStoreToProps)
-)(withRouter(VetMatches));
+export default connect(mapStoreToProps)(withStyles(styles)(withRouter(VetMatches)));

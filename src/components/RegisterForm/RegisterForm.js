@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import {withStyles, Button} from "@material-ui/core";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { withRouter } from "react-router-dom";
-import compose from 'recompose/compose';
 import SwipeableViews from 'react-swipeable-views';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -104,7 +103,4 @@ class RegisterForm extends Component {
   }
 }
 
-export default compose(
-  withStyles(styles, { withTheme: true }),
-  connect(mapStoreToProps)
-)(withRouter(RegisterForm));
+export default connect(mapStoreToProps)(withStyles(styles)(withRouter(RegisterForm)));

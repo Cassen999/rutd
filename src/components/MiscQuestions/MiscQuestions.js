@@ -4,7 +4,6 @@ import Hazard from "./Miscellaneous/Hazard";
 import PurpleHeart from "./Miscellaneous/PurpleHeart";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
-import compose from 'recompose/compose';
 import { withStyles, Typography, Fab } from '@material-ui/core';
 import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
 
@@ -171,7 +170,4 @@ class MiscQuestions extends Component {
     }
 }
 
-export default compose(
-    withStyles(styles, { withTheme: true }),
-    connect(mapStoreToProps)
-)(MiscQuestions);
+export default connect(mapStoreToProps)(withStyles(styles)(MiscQuestions));
