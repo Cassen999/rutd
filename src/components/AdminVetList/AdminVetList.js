@@ -19,7 +19,6 @@ const styles = theme => ({
   }, 
 });
 
-
 class AdminVetList extends Component {
 
   state = {
@@ -29,17 +28,18 @@ class AdminVetList extends Component {
   componentDidMount() {
     this.props.dispatch({type: 'FETCH_VET'})
   }
+  
+// "VETERAN YOU SELECTED:"
 
   handleVeteran = (veteranID) =>{
-    console.log("VETERAN YOU SELECTED:", veteranID);
       this.props.dispatch({type:'GET_ONE_VET', payload: veteranID});
     this.props.history.push("/adminVetView");
   }
 
+//"RESOURCE YOU SELECTED:"
   handleResource = (resourceID) =>{
-    console.log("RESOURCE YOU SELECTED:", resourceID);
     this.props.dispatch({type: 'GET_ONE_RESOURCE', payload: resourceID})
-    this.props.history.push("/adminOrgEdit");
+    this.props.history.push("/adminOrgView");
   }
 
   handleInputChangeForSearch = (event) => {
@@ -57,9 +57,7 @@ class AdminVetList extends Component {
     return (
       <div>
         <div className="container">
-          <center>
-            <h1 className="grey">Veterans</h1>
-          </center>
+            <center><h1 className="grey">Veterans</h1></center>
           <div className={classes.searchContainer}>
             <center>
               <TextField

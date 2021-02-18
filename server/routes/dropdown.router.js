@@ -5,11 +5,10 @@ const {
   rejectUnauthenticatedVet,
 } = require("../modules/authentication-middleware");
 
-// GET gender
+// GET gender dropdown fields
 router.get('/gender', rejectUnauthenticatedVet, (req, res) => {
   const queryText = 'SELECT * FROM gender';
-  pool
-    .query(queryText)
+  pool.query(queryText)
     .then((data) => res.send(data.rows))
     .catch((err) => {
       console.log('GET gender failed: ', err);
@@ -17,11 +16,21 @@ router.get('/gender', rejectUnauthenticatedVet, (req, res) => {
     });
 });
 
-// GET married
+// GET percentage dropdown fields
+router.get("/percentage", rejectUnauthenticatedVet, (req, res) => {
+  const queryText = "SELECT * FROM percentage";
+  pool.query(queryText).then((result) => {
+      res.send(result.rows);
+    }).catch((err) => {
+      console.log("GET percentage failed: ", err);
+      res.sendStatus(500);
+    });
+});
+
+// GET married dropdown fields
 router.get('/married', rejectUnauthenticatedVet, (req, res) => {
   const queryText = 'SELECT * FROM married';
-  pool
-    .query(queryText)
+  pool.query(queryText)
     .then((data) => res.send(data.rows))
     .catch((err) => {
       console.log('GET married failed: ', err);
@@ -29,11 +38,10 @@ router.get('/married', rejectUnauthenticatedVet, (req, res) => {
     });
 });
 
-// GET branch
+// GET branch dropdown fields
 router.get('/branch', rejectUnauthenticatedVet, (req, res) => {
   const queryText = 'SELECT * FROM branch';
-  pool
-    .query(queryText)
+  pool.query(queryText)
     .then((data) => res.send(data.rows))
     .catch((err) => {
       console.log('GET branch failed:', err);
@@ -41,7 +49,7 @@ router.get('/branch', rejectUnauthenticatedVet, (req, res) => {
     });
 });
 
-// GET rank
+// GET rank dropdown fields
 router.get('/rank', rejectUnauthenticatedVet, (req, res) => {
   const queryText = 'SELECT * FROM rank';
   pool
@@ -53,7 +61,7 @@ router.get('/rank', rejectUnauthenticatedVet, (req, res) => {
     });
 });
 
-// GET status
+// GET status dropdown fields
 router.get('/status', rejectUnauthenticatedVet, (req, res) => {
   const queryText = 'SELECT * FROM status';
   pool
@@ -65,7 +73,7 @@ router.get('/status', rejectUnauthenticatedVet, (req, res) => {
     });
 });
 
-// GET discharge
+// GET discharge dropdown fields
 router.get('/discharge', rejectUnauthenticatedVet, (req, res) => {
   const queryText = 'SELECT * FROM discharge';
   pool
@@ -77,7 +85,7 @@ router.get('/discharge', rejectUnauthenticatedVet, (req, res) => {
     });
 });
 
-// GET injury
+// GET injury dropdown fields
 router.get('/injury', rejectUnauthenticatedVet, (req, res) => {
   const queryText = 'SELECT * FROM injury';
   pool
@@ -89,19 +97,7 @@ router.get('/injury', rejectUnauthenticatedVet, (req, res) => {
     });
 });
 
-// GET percentage
-router.get('/percentage', rejectUnauthenticatedVet, (req, res) => {
-  const queryText = 'SELECT * FROM percentage';
-  pool
-    .query(queryText)
-    .then((data) => res.send(data.rows))
-    .catch((err) => {
-      console.log('GET percentage failed: ', err);
-      res.sendStatus(500);
-    });
-});
-
-// GET categories
+// GET categories dropdown fields
 router.get('/categories', rejectUnauthenticatedVet, (req, res) => {
   const queryText = 'SELECT * FROM categories';
   pool
@@ -113,7 +109,7 @@ router.get('/categories', rejectUnauthenticatedVet, (req, res) => {
     });
 });
 
-// GET state
+// GET state dropdown fields
 router.get('/state', rejectUnauthenticatedVet, (req, res) => {
   const queryText = 'SELECT * FROM state';
   pool
@@ -125,7 +121,7 @@ router.get('/state', rejectUnauthenticatedVet, (req, res) => {
     });
 });
 
-// GET country
+// GET country dropdown fields
 router.get('/country', rejectUnauthenticatedVet, (req, res) => {
   const queryText = 'SELECT * FROM country';
   pool

@@ -16,9 +16,9 @@ const styles = {
   },
 };
 
+// Get all of the catagories  
 class Category extends Component {
   componentDidMount() {
-    console.log("Mounted");
     this.props.dispatch({ type: "FETCH_CATEGORY" });
   }
   state = {
@@ -28,9 +28,6 @@ class Category extends Component {
   };
 
   handleClick = (event) => {
-    console.log("Handling input-change...");
-    console.log("Setting state...");
-
     this.setState(
       {
         vet: {
@@ -79,7 +76,6 @@ class Category extends Component {
 
     return (
       <>
-        MALADY REDUCER: {JSON.stringify(categories)}
 
         <h1>Category Entry</h1>
         <Grid container spacing={2} direction="column">
@@ -88,10 +84,7 @@ class Category extends Component {
               <InputLabel>
                 SELECT
               </InputLabel>
-              <Select
-              // value={age}
-              //onChange={(event)=>this.handleChange(event)}
-              >
+              <Select>
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
@@ -103,7 +96,6 @@ class Category extends Component {
                   >
                     {category.description}</MenuItem>
                 ))}
-
               </Select>
               <FormHelperText>Some important helper text</FormHelperText>
             </FormControl>
@@ -124,8 +116,8 @@ class Category extends Component {
           </Paper>
         </Grid>
       </>
-    ); //END return
-  } //END render
-} //END Name
+    ); 
+  } 
+}
 
 export default connect(mapStoreToProps)(withStyles(styles)(Category));

@@ -11,7 +11,7 @@ const Nav = (props) => {
     path: '/login',
     text: 'Login / Register',
   };
-// if user is a vet 'Home' will direct them to their profile page
+  // if user is a vet 'Home' will direct them to their profile page
   if (props.store.user.type_id === 1) {
     loginLinkData.path = '/user';
     loginLinkData.text = 'Home';
@@ -42,9 +42,9 @@ const Nav = (props) => {
         {/* Show Nav Links for veterans */}
         {props.store.user.type_id === 1 && (
           <>
-            <Link  className="nav-link" to="/vetmatches">
+            {/* <Link  className="nav-link" to="/vetmatches">
               Resources
-            </Link>
+            </Link> */}
             <Link className="nav-link" to="/vetmatches">
               Chat
             </Link>
@@ -72,11 +72,6 @@ const Nav = (props) => {
             <LogOutButtonNav className="nav-link" />
           </>
         )}    
-
-        {/* Always show this link since the about page is not protected */}
-        <Link className="nav-link about" to="/about">
-          About
-        </Link>
       </div>
     </div>
   );

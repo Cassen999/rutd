@@ -10,17 +10,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-// import Typography from "@material-ui/core/Typography";
 
-/*
------------------------------ TO DO LIST ON THIS PAGE: -----------------------------
-- Dispatch to saga to get detail of one specific vet by ID in URL
-- Receive details into a reducer
-- dispatch to call reducer to adminVetView and adminResourceEdit to 
-  see specific veteran and or resource profile information
-
--------------------------------------------------------------------------------------
-*/
 
 const styles = theme => ({
   root: {
@@ -31,28 +21,23 @@ const styles = theme => ({
 });
 
 class AdminLandingPage extends Component {
-  state = {
-    timestamp: ''
-  };
-
+// Fetching veteran list from DB
   componentDidMount() {
-    console.log("Fetching veteran list from DB");
     this.props.dispatch({ type: "FETCH_VET" });
   }
 
+// "VETERAN YOU SELECTED:"
   handleVeteran = (veteranID) => {
-    console.log("VETERAN YOU SELECTED:", veteranID);
       this.props.dispatch({type:'GET_ONE_VET', payload: veteranID});
     this.props.history.push("/adminVetView", veteranID);
   };
-
+// "RESOURCE YOU SELECTED"
   handleResource = (resourceID) => {
-    console.log("RESOURCE YOU SELECTED:", resourceID);
     this.props.dispatch({type: 'GET_ONE_RESOURCE', payload: resourceID})
     this.props.history.push("/adminOrgView", resourceID);
   };
 
-
+// Table to display all of the veterans and the timestamp they connected with the vet.
   render(){
     const {classes} = this.props;
     const {vetReducer} = this.props.store;

@@ -6,8 +6,6 @@ const {
   } = require("../modules/authentication-middleware");
 require('dotenv').config();
 
-// put route for the email question component
-
 // NODEMAILER && POST ROUTE to send an email
 router.post('/', rejectUnauthenticatedGeneral, (req, res) => {
     console.log('email', req.body);
@@ -17,7 +15,6 @@ router.post('/', rejectUnauthenticatedGeneral, (req, res) => {
     const orgName = req.body.orgName;
     const vetFirstName = req.body.vetFirstName;
     const vetLastName = req.body.vetLastName;
-    const sender_type = req.body.sender_type;
     // This will be the generic email body for a vet
     const vetHtmlBody = `<p>Veteran's name is ${vetFirstName} ${vetLastName}</p>
                             <p>Veteran's message ${detailText} </p>
@@ -28,10 +25,13 @@ router.post('/', rejectUnauthenticatedGeneral, (req, res) => {
     const adminHtmlBody = '';
     // This is the type_id of who is the SENDER
     // This will make the conditional work
-    
+    const sender_type = req.body.sender_type;
+
+    // Put your email account's password in the .env file
     const password = process.env.password;
 
     // Conditional to decide which email to send
+    // Sender type 1 = Vet
     if (sender_type === 1) {
         const smtpTransport = nodemailer.createTransport({
             host: 'smtp.gmail.com',
@@ -70,6 +70,7 @@ router.post('/', rejectUnauthenticatedGeneral, (req, res) => {
                 smtpTransport.close();
         });
     }
+    // If sender is an Admin
     else if (sender_type === 2) {
         const smtpTransport = nodemailer.createTransport({
             host: 'smtp.gmail.com',
@@ -108,6 +109,7 @@ router.post('/', rejectUnauthenticatedGeneral, (req, res) => {
                 smtpTransport.close();
         });
     }
+    // If sender is an Organization
     else if (sender_type === 3) {
         const smtpTransport = nodemailer.createTransport({
             host: 'smtp.gmail.com',

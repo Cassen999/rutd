@@ -3,26 +3,24 @@ import { put, takeLatest } from "redux-saga/effects";
 
 // GETs all matches for certain vet from match table
 function* getCompleteMatch(action) {
-  console.log("Fetch veteran matches is working");
   try {
     const response = yield axios.get(`/api/match/complete/${action.payload}`);
     const allMatches = response.data;
     const incompleteMatches = allMatches.filter(findIncompleteMatch);
     yield put({ type: "SET_VET_MATCHES", payload: allMatches });
     yield put({ type: "SET_INCOMPLETE_MATCHES", payload: incompleteMatches });
-    console.log("response.data from db get complete vet matches:", allMatches);
   } catch (error) {
     console.log("error with completed vet matches fetch request", error);
   }
 }
 
+// function to filter incomplete matches out of all matches   
 function findIncompleteMatch(match) {
   return match.approved === null;
 }
 
 // GETs all matches for certain vet, not from match table using algorithm
 function* getNewMatches(action) {
-  console.log('get new matches saga action.payload.id', action.payload)
   try {
     const response = yield axios.get(`/api/match/newMatches/${action.payload}`);
     const newMatches = response.data;
@@ -32,11 +30,10 @@ function* getNewMatches(action) {
   }
 }
 
+// POSTs new match connecting Vet and Resource
 function* postNewMatch(action) {
   try {
-    console.log('postNewMatch action.payload', action.payload)
     const response = yield axios.post('/api/match/postnew', action.payload)
-    console.log('postNewMatch response.data', response.data)
     yield put({type: "SET_NEW_MATCH", payload: response.data})
   }
   catch(error) {
