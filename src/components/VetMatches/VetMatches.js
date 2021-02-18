@@ -1,16 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
-import ProgressBar from "../ProgressBar/ProgressBar";
 import { withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
-// import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
-import Fab from '@material-ui/core/Fab';
 import swal from 'sweetalert';
-import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
 import RedCross from '../../Images/redcross.jpg';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -20,7 +15,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Avatar from '@material-ui/core/Avatar';
 import CardHeader from '@material-ui/core/CardHeader';
 import Typography from "@material-ui/core/Typography";
-
 
 const styles = (theme) => ({
   root: {
@@ -211,7 +205,6 @@ class VetMatches extends Component {
                           </Card>
                         </div>
                 )})}
-              {/* <ProgressBar value={30} /> */}
            </div>
         </div>
       </div>

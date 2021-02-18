@@ -14,11 +14,9 @@ import compose from 'recompose/compose';
 import {    
     withStyles,
     FormControl,
-    InputLabel,
     Select,
     MenuItem,
     Input,
-    Typography,
     Chip,
     Checkbox,
     ListItemText      

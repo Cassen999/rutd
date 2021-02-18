@@ -8,9 +8,9 @@ import {
   FormControl,
   Select,
   Radio,
-  Grid,
   Typography 
-} from "@material-ui/core";                
+} from "@material-ui/core";  
+              
 class Compensation extends Component {
 
   state = {

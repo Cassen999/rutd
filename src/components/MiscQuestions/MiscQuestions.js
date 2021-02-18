@@ -4,7 +4,7 @@ import Hazard from "./Miscellaneous/Hazard";
 import PurpleHeart from "./Miscellaneous/PurpleHeart";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
-import { withStyles, Typography, Fab } from '@material-ui/core';
+import { withStyles, Fab } from '@material-ui/core';
 import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
 
 const styles = (theme) => ({

@@ -53,18 +53,12 @@ class App extends Component {
               authRedirect="/user"
             />
             <ProtectedRoute
-              // with authRedirect:
-              // - if logged in, redirects to "/user"
-              // - else shows RegisterPage at "/registration"
               exact
               path="/registration"
               component={RegisterPage}
               authRedirect="/user"
             />
             <ProtectedRoute
-              // with authRedirect:
-              // - if logged in, redirects to "/user"
-              // - else shows LandingPage at "/home"
               exact
               path="/home"
               component={LandingPage}
@@ -72,20 +66,15 @@ class App extends Component {
             />
 
             <ProtectedRoute
-              // with authRedirect:
-              // - if logged in, redirects to "/user"
-              // - else shows LandingPage at "/home"
               exact
               path="/vetmatches"
               component={VetMatches}
-              // authRedirect="/user"
             />
 
             <ProtectedRoute
               exact
               path="/register"
               component={RegisterForm}
-              // authRedirect="/user"
             />
 
             <ProtectedRoute
@@ -143,9 +132,7 @@ class App extends Component {
               path="/demographicquestion"
               component={DemographicQuestion}
             />
-
-
-            {/* If none of the other routes matched, we will show a 404. */}
+            
             <Route render={() => <h1>404</h1>} />
           </Switch>
           <Footer />

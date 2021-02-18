@@ -14,8 +14,6 @@ const styles = theme => ({
   },
 });
 
-
-
 class LoginForm extends Component {
   state = {
     username: '',
@@ -38,7 +36,7 @@ class LoginForm extends Component {
     } else {
       this.props.dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
-  }; // end login
+  };
 
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
@@ -54,7 +52,6 @@ class LoginForm extends Component {
         <img className="form-logo border-radius-img" src={Image} alt="Logo"/>
         <center>
           <p>Log in if you have been here before</p>
-          
           {this.props.store.errors.loginMessage && (
             <h3 className="alert" role="alert">
               {this.props.store.errors.loginMessage}
@@ -98,7 +95,6 @@ class LoginForm extends Component {
         </center>
         </div>
       </form>
-
     );
   }
 }

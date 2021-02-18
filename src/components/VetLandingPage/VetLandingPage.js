@@ -7,16 +7,12 @@ import { withRouter } from "react-router-dom";
 import "./VetLandingPage.css";
 import { withStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
-
-// STYLING: Material-UI
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Avatar from '@material-ui/core/Avatar';
 import CardHeader from '@material-ui/core/CardHeader';
-
 
 const styles = (theme) => ({
   gridList: {
@@ -173,8 +169,7 @@ class UserPage extends Component {
         </div>
       );
       const matches = this.props.store.vetMatchReducer;
-      const incompleteMatches = this.props.store.incompleteMatchReducer;
-      const { completeMatchIndex, incompleteMatchIndex, modalOpen } = this.state;
+      const modalOpen = this.state;
 
       return (
         <div >

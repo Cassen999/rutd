@@ -19,7 +19,6 @@ const styles = theme => ({
   }, 
 });
 
-
 class AdminVetList extends Component {
 
   state = {

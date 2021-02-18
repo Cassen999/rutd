@@ -11,7 +11,7 @@ const Nav = (props) => {
     path: '/login',
     text: 'Login / Register',
   };
-// if user is a vet 'Home' will direct them to their profile page
+  // if user is a vet 'Home' will direct them to their profile page
   if (props.store.user.type_id === 1) {
     loginLinkData.path = '/user';
     loginLinkData.text = 'Home';

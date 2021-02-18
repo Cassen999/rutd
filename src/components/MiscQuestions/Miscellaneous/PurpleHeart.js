@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import clsx from 'clsx';
 import {  
-  FormControl,
   Radio,
   Typography,
   Fab   

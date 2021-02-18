@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
 import {withStyles, Button} from "@material-ui/core";
-import ProgressBar from "../ProgressBar/ProgressBar";
 import { withRouter } from "react-router-dom";
 import SwipeableViews from 'react-swipeable-views';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,10 +9,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import { useTheme } from '@material-ui/core/styles';
-//REGISTRATION QUESTIONS
-
-//CATEGORIES
-import Category from '../Category/Category';
 import DemographicQuestion from "../DemographicQuestions/DemographicQuestion";
 import MiscQuestions from "../MiscQuestions/MiscQuestions";
 import ServiceHistoryQuestions from "../ServiceHistoryQuestions/ServiceHistoryQuestions";

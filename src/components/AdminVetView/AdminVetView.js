@@ -3,14 +3,11 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import '../AdminVetView/AdminVetView.css';
 import Fab from '@material-ui/core/Fab';
-import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
 import HomeIcon from '@material-ui/icons/Home';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
-import { AddBoxOutlined } from '@material-ui/icons';
-
 
 const styles = theme => ({
   button: {
@@ -105,6 +102,5 @@ class AdminVetView extends Component {
       );
   }
 }
-
 
 export default connect(mapStoreToProps)(withStyles(styles)(AdminVetView));

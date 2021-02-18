@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
-import { Button, withStyles, Select, MenuItem, InputLabel, Input, TextField, FormControl } from "@material-ui/core";
+import {withStyles, Select, MenuItem, TextField, FormControl } from "@material-ui/core";
 import Fab from '@material-ui/core/Fab';
 import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
 
@@ -202,9 +202,7 @@ class DemographicQuestion extends Component {
                     <span>&nbsp;&nbsp;&nbsp;</span>
 
                <FormControl className={classes.formControl}>
-               {/* <InputLabel htmlFor="age-helper">Age</InputLabel> */}
                 <Select
-                // input={<Input name="vet" />}
                 onChange={(event) => this.handleChangeForGender(event, 'gender')}
 
                 value={this.state.vet.gender}
@@ -216,12 +214,10 @@ class DemographicQuestion extends Component {
                     return(
                       <MenuItem 
                         key={i} 
-                        value={gender.id}
-                      >
-                        
-                            {gender.description}</MenuItem>
-                    )
-                  })}
+                        value={gender.id}>
+                        {gender.description}</MenuItem>
+                        )
+                    })}
                 </Select> 
                 </FormControl>
                     <span>&nbsp;&nbsp;&nbsp;</span>
@@ -229,13 +225,9 @@ class DemographicQuestion extends Component {
                 MARRIAGE
                     <span>&nbsp;&nbsp;&nbsp;</span>
                 <FormControl className={classes.formControl}>
-               {/* <InputLabel htmlFor="age-helper">Age</InputLabel> */}
                 <Select
                 onChange={(event) => this.handleChangeForMarriage(event, 'marriage')}
-
-                // input={<Input name="vet" />}
                 value={this.state.vet.marriage}
-                // onChange={this.handleChangeForGender}
                 inputProps={{
                   name: 'marriage',
                   id: 'marriage-simple',
@@ -253,25 +245,17 @@ class DemographicQuestion extends Component {
                 </Select> 
                 </FormControl>
                 <span>&nbsp;&nbsp;&nbsp;</span>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                <br></br>
                 <br></br>
                 ARE YOU CURRENTLY HOMELESS?
                 <span>&nbsp;&nbsp;&nbsp;</span>
-                <span>&nbsp;&nbsp;&nbsp;</span>
                 <FormControl className={classes.formControl}> 
-               {/* <InputLabel htmlFor="age-helper">Age</InputLabel> */}
                 <Select
                 onClick={(event) => this.handleInputChange(event, 'homeless')}
-
-                // input={<Input name="vet" />}
                 value={this.state.vet.homeless}
-                // onChange={this.handleChangeForGender}
                 inputProps={{
                   name: 'homeless',
                   id: 'homeless-simple',
                 }}>
-                {/* return( */}
                 <MenuItem 
                     value='false'
                 >
@@ -279,16 +263,11 @@ class DemographicQuestion extends Component {
                 </MenuItem>
                 <MenuItem
                     value='true'
-                    // onClick={(event) => this.handleInputChange(event, 'homeless')}
                 >
                         YES
                 </MenuItem>
-                    {/* ) */}
-                {/*  })} */}
                 </Select> 
                 </FormControl>
-                <br></br>
-                <br></br>
                 <br></br>
                 HOME ADDRESS
                 <br></br>
@@ -301,16 +280,6 @@ class DemographicQuestion extends Component {
                      value={this.state.vet.homeAddress}
                     onChange={(event) => this.handleInputChange(event, "homeAddress")}
                 />
-
-                {/* <TextField
-                    id="standard-textarea"
-                    variant="outlined"
-                    label="Apt/PO Box/Bldg"
-                    name="homeApartment"
-                     value={this.state.vet.homeApartment}
-                    onChange={(event) => this.handleInputChange(event, "homeApartment")}
-                /> */}
-
                 <br></br>
                 <TextField
                     style={{marginBottom:"1rem", marginRight:"1rem"}}
@@ -321,6 +290,7 @@ class DemographicQuestion extends Component {
                      value={this.state.vet.homeCity}
                     onChange={(event) => this.handleInputChange(event, "homeCity")}
                 />
+                <br></br>
                 <TextField
                     style={{marginBottom:"1rem"}}
                     id="standard-textarea"
@@ -340,7 +310,7 @@ class DemographicQuestion extends Component {
                      value={this.state.vet.homeZip}
                     onChange={(event) => this.handleInputChange(event, "homeZip")}
                 />
-
+                <br></br>
                 <TextField
                     id="standard-textarea"
                     variant="outlined"
@@ -350,12 +320,9 @@ class DemographicQuestion extends Component {
                     onChange={(event) => this.handleInputChange(event, "homeCountry")}
                 />
                 </div>
-                    <br></br>
-                    <br></br>
-                    <br></br>
                 <div>
                 MAIL ADDRESS
-                    <br></br>
+                <br></br>
                 <TextField
                     style={{marginTop:"1rem", marginBottom:"1rem", width:'30rem'}}
                     variant="outlined"
@@ -364,15 +331,6 @@ class DemographicQuestion extends Component {
                      value={this.state.vet.mailAddress}
                     onChange={(event) => this.handleInputChange(event, "mailAddress")}
                 />
-
-                {/* <TextField
-                    id="standard-textarea"
-                    variant="outlined"
-                    label="Apt/PO Box/Bldg"
-                    name="mailApartment"
-                     value={this.state.vet.mailApartment}
-                    onChange={(event) => this.handleInputChange(event, "mailApartment")}
-                /> */}
                 <br></br>
                 <TextField
                     style={{marginRight:"1rem"}}
@@ -383,7 +341,7 @@ class DemographicQuestion extends Component {
                     value={this.state.vet.mailCity}
                     onChange={(event) => this.handleInputChange(event, "mailCity")}
                 />
-
+                <br></br>
                 <TextField
                     style={{marginRight:"1rem"}}
                     id="standard-textarea"
@@ -403,6 +361,7 @@ class DemographicQuestion extends Component {
                     value={this.state.vet.mailZip}
                     onChange={(event) => this.handleInputChange(event, "mailZip")}
                 />
+                <br></br>
                 <TextField
                     style={{marginRight:"1rem", marginTop:"1rem"}}
                     id="standard-textarea"
@@ -412,11 +371,7 @@ class DemographicQuestion extends Component {
                     value={this.state.vet.mailCountry}
                     onChange={(event) => this.handleInputChange(event, "mailCountry")}
                 />
-               
-                {/* <Button onClick={(event) =>this.saveDemographic(event)}>SAVE</Button> */}
-                    <br></br>
-                    <br></br>
-                    <br></br>
+                <br></br>
                 <Fab
                     className="float-right"
                     style={{
@@ -428,8 +383,8 @@ class DemographicQuestion extends Component {
                     </div>
                 </div>
             </form>
-        )//END return
-    };//END render
-};//END Name
+        )
+    };
+};
 
 export default connect(mapStoreToProps)(withStyles(styles)(DemographicQuestion));

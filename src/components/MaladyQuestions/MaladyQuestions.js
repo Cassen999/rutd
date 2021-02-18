@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import {    
     withStyles,
     FormControl,
-    InputLabel,
     Select,
     MenuItem,
     Input,
@@ -27,7 +26,7 @@ const styles = (theme) => ({
         flexWrap: 'wrap',
     },
     chip: {
-    margin: 2,
+      margin: 2,
     },
     title: {
         marginBottom: theme.spacing(3)
@@ -44,16 +43,6 @@ const MenuProps = {
     },
   },
 };
-
-
-// function getStyles(malady, selectedMalady, theme) {
-//     return {
-//       fontWeight:
-//         selectedMalady.indexOf(malady) === -1
-//           ? theme.typography.fontWeightRegular
-//           : theme.typography.fontWeightMedium,
-//     };
-// }
 
 // This component displays the intake questionaire for the 'Health' tab \\
 class MaladyQuestions extends Component {
@@ -142,8 +131,8 @@ handleChange = (event) => {
                 onClick={(event) => { this.saveMalady(event) }}><SaveTwoToneIcon />
             </Fab>
       </div>
-    ); //END return
-  } //END render
-} //END Name
+    );
+  }
+}
 
 export default connect(mapStoreToProps)(withStyles(styles)(MaladyQuestions));

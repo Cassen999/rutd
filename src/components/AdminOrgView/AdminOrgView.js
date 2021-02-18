@@ -10,8 +10,6 @@ import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import AddIcon from '@material-ui/icons/Add';
 
-
-
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,

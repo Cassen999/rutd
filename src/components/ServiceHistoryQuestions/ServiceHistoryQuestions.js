@@ -27,7 +27,6 @@ const styles = theme => ({
   checked: {},
 });
 
-
 // This component displays the intake questionaire for the 'Service History' tab \\
 class ServiceHistoryQuestions extends Component {
     state = { 
@@ -39,7 +38,6 @@ class ServiceHistoryQuestions extends Component {
         startDate: '',
         endDate: ''
      };
-
 
   componentDidMount() {
     this.props.dispatch({type: 'FETCH_BRANCH'});

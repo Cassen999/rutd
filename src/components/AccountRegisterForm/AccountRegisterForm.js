@@ -6,9 +6,6 @@ import Button from '@material-ui/core/Button';
 import Radio from '@material-ui/core/Radio';
 import green from '@material-ui/core/colors/green';
 import Image from '../../Images/black-logo.png';
-// import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-// import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
-
 
 const styles = theme =>  ({
   root: {
@@ -22,8 +19,6 @@ const styles = theme =>  ({
       margin: theme.spacing.unit,
     },
 });
-
-
 
 class AccountRegisterForm extends Component {
   state = {

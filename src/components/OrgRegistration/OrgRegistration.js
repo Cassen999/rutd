@@ -24,6 +24,7 @@ const styles = (theme) => ({
     minWidth: 120,
   },
 });
+
 class OrgRegistration extends Component {
   state = {
     name: "",
@@ -69,7 +70,6 @@ class OrgRegistration extends Component {
             onSubmit={this.handleSubmit}
           >
             <TextField
-              // helperText="Please enter a name"
               variant="outlined"
               margin="dense"
               style={{ margin: "5px" }}
@@ -81,7 +81,6 @@ class OrgRegistration extends Component {
             <TextField
               margin="dense"
               style={{ margin: "5px" }}
-              // helperText="Please enter Number"
               variant="outlined"
               label="Number"
               value={this.state.number}
@@ -92,7 +91,6 @@ class OrgRegistration extends Component {
               margin="dense"
               style={{ margin: "5px" }}
               name="email"
-              // helperText="Please enter Email"
               variant="outlined"
               label="Email"
               value={this.state.email}
@@ -103,7 +101,6 @@ class OrgRegistration extends Component {
               margin="dense"
               style={{ margin: "5px" }}
               name="city"
-              // helperText="Please enter City"
               variant="outlined"
               label="City"
               value={this.state.city}

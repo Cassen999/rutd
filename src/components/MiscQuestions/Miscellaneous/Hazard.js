@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import clsx from 'clsx';
-import { FormControl, Radio, Typography } from "@material-ui/core";
+import { Radio, Typography } from "@material-ui/core";
 
 class Hazard extends Component {
   render() {
@@ -57,8 +57,8 @@ class Hazard extends Component {
             )}
         </div>
       </div>
-    ); //END return
-  } //END render
-} //END DemographicsForm
+    );
+  }
+}
 
 export default Hazard;

@@ -12,7 +12,6 @@ const styles = theme => ({
   }
 });
 
-
 class RegisterPage extends Component {
   state = {
     username: '',
