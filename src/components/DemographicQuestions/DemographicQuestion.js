@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
+<<<<<<< HEAD
+import {withStyles, Select, MenuItem, TextField, FormControl } from "@material-ui/core";
+import Fab from '@material-ui/core/Fab';
+import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
+=======
 import {
   withStyles,
   Select,
@@ -10,6 +15,7 @@ import {
 } from "@material-ui/core";
 import Fab from "@material-ui/core/Fab";
 import SaveTwoToneIcon from "@material-ui/icons/SaveTwoTone";
+>>>>>>> master
 
 const styles = (theme) => ({
   inputs: {
@@ -211,9 +217,7 @@ class DemographicQuestion extends Component {
             GENDER
             <span>&nbsp;&nbsp;&nbsp;</span>
             <FormControl className={classes.formControl}>
-              {/* <InputLabel htmlFor="age-helper">Age</InputLabel> */}
               <Select
-                // input={<Input name="vet" />}
                 onChange={(event) =>
                   this.handleChangeForGender(event, "gender")
                 }
@@ -233,18 +237,14 @@ class DemographicQuestion extends Component {
               </Select>
             </FormControl>
             <span>&nbsp;&nbsp;&nbsp;</span>
-            <span>&nbsp;&nbsp;&nbsp;</span>
             MARRIAGE
             <span>&nbsp;&nbsp;&nbsp;</span>
             <FormControl className={classes.formControl}>
-              {/* <InputLabel htmlFor="age-helper">Age</InputLabel> */}
               <Select
                 onChange={(event) =>
                   this.handleChangeForMarriage(event, "marriage")
                 }
-                // input={<Input name="vet" />}
                 value={this.state.vet.marriage}
-                // onChange={this.handleChangeForGender}
                 inputProps={{
                   name: "marriage",
                   id: "marriage-simple",
@@ -272,22 +272,20 @@ class DemographicQuestion extends Component {
                 onClick={(event) => this.handleInputChange(event, "homeless")}
                 // input={<Input name="vet" />}
                 value={this.state.vet.homeless}
-                // onChange={this.handleChangeForGender}
                 inputProps={{
-                  name: "homeless",
-                  id: "homeless-simple",
-                }}
-              >
-                {/* return( */}
-                <MenuItem value="false">NO</MenuItem>
+                  name: 'homeless',
+                  id: 'homeless-simple',
+                }}>
+                <MenuItem 
+                    value='false'
+                >
+                        NO
+                </MenuItem>
                 <MenuItem
-                  value="true"
-                  // onClick={(event) => this.handleInputChange(event, 'homeless')}
+                    value='true'
                 >
                   YES
                 </MenuItem>
-                {/* ) */}
-                {/*  })} */}
               </Select>
             </FormControl>
             <br></br>
@@ -308,14 +306,6 @@ class DemographicQuestion extends Component {
               value={this.state.vet.homeAddress}
               onChange={(event) => this.handleInputChange(event, "homeAddress")}
             />
-            {/* <TextField
-                    id="standard-textarea"
-                    variant="outlined"
-                    label="Apt/PO Box/Bldg"
-                    name="homeApartment"
-                     value={this.state.vet.homeApartment}
-                    onChange={(event) => this.handleInputChange(event, "homeApartment")}
-                /> */}
             <br></br>
             <TextField
               style={{ marginBottom: "1rem", marginRight: "1rem" }}
@@ -372,14 +362,6 @@ class DemographicQuestion extends Component {
               value={this.state.vet.mailAddress}
               onChange={(event) => this.handleInputChange(event, "mailAddress")}
             />
-            {/* <TextField
-                    id="standard-textarea"
-                    variant="outlined"
-                    label="Apt/PO Box/Bldg"
-                    name="mailApartment"
-                     value={this.state.vet.mailApartment}
-                    onChange={(event) => this.handleInputChange(event, "mailApartment")}
-                /> */}
             <br></br>
             <TextField
               style={{ marginRight: "1rem" }}
@@ -418,7 +400,6 @@ class DemographicQuestion extends Component {
               value={this.state.vet.mailCountry}
               onChange={(event) => this.handleInputChange(event, "mailCountry")}
             />
-            {/* <Button onClick={(event) =>this.saveDemographic(event)}>SAVE</Button> */}
             <br></br>
             <br></br>
             <br></br>
@@ -438,9 +419,9 @@ class DemographicQuestion extends Component {
           </div>
         </div>
       </form>
-    ); //END return
-  } //END render
-} //END Name
+    );
+  }
+} 
 
 export default connect(mapStoreToProps)(
   withStyles(styles)(DemographicQuestion)

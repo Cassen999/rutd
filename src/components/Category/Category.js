@@ -84,10 +84,7 @@ class Category extends Component {
               <InputLabel>
                 SELECT
               </InputLabel>
-              <Select
-              // value={age}
-              //onChange={(event)=>this.handleChange(event)}
-              >
+              <Select>
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
@@ -99,7 +96,6 @@ class Category extends Component {
                   >
                     {category.description}</MenuItem>
                 ))}
-
               </Select>
               <FormHelperText>Some important helper text</FormHelperText>
             </FormControl>
@@ -120,8 +116,8 @@ class Category extends Component {
           </Paper>
         </Grid>
       </>
-    ); //END return
-  } //END render
-} //END Name
+    ); 
+  } 
+}
 
 export default connect(mapStoreToProps)(withStyles(styles)(Category));

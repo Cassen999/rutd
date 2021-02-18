@@ -8,8 +8,9 @@ import {
   FormControl,
   Select,
   Radio,
-  Typography,
-} from "@material-ui/core";
+  Typography 
+} from "@material-ui/core";  
+              
 class Compensation extends Component {
   state = {
     open: false,

@@ -9,8 +9,6 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import { useTheme } from "@material-ui/core/styles";
-//REGISTRATION QUESTIONS
-
 import DemographicQuestion from "../DemographicQuestions/DemographicQuestion";
 import MiscQuestions from "../MiscQuestions/MiscQuestions";
 import ServiceHistoryQuestions from "../ServiceHistoryQuestions/ServiceHistoryQuestions";

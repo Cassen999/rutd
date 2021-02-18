@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import mapStoreToProps from "../../redux/mapStoreToProps";
-import "../AdminVetView/AdminVetView.css";
-import Fab from "@material-ui/core/Fab";
-import HomeIcon from "@material-ui/icons/Home";
-import { withStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import moment from "moment";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import mapStoreToProps from '../../redux/mapStoreToProps';
+import '../AdminVetView/AdminVetView.css';
+import Fab from '@material-ui/core/Fab';
+import HomeIcon from '@material-ui/icons/Home';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import moment from 'moment';
 
-const styles = (theme) => ({
+const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
   },

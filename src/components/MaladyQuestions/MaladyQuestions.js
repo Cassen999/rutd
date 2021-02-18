@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
-import {
-  withStyles,
-  FormControl,
-  Select,
-  MenuItem,
-  Input,
-  Typography,
-  Chip,
-  Checkbox,
-  ListItemText,
+import {    
+    withStyles,
+    FormControl,
+    Select,
+    MenuItem,
+    Input,
+    Typography,
+    Chip,
+    Checkbox,
+    ListItemText      
 } from "@material-ui/core";
 import Fab from "@material-ui/core/Fab";
 import SaveTwoToneIcon from "@material-ui/icons/SaveTwoTone";
@@ -32,7 +32,6 @@ const styles = (theme) => ({
     marginBottom: theme.spacing(3),
   },
 });
-
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 12;
 const MenuProps = {
@@ -43,15 +42,6 @@ const MenuProps = {
     },
   },
 };
-
-// function getStyles(malady, selectedMalady, theme) {
-//     return {
-//       fontWeight:
-//         selectedMalady.indexOf(malady) === -1
-//           ? theme.typography.fontWeightRegular
-//           : theme.typography.fontWeightMedium,
-//     };
-// }
 
 // This component displays the intake questionaire for the 'Health' tab \\
 class MaladyQuestions extends Component {
@@ -144,8 +134,8 @@ class MaladyQuestions extends Component {
           <SaveTwoToneIcon />
         </Fab>
       </div>
-    ); //END return
-  } //END render
-} //END Name
+    );
+  }
+}
 
 export default connect(mapStoreToProps)(withStyles(styles)(MaladyQuestions));

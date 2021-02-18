@@ -58,8 +58,8 @@ class Hazard extends Component {
           )}
         </div>
       </div>
-    ); //END return
-  } //END render
-} //END DemographicsForm
+    );
+  }
+}
 
 export default Hazard;

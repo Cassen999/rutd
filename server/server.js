@@ -7,7 +7,6 @@ const sessionMiddleware = require("./modules/session-middleware");
 
 const passport = require("./strategies/user.strategy");
 
-// Route includes
 const matchRouter = require("./routes/match.router");
 const userRouter = require("./routes/user.router");
 const vetRouter = require("./routes/vet.router");
@@ -16,18 +15,15 @@ const emailRouter = require("./routes/email.router");
 const categoryRouter = require('./routes/category.router');
 const dropdownRouter = require('./routes/dropdown.router');
 const updateProfileRouter = require('./routes/updateProfile.router');
-// Body parser middleware
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Passport Session Configuration //
 app.use(sessionMiddleware);
 
-// start up passport sessions
 app.use(passport.initialize());
 app.use(passport.session());
 
-/* Routes */
 app.use("/api/user", userRouter);
 app.use("/api/match", matchRouter);
 app.use("/api/vet", vetRouter);
@@ -38,13 +34,10 @@ app.use("/api/category", categoryRouter);
 app.use("/api/dropdown", dropdownRouter);
 app.use("/api/update", updateProfileRouter);
 
-// Serve static files
 app.use(express.static("build"));
 
-// App Set //
 const PORT = process.env.PORT || 5000;
 
-/** Listen * */
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
 });

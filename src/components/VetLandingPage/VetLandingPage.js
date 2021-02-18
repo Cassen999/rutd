@@ -7,8 +7,6 @@ import { withRouter } from "react-router-dom";
 import "./VetLandingPage.css";
 import { withStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
-
-// STYLING: Material-UI
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
@@ -168,6 +166,7 @@ class UserPage extends Component {
         </div>
       </div>
     );
+    
     const matches = this.props.store.vetMatchReducer;
 
     const { modalOpen } = this.state;
