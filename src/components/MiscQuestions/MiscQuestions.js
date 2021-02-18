@@ -118,6 +118,7 @@ class MiscQuestions extends Component {
       type: "UPDATE_MISC_QUESTIONS",
       payload: this.state,
     });
+    this.props.dispatch({type: 'FETCH_VET_INFO', payload: this.props.store.user.id})
   };
 
   render() {

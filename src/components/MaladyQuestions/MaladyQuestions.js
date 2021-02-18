@@ -70,6 +70,7 @@ class MaladyQuestions extends Component {
       type: "UPDATE_MALADY",
       payload: this.state,
     });
+    this.props.dispatch({type: 'FETCH_VET_INFO', payload: this.props.store.user.id})
   };
 
   handleChange = (event) => {

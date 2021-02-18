@@ -49,6 +49,7 @@ class ServiceHistoryQuestions extends Component {
      saveServiceHistory = () => {
         console.log('Saving serviceHistory');
         this.props.dispatch({type: 'UPDATE_SERVICE_HISTORY', payload: this.state})
+        this.props.dispatch({type: 'FETCH_VET_INFO', payload: this.props.store.user.id})
     };
 
 
