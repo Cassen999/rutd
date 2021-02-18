@@ -40,7 +40,7 @@ class App extends Component {
         <div>
           <Nav />
           <Switch>
-            <Redirect exact from="/" to="/home" />
+            <Redirect exact from="/" to="/user" />
             <ProtectedRoute
               exact
               path="/user"
