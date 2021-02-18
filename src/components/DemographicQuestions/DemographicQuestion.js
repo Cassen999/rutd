@@ -137,6 +137,7 @@ class DemographicQuestion extends Component {
           mailCountry: "",
         },
       });
+      this.props.dispatch({type: 'FETCH_VET_INFO', payload: this.props.store.user.id})
     }
   };
 
