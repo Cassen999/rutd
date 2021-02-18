@@ -21,10 +21,10 @@ RUTD provides a single registration application, that can be completed in parts 
 
 - [Node.js](https://nodejs.org/en/)
 - [Nodemailer](https://nodemailer.com/about/)
+- [PostgreSQL](https://www.postgresql.org/)
 - [React.js](https://reactjs.org/)
 - [React-Redux](https://react-redux.js.org/)
 - [Redux-Saga](https://redux-saga.js.org/)
-- [PostgreSQL](https://www.postgresql.org/)
 
 ### SETUP
 
