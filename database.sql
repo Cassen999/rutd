@@ -725,6 +725,12 @@ VALUES
     (2, 6);
 
 -- End inserts into organization_categories
+
+
+
+
+-- WARNING: Please take caution when running the query below,
+----------  It will delete all tables from the database ---- 
 DROP TABLE "user",
 "type",
 "rank",

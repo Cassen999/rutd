@@ -108,14 +108,15 @@ router.get("/:id", rejectUnauthenticatedAdmin, (req, res) => {
 });
 
 // GET for resource search bar
-router.get("/resource/search", rejectUnauthenticatedAdmin, (req, res) => {
+router.get("/resourceSearch/resourceSearch", rejectUnauthenticatedAdmin, (req, res) => {
   const searchText = `%${req.query.searchText}%`
-  const sqlText = `SELECT "organization"."id", "name" FROM "organization"
-                      JOIN "user" ON "user".id = "organization".org_id
-                      WHERE "user".type_id = '3' AND "organization".name 
-                      ILIKE $1;`;
+  const sqlText = `SELECT "organization".id, "organization"."name" FROM "organization"
+                  JOIN "user" ON "user".id = "organization".org_id
+                  AND "organization"."name" 
+                  ILIKE $1;`;
   pool.query(sqlText, [searchText])
   .then((result) => {
+    console.log('resource search result.rows', result.rows)
       res.send(result.rows);
   })
   .catch((error) => {

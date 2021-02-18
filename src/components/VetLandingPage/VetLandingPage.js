@@ -142,7 +142,7 @@ class UserPage extends Component {
 
 
   render() {
-
+    const { classes } = this.props;
       //code for popup modal
       const emergencyModal = (
         <div className={classes.paper}>
@@ -175,8 +175,6 @@ class UserPage extends Component {
           </div>
         </div>
       );
-      
-      const { classes } = this.props;
       const matches = this.props.store.vetMatchReducer;
       const incompleteMatches = this.props.store.incompleteMatchReducer;
       const { completeMatchIndex, incompleteMatchIndex, modalOpen } = this.state;

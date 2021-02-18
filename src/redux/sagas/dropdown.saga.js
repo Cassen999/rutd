@@ -14,7 +14,7 @@ function* getGenderSaga(action) {
 
 function* getMarriageSaga(action) {
   try {
-    const response = yield axios.get("api/dropdown/marriage");
+    const response = yield axios.get("api/dropdown/married");
     yield put({type: 'SET_MARRIAGE_DROPDOWN', payload: response.data})
   } catch (error) {
     console.log("Error in updateCompensationSaga", error);
@@ -68,7 +68,7 @@ function* getDischargeSaga(action) {
 
 function* fetchMaladySaga(action) {
   try {
-    const response = yield axios.get(`/api/malady`);
+    const response = yield axios.get(`/api/dropdown/injury`);
     yield put({ type: "SET_MALADY", payload: response.data });
   } catch (error) {
     console.log("Error in fetchMaladySaga", error);

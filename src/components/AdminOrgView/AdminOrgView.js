@@ -8,15 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
+import AddIcon from '@material-ui/icons/Add';
 
-// import Button from '@material-ui/core/Button';
-
-// TO DO LIST ON THIS PAGE:
-// - Rename this component to AdminResourceView
-// - Edit button to allow admins to edit organization profile
-// - create saga with PUT route to update organization
-// - create reducer to accept updated organization details
-// - this.props.history.push('/adminResourceEdit')
 
 
 const styles = theme => ({
@@ -52,6 +45,10 @@ class AdminResourceEdit extends Component {
   editOrganization = (id) => {
     console.log("Editing Organization with ID:", id);
     this.props.history.push("/adminOrgEdit", id)
+  }
+
+  addOrganization = (id) => {
+    this.props.history.push ("/adminOrgAdd", id);
   }
 
   render() {
@@ -114,6 +111,17 @@ class AdminResourceEdit extends Component {
                       }}
                       onClick={() => this.editOrganization(resourceDetails.org_id)}>
                         <EditRoundedIcon />
+                    </Fab>
+                    <br></br>
+                    <Fab  
+                      className="edit-org-btn" variant="contained" 
+                      style={{
+                        borderRadius: 35,
+                        backgroundColor: '#AFFA3D',
+                        fontFamily: 'orbitron',
+                      }}
+                      onClick={() => this.addOrganization(resourceDetails.org_id)}>
+                        <AddIcon />
                     </Fab>
                   </div>
                 <center>

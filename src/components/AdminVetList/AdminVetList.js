@@ -40,7 +40,7 @@ class AdminVetList extends Component {
 //"RESOURCE YOU SELECTED:"
   handleResource = (resourceID) =>{
     this.props.dispatch({type: 'GET_ONE_RESOURCE', payload: resourceID})
-    this.props.history.push("/adminOrgEdit");
+    this.props.history.push("/adminOrgView");
   }
 
   handleInputChangeForSearch = (event) => {

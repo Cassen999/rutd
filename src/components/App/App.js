@@ -10,11 +10,7 @@ import { connect } from "react-redux";
 
 import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
-//comment
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-
-import AboutPage from "../AboutPage/AboutPage";
-// import VetLandingPage from '../VetLandingPage/VetLandingPage';
 import LandingPage from "../VetLandingPage/VetLandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
@@ -30,8 +26,8 @@ import AdminOrgView from "../AdminOrgView/AdminOrgView";
 import AdminOrgEdit from "../AdminOrgEdit/AdminOrgEdit";
 import VetFindMatches from "../VetFindMatches/VetFindMatches";
 import DemographicQuestion from '../DemographicQuestions/DemographicQuestion'
-import "./App.css";
 import VetViewResource from "../VetViewResource/VetViewResource";
+import "./App.css";
 
 class App extends Component {
   componentDidMount() {

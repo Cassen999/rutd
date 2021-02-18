@@ -55,7 +55,7 @@ function* fetchExist(action) {
 // GET for vet search bar
 function* fetchSearchVet(action) {
     try{
-        const response = yield axios.get(`/api/vet/vetSearch?searchText=${action.payload}`)
+        const response = yield axios.get(`/api/vet/vetSearch/vetSearch?searchText=${action.payload}`)
         yield put({type: 'SET_VET_SEARCH', payload: response.data});
     } catch(error){
         console.log('error with vetSearch fetch request', error);

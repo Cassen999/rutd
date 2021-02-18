@@ -120,7 +120,7 @@ router.get("/exist/:id", rejectUnauthenticatedVet, (req, res) => {
 });
 
 // GET for vet search bar
-router.get("/vetSearch", rejectUnauthenticatedAdmin, (req, res) => {
+router.get("/vetSearch/vetSearch", rejectUnauthenticatedAdmin, (req, res) => {
   const searchText = `%${req.query.searchText}%`
   console.log('vetSearch req.query ', req.query)
   const sqlText = `SELECT "first_name", "last_name", "match".received, 

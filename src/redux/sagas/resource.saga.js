@@ -58,12 +58,23 @@ function* vetGetResource(action) {
 // GET for resource search bar
 function* fetchSearchResource(action) {
   try{
-      const response = yield axios.get(`/api/resourceSearch?searchText=${action.payload}`)
+      const response = yield axios.get(`/api/resource/resourceSearch/resourceSearch?searchText=${action.payload}`)
       yield put({type: 'SET_RESOURCE_SEARCH', payload: response.data});
   } catch(error){
       console.log('error with resourceSearch fetch request', error);
   } 
 }
+
+function* addResource(action) {
+  console.log("Fetch orgs from DB");
+  try {
+    const response = yield axios.post("/api/resource");
+    yield put({ type: "SET_RESOURCE", payload: response.data });
+  } catch (error) {
+    console.log("error with adding resource request", error);
+  }
+}
+
 
 function* deleteResource(action) {
   console.log('action.payload', action.payload)
@@ -84,6 +95,8 @@ function* resource() {
   yield takeLatest('VET_GET_RESOURCE', vetGetResource);
   yield takeLatest('FETCH_SEARCH_RESOURCE', fetchSearchResource);
   yield takeLatest('DELETE_RESOURCE', deleteResource);
+  yield takeLatest('ADD_RESOURE', addResource);
+
 }
 
 export default resource;
