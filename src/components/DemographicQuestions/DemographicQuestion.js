@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
-<<<<<<< HEAD
-import {withStyles, Select, MenuItem, TextField, FormControl } from "@material-ui/core";
-import Fab from '@material-ui/core/Fab';
-import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
-=======
 import {
   withStyles,
   Select,
@@ -15,7 +10,6 @@ import {
 } from "@material-ui/core";
 import Fab from "@material-ui/core/Fab";
 import SaveTwoToneIcon from "@material-ui/icons/SaveTwoTone";
->>>>>>> master
 
 const styles = (theme) => ({
   inputs: {
@@ -40,27 +34,25 @@ class DemographicQuestion extends Component {
 
   state = {
     vet: {
-      first_name: "",
-      last_name: "",
-      email: "",
-      birth: "",
-      gender: 0,
-      phone: "",
-      marriage: 0,
-      children: 0,
-      homeless: "",
-      homeAddress: "",
-      homeApartment: "",
-      homeCity: "",
-      homeState: "",
-      homeZip: "",
-      homeCountry: "",
-      mailAddress: "",
-      mailApartment: "",
-      mailCity: "",
-      mailState: "",
-      mailZip: "",
-      mailCountry: "",
+      first_name: this.props.store.vetReducer.first_name,
+      last_name: this.props.store.vetReducer.last_name,
+      email: this.props.store.vetReducer.email,
+      birth: this.props.store.vetReducer.date_of_birth,
+      gender: this.props.store.vetReducer.gender_id,
+      phone: this.props.store.vetReducer.number,
+      marriage: this.props.store.vetReducer.married_id,
+      children: this.props.store.vetReducer.children,
+      homeless: this.props.store.vetReducer.homeless,
+      homeAddress: this.props.store.vetReducer.current_address,
+      homeCity: this.props.store.vetReducer.city,
+      homeState: this.props.store.vetReducer.state_id,
+      homeZip: this.props.store.vetReducer.zipcode,
+      homeCountry: this.props.store.vetReducer.country_id,
+      mailAddress: this.props.store.vetReducer.mailing_address,
+      mailCity: this.props.store.vetReducer.city2,
+      mailState: this.props.store.vetReducer.state_id2,
+      mailZip: this.props.store.vetReducer.zipcode2,
+      mailCountry: this.props.store.vetReducer.country_id2,
     },
   };
 
@@ -82,9 +74,7 @@ class DemographicQuestion extends Component {
           ...this.state.vet,
           marriage: event.target.value,
         },
-      },
-      function () {}
-    );
+      });
   };
 
   handleInputChange = (event, inputProperty) => {
@@ -97,11 +87,7 @@ class DemographicQuestion extends Component {
           [inputProperty]: event.target.value,
           user_id: this.props.store.user.id,
         },
-      },
-      function () {
-        console.log("State has been set", this.state.vet);
-      }
-    );
+      });
   };
 
   handleInputChangeAddress = (event, inputProperty) => {
@@ -114,11 +100,7 @@ class DemographicQuestion extends Component {
           [inputProperty]: event.target.value,
           user_id: this.props.store.user.id,
         },
-      },
-      function () {
-        console.log("State has been set", this.state.vet);
-      }
-    );
+      });
   };
 
   saveDemographic = () => {
@@ -267,10 +249,8 @@ class DemographicQuestion extends Component {
             <span>&nbsp;&nbsp;&nbsp;</span>
             <span>&nbsp;&nbsp;&nbsp;</span>
             <FormControl className={classes.formControl}>
-              {/* <InputLabel htmlFor="age-helper">Age</InputLabel> */}
               <Select
                 onClick={(event) => this.handleInputChange(event, "homeless")}
-                // input={<Input name="vet" />}
                 value={this.state.vet.homeless}
                 inputProps={{
                   name: 'homeless',

@@ -44,25 +44,23 @@ router.put('/malady/:id', (req,res) => {
 router.put('/demographic', rejectUnauthenticatedVet, (req, res) => {
 
     let demographic = req.body;
-    let id = req.body.user_id; // user id
+    let id = req.user.id; // user id
   
     console.log(`Updating demographics for vet_id: ${id}.`);
   
-    let queryText = `INSERT INTO "veteran" ("first_name", "last_name", 
-                      "email", "date_of_birth", "gender_id", "number",  
-                      "married_id", "children", "homeless", "current_address", 
-                      "city", "state_id", "zipcode", "country_id", "mailing_address",
-                      "city2", "state_id2", "zipcode2", "country_id2")
-                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, 
-                      $12, $13, $14, $15, $16, $17, $18, $19)
-                      WHERE "vet_id" = $20;`;
+    let queryText = `UPDATE "veteran" SET "first_name"=$1, "last_name"=$2, 
+                      "email"=$3, "date_of_birth"=$4, "gender_id"=$5, "number"=$6,  
+                      "married_id"=$7, "children"=$8, "homeless"=$9, "current_address"=$10, 
+                      "city"=$11, "state_id"=$12, "zipcode"=$13, "country_id"=$14, "mailing_address"=$15,
+                      "city2"=$16, "state_id2"=$17, "zipcode2"=$18, "country_id2"=$19
+                      WHERE "vet_id" = ${id};`;
   
     pool.query(queryText, [demographic.first_name, demographic.last_name, 
       demographic.email, demographic.birth, demographic.gender,
       demographic.phone, demographic.marriage, demographic.chilren, 
       demographic.homeless, demographic.homeAddress,
       demographic.homeCity, demographic.homeState, demographic.homeZip, demographic.homeCountry,
-      demographic.mailAddress, demographic.mailCity,demographic.mailState, demographic.mailZip, demographic.mailCountry, id])
+      demographic.mailAddress, demographic.mailCity,demographic.mailState, demographic.mailZip, demographic.mailCountry])
       .then(result => {
         res.sendStatus(201);
       })
