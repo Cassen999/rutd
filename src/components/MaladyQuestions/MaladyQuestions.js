@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
-import compose from 'recompose/compose';
 import {    
     withStyles,
     FormControl,
@@ -47,14 +46,14 @@ const MenuProps = {
 };
 
 
-function getStyles(malady, selectedMalady, theme) {
-    return {
-      fontWeight:
-        selectedMalady.indexOf(malady) === -1
-          ? theme.typography.fontWeightRegular
-          : theme.typography.fontWeightMedium,
-    };
-}
+// function getStyles(malady, selectedMalady, theme) {
+//     return {
+//       fontWeight:
+//         selectedMalady.indexOf(malady) === -1
+//           ? theme.typography.fontWeightRegular
+//           : theme.typography.fontWeightMedium,
+//     };
+// }
 
 // This component displays the intake questionaire for the 'Health' tab \\
 class MaladyQuestions extends Component {
@@ -126,7 +125,7 @@ handleChange = (event) => {
                         <em>None</em>
                     </MenuItem>
                     {maladyList.map((malady) => (
-                        <MenuItem key={malady.id} value={malady.id} style={getStyles(malady, selectedMalady, theme)} >
+                        <MenuItem key={malady.id} value={malady.id}  >
                             <Checkbox checked={selectedMalady.indexOf(malady.id) > -1} />
                             <ListItemText primary={malady.description} />
                         </MenuItem>
@@ -147,7 +146,4 @@ handleChange = (event) => {
   } //END render
 } //END Name
 
-export default compose(
-    withStyles(styles, { withTheme: true }),
-    connect(mapStoreToProps)
-)(MaladyQuestions);
+export default connect(mapStoreToProps)(withStyles(styles)(MaladyQuestions));

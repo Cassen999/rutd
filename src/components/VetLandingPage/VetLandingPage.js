@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import Button from "@material-ui/core/Button";
-import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { withRouter } from "react-router-dom";
-import compose from 'recompose/compose';
 import "./VetLandingPage.css";
 import { withStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
@@ -300,7 +298,6 @@ class UserPage extends Component {
   }
 }
 
-export default compose(
-  withStyles(styles, { withTheme: true }),
-  connect(mapStoreToProps)
-)(withRouter(UserPage));
+export default connect(mapStoreToProps)(withStyles(styles)(withRouter(UserPage)));
+
+
