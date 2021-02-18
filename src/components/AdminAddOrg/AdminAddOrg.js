@@ -10,6 +10,19 @@ import React, { Component } from "react";
 import swal from "sweetalert";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import "../AdminOrgEdit/AdminOrgEdit.css";
+import compose from 'recompose/compose';
+import {    
+    withStyles,
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
+    Input,
+    Typography,
+    Chip,
+    Checkbox,
+    ListItemText      
+} from "@material-ui/core";
 
 const styles = (theme) => ({
   button: {

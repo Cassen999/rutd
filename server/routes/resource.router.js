@@ -126,7 +126,7 @@ router.get("/resourceSearch/resourceSearch", rejectUnauthenticatedAdmin, (req, r
 });
 
 // DELETE a resource
-router.delete('delete/:id', rejectUnauthenticatedAdmin, (req, res) => {
+router.delete('/delete/:id', rejectUnauthenticatedAdmin, (req, res) => {
   let id = Number(req.params.id)
   const sqlText = `DELETE FROM "organization" WHERE id=$1;`
   pool.query(sqlText, [id])

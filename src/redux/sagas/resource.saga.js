@@ -95,7 +95,7 @@ function* resource() {
   yield takeLatest('VET_GET_RESOURCE', vetGetResource);
   yield takeLatest('FETCH_SEARCH_RESOURCE', fetchSearchResource);
   yield takeLatest('DELETE_RESOURCE', deleteResource);
-  yield takeLatest('ADD_RESOURE', addResource);
+  yield takeLatest('ADD_RESOURCE', addResource);
 
 }
 
