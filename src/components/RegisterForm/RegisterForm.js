@@ -47,9 +47,14 @@ function TabContainer({ children, dir }) {
 }
 
 class RegisterForm extends Component {
+
   state = {
-    btnValue: 0,
-  };
+    value: 0
+  }
+
+  componentDidMount() {
+    this.props.dispatch({type: 'FETCH_VET_INFO', payload: this.props.store.user.id})
+  }
 
   handleBack = () => {
     this.setState({ formIndex: this.state.formIndex - 1 });

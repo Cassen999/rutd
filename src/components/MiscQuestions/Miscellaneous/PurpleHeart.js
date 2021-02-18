@@ -39,7 +39,7 @@ class PurpleHeart extends Component {
             value={false}
             onClick={(event) => this.props.updateState(event, "purpleHeart")}
           />
-          {purpleHeart === true && (
+          {/* {purpleHeart === true && (
             <Fab
               className="float-right"
               style={{
@@ -50,12 +50,12 @@ class PurpleHeart extends Component {
                 marginRight: "10px",
               }}
               onClick={(event) => {
-                this.saveDemographic(event);
+                this.saveProgress(event);
               }}
             >
               <SaveTwoToneIcon />
             </Fab>
-          )}
+          )} */}
         </div>
       </div>
     );

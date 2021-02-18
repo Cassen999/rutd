@@ -30,13 +30,13 @@ const styles = theme => ({
 // This component displays the intake questionaire for the 'Service History' tab \\
 class ServiceHistoryQuestions extends Component {
     state = { 
-        status: '',
-        discharge: '',
-        branch: '',
-        rank: '',
+        status: this.props.store.vetReducer.status_id,
+        discharge: this.props.store.vetReducer.discharge_id,
+        branch: this.props.store.vetReducer.branch_id,
+        rank: this.props.store.vetReducer.rank_id,
         selectedValue: 'yes',
-        startDate: '',
-        endDate: ''
+        startDate: this.props.store.vetReducer.start_date,
+        endDate: this.props.store.vetReducer.end_date
      };
 
   componentDidMount() {
@@ -199,6 +199,7 @@ class ServiceHistoryQuestions extends Component {
                     aria-label="No"
                 />No
                 {/* -------------------------------------------------- */}
+                {JSON.stringify(this.state)}
                 <Fab
                     className="float-right"
                     style={{

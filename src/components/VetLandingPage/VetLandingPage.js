@@ -174,7 +174,7 @@ class UserPage extends Component {
     return (
       <div>
         <center>
-          <h1 class="grey"> Below are your saved resources</h1>
+          <h1 className="grey"> Below are your saved resources</h1>
           <hr className="hr-width"></hr>
         </center>
         {this.props.store.existReducer.eists === true ? (

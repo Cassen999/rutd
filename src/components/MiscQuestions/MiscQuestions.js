@@ -91,7 +91,7 @@ const styles = (theme) => ({
 class MiscQuestions extends Component {
   state = {
     userId: this.props.store.user.id,
-    compensationId: 0,
+    compensationId: 1,
     registered: "",
     imminentDanger: "",
     dangerDescription: "",
@@ -166,7 +166,7 @@ class MiscQuestions extends Component {
               marginRight: "10px",
             }}
             onClick={(event) => {
-              this.saveDemographic(event);
+              this.saveProgress(event);
             }}
           >
             <SaveTwoToneIcon />

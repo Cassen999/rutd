@@ -31,7 +31,7 @@ router.get("/", rejectUnauthenticatedAdmin, (req, res) => {
 // GET one specific veteran's info by ID
 router.get("/:id", rejectUnauthenticatedVetAdmin, (req, res) => {
   let id = req.params.id;
-  const queryText = `SELECT veteran.first_name, veteran.last_name, veteran.email, 
+  const queryText = `SELECT veteran.first_name, veteran.last_name, veteran.email, veteran.status_id, 
                       veteran.date_of_birth, veteran.number, veteran.children, 
                       veteran.homeless, veteran.current_address, veteran.city, 
                       veteran.city2, veteran.zipcode, veteran.state_id2,

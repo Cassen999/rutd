@@ -6,7 +6,6 @@ import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import swal from "sweetalert";
-import RedCross from "../../Images/redcross.jpg";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
@@ -187,7 +186,6 @@ class VetMatches extends Component {
                       <CardMedia
                         className={classes.media}
                         alt={match.title}
-                        image={RedCross}
                       />
                       <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
