@@ -1,27 +1,24 @@
 import React, { Component } from "react";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import { connect } from "react-redux";
-import {withStyles, Button} from "@material-ui/core";
-import ProgressBar from "../ProgressBar/ProgressBar";
+import { withStyles } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
-import SwipeableViews from 'react-swipeable-views';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import { useTheme } from '@material-ui/core/styles';
+import SwipeableViews from "react-swipeable-views";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Typography from "@material-ui/core/Typography";
+import { useTheme } from "@material-ui/core/styles";
 //REGISTRATION QUESTIONS
 
-//CATEGORIES
-import Category from '../Category/Category';
 import DemographicQuestion from "../DemographicQuestions/DemographicQuestion";
 import MiscQuestions from "../MiscQuestions/MiscQuestions";
 import ServiceHistoryQuestions from "../ServiceHistoryQuestions/ServiceHistoryQuestions";
 import MaladyQuestions from "../MaladyQuestions/MaladyQuestions";
 
-const styles = ({
+const styles = {
   button: {
-    marginTop: '1%',
+    marginTop: "1%",
   },
   complete: {
     position: "absolute",
@@ -38,10 +35,10 @@ const styles = ({
     textAlign: "center",
   },
   root: {
-    backgroundColor: '#ADFA3B',
+    backgroundColor: "#ADFA3B",
     width: 500,
   },
-});
+};
 
 function TabContainer({ children, dir }) {
   return (
@@ -52,30 +49,27 @@ function TabContainer({ children, dir }) {
 }
 
 class RegisterForm extends Component {
-
   state = {
     btnValue: 0,
-  }
+  };
 
   handleBack = () => {
     this.setState({ formIndex: this.state.formIndex - 1 });
-  }
-    
+  };
+
   handleChange = (event, value) => {
     this.setState({ value });
   };
 
-  handleChangeIndex = index => {
+  handleChangeIndex = (index) => {
     this.setState({ value: index });
   };
 
   render() {
-    const formIndex = this.state.formIndex;
-    const { classes } = this.props;
     const theme = useTheme;
     return (
       <div>
-          <AppBar position="static" color="default">
+        <AppBar position="static" color="default">
           <Tabs
             value={this.state.value}
             onChange={this.handleChange}
@@ -90,17 +84,28 @@ class RegisterForm extends Component {
           </Tabs>
         </AppBar>
         <SwipeableViews
-          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
           index={this.state.value}
-          onChangeIndex={this.handleChangeIndex}>
-          <TabContainer dir={theme.direction}><DemographicQuestion/></TabContainer>
-          <TabContainer dir={theme.direction}><ServiceHistoryQuestions /></TabContainer>
-          <TabContainer dir={theme.direction}><MaladyQuestions /></TabContainer>
-          <TabContainer dir={theme.direction}><MiscQuestions /></TabContainer>
+          onChangeIndex={this.handleChangeIndex}
+        >
+          <TabContainer dir={theme.direction}>
+            <DemographicQuestion />
+          </TabContainer>
+          <TabContainer dir={theme.direction}>
+            <ServiceHistoryQuestions />
+          </TabContainer>
+          <TabContainer dir={theme.direction}>
+            <MaladyQuestions />
+          </TabContainer>
+          <TabContainer dir={theme.direction}>
+            <MiscQuestions />
+          </TabContainer>
         </SwipeableViews>
       </div>
     );
   }
 }
 
-export default connect(mapStoreToProps)(withStyles(styles)(withRouter(RegisterForm)));
+export default connect(mapStoreToProps)(
+  withStyles(styles)(withRouter(RegisterForm))
+);
