@@ -2,28 +2,22 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import Button from "@material-ui/core/Button";
-import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { withRouter } from "react-router-dom";
-import compose from 'recompose/compose';
+import compose from "recompose/compose";
 import "./VetLandingPage.css";
 import { withStyles } from "@material-ui/core/styles";
-// import Grid from "@material-ui/core/Grid";
 import Modal from "@material-ui/core/Modal";
-// import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-// import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-// import IconButton from "@material-ui/core/IconButton";
-import RedCross from '../../Images/redcross.jpg'
+import RedCross from "../../Images/redcross.jpg";
 
 // STYLING: Material-UI
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Avatar from '@material-ui/core/Avatar';
-import CardHeader from '@material-ui/core/CardHeader';
-
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Avatar from "@material-ui/core/Avatar";
+import CardHeader from "@material-ui/core/CardHeader";
 
 const styles = (theme) => ({
   gridList: {
@@ -71,8 +65,8 @@ const styles = (theme) => ({
   matchContainer: {
     border: "5px solid #ADFA3B",
   },
-    root: {
-    padding: '0px'
+  root: {
+    padding: "0px",
   },
   card: {
     maxWidth: 400,
@@ -80,25 +74,25 @@ const styles = (theme) => ({
   },
   media: {
     height: 180,
-    width: 320
+    width: 320,
   },
   avatar: {
-  backgroundColor: 'red',
+    backgroundColor: "red",
   },
 });
 
 class UserPage extends Component {
   state = {
-      completeMatchIndex: 0,
-      incompleteMatchIndex: 0,
-      modalOpen: false,
-    };
+    completeMatchIndex: 0,
+    incompleteMatchIndex: 0,
+    modalOpen: false,
+  };
 
   componentDidMount() {
     this.props.dispatch({
-        type: 'FETCH_VET_EXIST', 
-        payload: this.props.store.user.id
-      });
+      type: "FETCH_VET_EXIST",
+      payload: this.props.store.user.id,
+    });
     this.props.dispatch({
       type: "FETCH_COMPLETE_MATCH",
       payload: this.props.store.user.id,
@@ -131,151 +125,148 @@ class UserPage extends Component {
   };
 
   insertVet = (user_id) => {
-    console.log('inserting vet')
-    this.props.dispatch({type: 'POST_NEW_VET', payload: user_id})
-    this.props.history.push("/register")
-  }
+    console.log("inserting vet");
+    this.props.dispatch({ type: "POST_NEW_VET", payload: user_id });
+    this.props.history.push("/register");
+  };
 
-  visitResource = (id) =>{
-    console.log('visiting resource', id);
-    this.props.dispatch({type: 'VET_GET_RESOURCE', payload: id});
-    this.props.history.push('/vetViewResource', id);
-  }
-
-
+  visitResource = (id) => {
+    console.log("visiting resource", id);
+    this.props.dispatch({ type: "VET_GET_RESOURCE", payload: id });
+    this.props.history.push("/vetViewResource", id);
+  };
 
   render() {
     const { classes } = this.props;
-      const emergencyModal = (
-        <div className={classes.paper}>
-          <header id="modal-header">
-            <h2 id="modal-title">Emergency Contact Numbers</h2>
-          </header>
-          <div className={classes.contacts}>
-            <ul id="emergency-contacts">
-              <li>Veteran’s Crisis Line</li>
-              <li>1-800-273-8255</li>
-              <br />
-              <li>National Suicide Prevention Lifeline</li>
-              <li>800-273-8255</li>
-              <br />
-              <li>The STARRY Counseling Program Crisis Hotline</li>
-              <li>800-440-9789</li>
-            </ul>
-            <Button
-              variant="contained"
-              style={{
-                borderRadius: 35,
-                backgroundColor: '#AFFA3D',
-                fontFamily: 'orbitron',
-              }}
-              className={classes.closeModal}
-              onClick={() => this.handleClick("closeModal")}
-            >
-              Close
-            </Button>
-          </div>
+    const emergencyModal = (
+      <div className={classes.paper}>
+        <header id="modal-header">
+          <h2 id="modal-title">Emergency Contact Numbers</h2>
+        </header>
+        <div className={classes.contacts}>
+          <ul id="emergency-contacts">
+            <li>Veteran’s Crisis Line</li>
+            <li>1-800-273-8255</li>
+            <br />
+            <li>National Suicide Prevention Lifeline</li>
+            <li>800-273-8255</li>
+            <br />
+            <li>The STARRY Counseling Program Crisis Hotline</li>
+            <li>800-440-9789</li>
+          </ul>
+          <Button
+            variant="contained"
+            style={{
+              borderRadius: 35,
+              backgroundColor: "#AFFA3D",
+              fontFamily: "orbitron",
+            }}
+            className={classes.closeModal}
+            onClick={() => this.handleClick("closeModal")}
+          >
+            Close
+          </Button>
         </div>
-      );
+      </div>
+    );
 
-      const matches = this.props.store.vetMatchReducer;
-      const incompleteMatches = this.props.store.incompleteMatchReducer;
-      const { completeMatchIndex, incompleteMatchIndex, modalOpen } = this.state;
+    const matches = this.props.store.vetMatchReducer;
+    const { modalOpen } = this.state;
 
-      return (
-        <div >
-          <center>
-            {/* <h1 class="grey">Thank you for your service {this.props.store.user.username}</h1> */}
-            {/* <h1 class="grey">Your Saved Connections</h1> */}
-            <h1 class="grey"> Below are your saved resources</h1>
-            <hr className="hr-width"></hr>
-          </center>
-            {this.props.store.existReducer.eists === true ? 
-              <Button
-                className="completeProfileBtn"
-                size="large"
-                variant="contained"
-                style={{
-                borderRadius: 35,
-                backgroundColor: '#AFFA3D',
-                fontFamily: 'orbitron',
-                }}
-                onClick={() => this.handleClick("completeProfile")}
-              >
-                Complete Profile Information
-              </Button> : 
-              <Button
-                className="completeProfileBtn"
-                size="large"
-                variant="contained"
-                style={{
-                borderRadius: 35,
-                backgroundColor: '#AFFA3D',
-                fontFamily: 'orbitron',
-                }}
-                onClick={() => this.insertVet(this.props.store.user.id)}>
-                Complete Profile Information
-              </Button>}
-              <div>
-                  <div className="cardContainer">
-                    {matches.map((match, index) => {
-                        return (
-                          <div key={index}>
-                            <Card className={classes.card}>
-                              <CardActionArea>
-                                  <CardHeader
-                                    avatar={
-                                      <Avatar aria-label={match.title}>
-                                        {match.title}
-                                      </Avatar>
-                                    }
-                                    title={match.title}
-                                    subheader={match.name}
-                                  />
-                                <CardMedia
-                                    className={classes.media}
-                                    alt={match.title}
-                                    image={RedCross}/>
-                                <CardContent>
-                                  <Typography gutterBottom variant="h5" component="h2">
-                                    {match.name}
-                                  </Typography>
-                                  <Typography component="p">
-                                    {match.email}
-                                  </Typography>
-                                  <Typography component="p">
-                                    {match.number}
-                                  </Typography>
-                                </CardContent>
-                              </CardActionArea>
-                            <CardActions>
-                              <Button 
-                                size="small" 
-                                color="primary"
-                                onClick={() => this.visitResource(match.id)}
-                                >More Info
-                              </Button>
-                            </CardActions>
-                          </Card>
-                        </div>
-                        );
-                      }
-                    )}
+    return (
+      <div>
+        <center>
+          {/* <h1 class="grey">Thank you for your service {this.props.store.user.username}</h1> */}
+          {/* <h1 class="grey">Your Saved Connections</h1> */}
+          <h1 class="grey"> Below are your saved resources</h1>
+          <hr className="hr-width"></hr>
+        </center>
+        {this.props.store.existReducer.eists === true ? (
+          <Button
+            className="completeProfileBtn"
+            size="large"
+            variant="contained"
+            style={{
+              borderRadius: 35,
+              backgroundColor: "#AFFA3D",
+              fontFamily: "orbitron",
+            }}
+            onClick={() => this.handleClick("completeProfile")}
+          >
+            Complete Profile Information
+          </Button>
+        ) : (
+          <Button
+            className="completeProfileBtn"
+            size="large"
+            variant="contained"
+            style={{
+              borderRadius: 35,
+              backgroundColor: "#AFFA3D",
+              fontFamily: "orbitron",
+            }}
+            onClick={() => this.insertVet(this.props.store.user.id)}
+          >
+            Complete Profile Information
+          </Button>
+        )}
+        <div>
+          <div className="cardContainer">
+            {matches.map((match, index) => {
+              return (
+                <div key={index}>
+                  <Card className={classes.card}>
+                    <CardActionArea>
+                      <CardHeader
+                        avatar={
+                          <Avatar aria-label={match.title}>
+                            {match.title}
+                          </Avatar>
+                        }
+                        title={match.title}
+                        subheader={match.name}
+                      />
+                      <CardMedia
+                        className={classes.media}
+                        alt={match.title}
+                        image={RedCross}
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          {match.name}
+                        </Typography>
+                        <Typography component="p">{match.email}</Typography>
+                        <Typography component="p">{match.number}</Typography>
+                      </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                      <Button
+                        size="small"
+                        color="primary"
+                        onClick={() => this.visitResource(match.id)}
+                      >
+                        More Info
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </div>
+              );
+            })}
             <br></br>
           </div>
-            <div className="buttons">
+          <div className="buttons">
             <center>
               <Button
                 id="emergencyBtn"
                 size="large"
                 variant="contained"
                 style={{
-                borderRadius: 35,
-                backgroundColor: '#AFFA3D',
-                fontFamily: 'orbitron',
+                  borderRadius: 35,
+                  backgroundColor: "#AFFA3D",
+                  fontFamily: "orbitron",
                 }}
                 onClick={() => this.handleClick("emergency")}
-                >
+              >
                 Emergency Numbers
               </Button>
               <Button
@@ -283,21 +274,21 @@ class UserPage extends Component {
                 size="large"
                 variant="contained"
                 style={{
-                borderRadius: 35,
-                backgroundColor: '#AFFA3D',
-                fontFamily: 'orbitron',
+                  borderRadius: 35,
+                  backgroundColor: "#AFFA3D",
+                  fontFamily: "orbitron",
                 }}
                 onClick={() => this.handleClick("allMatches")}
-                >
+              >
                 View New Matches
               </Button>
-              </center>
-            </div>
-            <Modal
-              open={modalOpen}
-              aria-labelledby="modal-title"
-              aria-describedby="emergency-contacts"
-            >
+            </center>
+          </div>
+          <Modal
+            open={modalOpen}
+            aria-labelledby="modal-title"
+            aria-describedby="emergency-contacts"
+          >
             {emergencyModal}
           </Modal>
         </div>

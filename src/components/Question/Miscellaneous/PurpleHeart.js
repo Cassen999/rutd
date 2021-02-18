@@ -1,12 +1,7 @@
-import React, { Component } from 'react';
-import clsx from 'clsx';
-import {  
-  FormControl,
-  Radio,
-  Typography,
-  Fab   
-} from "@material-ui/core";
-import SaveTwoToneIcon from '@material-ui/icons/SaveTwoTone';
+import React, { Component } from "react";
+import clsx from "clsx";
+import { Radio, Typography, Fab } from "@material-ui/core";
+import SaveTwoToneIcon from "@material-ui/icons/SaveTwoTone";
 
 class PurpleHeart extends Component {
   render() {
@@ -16,54 +11,61 @@ class PurpleHeart extends Component {
       <div
         //className="container"
         display="inline-flex"
-      >     
-        <Typography className={classes.textControl}>Have you been awarded a Purple Heart?</Typography>
-        <div 
-          className={classes.selectContainer}
-          display="flex"  
-        >
+      >
+        <Typography className={classes.textControl}>
+          Have you been awarded a Purple Heart?
+        </Typography>
+        <div className={classes.selectContainer} display="flex">
           <label className={classes.label}>Yes</label>
           <Radio
             className={classes.root}
             disableRipple
             color="default"
-            checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
-            icon={<span className={classes.icon} />}      
+            checkedIcon={
+              <span className={clsx(classes.icon, classes.checkedIcon)} />
+            }
+            icon={<span className={classes.icon} />}
             checked={purpleHeart === true}
             value={true}
-            onClick={(event) => this.props.updateState(event, 'purpleHeart')}
+            onClick={(event) => this.props.updateState(event, "purpleHeart")}
           />
-          <label className={classes.label}>No</label>         
+          <label className={classes.label}>No</label>
           <Radio
             className={classes.root}
             disableRipple
             color="default"
-            checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
+            checkedIcon={
+              <span className={clsx(classes.icon, classes.checkedIcon)} />
+            }
             icon={<span className={classes.icon} />}
-            checked={purpleHeart === false} 
+            checked={purpleHeart === false}
             value={false}
-            onClick={(event) => this.props.updateState(event, 'purpleHeart')}
+            onClick={(event) => this.props.updateState(event, "purpleHeart")}
           />
           {purpleHeart === true && (
             // <form className={classes.formControl} onSubmit={(event) => this.props.saveProgress(event)}>
             //   <input className="btn" type="submit" name="submit" value="Save Progress" />
-            // </form> 
-          <Fab
-            className="float-right"
-            style={{
+            // </form>
+            <Fab
+              className="float-right"
+              style={{
                 borderRadius: 35,
-                backgroundColor: '#AFFA3D',
-                fontFamily: 'orbitron',
-                marginBottom: '10%',
-                marginRight: '10px',
-            }}
-            onClick={(event) => { this.saveDemographic(event) }}><SaveTwoToneIcon /></Fab>    
+                backgroundColor: "#AFFA3D",
+                fontFamily: "orbitron",
+                marginBottom: "10%",
+                marginRight: "10px",
+              }}
+              onClick={(event) => {
+                this.saveDemographic(event);
+              }}
+            >
+              <SaveTwoToneIcon />
+            </Fab>
           )}
-        </div>  
+        </div>
       </div>
     );
   }
 }
 
 export default PurpleHeart;
-

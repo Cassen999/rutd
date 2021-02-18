@@ -1,33 +1,38 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 const useStyles = makeStyles({
   barRoot: {
-    width: '100%', 
-    
+    width: "100%",
   },
   root: {
-    height: '25px',
+    height: "25px",
     border: "2px groove grey",
   },
   colorPrimary: {
-    backgroundColor: '#ADFA3B',
+    backgroundColor: "#ADFA3B",
   },
   barColorPrimary: {
-    backgroundColor: '#4b780a',
-  }
+    backgroundColor: "#4b780a",
+  },
 });
 
 const ProgressBar = (props) => {
-    const classes = useStyles();
-    return (
-        <div position="relative" display="inline-flex" className={classes.barRoot}>
-            <LinearProgress variant="determinate" {...props} display="flex" className={classes.root} classes={{colorPrimary: classes.colorPrimary, barColorPrimary: classes.barColorPrimary}} />
-      </div>
+  const classes = useStyles();
+  return (
+    <div position="relative" display="inline-flex" className={classes.barRoot}>
+      <LinearProgress
+        variant="determinate"
+        {...props}
+        display="flex"
+        className={classes.root}
+        classes={{
+          colorPrimary: classes.colorPrimary,
+          barColorPrimary: classes.barColorPrimary,
+        }}
+      />
+    </div>
 
     //     <React.Fragment>
     //         <Box position="relative" display="inline-flex" className={classes.root}>
@@ -40,16 +45,15 @@ const ProgressBar = (props) => {
     //         right={0}
     //         position="absolute"
     //         display="flex"
-            // alignItems="center"
-            // justifyContent="center"
+    // alignItems="center"
+    // justifyContent="center"
     //         className={classes.progressBox}
     //         >
     //         <Typography variant="caption" component="div" color="textSecondary">{`${props.value}%`}</Typography>
     //         </Box>
     //     </Box>
     //   </React.Fragment>
-
-    );
-}
+  );
+};
 
 export default ProgressBar;
