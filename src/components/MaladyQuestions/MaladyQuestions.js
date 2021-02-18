@@ -54,7 +54,9 @@ function getStyles(malady, selectedMalady, theme) {
           ? theme.typography.fontWeightRegular
           : theme.typography.fontWeightMedium,
     };
-  }
+}
+
+// This component displays the intake questionaire for the 'Health' tab \\
 class MaladyQuestions extends Component {
   componentDidMount() {
     this.props.dispatch({ type: "FETCH_MALADY" });

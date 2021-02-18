@@ -43,7 +43,7 @@ class AdminResourceList extends Component {
 // "RESOURCE YOU SELECTED:"
   handleResource = (resourceID) => {
     this.props.dispatch({ type: "GET_ONE_RESOURCE", payload: resourceID });
-    this.props.history.push("/adminOrgEdit");
+    this.props.history.push("/adminOrgView");
   };
 
   handleAddResource = ( resourceID ) => {
@@ -66,13 +66,17 @@ class AdminResourceList extends Component {
     );
   };
 
+  routeToEdit = (event) => {
+    this.history.push('/adminOrgEdit')
+  }
+
   // handle delete event, resource_id
   handleDelete = (resource_id) => {
     this.props.dispatch({ type: "DELETE_RESOURCE", payload: resource_id });
   };
 
   handleAdd = (resource_id) => {
-    this.props.dispatch({ type: "ADD_RESOURE", payload: resource_id });
+    this.props.dispatch({ type: "ADD_RESOURCE", payload: resource_id });
   }
 
   render() {
@@ -103,7 +107,6 @@ class AdminResourceList extends Component {
                 <TableCell>Organizations</TableCell>
                 <TableCell align="left">Contact</TableCell>
                 {/* <TableCell align="left">Edit</TableCell> */}
-                <TableCell align="left">Add</TableCell>
                 <TableCell align="left">Edit</TableCell>
                 <TableCell align="left">Delete</TableCell>
               </TableRow>
@@ -124,6 +127,19 @@ class AdminResourceList extends Component {
                         onClick={() => this.handleMailTo(resource.email)}
                       >
                         <EmailRoundedIcon />
+                      </Fab>
+                    </TableCell>
+                    <TableCell>
+                      <Fab
+                        variant="contained"
+                        style={{
+                          borderRadius: 35,
+                          backgroundColor: "#AFFA3D",
+                          fontFamily: "orbitron",
+                        }}
+                        onClick={() => this.routeToEdit()}
+                      >
+                        <EditRoundedIcon />
                       </Fab>
                     </TableCell>
                     <TableCell>
@@ -170,7 +186,7 @@ class AdminResourceList extends Component {
                           backgroundColor: "#AFFA3D",
                           fontFamily: "orbitron",
                         }}
-                        onClick={() => this.handleResource(resource.id)}
+                        onClick={() => this.routeToEdit()}
                       >
                         <EditRoundedIcon />
                       </Fab>

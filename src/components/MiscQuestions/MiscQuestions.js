@@ -86,7 +86,8 @@ const styles = (theme) => ({
     },
   });
 
-    
+
+// This component displays the intake questionaire for the 'Miscellaneous' tab \\   
 class MiscQuestions extends Component {
     state = {
         userId: this.props.store.user.id, 
@@ -97,6 +98,7 @@ class MiscQuestions extends Component {
         purpleHeart: '',
     }
 
+    //converts string booleans to boolean values and updates state with them
     updateState = (event, propertyName) => {
         let value = event.target.value
         if (value === 'false'){
@@ -126,44 +128,44 @@ class MiscQuestions extends Component {
                 className="container"
                 display="inline-flex"
             >
-            <h1 className="grey">Miscellaneous</h1>
-            <hr className="float-left no-margin hr-width"></hr>
-            <br></br>
+                <h1 className="grey">Miscellaneous</h1>
+                <hr className="float-left no-margin hr-width"></hr>
+                <br></br>
                 <form className={classes.formColor}>
-                    {/* <Typography className={classes.formTitle} variant="h3" gutterBottom>Miscellaneous Questions</Typography> */}
-                        <Compensation
-                            registered={registered}
-                            compensationId={compensationId}
-                            updateState={this.updateState}
-                            classes={classes} 
-                        />
-                        {/* <hr className={classes.lineStyle} />  */}
-                        <Hazard
-                            imminentDanger={imminentDanger}
-                            dangerDescription={dangerDescription}
-                            updateState={this.updateState}
-                            classes={classes} 
-                        />
-                        {/* <hr className={classes.lineStyle} />  */}
-                        <PurpleHeart
-                            purpleHeart={purpleHeart}
-                            updateState={this.updateState}
-                            classes={classes}
-                            saveProgress={this.saveProgress}
-                        />
-
-            <Fab
-            className="float-right"
-            style={{
-                borderRadius: 35,
-                backgroundColor: '#AFFA3D',
-                fontFamily: 'orbitron',
-                marginBottom: '10%',
-                marginRight: '10px',
-            }}
-            onClick={(event) => { this.saveDemographic(event) }}><SaveTwoToneIcon /></Fab>
-                        
-                    </form>
+                    <Compensation
+                        registered={registered}
+                        compensationId={compensationId}
+                        updateState={this.updateState}
+                        classes={classes} 
+                    />
+                    {/* ---------------------------------- */}
+                    <Hazard
+                        imminentDanger={imminentDanger}
+                        dangerDescription={dangerDescription}
+                        updateState={this.updateState}
+                        classes={classes} 
+                    />
+                    {/* ---------------------------------- */}
+                    <PurpleHeart
+                        purpleHeart={purpleHeart}
+                        updateState={this.updateState}
+                        classes={classes}
+                        saveProgress={this.saveProgress}
+                    />
+                    {/* ---------------------------------- */}
+                    <Fab
+                        className="float-right"
+                        style={{
+                            borderRadius: 35,
+                            backgroundColor: '#AFFA3D',
+                            fontFamily: 'orbitron',
+                            marginBottom: '10%',
+                            marginRight: '10px',
+                        }}
+                        onClick={(event) => { this.saveDemographic(event) }}>
+                            <SaveTwoToneIcon />
+                    </Fab>
+                </form>
             </div>
          );
     }

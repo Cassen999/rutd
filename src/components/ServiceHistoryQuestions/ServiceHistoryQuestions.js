@@ -28,6 +28,7 @@ const styles = theme => ({
 });
 
 
+// This component displays the intake questionaire for the 'Service History' tab \\
 class ServiceHistoryQuestions extends Component {
     state = { 
         status: '',

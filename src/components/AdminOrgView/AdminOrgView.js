@@ -58,10 +58,8 @@ class AdminResourceEdit extends Component {
           return (
             <div className="container">
               <center>
-                {/* {JSON.stringify(this.props.store.resourceDetails)} */}
                 <h1 className="grey">{this.state.heading}</h1>
               </center>
-
                   <div>
                     <Paper className={classes.root} elevation={1}>
                       <hr className="hr-width"></hr>
@@ -85,7 +83,7 @@ class AdminResourceEdit extends Component {
                         State: {resourceDetails.state}
                       </Typography>
                       <Typography component="p">
-                        <a href>Website:{ resourceDetails.website}</a>
+                        Website: <a href ={resourceDetails.website}>{resourceDetails.website}</a>
                       </Typography>
                       <Typography component="p">
                         Description: {resourceDetails.description}
@@ -93,12 +91,6 @@ class AdminResourceEdit extends Component {
                       <Typography component="p">
                         Categories: {resourceDetails.categories}
                       </Typography>
-                      {/* <Typography component="p">
-                        PLACEHOLDER FOR PDF
-                      </Typography>
-                      <Typography component="p">
-                        PLACEHOLDER FOR PICTURES
-                      </Typography> */}
                       <hr className="hr-width"></hr>
                     </Paper>
                     <br></br>

@@ -2,7 +2,7 @@ const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
 const {
-  rejectUnauthenticatedAdmin,
+  rejectUnauthenticatedAdmin, rejectUnauthenticatedVetAdmin
 } = require("../modules/authentication-middleware");
 
 // GETs all organizations
@@ -81,7 +81,7 @@ router.put("/:id", rejectUnauthenticatedAdmin, (req, res) => {
 });
 
 // GETS one specific resource
-router.get("/:id", rejectUnauthenticatedAdmin, (req, res) => {
+router.get("/oneResource/:id", rejectUnauthenticatedVetAdmin, (req, res) => {
   let id = req.params.id;
   const queryText = `SELECT organization.id as org_id, organization.name,
                       organization.number, organization.email, organization.city,

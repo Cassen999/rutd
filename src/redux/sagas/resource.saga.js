@@ -24,6 +24,7 @@ function* updateResource(action) {
       action.payload.resourceDetails,
       config
     );
+    yield put({ type: 'FETCH_RESOURCE' });
   } catch (error) {
     console.log("error with resource fetch request", error);
   }
@@ -32,7 +33,7 @@ function* updateResource(action) {
 // GET for one resource
 function* getOneResource(action) {
   try {
-      const response = yield axios.get(`/api/resource/${action.payload}`); 
+      const response = yield axios.get(`/api/resource/oneResource/${action.payload}`); 
       yield put({
           type: 'SET_ONE_RESOURCE',
           payload: response.data

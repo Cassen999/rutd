@@ -9,7 +9,6 @@ import compose from 'recompose/compose';
 import "./VetLandingPage.css";
 import { withStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
-import RedCross from '../../Images/redcross.jpg'
 
 // STYLING: Material-UI
 import Card from '@material-ui/core/Card';
@@ -135,7 +134,7 @@ class UserPage extends Component {
 
   visitResource = (id) =>{
     console.log('visiting resource', id);
-    this.props.dispatch({type: 'VET_GET_RESOURCE', payload: id});
+    this.props.dispatch({type: 'GET_ONE_RESOURCE', payload: id});
     this.props.history.push('/vetViewResource', id);
   }
 
@@ -230,7 +229,7 @@ class UserPage extends Component {
                                 <CardMedia
                                     className={classes.media}
                                     alt={match.title}
-                                    image={RedCross}/>
+                                    />
                                 <CardContent>
                                   <Typography gutterBottom variant="h5" component="h2">
                                     {match.name}
@@ -243,14 +242,14 @@ class UserPage extends Component {
                                   </Typography>
                                 </CardContent>
                               </CardActionArea>
-                            <CardActions>
+                            {/* <CardActions>
                               <Button 
                                 size="small" 
                                 color="primary"
                                 onClick={() => this.visitResource(match.id)}
                                 >More Info
                               </Button>
-                            </CardActions>
+                            </CardActions> */}
                           </Card>
                         </div>
                         );
@@ -284,7 +283,7 @@ class UserPage extends Component {
                 }}
                 onClick={() => this.handleClick("allMatches")}
                 >
-                View New Matches
+                View All Matches
               </Button>
               </center>
             </div>

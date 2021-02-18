@@ -4,7 +4,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 // Updates vet's service history
 function* updateServiceHistorySaga(action) {
     try {
-      yield axios.put("/api/update/service", action.payload)
+      yield axios.put("/api/update/service", action.payload);
     } catch (error) {
       console.log("Update Service History Failed", error);
     }
@@ -24,7 +24,6 @@ function* updateMaladySaga(action) {
   try {
     const id = action.payload.userId;
     yield axios.put(`api/update/malady/${id}`, action.payload);
-    yield put({ type: 'FETCH_VET_INFO', payload: id });
   } catch (error) {
     console.log('Error in updateMaladySaga', error);
   }

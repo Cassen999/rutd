@@ -18,6 +18,7 @@ const styles = theme => ({
       },
 });
 
+// This component displays the intake questionaire for the 'Personal Information' tab \\
 class DemographicQuestion extends Component {
 
     // Get all of the Gender and Marraiage values for selection
