@@ -30,13 +30,13 @@ const styles = theme => ({
 // This component displays the intake questionaire for the 'Service History' tab \\
 class ServiceHistoryQuestions extends Component {
     state = { 
-        status: '',
-        discharge: '',
-        branch: '',
-        rank: '',
+        status: this.props.store.vetReducer.status_id,
+        discharge: this.props.store.vetReducer.discharge_id,
+        branch: this.props.store.vetReducer.branch_id,
+        rank: this.props.store.vetReducer.rank_id,
         selectedValue: 'yes',
-        startDate: '',
-        endDate: ''
+        startDate: this.props.store.vetReducer.start_date,
+        endDate: this.props.store.vetReducer.end_date
      };
 
   componentDidMount() {
@@ -49,6 +49,7 @@ class ServiceHistoryQuestions extends Component {
      saveServiceHistory = () => {
         console.log('Saving serviceHistory');
         this.props.dispatch({type: 'UPDATE_SERVICE_HISTORY', payload: this.state})
+        this.props.dispatch({type: 'FETCH_VET_INFO', payload: this.props.store.user.id})
     };
 
 

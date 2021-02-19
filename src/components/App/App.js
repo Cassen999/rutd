@@ -19,7 +19,6 @@ import AdminLandingPage from "../AdminLandingPage/AdminLandingPage";
 import AdminResourceList from "../AdminResourceList/AdminResourceList";
 import AdminVetList from "../AdminVetList/AdminVetList";
 import GenericLanding from "../GenericLanding/GenericLanding";
-import OrganizationLandingPage from "../OrganizationLandingPage/OrganizationLandingPage";
 import RegisterForm from "../RegisterForm/RegisterForm";
 import AdminVetView from "../AdminVetView/AdminVetView";
 import AdminOrgView from "../AdminOrgView/AdminOrgView";
@@ -107,12 +106,6 @@ class App extends Component {
               exact
               path="/adminOrgEdit"
               component={AdminOrgEdit}
-            />
-
-            <ProtectedRoute
-              exact
-              path="/organizationlanding"
-              component={OrganizationLandingPage}
             />
 
             <ProtectedRoute

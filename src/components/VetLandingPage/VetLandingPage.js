@@ -13,6 +13,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Avatar from "@material-ui/core/Avatar";
 import CardHeader from "@material-ui/core/CardHeader";
+import Hives from '../../Images/hivesforheroes.webp';
 
 const styles = (theme) => ({
   gridList: {
@@ -174,10 +175,10 @@ class UserPage extends Component {
     return (
       <div>
         <center>
-          <h1 class="grey"> Below are your saved resources</h1>
+          <h1 className="grey"> Below are your saved resources</h1>
           <hr className="hr-width"></hr>
         </center>
-        {this.props.store.existReducer.eists === true ? (
+        {this.props.store.existReducer.exists === true ? (
           <Button
             className="completeProfileBtn"
             size="large"
@@ -216,13 +217,15 @@ class UserPage extends Component {
                       <CardHeader
                         avatar={
                           <Avatar aria-label={match.title}>
-                            {match.title}
+                            {/* This is a placeholder, when an image is included in the database, replace this with {match.pictures} */}
+                            {Hives}
                           </Avatar>
                         }
                         title={match.title}
                         subheader={match.name}
                       />
-                      <CardMedia className={classes.media} alt={match.title} />
+                       {/* The image={Hives} is a placeholder, when an image is included in the database, replace this with image={match.pictures} */}
+                      <CardMedia className={classes.media} alt={match.title} image={Hives}/>
                       <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
                           {match.name}
