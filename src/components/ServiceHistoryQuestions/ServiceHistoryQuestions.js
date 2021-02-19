@@ -200,7 +200,6 @@ class ServiceHistoryQuestions extends Component {
                     aria-label="No"
                 />No
                 {/* -------------------------------------------------- */}
-                {JSON.stringify(this.state)}
                 <Fab
                     className="float-right"
                     style={{
