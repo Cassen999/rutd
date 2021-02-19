@@ -438,7 +438,7 @@ VALUES (9, 'Texas Veterans Outdoors', 8179807303, 'none', 'Houston', 45, 'none',
 INSERT INTO "organization" ("org_id", "name", "number", "email", "city", "state_id", "pdf", "website", "pictures", "description", "approved")
 VALUES (9, 'The Birdwell Foundation', 2104861639, 'fakeemail@email.com', 'Houston', 45, 'none','www.birdwellfoundation.org', 'none', 'The Birdwell Foundation, non-profit organization was birthed in June of 2018. A vision to expand to not just Combat Veterans suffering from PTSD/TBI, but to include any Veteran, both men and women suffering from PTSD/TBI, and First Responders. To provide warrior and family support groups across our great nation for our Veteran and First Responder communities. To bring awareness and engage the public about the epidemic that twenty-two Veterans take their own lives. To educate the public to not stigmatize our Veterans by labeling them as "crazy". And finally, to build a state-of-the-art facility in the North Georgia area where Veterans and First Responders can come for a period of time to find restoration, healing from the invisible scars of trauma, and to learn how to continue a healthy and loving relationship with their families. ', true);
 INSERT INTO "organization" ("org_id", "name", "number", "email", "city", "state_id", "pdf", "website", "pictures", "description", "approved")
-VALUES (7, 'Mighty Oaks Foundation', 6194245900, 'Info@MightyOaksPrograms.org', 'Murrieta', 5, 'none', 'www.Woundedwarriorproject.org', 'none', "The Mighty Oaks Foundation is a faith-based Veteran service organization that teaches combat Veterans struggling with Post Traumatic Stress how to get beyond combat trauma and live their lives in the manner God intended. Many combat vets are unable to reintegrate back into civilian life, leaving their families to deal with the aftermath of broken homes and suicide at times. By aligning their lives to Biblical principles, these Warriors are able to lead their families, their communities and our nation. Our mission is to serve and restore our nation's Warriors and families, who have endured hardship through their service to America, and to help them find a new life purpose through hope in Christ and our resiliency and peer-to-peer recovery programs.", true);
+VALUES (7, 'Mighty Oaks Foundation', 6194245900, 'Info@MightyOaksPrograms.org', 'Murrieta', 5, 'none', 'www.Woundedwarriorproject.org', 'none', 'The Mighty Oaks Foundation is a faith-based Veteran service organization that teaches combat Veterans struggling with Post Traumatic Stress how to get beyond combat trauma and live their lives in the manner God intended. Many combat vets are unable to reintegrate back into civilian life, leaving their families to deal with the aftermath of broken homes and suicide at times. By aligning their lives to Biblical principles, these Warriors are able to lead their families, their communities and our nation. Our mission is to serve and restore our nations Warriors and families, who have endured hardship through their service to America, and to help them find a new life purpose through hope in Christ and our resiliency and peer-to-peer recovery programs.', true);
 -- End inserts into organization
 
 -- Inserts into match
@@ -451,7 +451,7 @@ VALUES (3, 3, '2021-02-16', '2021-01-19', '2020-01-19');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
 VALUES (4, 4, '2020-10-19', '2021-01-19', '2020-01-19');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (5, 5, '2021-02-16', '2021-01-19 ', '2020-01-19');
+VALUES (5, 5, '2021-02-16', '2021-01-19', '2020-01-19');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
 VALUES (6, 6, '2021-02-16', '2021-01-19', '2020-01-19');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
@@ -460,7 +460,6 @@ INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
 VALUES (8, 8, '2021-02-16', '2021-01-19 ', '2020-01-19 ');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
 VALUES (9, 10,'2021-02-16', '2021-01-19 ', '2020-01-19');
-9:45
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
 VALUES (1, 3, '2021-02-16 12:23:54', '2021-01-19 13:23:54', '2020-01-19 07:23:54');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
