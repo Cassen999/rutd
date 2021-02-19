@@ -18,8 +18,8 @@ DROP TABLE "user",
 "organization",
 "veteran_categories",
 "organization_categories" CASCADE;
--- End drop tables
 
+-- End drop tables
 -- Select all below and copy, then paste into the SQL Query window in Postico
 -- Alter tables
 -- If you ever delete a table, these make the id column restart at 1 when you recreate the table
@@ -48,8 +48,8 @@ ALTER SEQUENCE injury_id_seq RESTART WITH 1;
 ALTER SEQUENCE percentage_id_seq RESTART WITH 1;
 
 ALTER SEQUENCE categories_id_seq RESTART WITH 1;
--- End alter tables
 
+-- End alter tables
 -- Create dropdown tables
 CREATE TABLE "gender" (
     "id" SERIAL PRIMARY KEY,
@@ -110,8 +110,8 @@ CREATE TABLE "type" (
     "id" SERIAL PRIMARY KEY,
     "description" VARCHAR(255) NOT NULL
 );
--- End Create dropdown tables
 
+-- End Create dropdown tables
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80),
@@ -311,38 +311,124 @@ INSERT INTO
     country (description)
 VALUES
     ('United States of America');
--- End inserts into dropdown tables
 
+-- End inserts into dropdown tables
 -- Inserts into user
 -- The username can be changed, password cannot
 -- The password for ALL user inserts is admin
 -- The inserts that end in 1 can be changed to anything but was used in our demo to show how matching worked
 -- The user inserts are only used for dummy data from our presentation, they are not required for the app to function
-INSERT INTO "user" (username, password, type_id)
-VALUES ('bob', '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy', 1),
-('user2', '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy', 1),
-('user3', '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy', 1),
-('user4', '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy', 1),
-('user5', '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy', 1),
-('user6', '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy', 1),
-('user7', '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy', 1),
-('user8', '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy', 1),
-('user9', '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy', 1),
-('user10', '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy', 1),
-('user11', '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy', 1),
-('user12', '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy', 1),
-('user13', '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy', 1),
-('user14', '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy', 1),
-('user15', '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy', 1),
-('woundedwarrior', '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy', 3),
-('hivesforheroes', '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy', 3),
-('texasveteransoutdoors', '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy', 3),
-('birdwell', '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy', 3),
-('mightyoaksfoundation', '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy', 3),
-('admin', '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy', 2);
--- End inserts into user
+INSERT INTO
+    "user" (username, password, type_id)
+VALUES
+    (
+        'bob',
+        '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy',
+        1
+    ),
+    (
+        'user2',
+        '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy',
+        1
+    ),
+    (
+        'user3',
+        '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy',
+        1
+    ),
+    (
+        'user4',
+        '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy',
+        1
+    ),
+    (
+        'user5',
+        '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy',
+        1
+    ),
+    (
+        'user6',
+        '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy',
+        1
+    ),
+    (
+        'user7',
+        '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy',
+        1
+    ),
+    (
+        'user8',
+        '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy',
+        1
+    ),
+    (
+        'user9',
+        '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy',
+        1
+    ),
+    (
+        'user10',
+        '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy',
+        1
+    ),
+    (
+        'user11',
+        '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy',
+        1
+    ),
+    (
+        'user12',
+        '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy',
+        1
+    ),
+    (
+        'user13',
+        '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy',
+        1
+    ),
+    (
+        'user14',
+        '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy',
+        1
+    ),
+    (
+        'user15',
+        '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy',
+        1
+    ),
+    (
+        'woundedwarrior',
+        '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy',
+        3
+    ),
+    (
+        'hivesforheroes',
+        '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy',
+        3
+    ),
+    (
+        'texasveteransoutdoors',
+        '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy',
+        3
+    ),
+    (
+        'birdwell',
+        '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy',
+        3
+    ),
+    (
+        'mightyoaksfoundation',
+        '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy',
+        3
+    ),
+    (
+        'admin',
+        '$2a$10$dRmmRPlGvIhU/gLBZSNffeQzPvOcURuTMjTU3Z4Jao/IggiiVjMzy',
+        2
+    );
 
- -- Create veteran, organization, categories and match tables
+-- End inserts into user
+-- Create veteran, organization, categories and match tables
 CREATE TABLE "veteran" (
     "id" SERIAL PRIMARY KEY,
     "vet_id" INT REFERENCES "user" ON DELETE CASCADE,
@@ -413,8 +499,8 @@ CREATE TABLE "match" (
     "contacted" TIME,
     "approved" TIME
 );
- -- End create veteran, organization, categories and match tables
 
+-- End create veteran, organization, categories and match tables
 -- Alter tables
 -- If you ever delete a table, these make the id column restart at 1 when you recreate the table
 ALTER SEQUENCE veteran_id_seq RESTART WITH 1;
@@ -426,114 +512,1454 @@ ALTER SEQUENCE veteran_categories_id_seq RESTART WITH 1;
 ALTER SEQUENCE organization_categories_id_seq RESTART WITH 1;
 
 ALTER SEQUENCE match_id_seq RESTART WITH 1;
+
 -- End alter tables
-
 -- Inserts into veteran
-INSERT INTO "veteran" ("vet_id", "first_name", "last_name", "email", "date_of_birth", "number", "gender_id", "married_id", "children", "homeless", "current_address", "city", "state_id", "zipcode", "country_id", "mailing_address","city2","state_id2","zipcode2","country_id2", "branch_id", "rank_id", "start_date", "end_date", "status_id", "discharge_id", "injury_id", "compensation", "percentage", "danger_areas", "purple_heart")
-VALUES (1, 'Bob', 'Ventura ', 'bob@gmail.com', '1951-07-15', 952612651, 1, 1, 1, false, '130 State Capitol
-75 Rev Dr. Martin Luther King Jr. Blvd', 'St. Paul', 24, 55155, 1, '130 State Capitol
-75 Rev Dr. Martin Luther King Jr. Blvd', 'St. Paul', 24, 55155, 1, 1, 1, '1969-12-01', '1975-09-10', 1, 1, 1, false, 1, false, false);
+INSERT INTO
+    "veteran" (
+        "vet_id",
+        "first_name",
+        "last_name",
+        "email",
+        "date_of_birth",
+        "number",
+        "gender_id",
+        "married_id",
+        "children",
+        "homeless",
+        "current_address",
+        "city",
+        "state_id",
+        "zipcode",
+        "country_id",
+        "mailing_address",
+        "city2",
+        "state_id2",
+        "zipcode2",
+        "country_id2",
+        "branch_id",
+        "rank_id",
+        "start_date",
+        "end_date",
+        "status_id",
+        "discharge_id",
+        "injury_id",
+        "compensation",
+        "percentage",
+        "danger_areas",
+        "purple_heart"
+    )
+VALUES
+    (
+        1,
+        'Bob',
+        'Ventura ',
+        'bob@gmail.com',
+        '1951-07-15',
+        952612651,
+        1,
+        1,
+        1,
+        false,
+        '130 State Capitol
+75 Rev Dr. Martin Luther King Jr. Blvd',
+        'St. Paul',
+        24,
+        55155,
+        1,
+        '130 State Capitol
+75 Rev Dr. Martin Luther King Jr. Blvd',
+        'St. Paul',
+        24,
+        55155,
+        1,
+        1,
+        1,
+        '1969-12-01',
+        '1975-09-10',
+        1,
+        1,
+        1,
+        false,
+        1,
+        false,
+        false
+    );
 
-INSERT INTO "veteran" ("vet_id", "first_name", "last_name", "email", "date_of_birth", "number", "gender_id", "married_id", "children", "homeless", "current_address", "city", "state_id", "zipcode", "country_id", "mailing_address","city2","state_id2","zipcode2","country_id2", "branch_id", "rank_id", "start_date", "end_date", "status_id", "discharge_id", "injury_id", "compensation", "percentage", "danger_areas", "purple_heart")
-VALUES (2, 'Kristina', 'Mackey', 'scottlee@outlook.com', '1992-11-28', 425-281-0449, 2, 2, 2, false, '4666  Conifer Drive', 'Issaquah', 49, 98029, 1,'4666  Conifer Drive', 'Issaquah', 49, 98029, 1, 1, 1, '1961-03-15', '1975-03-15', 1, 2, 10, false, 1, false, false);
+INSERT INTO
+    "veteran" (
+        "vet_id",
+        "first_name",
+        "last_name",
+        "email",
+        "date_of_birth",
+        "number",
+        "gender_id",
+        "married_id",
+        "children",
+        "homeless",
+        "current_address",
+        "city",
+        "state_id",
+        "zipcode",
+        "country_id",
+        "mailing_address",
+        "city2",
+        "state_id2",
+        "zipcode2",
+        "country_id2",
+        "branch_id",
+        "rank_id",
+        "start_date",
+        "end_date",
+        "status_id",
+        "discharge_id",
+        "injury_id",
+        "compensation",
+        "percentage",
+        "danger_areas",
+        "purple_heart"
+    )
+VALUES
+    (
+        2,
+        'Kristina',
+        'Mackey',
+        'scottlee@outlook.com',
+        '1992-11-28',
+        425 -281 -0449,
+        2,
+        2,
+        2,
+        false,
+        '4666  Conifer Drive',
+        'Issaquah',
+        49,
+        98029,
+        1,
+        '4666  Conifer Drive',
+        'Issaquah',
+        49,
+        98029,
+        1,
+        1,
+        1,
+        '1961-03-15',
+        '1975-03-15',
+        1,
+        2,
+        10,
+        false,
+        1,
+        false,
+        false
+    );
 
-INSERT INTO "veteran" ("vet_id", "first_name", "last_name", "email", "date_of_birth", "number", "gender_id", "married_id", "children", "homeless", "current_address", "city", "state_id", "zipcode", "country_id", "mailing_address","city2","state_id2","zipcode2","country_id2", "branch_id", "rank_id", "start_date", "end_date", "status_id", "discharge_id", "injury_id", "compensation", "percentage", "danger_areas", "purple_heart")
-VALUES (8, 'Joel', 'Kado', 'delpino@sbcglobal.net', '1990-08-30', 2025550135, 3, 3, 3, false, '2299  Farm Meadow Drive', 'Kansas City', 26, 64197, 1, '2299  Farm Meadow Drive', 'Kansas City', 26, 64197, 1, 1,1, '1961-03-15', '1975-03-15', 2, 1, 8, false, 1, false, false);
+INSERT INTO
+    "veteran" (
+        "vet_id",
+        "first_name",
+        "last_name",
+        "email",
+        "date_of_birth",
+        "number",
+        "gender_id",
+        "married_id",
+        "children",
+        "homeless",
+        "current_address",
+        "city",
+        "state_id",
+        "zipcode",
+        "country_id",
+        "mailing_address",
+        "city2",
+        "state_id2",
+        "zipcode2",
+        "country_id2",
+        "branch_id",
+        "rank_id",
+        "start_date",
+        "end_date",
+        "status_id",
+        "discharge_id",
+        "injury_id",
+        "compensation",
+        "percentage",
+        "danger_areas",
+        "purple_heart"
+    )
+VALUES
+    (
+        8,
+        'Joel',
+        'Kado',
+        'delpino@sbcglobal.net',
+        '1990-08-30',
+        2025550135,
+        3,
+        3,
+        3,
+        false,
+        '2299  Farm Meadow Drive',
+        'Kansas City',
+        26,
+        64197,
+        1,
+        '2299  Farm Meadow Drive',
+        'Kansas City',
+        26,
+        64197,
+        1,
+        1,
+        1,
+        '1961-03-15',
+        '1975-03-15',
+        2,
+        1,
+        8,
+        false,
+        1,
+        false,
+        false
+    );
 
-INSERT INTO "veteran" ("vet_id", "first_name", "last_name", "email", "date_of_birth", "number", "gender_id", "married_id", "children", "homeless", "current_address", "city", "state_id", "zipcode", "country_id", "mailing_address","city2","state_id2","zipcode2","country_id2", "branch_id", "rank_id", "start_date", "end_date", "status_id", "discharge_id", "injury_id", "compensation", "percentage", "danger_areas", "purple_heart")
-VALUES (8, 'Mary', 'Wolfe', 'mary@gmail.com', '1993-09-10', 5703182004, 1, 1, 1, false, '1614  Corpening Drive', 'Brush Valley', 39, 15720, 1,  '1614  Corpening Drive', 'Brush Valley', 39, 15720, 1, 4, 9, '2015-03-15', '2019-03-15', 1, 1, 1, false, 1, false, false);
+INSERT INTO
+    "veteran" (
+        "vet_id",
+        "first_name",
+        "last_name",
+        "email",
+        "date_of_birth",
+        "number",
+        "gender_id",
+        "married_id",
+        "children",
+        "homeless",
+        "current_address",
+        "city",
+        "state_id",
+        "zipcode",
+        "country_id",
+        "mailing_address",
+        "city2",
+        "state_id2",
+        "zipcode2",
+        "country_id2",
+        "branch_id",
+        "rank_id",
+        "start_date",
+        "end_date",
+        "status_id",
+        "discharge_id",
+        "injury_id",
+        "compensation",
+        "percentage",
+        "danger_areas",
+        "purple_heart"
+    )
+VALUES
+    (
+        8,
+        'Mary',
+        'Wolfe',
+        'mary@gmail.com',
+        '1993-09-10',
+        5703182004,
+        1,
+        1,
+        1,
+        false,
+        '1614  Corpening Drive',
+        'Brush Valley',
+        39,
+        15720,
+        1,
+        '1614  Corpening Drive',
+        'Brush Valley',
+        39,
+        15720,
+        1,
+        4,
+        9,
+        '2015-03-15',
+        '2019-03-15',
+        1,
+        1,
+        1,
+        false,
+        1,
+        false,
+        false
+    );
 
-INSERT INTO "veteran" ("vet_id", "first_name", "last_name", "email", "date_of_birth", "number", "gender_id", "married_id", "children", "homeless", "current_address", "city", "state_id", "zipcode", "country_id", "mailing_address","city2","state_id2","zipcode2","country_id2", "branch_id", "rank_id", "start_date", "end_date", "status_id", "discharge_id", "injury_id", "compensation", "percentage", "danger_areas", "purple_heart")
-VALUES (5, 'Ciara', 'Mckee', 'miltchev@icloud.com', '1993-04-20', 5125550171, 2, 2, 2, false, '2752  Murry Street', 'Minneapolis', 1, 55420, 1, '1235 Second Street','Minneapolis', 1, 55420, 1,1,1, '1961-03-15', '1975-03-15', 1, 1, 1, false, 1, false, false);
+INSERT INTO
+    "veteran" (
+        "vet_id",
+        "first_name",
+        "last_name",
+        "email",
+        "date_of_birth",
+        "number",
+        "gender_id",
+        "married_id",
+        "children",
+        "homeless",
+        "current_address",
+        "city",
+        "state_id",
+        "zipcode",
+        "country_id",
+        "mailing_address",
+        "city2",
+        "state_id2",
+        "zipcode2",
+        "country_id2",
+        "branch_id",
+        "rank_id",
+        "start_date",
+        "end_date",
+        "status_id",
+        "discharge_id",
+        "injury_id",
+        "compensation",
+        "percentage",
+        "danger_areas",
+        "purple_heart"
+    )
+VALUES
+    (
+        5,
+        'Ciara',
+        'Mckee',
+        'miltchev@icloud.com',
+        '1993-04-20',
+        5125550171,
+        2,
+        2,
+        2,
+        false,
+        '2752  Murry Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        '1235 Second Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        1,
+        1,
+        '1961-03-15',
+        '1975-03-15',
+        1,
+        1,
+        1,
+        false,
+        1,
+        false,
+        false
+    );
 
-INSERT INTO "veteran" ("vet_id", "first_name", "last_name", "email", "date_of_birth", "number", "gender_id", "married_id", "children", "homeless", "current_address", "city", "state_id", "zipcode", "country_id", "mailing_address","city2","state_id2","zipcode2","country_id2", "branch_id", "rank_id", "start_date", "end_date", "status_id", "discharge_id", "injury_id", "compensation", "percentage", "danger_areas", "purple_heart")
-VALUES (6, 'Bryson', 'Peters', 'jespley@yahoo.com', '1951-12-25', 2025550135, 3, 3, 3, false, '1235 Second Street', 'Virginia Beach', 48, 55420, 1, '1235 Second Street', 'Virginia Beach', 48, 55420, 1, 1, 1, '1961-03-15', '1975-03-15', 1, 1, 1, false, 1, false, false);
+INSERT INTO
+    "veteran" (
+        "vet_id",
+        "first_name",
+        "last_name",
+        "email",
+        "date_of_birth",
+        "number",
+        "gender_id",
+        "married_id",
+        "children",
+        "homeless",
+        "current_address",
+        "city",
+        "state_id",
+        "zipcode",
+        "country_id",
+        "mailing_address",
+        "city2",
+        "state_id2",
+        "zipcode2",
+        "country_id2",
+        "branch_id",
+        "rank_id",
+        "start_date",
+        "end_date",
+        "status_id",
+        "discharge_id",
+        "injury_id",
+        "compensation",
+        "percentage",
+        "danger_areas",
+        "purple_heart"
+    )
+VALUES
+    (
+        6,
+        'Bryson',
+        'Peters',
+        'jespley@yahoo.com',
+        '1951-12-25',
+        2025550135,
+        3,
+        3,
+        3,
+        false,
+        '1235 Second Street',
+        'Virginia Beach',
+        48,
+        55420,
+        1,
+        '1235 Second Street',
+        'Virginia Beach',
+        48,
+        55420,
+        1,
+        1,
+        1,
+        '1961-03-15',
+        '1975-03-15',
+        1,
+        1,
+        1,
+        false,
+        1,
+        false,
+        false
+    );
 
-INSERT INTO "veteran" ("vet_id", "first_name", "last_name", "email", "date_of_birth", "number", "gender_id", "married_id", "children", "homeless", "current_address", "city", "state_id", "zipcode", "country_id", "mailing_address","city2","state_id2","zipcode2","country_id2", "branch_id", "rank_id", "start_date", "end_date", "status_id", "discharge_id", "injury_id", "compensation", "percentage", "danger_areas", "purple_heart")
-VALUES (7, 'Elliana', 'Giles', 'satishr@icloud.com', '1990-01-01', 3255185975, 2, 2, 2, false, '1235 Second Street', 'Abilene', 45, 79602, 1, '1235 Second Street','Abilene', 45, 79602, 1,1,1, '1961-03-15', '1975-03-15', 1, 1, 1, false, 1, false, false);
+INSERT INTO
+    "veteran" (
+        "vet_id",
+        "first_name",
+        "last_name",
+        "email",
+        "date_of_birth",
+        "number",
+        "gender_id",
+        "married_id",
+        "children",
+        "homeless",
+        "current_address",
+        "city",
+        "state_id",
+        "zipcode",
+        "country_id",
+        "mailing_address",
+        "city2",
+        "state_id2",
+        "zipcode2",
+        "country_id2",
+        "branch_id",
+        "rank_id",
+        "start_date",
+        "end_date",
+        "status_id",
+        "discharge_id",
+        "injury_id",
+        "compensation",
+        "percentage",
+        "danger_areas",
+        "purple_heart"
+    )
+VALUES
+    (
+        7,
+        'Elliana',
+        'Giles',
+        'satishr@icloud.com',
+        '1990-01-01',
+        3255185975,
+        2,
+        2,
+        2,
+        false,
+        '1235 Second Street',
+        'Abilene',
+        45,
+        79602,
+        1,
+        '1235 Second Street',
+        'Abilene',
+        45,
+        79602,
+        1,
+        1,
+        1,
+        '1961-03-15',
+        '1975-03-15',
+        1,
+        1,
+        1,
+        false,
+        1,
+        false,
+        false
+    );
 
-INSERT INTO "veteran" ("vet_id", "first_name", "last_name", "email", "date_of_birth", "number", "gender_id", "married_id", "children", "homeless", "current_address", "city", "state_id", "zipcode", "country_id", "mailing_address","city2","state_id2","zipcode2","country_id2", "branch_id", "rank_id", "start_date", "end_date", "status_id", "discharge_id", "injury_id", "compensation", "percentage", "danger_areas", "purple_heart")
-VALUES (8, 'Paityn', 'Le', 'mrdvt@gmail.com', '1950-12-13', 2025550135, 3, 3, 3, false, '693  Cerullo Road', 'Louisville', 1, 55420, 1, '693  Cerullo Road', 'Louisville', 1, 55420, 1, 1, 1, '1961-03-15', '1975-03-15', 1, 1, 1, false, 1, false, false);
+INSERT INTO
+    "veteran" (
+        "vet_id",
+        "first_name",
+        "last_name",
+        "email",
+        "date_of_birth",
+        "number",
+        "gender_id",
+        "married_id",
+        "children",
+        "homeless",
+        "current_address",
+        "city",
+        "state_id",
+        "zipcode",
+        "country_id",
+        "mailing_address",
+        "city2",
+        "state_id2",
+        "zipcode2",
+        "country_id2",
+        "branch_id",
+        "rank_id",
+        "start_date",
+        "end_date",
+        "status_id",
+        "discharge_id",
+        "injury_id",
+        "compensation",
+        "percentage",
+        "danger_areas",
+        "purple_heart"
+    )
+VALUES
+    (
+        8,
+        'Paityn',
+        'Le',
+        'mrdvt@gmail.com',
+        '1950-12-13',
+        2025550135,
+        3,
+        3,
+        3,
+        false,
+        '693  Cerullo Road',
+        'Louisville',
+        1,
+        55420,
+        1,
+        '693  Cerullo Road',
+        'Louisville',
+        1,
+        55420,
+        1,
+        1,
+        1,
+        '1961-03-15',
+        '1975-03-15',
+        1,
+        1,
+        1,
+        false,
+        1,
+        false,
+        false
+    );
 
-INSERT INTO "veteran" ("vet_id", "first_name", "last_name", "email", "date_of_birth", "number", "gender_id", "married_id", "children", "homeless", "current_address", "city", "state_id", "zipcode", "country_id", "mailing_address","city2","state_id2","zipcode2","country_id2", "branch_id", "rank_id", "start_date", "end_date", "status_id", "discharge_id", "injury_id", "compensation", "percentage", "danger_areas", "purple_heart")
-VALUES (9, 'Moshe', 'Mcneil', 'brbarret@icloud.com', '1951-07-16', 9395550108, 1, 1, 1, false, '1235 Second Street', 'Minneapolis', 1, 55420, 1, '1235 Second Street', 'Minneapolis', 1, 55420, 1, 1, 1, '1961-03-15', '1975-03-15', 1, 1, 1, false, 1, false, false);
+INSERT INTO
+    "veteran" (
+        "vet_id",
+        "first_name",
+        "last_name",
+        "email",
+        "date_of_birth",
+        "number",
+        "gender_id",
+        "married_id",
+        "children",
+        "homeless",
+        "current_address",
+        "city",
+        "state_id",
+        "zipcode",
+        "country_id",
+        "mailing_address",
+        "city2",
+        "state_id2",
+        "zipcode2",
+        "country_id2",
+        "branch_id",
+        "rank_id",
+        "start_date",
+        "end_date",
+        "status_id",
+        "discharge_id",
+        "injury_id",
+        "compensation",
+        "percentage",
+        "danger_areas",
+        "purple_heart"
+    )
+VALUES
+    (
+        9,
+        'Moshe',
+        'Mcneil',
+        'brbarret@icloud.com',
+        '1951-07-16',
+        9395550108,
+        1,
+        1,
+        1,
+        false,
+        '1235 Second Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        '1235 Second Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        1,
+        1,
+        '1961-03-15',
+        '1975-03-15',
+        1,
+        1,
+        1,
+        false,
+        1,
+        false,
+        false
+    );
 
-INSERT INTO "veteran" ("vet_id", "first_name", "last_name", "email", "date_of_birth", "number", "gender_id", "married_id", "children", "homeless", "current_address", "city", "state_id", "zipcode", "country_id", "mailing_address","city2","state_id2","zipcode2","country_id2", "branch_id", "rank_id", "start_date", "end_date", "status_id", "discharge_id", "injury_id", "compensation", "percentage", "danger_areas", "purple_heart")
-VALUES (10, 'Kristopher', 'Spence', 'tlinden@comcast.net', '1951-12-24', 9395550144, 2, 2, 2, false, '1235 Second Street', 'Minneapolis', 1, 55420, 1, '1235 Second Street', 'Minneapolis', 1, 55420, 1, 1, 1, '1961-03-15', '1975-03-15', 1, 1, 1, false, 1, false, false);
+INSERT INTO
+    "veteran" (
+        "vet_id",
+        "first_name",
+        "last_name",
+        "email",
+        "date_of_birth",
+        "number",
+        "gender_id",
+        "married_id",
+        "children",
+        "homeless",
+        "current_address",
+        "city",
+        "state_id",
+        "zipcode",
+        "country_id",
+        "mailing_address",
+        "city2",
+        "state_id2",
+        "zipcode2",
+        "country_id2",
+        "branch_id",
+        "rank_id",
+        "start_date",
+        "end_date",
+        "status_id",
+        "discharge_id",
+        "injury_id",
+        "compensation",
+        "percentage",
+        "danger_areas",
+        "purple_heart"
+    )
+VALUES
+    (
+        10,
+        'Kristopher',
+        'Spence',
+        'tlinden@comcast.net',
+        '1951-12-24',
+        9395550144,
+        2,
+        2,
+        2,
+        false,
+        '1235 Second Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        '1235 Second Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        1,
+        1,
+        '1961-03-15',
+        '1975-03-15',
+        1,
+        1,
+        1,
+        false,
+        1,
+        false,
+        false
+    );
 
-INSERT INTO "veteran" ("vet_id", "first_name", "last_name", "email", "date_of_birth", "number", "gender_id", "married_id", "children", "homeless", "current_address", "city", "state_id", "zipcode", "country_id", "mailing_address","city2","state_id2","zipcode2","country_id2", "branch_id", "rank_id", "start_date", "end_date", "status_id", "discharge_id", "injury_id", "compensation", "percentage", "danger_areas", "purple_heart")
-VALUES (11, 'Blaine', 'Allen', 'mgemmons@aol.com', '1951-12-25', 9395550166, 3, 3, 3, false, '1235 Second Street', 'Minneapolis', 1, 55420, 1, '1235 Second Street', 'Minneapolis', 1, 55420, 1, 1, 1, '1961-03-15', '1975-03-15', 1, 1, 1, false, 1, false, false);
+INSERT INTO
+    "veteran" (
+        "vet_id",
+        "first_name",
+        "last_name",
+        "email",
+        "date_of_birth",
+        "number",
+        "gender_id",
+        "married_id",
+        "children",
+        "homeless",
+        "current_address",
+        "city",
+        "state_id",
+        "zipcode",
+        "country_id",
+        "mailing_address",
+        "city2",
+        "state_id2",
+        "zipcode2",
+        "country_id2",
+        "branch_id",
+        "rank_id",
+        "start_date",
+        "end_date",
+        "status_id",
+        "discharge_id",
+        "injury_id",
+        "compensation",
+        "percentage",
+        "danger_areas",
+        "purple_heart"
+    )
+VALUES
+    (
+        11,
+        'Blaine',
+        'Allen',
+        'mgemmons@aol.com',
+        '1951-12-25',
+        9395550166,
+        3,
+        3,
+        3,
+        false,
+        '1235 Second Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        '1235 Second Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        1,
+        1,
+        '1961-03-15',
+        '1975-03-15',
+        1,
+        1,
+        1,
+        false,
+        1,
+        false,
+        false
+    );
 
+INSERT INTO
+    "veteran" (
+        "vet_id",
+        "first_name",
+        "last_name",
+        "email",
+        "date_of_birth",
+        "number",
+        "gender_id",
+        "married_id",
+        "children",
+        "homeless",
+        "current_address",
+        "city",
+        "state_id",
+        "zipcode",
+        "country_id",
+        "mailing_address",
+        "city2",
+        "state_id2",
+        "zipcode2",
+        "country_id2",
+        "branch_id",
+        "rank_id",
+        "start_date",
+        "end_date",
+        "status_id",
+        "discharge_id",
+        "injury_id",
+        "compensation",
+        "percentage",
+        "danger_areas",
+        "purple_heart"
+    )
+VALUES
+    (
+        12,
+        'Aydin',
+        'Myers',
+        'djupedal@att.net',
+        '1990-01-01',
+        3035550153,
+        1,
+        1,
+        1,
+        false,
+        '1235 Second Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        '1235 Second Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        1,
+        1,
+        '1961-03-15',
+        '1975-03-15',
+        1,
+        1,
+        1,
+        false,
+        1,
+        false,
+        false
+    );
 
-INSERT INTO "veteran" ("vet_id", "first_name", "last_name", "email", "date_of_birth", "number", "gender_id", "married_id", "children", "homeless", "current_address", "city", "state_id", "zipcode", "country_id", "mailing_address","city2","state_id2","zipcode2","country_id2", "branch_id", "rank_id", "start_date", "end_date", "status_id", "discharge_id", "injury_id", "compensation", "percentage", "danger_areas", "purple_heart")
-VALUES (12, 'Aydin', 'Myers', 'djupedal@att.net', '1990-01-01', 3035550153, 1, 1, 1, false, '1235 Second Street', 'Minneapolis', 1, 55420, 1, '1235 Second Street', 'Minneapolis', 1, 55420, 1, 1, 1, '1961-03-15', '1975-03-15', 1, 1, 1, false, 1, false, false);
+INSERT INTO
+    "veteran" (
+        "vet_id",
+        "first_name",
+        "last_name",
+        "email",
+        "date_of_birth",
+        "number",
+        "gender_id",
+        "married_id",
+        "children",
+        "homeless",
+        "current_address",
+        "city",
+        "state_id",
+        "zipcode",
+        "country_id",
+        "mailing_address",
+        "city2",
+        "state_id2",
+        "zipcode2",
+        "country_id2",
+        "branch_id",
+        "rank_id",
+        "start_date",
+        "end_date",
+        "status_id",
+        "discharge_id",
+        "injury_id",
+        "compensation",
+        "percentage",
+        "danger_areas",
+        "purple_heart"
+    )
+VALUES
+    (
+        13,
+        'Brynn',
+        'Beltran',
+        'mxiao@optonline.net',
+        '1992-11-28',
+        3035550142,
+        2,
+        2,
+        2,
+        false,
+        '1235 Second Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        '1235 Second Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        1,
+        1,
+        '1961-03-15',
+        '1975-03-15',
+        1,
+        2,
+        10,
+        false,
+        1,
+        false,
+        false
+    );
 
-INSERT INTO "veteran" ("vet_id", "first_name", "last_name", "email", "date_of_birth", "number", "gender_id", "married_id", "children", "homeless", "current_address", "city", "state_id", "zipcode", "country_id", "mailing_address","city2","state_id2","zipcode2","country_id2", "branch_id", "rank_id", "start_date", "end_date", "status_id", "discharge_id", "injury_id", "compensation", "percentage", "danger_areas", "purple_heart")
-VALUES (13, 'Brynn', 'Beltran', 'mxiao@optonline.net', '1992-11-28', 3035550142, 2, 2, 2, false, '1235 Second Street', 'Minneapolis', 1, 55420, 1, '1235 Second Street', 'Minneapolis', 1, 55420, 1, 1, 1, '1961-03-15', '1975-03-15', 1, 2, 10, false, 1, false, false);
+INSERT INTO
+    "veteran" (
+        "vet_id",
+        "first_name",
+        "last_name",
+        "email",
+        "date_of_birth",
+        "number",
+        "gender_id",
+        "married_id",
+        "children",
+        "homeless",
+        "current_address",
+        "city",
+        "state_id",
+        "zipcode",
+        "country_id",
+        "mailing_address",
+        "city2",
+        "state_id2",
+        "zipcode2",
+        "country_id2",
+        "branch_id",
+        "rank_id",
+        "start_date",
+        "end_date",
+        "status_id",
+        "discharge_id",
+        "injury_id",
+        "compensation",
+        "percentage",
+        "danger_areas",
+        "purple_heart"
+    )
+VALUES
+    (
+        14,
+        'Allyson',
+        'Pham',
+        'rasca@yahoo.com',
+        '1990-08-30',
+        6055550109,
+        3,
+        3,
+        3,
+        false,
+        '1235 Second Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        '1235 Second Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        1,
+        1,
+        '1961-03-15',
+        '1975-03-15',
+        2,
+        1,
+        8,
+        false,
+        1,
+        false,
+        false
+    );
 
-INSERT INTO "veteran" ("vet_id", "first_name", "last_name", "email", "date_of_birth", "number", "gender_id", "married_id", "children", "homeless", "current_address", "city", "state_id", "zipcode", "country_id", "mailing_address","city2","state_id2","zipcode2","country_id2", "branch_id", "rank_id", "start_date", "end_date", "status_id", "discharge_id", "injury_id", "compensation", "percentage", "danger_areas", "purple_heart")
-VALUES (14, 'Allyson', 'Pham', 'rasca@yahoo.com', '1990-08-30', 6055550109, 3, 3, 3, false, '1235 Second Street', 'Minneapolis', 1, 55420, 1, '1235 Second Street', 'Minneapolis', 1, 55420, 1, 1, 1, '1961-03-15', '1975-03-15', 2, 1, 8, false, 1, false, false);
+INSERT INTO
+    "veteran" (
+        "vet_id",
+        "first_name",
+        "last_name",
+        "email",
+        "date_of_birth",
+        "number",
+        "gender_id",
+        "married_id",
+        "children",
+        "homeless",
+        "current_address",
+        "city",
+        "state_id",
+        "zipcode",
+        "country_id",
+        "mailing_address",
+        "city2",
+        "state_id2",
+        "zipcode2",
+        "country_id2",
+        "branch_id",
+        "rank_id",
+        "start_date",
+        "end_date",
+        "status_id",
+        "discharge_id",
+        "injury_id",
+        "compensation",
+        "percentage",
+        "danger_areas",
+        "purple_heart"
+    )
+VALUES
+    (
+        15,
+        'Maximilian',
+        'Boyle',
+        'pereinar@hotmail.com',
+        '1993-09-10',
+        6055550108,
+        1,
+        1,
+        1,
+        false,
+        '1235 Second Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        '1235 Second Street',
+        'Minneapolis',
+        1,
+        55420,
+        1,
+        1,
+        1,
+        '1961-03-15',
+        '1975-03-15',
+        1,
+        1,
+        1,
+        false,
+        1,
+        false,
+        false
+    );
 
-INSERT INTO "veteran" ("vet_id", "first_name", "last_name", "email", "date_of_birth", "number", "gender_id", "married_id", "children", "homeless", "current_address", "city", "state_id", "zipcode", "country_id", "mailing_address","city2","state_id2","zipcode2","country_id2", "branch_id", "rank_id", "start_date", "end_date", "status_id", "discharge_id", "injury_id", "compensation", "percentage", "danger_areas", "purple_heart")
-VALUES (15, 'Maximilian', 'Boyle', 'pereinar@hotmail.com', '1993-09-10', 6055550108, 1, 1, 1, false, '1235 Second Street', 'Minneapolis', 1, 55420, 1, '1235 Second Street', 'Minneapolis', 1, 55420, 1, 1, 1, '1961-03-15', '1975-03-15', 1, 1, 1, false, 1, false, false);
 -- End inserts into veteran
-
 -- Inserts into organization
-INSERT INTO "organization" ("org_id", "name", "number", "email", "city", "state_id", "pdf", "website", "pictures", "description", "approved")
-VALUES (16, 'Wounded Warrior Project', 8778326997, 'resourcecenter@woundedwarriorproject.org', 'Jacksonvile', 10, 'none', 'www.Woundedwarriorproject.org', 'none', 'The WWP mission is to honor and empower Wounded Warriors who incurred a physical or mental injury, illnesses, or wound, co-incident to your military service on or after September 11, 2001', true);
-INSERT INTO "organization" ("org_id", "name", "number", "email", "city", "state_id", "pdf", "website", "pictures", "description", "approved")
-VALUES (17, 'Hives for Heroes', 8323651183, 'support@hivesforheroes.com', 'Houston', 45, 'none', 'www.hivesforheroes.com', 'none', 'Hives for Heroes is a national military veteran non-profit organization focusing on honey bee conservation, suicide prevention, and a healthy transition from service.', true);
-INSERT INTO "organization" ("org_id", "name", "number", "email", "city", "state_id", "pdf", "website", "pictures", "description", "approved")
-VALUES (18, 'Texas Veterans Outdoors', 8179807303, 'none', 'Houston', 45, 'none', 'www.texasveteransoutdoors.org', 'none', 'Texas Veterans Outdoors we are dedicated to be a charitable organization that provides a positive social atmosphere for Texas Veterans through educational outdoor experiences', true);
-INSERT INTO "organization" ("org_id", "name", "number", "email", "city", "state_id", "pdf", "website", "pictures", "description", "approved")
-VALUES (19, 'The Birdwell Foundation', 2104861639, 'fakeemail@email.com', 'Houston', 45, 'none','www.birdwellfoundation.org', 'none', 'The Birdwell Foundation, non-profit organization was birthed in June of 2018. A vision to expand to not just Combat Veterans suffering from PTSD/TBI, but to include any Veteran, both men and women suffering from PTSD/TBI, and First Responders. To provide warrior and family support groups across our great nation for our Veteran and First Responder communities. To bring awareness and engage the public about the epidemic that twenty-two Veterans take their own lives. To educate the public to not stigmatize our Veterans by labeling them as "crazy". And finally, to build a state-of-the-art facility in the North Georgia area where Veterans and First Responders can come for a period of time to find restoration, healing from the invisible scars of trauma, and to learn how to continue a healthy and loving relationship with their families. ', true);
-INSERT INTO "organization" ("org_id", "name", "number", "email", "city", "state_id", "pdf", "website", "pictures", "description", "approved")
-VALUES (20, 'Mighty Oaks Foundation', 6194245900, 'Info@MightyOaksPrograms.org', 'Murrieta', 5, 'none', 'www.Woundedwarriorproject.org', 'none', 'The Mighty Oaks Foundation is a faith-based Veteran service organization that teaches combat Veterans struggling with Post Traumatic Stress how to get beyond combat trauma and live their lives in the manner God intended. Many combat vets are unable to reintegrate back into civilian life, leaving their families to deal with the aftermath of broken homes and suicide at times. By aligning their lives to Biblical principles, these Warriors are able to lead their families, their communities and our nation. Our mission is to serve and restore our nations Warriors and families, who have endured hardship through their service to America, and to help them find a new life purpose through hope in Christ and our resiliency and peer-to-peer recovery programs.', true);
+INSERT INTO
+    "organization" (
+        "org_id",
+        "name",
+        "number",
+        "email",
+        "city",
+        "state_id",
+        "pdf",
+        "website",
+        "pictures",
+        "description",
+        "approved"
+    )
+VALUES
+    (
+        16,
+        'Wounded Warrior Project',
+        8778326997,
+        'resourcecenter@woundedwarriorproject.org',
+        'Jacksonvile',
+        10,
+        'none',
+        'www.Woundedwarriorproject.org',
+        'none',
+        'The WWP mission is to honor and empower Wounded Warriors who incurred a physical or mental injury, illnesses, or wound, co-incident to your military service on or after September 11, 2001',
+        true
+    );
+
+INSERT INTO
+    "organization" (
+        "org_id",
+        "name",
+        "number",
+        "email",
+        "city",
+        "state_id",
+        "pdf",
+        "website",
+        "pictures",
+        "description",
+        "approved"
+    )
+VALUES
+    (
+        17,
+        'Hives for Heroes',
+        8323651183,
+        'support@hivesforheroes.com',
+        'Houston',
+        45,
+        'none',
+        'www.hivesforheroes.com',
+        'none',
+        'Hives for Heroes is a national military veteran non-profit organization focusing on honey bee conservation, suicide prevention, and a healthy transition from service.',
+        true
+    );
+
+INSERT INTO
+    "organization" (
+        "org_id",
+        "name",
+        "number",
+        "email",
+        "city",
+        "state_id",
+        "pdf",
+        "website",
+        "pictures",
+        "description",
+        "approved"
+    )
+VALUES
+    (
+        18,
+        'Texas Veterans Outdoors',
+        8179807303,
+        'none',
+        'Houston',
+        45,
+        'none',
+        'www.texasveteransoutdoors.org',
+        'none',
+        'Texas Veterans Outdoors we are dedicated to be a charitable organization that provides a positive social atmosphere for Texas Veterans through educational outdoor experiences',
+        true
+    );
+
+INSERT INTO
+    "organization" (
+        "org_id",
+        "name",
+        "number",
+        "email",
+        "city",
+        "state_id",
+        "pdf",
+        "website",
+        "pictures",
+        "description",
+        "approved"
+    )
+VALUES
+    (
+        19,
+        'The Birdwell Foundation',
+        2104861639,
+        'fakeemail@email.com',
+        'Houston',
+        45,
+        'none',
+        'www.birdwellfoundation.org',
+        'none',
+        'The Birdwell Foundation, non-profit organization was birthed in June of 2018. A vision to expand to not just Combat Veterans suffering from PTSD/TBI, but to include any Veteran, both men and women suffering from PTSD/TBI, and First Responders. To provide warrior and family support groups across our great nation for our Veteran and First Responder communities. To bring awareness and engage the public about the epidemic that twenty-two Veterans take their own lives. To educate the public to not stigmatize our Veterans by labeling them as "crazy". And finally, to build a state-of-the-art facility in the North Georgia area where Veterans and First Responders can come for a period of time to find restoration, healing from the invisible scars of trauma, and to learn how to continue a healthy and loving relationship with their families. ',
+        true
+    );
+
+INSERT INTO
+    "organization" (
+        "org_id",
+        "name",
+        "number",
+        "email",
+        "city",
+        "state_id",
+        "pdf",
+        "website",
+        "pictures",
+        "description",
+        "approved"
+    )
+VALUES
+    (
+        7,
+        'Mighty Oaks Foundation',
+        6194245900,
+        'Info@MightyOaksPrograms.org',
+        'Murrieta',
+        5,
+        'none',
+        'www.Woundedwarriorproject.org',
+        'none',
+        'The Mighty Oaks Foundation is a faith-based Veteran service organization that teaches combat Veterans struggling with Post Traumatic Stress how to get beyond combat trauma and live their lives in the manner God intended. Many combat vets are unable to reintegrate back into civilian life, leaving their families to deal with the aftermath of broken homes and suicide at times. By aligning their lives to Biblical principles, these Warriors are able to lead their families, their communities and our nation. Our mission is to serve and restore our nations Warriors and families, who have endured hardship through their service to America, and to help them find a new life purpose through hope in Christ and our resiliency and peer-to-peer recovery programs.',
+        true
+    );
+
 -- End inserts into organization
-
 -- Inserts into match
-INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (1, 3, '19:00:03', '00:24:35', '02:30:48');
-INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (2, 2,'13:53:11', '12:27:46', '04:52:53');
-INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (3, 3, '19:13:14', '23:02:05', '04:52:53');
-INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (4, 4, '19:51:23', '19:44:38', '13:15:29');
-INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (5, 5, '06:27:00', '02:53:47', '06:54:36');
-INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (6, 5, '08:55:26', '15:06:16', '17:18:32');
-INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (7, 3, '09:15:00', '20:47:06 ', '00:10:33 ');
-INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (8, 1, '01:23:26', '21:59:23', '03:46:46');
-INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (9, 4,'11:36:02', '18:45:29', '08:51:54');
-INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (1, 5, '12:49:51', '10:29:31', '09:30:31');
-INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (5, 2,'16:15:57', '20:15:43', '07:32:26');
-INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (3, 3, '16:54:58', '14:31:04', '23:22:03');
-INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (4, 4, '14:28:55', '20:55:25', '09:08:26');
-INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (5, 5, '06:06:47', '17:47:35', '17:54:39');
-INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (6, 6, '17:54:39', '05:08:03', '00:17:39');
-INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (7, 3, '16:54:02', '08:13:21', '05:36:06');
-INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (8, 1, '17:47:35', '05:49:34', '12:51:54');
-INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (9, 1,'12:51:34', '12:51:54', '20:55:43');
--- End inserts into match
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (1, 3, '19:00:03', '00:24:35', '02:30:48');
 
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (2, 2, '13:53:11', '12:27:46', '04:52:53');
+
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (3, 3, '19:13:14', '23:02:05', '04:52:53');
+
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (4, 4, '19:51:23', '19:44:38', '13:15:29');
+
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (5, 5, '06:27:00', '02:53:47', '06:54:36');
+
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (6, 5, '08:55:26', '15:06:16', '17:18:32');
+
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (7, 3, '09:15:00', '20:47:06 ', '00:10:33 ');
+
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (8, 1, '01:23:26', '21:59:23', '03:46:46');
+
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (9, 4, '11:36:02', '18:45:29', '08:51:54');
+
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (1, 5, '12:49:51', '10:29:31', '09:30:31');
+
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (5, 2, '16:15:57', '20:15:43', '07:32:26');
+
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (3, 3, '16:54:58', '14:31:04', '23:22:03');
+
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (4, 4, '14:28:55', '20:55:25', '09:08:26');
+
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (5, 5, '06:06:47', '17:47:35', '17:54:39');
+
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (6, 6, '17:54:39', '05:08:03', '00:17:39');
+
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (7, 3, '16:54:02', '08:13:21', '05:36:06');
+
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (8, 1, '17:47:35', '05:49:34', '12:51:54');
+
+INSERT INTO
+    "match" (
+        "vet_id",
+        "org_id",
+        "received",
+        "contacted",
+        "approved"
+    )
+VALUES
+    (9, 1, '12:51:34', '12:51:54', '20:55:43');
+
+-- End inserts into match
 -- Inserts into veteran_categories 
-INSERT INTO veteran_categories(vet_id, categories_id) VALUES (1, 1), (1, 3), (1, 4), (2, 5), (2, 6), (2, 7), (2, 8), (3, 9), (3, 10), (3, 3),(3, 4),(6, 1),(8, 9), (4, 10), (8, 3),(3, 4),(6, 1),(10, 1), (10, 3), (10, 4), (12, 5), (12, 6), (12, 7), (12, 8), (13, 9), (13, 10), (13, 3),(13, 4),(15, 1),(15, 9), (14, 10), (14, 3),(14, 4),(14, 1);
--- End inserts into match
+INSERT INTO
+    veteran_categories(vet_id, categories_id)
+VALUES
+    (1, 1),
+    (1, 3),
+    (1, 4),
+    (2, 5),
+    (2, 6),
+    (2, 7),
+    (2, 8),
+    (3, 9),
+    (3, 10),
+    (3, 3),
+(3, 4),
+(6, 1),
+(8, 9),
+    (4, 10),
+    (8, 3),
+(3, 4),
+(6, 1),
+(10, 1),
+    (10, 3),
+    (10, 4),
+    (12, 5),
+    (12, 6),
+    (12, 7),
+    (12, 8),
+    (13, 9),
+    (13, 10),
+    (13, 3),
+(13, 4),
+(15, 1),
+(15, 9),
+    (14, 10),
+    (14, 3),
+(14, 4),
+(14, 1);
 
+-- End inserts into match
 -- Inserts into organization_categories
-INSERT INTO organization_categories(org_id, categories_id) VALUES (1, 1), (1, 2), (1, 5), (2, 3), (2, 9), (3, 1), (3, 2), (3, 3), (3, 4), (3, 5), (4, 5), (4, 7), (4,9), (4, 9), (5, 9), (5, 10), (5, 10) ;
+INSERT INTO
+    organization_categories(org_id, categories_id)
+VALUES
+    (1, 1),
+    (1, 2),
+    (1, 5),
+    (2, 3),
+    (2, 9),
+    (3, 1),
+    (3, 2),
+    (3, 3),
+    (3, 4),
+    (3, 5),
+    (4, 5),
+    (4, 7),
+    (4, 9),
+    (4, 9),
+    (5, 9),
+    (5, 10),
+    (5, 10);
+
 -- End inserts into organization_categories
