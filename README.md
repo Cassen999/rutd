@@ -14,8 +14,8 @@ For the many organizations that offer Veteran outreach, Vets must navigate hurdl
 as repeatedly providing the same information on applicationss. With RUTD, the Veteran provides personal information only once.
 RUTD provides a single registration application, that can be completed in parts over time. After completing the application, the Veteran is matched with organizations that they are elligible for. Eliminating superflous calls for outreach on the part of the Veteran. The veteran can then interface with the organizations with a single click which sends their application to the the organization in question. If the organization requires addtional information, such as a next of kin. They directly communicate to the Veteran these requirements.
 
-![intro](public/images/screenShots/{image}.png)
-![intro](public/images/screenShots/{image}.png)
+![intro](public/images/screenShots/login.png)
+![intro](public/images/screenShots/match.png)
 
 ### Prerequisites
 
