@@ -443,41 +443,41 @@ VALUES (7, 'Mighty Oaks Foundation', 6194245900, 'Info@MightyOaksPrograms.org', 
 
 -- Inserts into match
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (1, 3, '2021-02-16', '2021-01-19', '2020-01-19');
+VALUES (1, 3, '00:00:00', '12:12:12', '20:20:20');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (2, 2,'2021-02-16', '2021-01-19', '2020-01-19');
+VALUES (2, 2,'00:00:00', '12:12:12', '20:20:20');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (3, 3, '2021-02-16', '2021-01-19', '2020-01-19');
+VALUES (3, 3, '00:00:00', '12:12:12', '20:20:20');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (4, 4, '2020-10-19', '2021-01-19', '2020-01-19');
+VALUES (4, 4, '00:00:00', '12:12:12', '20:20:20');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (5, 5, '2021-02-16', '2021-01-19', '2020-01-19');
+VALUES (5, 5, '00:00:00', '12:12:12', '20:20:20');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (6, 6, '2021-02-16', '2021-01-19', '2020-01-19');
+VALUES (6, 6, '00:00:00', '12:12:12', '20:20:20');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (7, 7, '2020-10-19', '2021-01-19 ', '2020-01-19 ');
+VALUES (7, 7, '00:00:00', '12:12:12', '20:20:20');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (8, 8, '2021-02-16', '2021-01-19 ', '2020-01-19 ');
+VALUES (8, 8, '00:00:00', '12:12:12', '20:20:20');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (9, 10,'2021-02-16', '2021-01-19 ', '2020-01-19');
+VALUES (9, 10,'00:00:00', '12:12:12', '20:20:20');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (1, 3, '2021-02-16 12:23:54', '2021-01-19 13:23:54', '2020-01-19 07:23:54');
+VALUES (1, 3, '00:00:00', '12:12:12', '20:20:20');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (2, 2,'2021-02-16 12:23:54', '2021-01-19 13:23:54', '2020-01-19 07:23:54');
+VALUES (2, 2,'00:00:00', '12:12:12', '20:20:20');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (3, 3, '2021-02-16 12:23:54', '2021-01-19 13:23:54', '2020-01-19 07:23:54');
+VALUES (3, 3, '00:00:00', '12:12:12', '20:20:20');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (4, 4, '2020-10-19 10:23:54', '2021-01-19 13:23:54', '2020-01-19 07:23:54');
+VALUES (4, 4, '00:00:00', '12:12:12', '20:20:20');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (5, 5, '2021-02-16 12:23:54', '2021-01-19 13:23:54', '2020-01-19 07:23:54');
+VALUES (5, 5, '00:00:00', '12:12:12', '20:20:20');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (6, 6, '2021-02-16 12:23:54', '2021-01-19 13:23:54', '2020-01-19 07:23:54');
+VALUES (6, 6, '00:00:00', '12:12:12', '20:20:20');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (7, 7, '2020-10-19', '2021-01-19 ', '2020-01-19 ');
+VALUES (7, 7, '00:00:00', '12:12:12', '20:20:20');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (8, 8, '2021-02-16', '2021-01-19 ', '2020-01-19 ');
+VALUES (8, 8, '00:00:00', '12:12:12', '20:20:20');
 INSERT INTO "match" ("vet_id", "org_id", "received", "contacted", "approved")
-VALUES (9, 10,'2021-02-16 12:23:54', '2021-01-19 13:23:54', '2020-01-19 07:23:54');
+VALUES (9, 10,'00:00:00', '12:12:12', '20:20:20');
 -- End inserts into match
 
 -- Inserts into veteran_categories 
